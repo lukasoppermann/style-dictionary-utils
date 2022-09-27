@@ -1,0 +1,37 @@
+{
+  "name": "style-dictionary-utils",
+  "version": "0.0.1",
+  "description": "Utilities to use in your style dictionary config",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lukasoppermann/style-dictionary-utils.git"
+  },
+  "keywords": [
+    "design token",
+    "style dictionary",
+    "design system"
+  ],
+  "author": "Lukas Oppermann",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lukasoppermann/style-dictionary-utils/issues"
+  },
+  "homepage": "https://github.com/lukasoppermann/style-dictionary-utils#readme",
+  "devDependencies": {
+    "@types/jest": "^29.0.3",
+    "jest": "^29.0.3",
+    "style-dictionary": "^3.7.1",
+    "ts-jest": "^29.0.2",
+    "typescript": "^4.8.3"
+  },
+  "peerDependencies": {
+    "style-dictionary": ">= 3"
+  },
+  "dependencies": {
+    "json5": "^2.2.1"
+  }
+}
