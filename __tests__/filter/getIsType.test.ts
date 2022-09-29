@@ -1,20 +1,20 @@
 import StyleDictionary from 'style-dictionary';
 import { getIsType } from '../../src/filter/getIsType';
 
-describe("Filter: getIsType", () => {
+describe('Filter: getIsType', () => {
   const items = [{
-    value: "300ms",
-    $type: "border"
+    value: '300ms',
+    $type: 'border',
   }, {
-    value: "2rem",
-    $type: "dimension"
+    value: '2rem',
+    $type: 'dimension',
   }, {
-    value: "#345622",
-    type: "color"
+    value: '#345622',
+    type: 'color',
   }, {
-    value: "string",
-  }] as StyleDictionary.TransformedToken[]
+    value: 'string',
+  }] as StyleDictionary.TransformedToken[];
   it('filters type tokens', () => {
-    expect(items.filter(getIsType('border', 'color'))).toStrictEqual([items[0], items[2]])
-  })
-})
+    expect(items.filter(getIsType('border', 'color'))).toStrictEqual([items[0], items[2]]);
+  });
+});

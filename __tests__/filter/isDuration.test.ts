@@ -1,20 +1,20 @@
 import StyleDictionary from 'style-dictionary';
 import { isDuration } from '../../src/filter/isDuration';
 
-describe("Filter: isDuration", () => {
+describe('Filter: isDuration', () => {
   const items = [{
-    value: "300ms",
-    $type: "duration"
+    value: '300ms',
+    $type: 'duration',
   }, {
-    value: "2rem",
-    $type: "dimension"
+    value: '2rem',
+    $type: 'dimension',
   }, {
-    value: "10ms",
-    type: "duration"
+    value: '10ms',
+    type: 'duration',
   }, {
-    value: "string",
-  }] as StyleDictionary.TransformedToken[]
+    value: 'string',
+  }] as StyleDictionary.TransformedToken[];
   it('filters duration tokens', () => {
-    expect(items.filter(isDuration)).toStrictEqual([items[0], items[2]])
-  })
-})
+    expect(items.filter(isDuration)).toStrictEqual([items[0], items[2]]);
+  });
+});

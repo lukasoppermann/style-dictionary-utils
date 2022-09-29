@@ -4,6 +4,4 @@ import StyleDictionary from 'style-dictionary';
  * @type filter
  * @description only returns tokens of type `strokeStyle`
  */
-export const isStrokeStyle = (token: StyleDictionary.TransformedToken): boolean => {
-  return token?.$type === 'strokeStyle' || token?.type === 'strokeStyle';
-}
+export const isStrokeStyle = (token: StyleDictionary.TransformedToken): boolean => token?.$type === 'strokeStyle' || token?.type === 'strokeStyle';

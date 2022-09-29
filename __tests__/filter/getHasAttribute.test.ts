@@ -1,19 +1,19 @@
 import StyleDictionary from 'style-dictionary';
 import { getHasAttribute } from '../../src/filter/getHasAttribute';
 
-describe("Filter: hasAttribute", () => {
+describe('Filter: hasAttribute', () => {
   const items = [{
-    value: "300ms",
-    deprecated: true
+    value: '300ms',
+    deprecated: true,
   }, {
-    value: "2rem",
-    $type: "dimension",
-    $deprecated: false
+    value: '2rem',
+    $type: 'dimension',
+    $deprecated: false,
   }, {
-    value: "string",
-  }] as StyleDictionary.TransformedToken[]
+    value: 'string',
+  }] as StyleDictionary.TransformedToken[];
 
   it('filters type tokens', () => {
-    expect(items.filter(getHasAttribute('deprecated', '$deprecated'))).toStrictEqual([items[0], items[1]])
-  })
-})
+    expect(items.filter(getHasAttribute('deprecated', '$deprecated'))).toStrictEqual([items[0], items[1]]);
+  });
+});

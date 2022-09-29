@@ -1,20 +1,20 @@
 import StyleDictionary from 'style-dictionary';
 import { isShadow } from '../../src/filter/isShadow';
 
-describe("Filter: isShadow", () => {
+describe('Filter: isShadow', () => {
   const items = [{
-    value: "300ms",
-    $type: "shadow"
+    value: '300ms',
+    $type: 'shadow',
   }, {
-    value: "2rem",
-    $type: "dimension"
+    value: '2rem',
+    $type: 'dimension',
   }, {
-    value: "10ms",
-    type: "shadow"
+    value: '10ms',
+    type: 'shadow',
   }, {
-    value: "string",
-  }] as StyleDictionary.TransformedToken[]
+    value: 'string',
+  }] as StyleDictionary.TransformedToken[];
   it('filters shadow tokens', () => {
-    expect(items.filter(isShadow)).toStrictEqual([items[0], items[2]])
-  })
-})
+    expect(items.filter(isShadow)).toStrictEqual([items[0], items[2]]);
+  });
+});

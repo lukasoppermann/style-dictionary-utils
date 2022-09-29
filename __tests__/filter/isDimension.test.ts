@@ -1,20 +1,20 @@
 import StyleDictionary from 'style-dictionary';
 import { isDimension } from '../../src/filter/isDimension';
 
-describe("Filter: isDimension", () => {
+describe('Filter: isDimension', () => {
   const items = [{
-    value: "2rem",
-    $type: "dimension"
+    value: '2rem',
+    $type: 'dimension',
   }, {
-    value: "#234589",
-    $type: "color"
+    value: '#234589',
+    $type: 'color',
   }, {
-    value: "12px",
-    type: "dimension"
+    value: '12px',
+    type: 'dimension',
   }, {
-    value: "a string",
-  }] as StyleDictionary.TransformedToken[]
+    value: 'a string',
+  }] as StyleDictionary.TransformedToken[];
   it('filters dimension tokens', () => {
-    expect(items.filter(isDimension)).toStrictEqual([items[0], items[2]])
-  })
-})
+    expect(items.filter(isDimension)).toStrictEqual([items[0], items[2]]);
+  });
+});

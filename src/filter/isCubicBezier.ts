@@ -4,6 +4,4 @@ import StyleDictionary from 'style-dictionary';
  * @type filter
  * @description only returns tokens of type `cubicBezier`
  */
-export const isCubicBezier = (token: StyleDictionary.TransformedToken): boolean => {
-  return token?.$type === 'cubicBezier' || token?.type === 'cubicBezier';
-}
+export const isCubicBezier = (token: StyleDictionary.TransformedToken): boolean => token?.$type === 'cubicBezier' || token?.type === 'cubicBezier';

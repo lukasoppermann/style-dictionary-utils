@@ -4,6 +4,4 @@ import StyleDictionary from 'style-dictionary';
  * @type filter
  * @description only returns tokens of type `shadow`
  */
-export const isShadow = (token: StyleDictionary.TransformedToken): boolean => {
-  return token?.$type === 'shadow' || token?.type === 'shadow';
-}
+export const isShadow = (token: StyleDictionary.TransformedToken): boolean => token?.$type === 'shadow' || token?.type === 'shadow';

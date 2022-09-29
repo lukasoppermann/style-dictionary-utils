@@ -6,6 +6,6 @@ import StyleDictionary from 'style-dictionary';
  * @param attributes one more multiple attributes (`strings`)
  * @returns filter function
  */
-export const getHasAttribute = (...attributes: string[]) => (token: StyleDictionary.TransformedToken): boolean => {
-  return attributes.some(attr => Object.prototype.hasOwnProperty.call(token, attr))
-}
+export const getHasAttribute = (...attributes: string[]) =>
+  (token: StyleDictionary.TransformedToken): boolean =>
+    attributes.some((attr) => Object.prototype.hasOwnProperty.call(token, attr));

@@ -1,8 +1,9 @@
 import { w3cTokenJson5Parser } from '../../src/parser/w3c-token-json5-parser';
 
-describe("Parser: w3c token json5 parser", () => {
+describe('Parser: w3c token json5 parser', () => {
   it('parses valid json5', () => {
-    expect(w3cTokenJson5Parser.parse({ contents: `{
+    expect(w3cTokenJson5Parser.parse({
+      contents: `{
       "color": {
         // comment
         "$value": 'red',
@@ -10,17 +11,18 @@ describe("Parser: w3c token json5 parser", () => {
         "$type": "color",
         alpha: 0.5
       }
-    }`})).toStrictEqual({
+    }`,
+    })).toStrictEqual({
       color: {
-        comment: "a red color",
-        value: "red",
-        $type: "color",
-        alpha: 0.5
-      }
-    })
-  })
+        comment: 'a red color',
+        value: 'red',
+        $type: 'color',
+        alpha: 0.5,
+      },
+    });
+  });
 
   it('parses empty json', () => {
-    expect(w3cTokenJson5Parser.parse({ contents: ``})).toStrictEqual({})
-  })
-})
+    expect(w3cTokenJson5Parser.parse({ contents: '' })).toStrictEqual({});
+  });
+});
