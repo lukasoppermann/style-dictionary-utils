@@ -1,8 +1,8 @@
 import StyleDictionary from 'style-dictionary';
 import { Matcher } from 'style-dictionary/types/Matcher';
-import { colorToHex8 } from '../../src/transformer/color-to-hex8';
+import { colorToRgba } from '../../src/transformer/color-to-rgba';
 
-describe('Transformer: colorToHex8', () => {
+describe('Transformer: colorToRgba', () => {
   const items = [{
     value: '#333',
     $type: 'color',
@@ -20,7 +20,7 @@ describe('Transformer: colorToHex8', () => {
   }] as StyleDictionary.TransformedToken[];
 
   it('matches `color` tokens', () => {
-    expect(items.filter(colorToHex8.matcher as Matcher)).toStrictEqual([items[0], items[1], items[2]]);
+    expect(items.filter(colorToRgba.matcher as Matcher)).toStrictEqual([items[0], items[1], items[2]]);
   });
 
   it('transforms `color` tokens with hex value', () => {
@@ -28,10 +28,10 @@ describe('Transformer: colorToHex8', () => {
       { value: '#343' },
       { value: '#343434' },
       { value: '#34343466' }
-    ].map(item => colorToHex8.transformer(item as StyleDictionary.TransformedToken))).toStrictEqual([
-      "#334433",
-      "#343434",
-      "#34343466"
+    ].map(item => colorToRgba.transformer(item as StyleDictionary.TransformedToken))).toStrictEqual([
+      "rgba(51, 68, 51, 1)",
+      "rgba(52, 52, 52, 1)",
+      "rgba(52, 52, 52, 0.4)"
     ]);
   })
 
@@ -39,9 +39,9 @@ describe('Transformer: colorToHex8', () => {
     expect([
       { value: 'rgb(100,200,255)' },
       { value: 'rgba(100,200,255, .4)' }
-    ].map(item => colorToHex8.transformer(item as StyleDictionary.TransformedToken))).toStrictEqual([
-      "#64c8ff",
-      "#64c8ff66",
+    ].map(item => colorToRgba.transformer(item as StyleDictionary.TransformedToken))).toStrictEqual([
+      'rgba(100, 200, 255, 1)',
+      'rgba(100, 200, 255, 0.4)',
     ]);
   })
 
@@ -50,9 +50,9 @@ describe('Transformer: colorToHex8', () => {
       { value: '#343434', alpha: .4 },
       { value: '#34343466', alpha: .4 }
       // @ts-expect-error: fake token for test causes error
-    ].map(item => colorToHex8.transformer(item))).toStrictEqual([
-      "#34343466",
-      "#34343400"
+    ].map(item => colorToRgba.transformer(item))).toStrictEqual([
+      "rgba(52, 52, 52, 1)",
+      "rgba(52, 52, 52, 0.4)"
     ]);
   })
 })

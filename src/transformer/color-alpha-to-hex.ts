@@ -1,10 +1,10 @@
 import { toHex, transparentize } from 'color2k'
 import StyleDictionary from 'style-dictionary'
 /**
- * colorToHex8
+ * colorAlphaToHex
  * @description convert a token of type `color` to a hex8 value if alpha < 1 and hex6 if alpha is 1
  */
-export const colorToHex8: StyleDictionary.Transform = {
+export const colorAlphaToHex: StyleDictionary.Transform = {
   type: `value`,
   transitive: true,
   matcher: (token: StyleDictionary.TransformedToken) => token.$type === 'color',
