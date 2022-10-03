@@ -24,6 +24,14 @@
         "ts-check": false,
         "minimumDescriptionLength": 3
       }
+    ],
+    "@typescript-eslint/no-unused-vars": ["error", 
+      { 
+        "vars": "all",
+        "args": "after-used",
+        "ignoreRestSiblings": false,
+        "argsIgnorePattern": "^_"
+      }
     ]
   }
 }
