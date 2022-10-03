@@ -6,11 +6,9 @@ describe('Transformer: colorAlphaToHex', () => {
   const items = [{
     value: '#333',
     $type: 'color',
+    alpha: .4
   }, {
     value: '#343434',
-    $type: 'color',
-  }, {
-    value: '',
     $type: 'color',
   }, {
     value: '',
@@ -20,7 +18,7 @@ describe('Transformer: colorAlphaToHex', () => {
   }] as StyleDictionary.TransformedToken[];
 
   it('matches `color` tokens', () => {
-    expect(items.filter(colorAlphaToHex.matcher as Matcher)).toStrictEqual([items[0], items[1], items[2]]);
+    expect(items.filter(colorAlphaToHex.matcher as Matcher)).toStrictEqual([items[0], items[1]]);
   });
 
   it('transforms `color` tokens with hex value', () => {
@@ -45,14 +43,14 @@ describe('Transformer: colorAlphaToHex', () => {
     ]);
   })
 
-  it('transforms `color` tokens and ignores alpha value', () => {
+  it('transforms `color` tokens with alpha value', () => {
     expect([
       { value: '#343434', alpha: .4 },
-      { value: '#34343466', alpha: .4 }
+      { value: '#34343466', alpha: .2 }
       // @ts-expect-error: fake token for test causes error
     ].map(item => colorAlphaToHex.transformer(item))).toStrictEqual([
       "#34343466",
-      "#34343400"
+      "#34343433"
     ]);
   })
 })

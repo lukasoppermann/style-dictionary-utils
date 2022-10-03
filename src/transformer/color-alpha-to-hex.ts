@@ -1,4 +1,5 @@
-import { toHex, transparentize } from 'color2k'
+import { toHex } from 'color2k'
+import { alpha } from '../utilities/alpha'
 import StyleDictionary from 'style-dictionary'
 /**
  * colorAlphaToHex
@@ -8,6 +9,8 @@ export const colorAlphaToHex: StyleDictionary.Transform = {
   type: `value`,
   transitive: true,
   matcher: (token: StyleDictionary.TransformedToken) => token.$type === 'color',
-  transformer: (token: StyleDictionary.TransformedToken) =>
-    toHex(transparentize(token.value, 1 - token.alpha || 0))
+  transformer: (token: StyleDictionary.TransformedToken) => {
+    if (token.alpha) return toHex(alpha(token.value, token.alpha))
+    return toHex(token.value)
+  }
 }

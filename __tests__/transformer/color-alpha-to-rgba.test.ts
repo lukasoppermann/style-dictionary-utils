@@ -1,6 +1,6 @@
 import StyleDictionary from 'style-dictionary';
 import { Matcher } from 'style-dictionary/types/Matcher';
-import { colorToRgba } from '../../src/transformer/color-to-rgba';
+import { colorAlphaToRgba } from '../../src/transformer/color-alpha-to-rgba';
 
 describe('Transformer: colorToRgba', () => {
   const items = [{
@@ -9,9 +9,7 @@ describe('Transformer: colorToRgba', () => {
   }, {
     value: '#343434',
     $type: 'color',
-  }, {
-    value: '',
-    $type: 'color',
+    alpha: .5
   }, {
     value: '',
     $type: 'dimension',
@@ -20,7 +18,7 @@ describe('Transformer: colorToRgba', () => {
   }] as StyleDictionary.TransformedToken[];
 
   it('matches `color` tokens', () => {
-    expect(items.filter(colorToRgba.matcher as Matcher)).toStrictEqual([items[0], items[1], items[2]]);
+    expect(items.filter(colorAlphaToRgba.matcher as Matcher)).toStrictEqual([items[0], items[1]]);
   });
 
   it('transforms `color` tokens with hex value', () => {
@@ -28,31 +26,31 @@ describe('Transformer: colorToRgba', () => {
       { value: '#343' },
       { value: '#343434' },
       { value: '#34343466' }
-    ].map(item => colorToRgba.transformer(item as StyleDictionary.TransformedToken))).toStrictEqual([
+    ].map(item => colorAlphaToRgba.transformer(item as StyleDictionary.TransformedToken))).toStrictEqual([
       "rgba(51, 68, 51, 1)",
       "rgba(52, 52, 52, 1)",
       "rgba(52, 52, 52, 0.4)"
     ]);
   })
 
-  it('transforms `color` tokens with rgb value', () => {
+  it('transforms `color` tokens with rgb value and keeps alpha values', () => {
     expect([
       { value: 'rgb(100,200,255)' },
       { value: 'rgba(100,200,255, .4)' }
-    ].map(item => colorToRgba.transformer(item as StyleDictionary.TransformedToken))).toStrictEqual([
+    ].map(item => colorAlphaToRgba.transformer(item as StyleDictionary.TransformedToken))).toStrictEqual([
       'rgba(100, 200, 255, 1)',
       'rgba(100, 200, 255, 0.4)',
     ]);
   })
 
-  it('transforms `color` tokens and ignores alpha value', () => {
+  it('transforms `color` tokens with alpha', () => {
     expect([
       { value: '#343434', alpha: .4 },
-      { value: '#34343466', alpha: .4 }
+      { value: '#343434cc', alpha: .2 }
       // @ts-expect-error: fake token for test causes error
-    ].map(item => colorToRgba.transformer(item))).toStrictEqual([
-      "rgba(52, 52, 52, 1)",
-      "rgba(52, 52, 52, 0.4)"
+    ].map(item => colorAlphaToRgba.transformer(item))).toStrictEqual([
+      "rgba(52, 52, 52, 0.4)",
+      "rgba(52, 52, 52, 0.2)"
     ]);
   })
 })
