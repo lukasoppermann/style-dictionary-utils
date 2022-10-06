@@ -14,7 +14,7 @@ export const jsonToNestedValue = (token: StyleDictionary.DesignToken | Record<st
   const nextObj = {}
   for (const [prop, value] of Object.entries(token)) {
     // @ts-expect-error: can't predict type
-    nextObj[prop] = toValue(value)
+    nextObj[prop] = jsonToNestedValue(value)
   }
   return nextObj
 }

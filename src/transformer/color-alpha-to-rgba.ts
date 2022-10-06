@@ -10,7 +10,7 @@ export const colorAlphaToRgba: StyleDictionary.Transform = {
   transitive: true,
   matcher: (token: StyleDictionary.TransformedToken) => token.$type === 'color',
   transformer: (token: StyleDictionary.TransformedToken) => {
-    if (token.alpha) return alpha(token.value, token.alpha)
+    if (token.alpha !== undefined) return alpha(token.value, token.alpha)
     return toRgba(token.value)
   }
 }
