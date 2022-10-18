@@ -5,7 +5,7 @@ import { jsonToNestedValue } from '../utilities/jsonToNestedValue';
 
 const { fileHeader } = StyleDictionary.formatHelpers;
 
-export const javascriptExport: StyleDictionary.Formatter = ({ dictionary, file, options: _options, platform }) => {
+export const javascriptEsm: StyleDictionary.Formatter = ({ dictionary, file, options: _options, platform = {} }) => {
   const { prefix } = platform
   const tokens = prefix ? { [prefix]: dictionary.tokens } : dictionary.tokens
   //
