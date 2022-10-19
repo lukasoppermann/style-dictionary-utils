@@ -35,9 +35,7 @@
     "typescript": "^4.8.3"
   },
   "peerDependencies": {
-    "style-dictionary": ">= 3"
-  },
-  "dependencies": {
+    "style-dictionary": ">= 3",
     "json5": "^2.2.1"
   }
 }

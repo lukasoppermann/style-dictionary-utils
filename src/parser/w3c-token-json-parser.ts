@@ -10,7 +10,7 @@ export const w3cTokenJsonParser = {
     // replace $value with value so that style dictionary recognizes it
     const preparedContent = (contents || '{}').replace(/"\$(value)":/g, '"$1":')
       // convert $description to comment
-      .replace(/"\$description":/g, '"comment":');
+      .replace(/"\$?description":/g, '"comment":');
     //
     return JSON.parse(preparedContent);
   },

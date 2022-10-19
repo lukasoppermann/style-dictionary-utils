@@ -6,12 +6,12 @@ import JSON5 from 'json5';
  * with `comment` to make it work with style dictionary
  */
 export const w3cTokenJson5Parser = {
-  pattern: /\.json$/,
+  pattern: /\.json[c|5]?$/,
   parse: ({ contents }: { contents: string }) => {
     // replace $value with value so that style dictionary recognizes it
     const preparedContent = (contents || '{}').replace(/"\$(value)":/g, '"$1":')
       // convert $description to comment
-      .replace(/"\$description":/g, '"comment":');
+      .replace(/"\$?description":/g, '"comment":');
     //
     return JSON5.parse(preparedContent);
   },

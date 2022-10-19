@@ -9,6 +9,11 @@ describe('Parser: w3c token json parser', () => {
         "$description": "a red color",
         "$type": "color",
         "alpha": 0.5
+      },
+      "token": {
+        "value": "green",
+        "description": "a red color",
+        "type": "color"
       }
     }`,
     })).toStrictEqual({
@@ -17,6 +22,11 @@ describe('Parser: w3c token json parser', () => {
         value: 'red',
         $type: 'color',
         alpha: 0.5,
+      },
+      token: {
+        comment: 'a red color',
+        value: 'green',
+        type: 'color',
       },
     });
   });

@@ -1,6 +1,7 @@
 import * as OrigialStyleDictionary from 'style-dictionary'
 import { isBorder } from './filter/isBorder'
 import { isColor } from './filter/isColor'
+import { isColorOrGradient } from './filter/isColorOrGradient'
 import { isCubicBezier } from './filter/isCubicBezier'
 import { isDimension } from './filter/isDimension'
 import { isDuration } from './filter/isDuration'
@@ -15,7 +16,7 @@ import { isTypographic } from './filter/isTypographic'
 import { isTypography } from './filter/isTypography'
 import { javascriptCommonJs } from './format/javascript-commonJs'
 import { javascriptEsm } from './format/javascript-esm'
-import { w3cTokenJson5Parser } from './parser/w3c-token-json5-parser'
+import { w3cTokenJsonParser } from './parser/w3c-token-json-parser'
 import { colorAlphaToHex } from './transformer/color-alpha-to-hex'
 import { colorAlphaToRgba } from './transformer/color-alpha-to-rgba'
 import { colorToHex } from './transformer/color-to-hex'
@@ -33,7 +34,7 @@ import { shadowCss } from './transformer/shadow-css'
  * Parsers
  *
  */
-OrigialStyleDictionary.registerParser(w3cTokenJson5Parser)
+OrigialStyleDictionary.registerParser(w3cTokenJsonParser)
 
 /**
  * Formats
@@ -113,6 +114,7 @@ OrigialStyleDictionary.registerTransform({
   name: 'dimension/remToPx',
   ...dimensionRemToPixel
 })
+
 /**
  * Filters
  *
@@ -125,6 +127,16 @@ OrigialStyleDictionary.registerFilter({
 OrigialStyleDictionary.registerFilter({
   name: 'isColor',
   matcher: isColor
+})
+
+OrigialStyleDictionary.registerFilter({
+  name: 'isGradient',
+  matcher: isGradient
+})
+
+OrigialStyleDictionary.registerFilter({
+  name: 'isColorOrGradient',
+  matcher: isColorOrGradient
 })
 
 OrigialStyleDictionary.registerFilter({
@@ -150,11 +162,6 @@ OrigialStyleDictionary.registerFilter({
 OrigialStyleDictionary.registerFilter({
   name: 'isShadow',
   matcher: isShadow
-})
-
-OrigialStyleDictionary.registerFilter({
-  name: 'isGradient',
-  matcher: isGradient
 })
 
 OrigialStyleDictionary.registerFilter({
@@ -190,8 +197,6 @@ OrigialStyleDictionary.registerFilter({
 /**
  * @name {@link StyleDictionary}
  * @description Returns style dictionary object with parsers, formats and transformers
- * @parsers [w3cJsonParser](./parsers/w3c-json-parser.ts)
- * @formats [scss/mixin-css-variables](./formats/scss-mixin-css-variables.ts), [javascript/esm](./formats/javascript-esm.ts), [javascript/commonJs](./formats/javascript-commonJs.ts), [typescript/export-definition](./formats/typescript-export-defition.ts)
- * @transformers [color/rgbAlpha](./transformers/color-to-rgb-alpha.ts), [color/hexAlpha](./transformers/color-to-hex-alpha.ts), [color/hex6](./transformers/color-to-hex6.ts), [json/deprecated](./transformers/json-deprecated.ts), [name/pathToDotNotation](./transformers/name-path-to-dot-notation.ts)
+ * @documentation https://github.com/lukasoppermann/style-dictionary-utils/blob/main/README.md
  */
-export const StyleDictionary: OrigialStyleDictionary.Core = OrigialStyleDictionary
+export default OrigialStyleDictionary as OrigialStyleDictionary.Core
