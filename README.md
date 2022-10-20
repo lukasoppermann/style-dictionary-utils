@@ -55,14 +55,14 @@ Now all the included utilities<sup>*</sup> are available to you via the keys men
   - [color/rgbAlpha](#colorrgbAlpha)
   - [color/hexAlpha](#colorhexAlpha)
   - [color/hex](#colorhex)
+  - [color/rgba](#colorrgba)
   - [shadow/css](#shadowcss)
-  - [color/rgb](#colorrgb)
   - [font/css](#fontcss)
   - [fontFamily/css](#fontFamilycss)
   - [fontWeight/number](#fontWeightnumber)
   - [cubicBezier/css](#cubicBeziercss)
   - [dimension/pixelToRem](#dimensionpixelToRem)
-  - [dimension/remToPx](#dimensionremToPx)
+  - [dimension/remToPixel](#dimensionremToPixel)
 - Filters
   - [isSource](#isSource)
   - [isColor](#isColor)
@@ -79,9 +79,13 @@ Now all the included utilities<sup>*</sup> are available to you via the keys men
   - [isDimension](#isDimension)
   - [isCubicBezier](#isCubicBezier)
   - [isBorder](#isBorder)
-### 📠 Parsers
+- Special Filter
+  - [getHasAttribute](#getHasAttribute)
+  - [getHasAttributeValue](#getHasAttributeValue)
+  - [getIsType](#getIsType)
+## 📠 Parsers
 
-#### w3cTokenJsonParser
+### w3cTokenJsonParser
 This parser parses `.json` with [w3c design tokens](https://github.com/design-tokens/community-group).
 
 This means the following files can be used with this parser.
@@ -112,7 +116,7 @@ import { w3cTokenJsonParser } from './parser/w3c-token-json-parser'
 StyleDictionary.registerParser(w3cTokenJsonParser)
 ```
 
-#### w3cTokenJson5Parser (not autoloaded)
+### w3cTokenJson5Parser (not autoloaded)
 If you are using `.json5` or `.jsonc` files to define your design tokens you need to use the `w3cTokenJson5Parser`. This is NOT enabled by default as it requires an additonal package, [`json5`](https://json5.org/), to work.
 
 This parser is exactly the same as the `w3cTokenJsonParser` with the only difference that it can parse `.json5` or `.jsonc`.
@@ -128,9 +132,9 @@ StyleDictionary.registerParser(w3cTokenJson5Parser)
 
 Make sure to install [`json5`](https://json5.org/) by running `npm i -D json5`.
 
-### 📑 Formats
+## 📑 Formats
 
-#### javascript/esm
+### javascript/esm
 
 The `javascript/esm` format exports a token dictionary as an `es6 export` statement.
 
@@ -157,7 +161,7 @@ const myStyleDictionary = StyleDictionary.extend({
 });
 ```
 
-#### javascript/commonJs
+### javascript/commonJs
 
 The `javascript/commonJs` format exports a token dictionary as an `commonJs module`.
 
@@ -183,24 +187,572 @@ const myStyleDictionary = StyleDictionary.extend({
 });
 ```
 
-### 🤖 Transformers
-#### name/pathToDotNotation
-#### color/rgbAlpha
-#### color/hexAlpha
-#### color/hex
-#### shadow/css
-#### color/rgb
-#### font/css
-#### fontFamily/css
-#### fontWeight/number
-#### cubicBezier/css
-#### dimension/pixelToRem
-#### dimension/remToPx
+## 🤖 Transformers
+Transforms change the `value` or `name` of a token.
+You can use transforms by refering the name in the array value of the [`transforms` ](https://amzn.github.io/style-dictionary/#/transforms)property of a [`platform`](https://amzn.github.io/style-dictionary/#/config?id=platform).
+### Transform group
+If you want to use the same `transformers` multiple times you can create a [`transform group`](https://amzn.github.io/style-dictionary/#/api?id=registertransformgroup) for easy reference.
 
-### 🚦 Filters
+```js
+StyleDictionary.registerTransformGroup({
+  name: 'webHex',
+  transforms: [
+    'color/hexAlpha',
+    'dimension/pixelToRem',
+    'font/css'
+  ]
+});
+```
+
+### name/pathToDotNotation
+
+This `name` transformer replaces the token name with the entire path of the token in dot.notation.
+This is especially useful for flat `.js` or `.json` files.
+
+To use it simply add `name/pathToDotNotation` to the `transforms` array.
+
+```js
+const myStyleDictionary = StyleDictionary.extend({
+  "platforms": {
+    "ts": {
+      "transforms": ['name/pathToDotNotation'],
+      "files": [{
+        // ...
+      }]
+    }
+  }
+});
+```
+
+##### Before transformation
+
+```js
+{
+  colors: {
+    red: {
+      100: { 
+        // ...
+      }
+    }
+  }
+}
+``` 
+
+##### After transformation
+
+```js
+{
+  "colors.red.100": { 
+    // ...
+  }
+}
+```
+
+### color/rgbAlpha
+
+This `value` transformer replaces the value of a token with a `$type` or `type` of `color` with an `rgba` string. If the token has an `alpha` value, it will be used as the `alpha` of the `rgba` string.
+
+**Note:** If your initial color value has an alpha value (e.g. `hex8`) **AND** you add an `alpha` property, the `alpha` property will simply replace the previous alpha value.
+
+```js
+const myStyleDictionary = StyleDictionary.extend({
+  "platforms": {
+    "ts": {
+      "transforms": ['color/rgbAlpha'],
+      "files": [{
+        // ...
+      }]
+    }
+  }
+});
+```
+##### Before transformation
+
+```js
+{
+  colors: {
+    blue: {
+      500: { 
+        value: "#0D70E6",
+        $type: "color",
+        alpha: 0.4
+      }
+    }
+  }
+}
+``` 
+
+##### After transformation
+
+```js
+{
+  colors: {
+    blue: {
+      500: { 
+        value: "rgba(13, 112, 230, 0.4)",
+        $type: "color",
+        alpha: 0.4
+      }
+    }
+  }
+}
+```
+
+### color/hexAlpha
+This `value` transformer replaces the value of a token with a `$type` or `type` of `color` with a `hex` string. If the token has an `alpha` value, it will be used as the `alpha` of the `hex8` string.
+
+**Note:** If your initial color value has an alpha value (e.g. `rgba`) **AND** you add an `alpha` property, the `alpha` property will simply replace the previous alpha value.
+
+```js
+const myStyleDictionary = StyleDictionary.extend({
+  "platforms": {
+    "ts": {
+      "transforms": ['color/hexAlpha'],
+      "files": [{
+        // ...
+      }]
+    }
+  }
+});
+```
+##### Before transformation
+
+```js
+{
+  colors: {
+    blue: {
+      500: { 
+        value: "rgba(13, 112, 230, 0.4)",
+        $type: "color",
+        alpha: 0.2
+      }
+    }
+  }
+}
+``` 
+
+##### After transformation
+
+```js
+{
+  colors: {
+    blue: {
+      500: { 
+        value: "#0D70E633", // prev alpha value is replaced with 0.2 from alpha property
+        $type: "color",
+        alpha: 0.2
+      }
+    }
+  }
+}
+```
+
+### color/hex
+
+This `value` transformer replaces the value of a token with a `$type` or `type` of `color` with a `hex` string.
+
+```js
+const myStyleDictionary = StyleDictionary.extend({
+  "platforms": {
+    "ts": {
+      "transforms": ['color/hex'],
+      "files": [{
+        // ...
+      }]
+    }
+  }
+});
+```
+##### Before transformation
+
+```js
+{
+  colors: {
+    blue: {
+      500: { 
+        value: "rgba(13, 112, 230, 0.4)",
+        $type: "color"
+      }
+    }
+  }
+}
+``` 
+
+##### After transformation
+
+```js
+{
+  colors: {
+    blue: {
+      500: { 
+        value: "#0D70E666",
+        $type: "color"
+      }
+    }
+  }
+}
+```
+
+### color/rgba
+
+This `value` transformer replaces the value of a token with a `$type` or `type` of `color` with an `rgba` string.
+
+```js
+const myStyleDictionary = StyleDictionary.extend({
+  "platforms": {
+    "ts": {
+      "transforms": ['color/rgba'],
+      "files": [{
+        // ...
+      }]
+    }
+  }
+});
+```
+##### Before transformation
+
+```js
+{
+  colors: {
+    blue: {
+      500: { 
+        value: "#0D70E666",
+        $type: "color"
+      }
+    }
+  }
+}
+``` 
+
+##### After transformation
+
+```js
+{
+  colors: {
+    blue: {
+      500: { 
+        value: "rgba(13, 112, 230, 0.4)",
+        $type: "color"
+      }
+    }
+  }
+}
+```
+
+### shadow/css
+
+This `value` transformer replaces the value of a w3c shadow token with a `$type` or `type` of `shadow` with a `css` shadow string.
+
+```js
+const myStyleDictionary = StyleDictionary.extend({
+  "platforms": {
+    "ts": {
+      "transforms": ['shadow/css'],
+      "files": [{
+        // ...
+      }]
+    }
+  }
+});
+```
+##### Before transformation
+
+```js
+{
+  shadow: {
+    small: {
+      value: {
+        "color": "#00000066",
+        "x": "0px",
+        "y": "1px",
+        "blur": "2px",
+        "spread": "0px"
+      },
+      $type: "shadow"
+    }
+  }
+}
+``` 
+
+##### After transformation
+
+```js
+{
+  shadow: {
+    small: {
+      value: "0px 1px 2px 0px #00000066",
+      $type: "shadow"
+    }
+  }
+}
+```
+
+### font/css
+This `value` transformer replaces the value of a w3c typography token with a `$type` or `type` of `typography` with a `css` font string.
+
+```js
+const myStyleDictionary = StyleDictionary.extend({
+  "platforms": {
+    "ts": {
+      "transforms": ['font/css'],
+      "files": [{
+        // ...
+      }]
+    }
+  }
+});
+```
+##### Before transformation
+
+```js
+{
+  typography: {
+    body: {
+      value: {
+        fontWeight: 500,
+        fontSize: "16px",
+        lineHeight: "22px",
+        fontFamily: "Helvetica",
+        fontStyle: "italic"
+      },
+      $type: "typography"
+    }
+  }
+}
+```
+
+##### After transformation
+
+```js
+{
+  typography: {
+    body: {
+      value: "italic 500 16px/22px Helvetica",
+      $type: "typography"
+    }
+  }
+}
+```
+
+### fontFamily/css
+This `value` transformer replaces the value of a w3c fontFamily token with a `$type` or `type` of `fontFamily` with a `css` fontFamily string.
+
+```js
+const myStyleDictionary = StyleDictionary.extend({
+  "platforms": {
+    "ts": {
+      "transforms": ['fontFamily/css'],
+      "files": [{
+        // ...
+      }]
+    }
+  }
+});
+```
+##### Before transformation
+
+```js
+{
+  fontFamily: {
+    body: {
+      value: ['helvetica', 'sans-serif', 'Helvetica Neue'],
+      $type: "fontFamily"
+    }
+  }
+}
+```
+
+##### After transformation
+
+```js
+{
+  fontFamily: {
+    body: {
+      value: "helvetica, sans-serif, 'Helvetica Neue'",
+      $type: "fontFamily"
+    }
+  }
+}
+```
+
+### fontWeight/number
+This `value` transformer replaces the value of a w3c fontWeight token with a `$type` or `type` of `fontWeight` with a `css` fontWeight number.
+
+```js
+const myStyleDictionary = StyleDictionary.extend({
+  "platforms": {
+    "ts": {
+      "transforms": ['fontWeight/number'],
+      "files": [{
+        // ...
+      }]
+    }
+  }
+});
+```
+##### Before transformation
+
+```js
+{
+  fontWeight: {
+    body: {
+      value: "light",
+      $type: "fontWeight"
+    }
+  }
+}
+```
+
+##### After transformation
+
+```js
+{
+  fontWeight: {
+    body: {
+      value: 300,
+      $type: "fontWeight"
+    }
+  }
+}
+```
+### cubicBezier/css
+
+This `value` transformer replaces the value of a w3c cubicBezier token with a `$type` or `type` of `cubicBezier` with a `css` cubicBezier string.
+
+```js
+const myStyleDictionary = StyleDictionary.extend({
+  "platforms": {
+    "ts": {
+      "transforms": ['cubicBezier/css'],
+      "files": [{
+        // ...
+      }]
+    }
+  }
+});
+```
+##### Before transformation
+
+```js
+{
+  shadow: {
+    small: {
+      value: {
+        x1: 0.5,
+        y1: 0,
+        x2: 1,
+        y2: 1
+      },
+      $type: "cubicBezier"
+    }
+  }
+}
+```
+
+##### After transformation
+
+```js
+{
+  shadow: {
+    small: {
+      value: "cubic-bezier(0.5, 0, 1, 1)",
+      $type: "cubicBezier"
+    }
+  }
+}
+```
+
+### dimension/pixelToRem
+This `value` transformer replaces the value of a token with a `$type` or `type` of `dimension` that has a `px` value, with a `rem` value.
+
+```js
+const myStyleDictionary = StyleDictionary.extend({
+  "platforms": {
+    "ts": {
+      "transforms": ['dimension/pixelToRem'],
+      "files": [{
+        // ...
+      }],
+      options: {
+        basePxFontSize: 16
+      }
+    }
+  }
+});
+```
+##### Before transformation
+
+```js
+{
+  size: {
+    small: {
+      value: "32px",
+      $type: "dimension"
+    }
+  }
+}
+``` 
+
+##### After transformation
+
+```js
+{
+  size: {
+    small: {
+      value: "2rem",
+      $type: "dimension"
+    }
+  }
+}
+```
+### dimension/remToPixel
+
+This `value` transformer replaces the value of a token with a `$type` or `type` of `dimension` that has a `rem` value, with a `px` value.
+
+```js
+const myStyleDictionary = StyleDictionary.extend({
+  "platforms": {
+    "ts": {
+      "transforms": ['dimension/remToPixel'],
+      "files": [{
+        // ...
+      }],
+      options: {
+        basePxFontSize: 16
+      }
+    }
+  }
+});
+```
+##### Before transformation
+
+```js
+{
+  size: {
+    small: {
+      value: "2rem",
+      $type: "dimension"
+    }
+  }
+}
+``` 
+
+##### After transformation
+
+```js
+{
+  size: {
+    small: {
+      value: "32px",
+      $type: "dimension"
+    }
+  }
+}
+```
+## 🚦 Filters
 
 Filters are used to filter out unwanted tokens when [configuring output files](https://amzn.github.io/style-dictionary/#/config?id=file)
-#### isSource
+### isSource
 
 Only allows tokens that come from a [`source`](https://amzn.github.io/style-dictionary/#/config?id=attributes) file to be included in the output. Tokens from an [`include`](https://amzn.github.io/style-dictionary/#/config?id=attributes) will be removed.
 
@@ -218,7 +770,7 @@ const myStyleDictionary = StyleDictionary.extend({
 });
 ```
 
-#### isColor
+### isColor
 
 Only allows tokens with a `type` or `$type` property of `color`.
 
@@ -236,7 +788,7 @@ const myStyleDictionary = StyleDictionary.extend({
 });
 ```
 
-#### isGradient
+### isGradient
 Only allows tokens with a `type` or `$type` property of `gradient`.
 
 ```js
@@ -253,7 +805,7 @@ const myStyleDictionary = StyleDictionary.extend({
 });
 ```
 
-#### isColorOrGradient
+### isColorOrGradient
 Only allows tokens with a `type` or `$type` property of `color` or `gradient`.
 
 ```js
@@ -270,7 +822,7 @@ const myStyleDictionary = StyleDictionary.extend({
 });
 ```
 
-#### isTypography
+### isTypography
 Only allows tokens with a `type` or `$type` property of `typography`.
 
 ```js
@@ -287,7 +839,7 @@ const myStyleDictionary = StyleDictionary.extend({
 });
 ```
 
-#### isTypographic
+### isTypographic
 Only allows tokens with a `type` or `$type` property of `typography`, `fontWeight` or `fontFamily`.
 
 ```js
@@ -303,7 +855,7 @@ const myStyleDictionary = StyleDictionary.extend({
   }
 });
 ```
-#### isTransition
+### isTransition
 Only allows tokens with a `type` or `$type` property of `transition`.
 
 ```js
@@ -320,7 +872,7 @@ const myStyleDictionary = StyleDictionary.extend({
 });
 ```
 
-#### isStrokeStyle
+### isStrokeStyle
 Only allows tokens with a `type` or `$type` property of `strokeStyle`.
 
 ```js
@@ -337,7 +889,7 @@ const myStyleDictionary = StyleDictionary.extend({
 });
 ```
 
-#### isShadow
+### isShadow
 Only allows tokens with a `type` or `$type` property of `shadow`.
 
 ```js
@@ -354,7 +906,7 @@ const myStyleDictionary = StyleDictionary.extend({
 });
 ```
 
-#### isFontWeight
+### isFontWeight
 Only allows tokens with a `type` or `$type` property of `fontWeight`.
 
 ```js
@@ -371,7 +923,7 @@ const myStyleDictionary = StyleDictionary.extend({
 });
 ```
 
-#### isFontFamily
+### isFontFamily
 Only allows tokens with a `type` or `$type` property of `fontFamily`.
 
 ```js
@@ -388,7 +940,7 @@ const myStyleDictionary = StyleDictionary.extend({
 });
 ```
 
-#### isDuration
+### isDuration
 Only allows tokens with a `type` or `$type` property of `duration`.
 
 ```js
@@ -405,7 +957,7 @@ const myStyleDictionary = StyleDictionary.extend({
 });
 ```
 
-#### isDimension
+### isDimension
 Only allows tokens with a `type` or `$type` property of `dimension`.
 
 ```js
@@ -422,7 +974,7 @@ const myStyleDictionary = StyleDictionary.extend({
 });
 ```
 
-#### isCubicBezier
+### isCubicBezier
 Only allows tokens with a `type` or `$type` property of `cubicBezier`.
 
 ```js
@@ -438,7 +990,7 @@ const myStyleDictionary = StyleDictionary.extend({
   }
 });
 ```
-#### isBorder
+### isBorder
 Only allows tokens with a `type` or `$type` property of `border`.
 
 ```js
@@ -448,6 +1000,117 @@ const myStyleDictionary = StyleDictionary.extend({
       "transforms": //...,
       "files": [{
         "filter": "isBorder",
+        // ...
+      }]
+    }
+  }
+});
+```
+
+## 🚦 Special Filter
+
+### getHasAttribute
+The `getHasAttribute` function returns a `filter` function that filters by one or multiple properties. 
+You can provide one or multiple arguments that are used to check of the token has at least one of those properties.
+
+```js
+{
+  color: {
+    red: {
+      $value: 'red',
+      deprecated: true // e.g. check that a deprecated attribute exists
+    }
+  }
+}
+```
+
+##### Register as a new filter
+
+```js
+OrigialStyleDictionary.registerFilter({
+  name: 'shouldAvoid',
+  matcher: getHasAttribute('deprecated','removed')
+})
+```
+##### Use directly in platform
+```js
+const myStyleDictionary = StyleDictionary.extend({
+  "platforms": {
+    "deprecatedJson": {
+      "transforms": //...,
+      "files": [{
+        "filter": getHasAttribute('deprecated','removed'), // allows only tokens with a `deprecated` or `removed propery, e.g. if you want` to create a json with tokens not to use.
+        // ...
+      }]
+    }
+  }
+});
+```
+
+### getHasAttributeValue
+The `getHasAttributeValue` function returns a `filter` function that filters by one or multiple properties that have a specific value.
+You can provide a `string` or `array` of `string`s for the first argument, to define which properties should be checked.
+Similarily you can provide one value or an `array` of values for the second argument, to define which values to check against. **Note:** If you provide an array of values every property can have either of those values.
+
+```js
+getHasAttributeValue(attributes: string[], values: any[])
+```
+
+```js
+{
+  color: {
+    red: {
+      $value: 'red',
+      deprecated: true // e.g. check that a deprecated value exists and is `true`
+    }
+  }
+}
+```
+
+##### Register as a new filter
+
+```js
+OrigialStyleDictionary.registerFilter({
+  name: 'isDeprecated',
+  matcher: getHasAttributeValue('deprecated',true)
+})
+```
+##### Use directly in platform
+```js
+const myStyleDictionary = StyleDictionary.extend({
+  "platforms": {
+    "deprecatedJson": {
+      "transforms": //...,
+      "files": [{
+        "filter": getHasAttributeValue('deprecated',true), // allows only tokens with a `deprecated` property that is true
+        // ...
+      }]
+    }
+  }
+});
+```
+
+
+### getIsType
+The `getIsType` function returns a `filter` function that filters by one or multiple types. 
+You can provide one or multiple arguments that are used as `types` to filter against the `type` or `$type` property.
+
+##### Register as a new filter
+
+```js
+OrigialStyleDictionary.registerFilter({
+  name: 'isAnimation',
+  matcher: getIsType('duration','transition', 'cubicBezier')
+})
+```
+##### Use directly in platform
+```js
+const myStyleDictionary = StyleDictionary.extend({
+  "platforms": {
+    "ts": {
+      "transforms": //...,
+      "files": [{
+        "filter": getIsType('size','dimension'), // allows only tokens with type `size` or `dimension` 
         // ...
       }]
     }

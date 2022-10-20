@@ -1,25 +1,8 @@
 import StyleDictionary from 'style-dictionary';
-import { Matcher } from 'style-dictionary/types/Matcher';
+
 import { colorAlphaToHex } from '../../src/transformer/color-alpha-to-hex';
 
 describe('Transformer: colorAlphaToHex', () => {
-  const items = [{
-    value: '#333',
-    $type: 'color',
-    alpha: .4
-  }, {
-    value: '#343434',
-    $type: 'color',
-  }, {
-    value: '',
-    $type: 'dimension',
-  }, {
-    value: '',
-  }] as StyleDictionary.TransformedToken[];
-
-  it('matches `color` tokens', () => {
-    expect(items.filter(colorAlphaToHex.matcher as Matcher)).toStrictEqual([items[0], items[1]]);
-  });
 
   it('transforms `color` tokens with hex value', () => {
     expect([

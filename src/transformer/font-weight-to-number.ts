@@ -1,5 +1,6 @@
 
 import StyleDictionary from 'style-dictionary'
+import { isFontWeight } from '../filter/isFontWeight'
 /**
  * Acceptable font weights according to w3c standard
  * @link https://design-tokens.github.io/community-group/format/#font-weight
@@ -39,7 +40,7 @@ const fontWeights: { [key: string]: number } = {
 export const fontWeightToNumber: StyleDictionary.Transform = {
   type: `value`,
   transitive: true,
-  matcher: (token: StyleDictionary.TransformedToken) => token.$type === 'fontWeight' && typeof token.value === 'string',
+  matcher: (token: StyleDictionary.TransformedToken) => isFontWeight(token) && typeof token.value === 'string',
   transformer: (token: StyleDictionary.TransformedToken) => {
     // check if value exists in matrix
     const fromMatrix = fontWeights[token.value.toLowerCase()]

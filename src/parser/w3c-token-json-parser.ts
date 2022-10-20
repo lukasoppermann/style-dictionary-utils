@@ -5,7 +5,7 @@
  * with `comment` to make it work with style dictionary
  */
 export const w3cTokenJsonParser = {
-  pattern: /\.json$/,
+  pattern: /\.json|\.tokens\.json|\.tokens$/,
   parse: ({ contents }: { contents: string }) => {
     // replace $value with value so that style dictionary recognizes it
     const preparedContent = (contents || '{}').replace(/"\$(value)":/g, '"$1":')

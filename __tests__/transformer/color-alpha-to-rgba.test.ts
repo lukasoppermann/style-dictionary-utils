@@ -1,25 +1,7 @@
 import StyleDictionary from 'style-dictionary';
-import { Matcher } from 'style-dictionary/types/Matcher';
 import { colorAlphaToRgba } from '../../src/transformer/color-alpha-to-rgba';
 
 describe('Transformer: colorToRgba', () => {
-  const items = [{
-    value: '#333',
-    $type: 'color',
-  }, {
-    value: '#343434',
-    $type: 'color',
-    alpha: .5
-  }, {
-    value: '',
-    $type: 'dimension',
-  }, {
-    value: '',
-  }] as StyleDictionary.TransformedToken[];
-
-  it('matches `color` tokens', () => {
-    expect(items.filter(colorAlphaToRgba.matcher as Matcher)).toStrictEqual([items[0], items[1]]);
-  });
 
   it('transforms `color` tokens with hex value', () => {
     expect([

@@ -1,14 +1,15 @@
 import { toRgba } from 'color2k'
 import StyleDictionary from 'style-dictionary'
+import { isColor } from '../filter/isColor'
 import { alpha } from '../utilities/alpha'
 /**
  * colorAlphaToRgba
- * @description convert a token of type `color` to a rgba value if alpha < 1 and hex6 if alpha is 1
+ * @description convert a token of type `color` to a rgba value
  */
 export const colorAlphaToRgba: StyleDictionary.Transform = {
   type: `value`,
   transitive: true,
-  matcher: (token: StyleDictionary.TransformedToken) => token.$type === 'color',
+  matcher: isColor,
   transformer: (token: StyleDictionary.TransformedToken) => {
     if (token.alpha !== undefined) return alpha(token.value, token.alpha)
     return toRgba(token.value)

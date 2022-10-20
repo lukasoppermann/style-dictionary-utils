@@ -1,5 +1,5 @@
 import StyleDictionary from 'style-dictionary';
-import { colorToHex } from '../../src/transformer/color-to-hex';
+import { colorToRgba } from '../../src/transformer/color-to-rgba';
 
 describe('Transformer: colorToHex', () => {
 
@@ -8,10 +8,10 @@ describe('Transformer: colorToHex', () => {
       { value: '#343' },
       { value: '#343434' },
       { value: '#34343466' }
-    ].map(item => colorToHex.transformer(item as StyleDictionary.TransformedToken))).toStrictEqual([
-      "#334433",
-      "#343434",
-      "#34343466"
+    ].map(item => colorToRgba.transformer(item as StyleDictionary.TransformedToken))).toStrictEqual([
+      "rgba(51, 68, 51, 1)",
+      "rgba(52, 52, 52, 1)",
+      "rgba(52, 52, 52, 0.4)"
     ]);
   })
 
@@ -19,9 +19,9 @@ describe('Transformer: colorToHex', () => {
     expect([
       { value: 'rgb(100,200,255)' },
       { value: 'rgba(100,200,255, .4)' }
-    ].map(item => colorToHex.transformer(item as StyleDictionary.TransformedToken))).toStrictEqual([
-      "#64c8ff",
-      "#64c8ff66",
+    ].map(item => colorToRgba.transformer(item as StyleDictionary.TransformedToken))).toStrictEqual([
+      "rgba(100, 200, 255, 1)",
+      "rgba(100, 200, 255, 0.4)",
     ]);
   })
 
@@ -30,9 +30,9 @@ describe('Transformer: colorToHex', () => {
       { value: '#343434', alpha: .4 },
       { value: '#34343466', alpha: .8 }
       // @ts-expect-error: fake token for test causes error
-    ].map(item => colorToHex.transformer(item))).toStrictEqual([
-      "#343434",
-      "#34343466"
+    ].map(item => colorToRgba.transformer(item))).toStrictEqual([
+      "rgba(52, 52, 52, 1)",
+      "rgba(52, 52, 52, 0.4)"
     ]);
   })
 })

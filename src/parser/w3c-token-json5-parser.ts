@@ -6,7 +6,7 @@ import JSON5 from 'json5';
  * with `comment` to make it work with style dictionary
  */
 export const w3cTokenJson5Parser = {
-  pattern: /\.json[c|5]?$/,
+  pattern: /\.json[c|5]?|\.tokens\.json[c|5]?|\.tokens$/,
   parse: ({ contents }: { contents: string }) => {
     // replace $value with value so that style dictionary recognizes it
     const preparedContent = (contents || '{}').replace(/"\$(value)":/g, '"$1":')

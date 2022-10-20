@@ -1,4 +1,5 @@
 import StyleDictionary from 'style-dictionary'
+import { isDimension } from '../filter/isDimension';
 /**
  * dimensionPixelToRem
  * @description convert all dimensions that use pixel value to rem, uses `platform.options.basePxFontSize`
@@ -7,7 +8,7 @@ import StyleDictionary from 'style-dictionary'
 export const dimensionPixelToRem: StyleDictionary.Transform = {
   type: `value`,
   transitive: true,
-  matcher: (token: StyleDictionary.TransformedToken) => token.$type === 'dimension' && token.value.substring(token.value.length - 2) === 'px',
+  matcher: (token: StyleDictionary.TransformedToken) => isDimension(token) && token.value.substring(token.value.length - 2) === 'px',
   transformer: (token: StyleDictionary.TransformedToken, platform: StyleDictionary.Platform | undefined) => {
     const baseFont = platform?.options?.basePxFontSize || 16;
     const floatVal = parseFloat(token.value)

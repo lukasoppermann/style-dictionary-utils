@@ -71,7 +71,7 @@ OrigialStyleDictionary.registerTransform({
 })
 
 OrigialStyleDictionary.registerTransform({
-  name: 'color/rgb',
+  name: 'color/rgba',
   ...colorToRgba
 })
 
@@ -111,7 +111,7 @@ OrigialStyleDictionary.registerTransform({
 })
 
 OrigialStyleDictionary.registerTransform({
-  name: 'dimension/remToPx',
+  name: 'dimension/remToPixel',
   ...dimensionRemToPixel
 })
 
