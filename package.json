@@ -1,16 +1,22 @@
 {
   "name": "style-dictionary-utils",
-  "version": "0.0.1",
+  "version": "1.0.0",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lukasoppermann/style-dictionary-utils.git"
+  },
   "description": "Utilities to use in your style dictionary config",
   "main": "index.js",
   "scripts": {
     "test": "npx jest && npm run lint",
     "lint": "npx eslint . --ext .js,.jsx,.ts,.tsx",
-    "fix": "npx eslint . --ext .js,.jsx,.ts,.tsx --fix"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/lukasoppermann/style-dictionary-utils.git"
+    "fix": "npx eslint . --ext .js,.jsx,.ts,.tsx --fix",
+    "prepublishOnly": "npm-multi-publish",
+    "postpublish": "npm-multi-publish"
   },
   "keywords": [
     "design token",
@@ -35,7 +41,7 @@
     "typescript": "^4.8.3"
   },
   "peerDependencies": {
-    "style-dictionary": ">= 3",
-    "json5": "^2.2.1"
+    "json5": "^2.2.1",
+    "style-dictionary": ">= 3"
   }
 }
