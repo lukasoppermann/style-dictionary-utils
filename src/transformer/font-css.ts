@@ -8,7 +8,6 @@ type TokenTypography = {
   fontStyle?: string
 }
 /**
- * fontCss
  * @description convert a w3c `typography` token to a value that can be used with the css `font` property
  */
 export const fontCss: StyleDictionary.Transform = {

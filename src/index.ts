@@ -17,6 +17,7 @@ import { isTypography } from './filter/isTypography'
 import { javascriptCommonJs } from './format/javascript-commonJs'
 import { javascriptEsm } from './format/javascript-esm'
 import { w3cTokenJsonParser } from './parser/w3c-token-json-parser'
+import { borderCss } from './transformer/border-css'
 import { colorAlphaToHex } from './transformer/color-alpha-to-hex'
 import { colorAlphaToRgba } from './transformer/color-alpha-to-rgba'
 import { colorToHex } from './transformer/color-to-hex'
@@ -113,6 +114,11 @@ OrigialStyleDictionary.registerTransform({
 OrigialStyleDictionary.registerTransform({
   name: 'dimension/remToPixel',
   ...dimensionRemToPixel
+})
+
+OrigialStyleDictionary.registerTransform({
+  name: 'border/css',
+  ...borderCss
 })
 
 /**
