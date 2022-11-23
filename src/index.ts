@@ -205,4 +205,7 @@ OrigialStyleDictionary.registerFilter({
  * @description Returns style dictionary object with parsers, formats and transformers
  * @documentation https://github.com/lukasoppermann/style-dictionary-utils/blob/main/README.md
  */
-export default OrigialStyleDictionary as OrigialStyleDictionary.Core
+// export default OrigialStyleDictionary as OrigialStyleDictionary.Core
+
+// OrigialStyleDictionary.default = OrigialStyleDictionary;
+export = OrigialStyleDictionary;

@@ -10,11 +10,20 @@
     "url": "https://github.com/lukasoppermann/style-dictionary-utils.git"
   },
   "description": "Utilities to use in your style dictionary config",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "files": [
+    "dist/*",
+    "src/**/*.ts"
+  ],
   "scripts": {
     "test": "npx jest && npm run lint",
-    "lint": "npx eslint . --ext .js,.jsx,.ts,.tsx",
-    "fix": "npx eslint . --ext .js,.jsx,.ts,.tsx --fix"
+    "lint": "npx eslint . --ext .ts",
+    "fix": "npx eslint . --ext .ts --fix",
+    "clean:dist": "rm -rf dist/",
+    "prebuild": "npm run clean:dist",
+    "build": "tsc --module commonjs",
+    "preversion": "npm run build && npm run test",
+    "postversion": "git push --follow-tags"
   },
   "keywords": [
     "design token",
