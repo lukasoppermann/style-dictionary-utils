@@ -9,7 +9,7 @@ export const w3cTokenJson5Parser = {
   pattern: /\.json[c|5]?|\.tokens\.json[c|5]?|\.tokens$/,
   parse: ({ contents }: { contents: string }) => {
     // replace $value with value so that style dictionary recognizes it
-    const preparedContent = (contents || '{}').replace(/"\$(value)":/g, '"$1":')
+    const preparedContent = (contents || '{}').replace(/"\$?value":/g, '"value":')
       // convert $description to comment
       .replace(/"\$?description":/g, '"comment":');
     //
