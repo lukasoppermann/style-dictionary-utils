@@ -5,10 +5,9 @@
   },
   "plugins": ["github"],
   "extends": ["plugin:github/typescript"],
-  "overrides": [
-  ],
+  "overrides": [],
   "parserOptions": {
-    "project": "./tsconfig.json"
+    "project": "./eslint.tsconfig.json"
   },
   "rules": {
     // "import/no-default-export": "error",
