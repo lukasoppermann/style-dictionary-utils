@@ -10,10 +10,18 @@ describe('Transformer: namePathToDotNotation', () => {
     path: ['base', 'red'],
   }] as StyleDictionary.TransformedToken[];
 
-  it('transforms `fontFamily` array tokens', () => {
+  it('transforms names to dot notation', () => {
     expect(items.map(item => namePathToDotNotation.transformer(item))).toStrictEqual([
       "base.color.red",
       "base.red",
     ]);
   });
+
+  it('adds prefix', () => {
+    expect(items.map(item => namePathToDotNotation.transformer(item, { prefix: 'PREFIX' }))).toStrictEqual([
+      "PREFIX.base.color.red",
+      "PREFIX.base.red",
+    ]);
+  });
+
 })
