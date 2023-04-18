@@ -2,11 +2,18 @@ import StyleDictionary from '../src/index';
 
 describe('index.ts', () => {
 
-  test.todo('it has json parser')
+  it('has json parser', () => {
+    expect(StyleDictionary.parsers[0]).toEqual({
+      "parse": expect.any(Function),
+      "pattern": /\.json|\.tokens\.json|\.tokens$/,
+    })
+  })
+
   it('all formats are attached', () => {
     expect(StyleDictionary.format['javascript/esm']).toBeDefined()
     expect(StyleDictionary.format['javascript/commonJs']).toBeDefined()
   })
+
   it('all transformers are attached', () => {
     expect(StyleDictionary.transform['color/hex']).toBeDefined()
     expect(StyleDictionary.transform['color/rgba']).toBeDefined()
@@ -21,6 +28,7 @@ describe('index.ts', () => {
     expect(StyleDictionary.transform['dimension/pixelToRem']).toBeDefined()
     expect(StyleDictionary.transform['dimension/remToPixel']).toBeDefined()
   })
+
   it('all filters are attached',() => {
     expect(StyleDictionary.filter['isBorder']).toBeDefined()
     expect(StyleDictionary.filter['isColor']).toBeDefined()
@@ -38,4 +46,44 @@ describe('index.ts', () => {
     expect(StyleDictionary.filter['isTypographic']).toBeDefined()
     expect(StyleDictionary.filter['isTypography']).toBeDefined()
   })
+
+  it('can be extended with a format', () => {
+    StyleDictionary.registerFormat({
+      name: 'format/test',
+      formatter: () => 'test'
+    })
+    expect(StyleDictionary.format['format/test']).toEqual(expect.any(Function))
+  })
+
+  it('can be extended with a transform', () => {
+    StyleDictionary.registerTransform({
+      name: 'transform/test',
+      type: `value`,
+      transitive: true,
+      transformer: () => 'test'
+    })
+    expect(StyleDictionary.transform['transform/test']).toEqual({ "matcher": undefined, "transformer": expect.any(Function), "transitive": true, "type": "value" })
+  })
+
+  it('can be extended with a filter', () => {
+    StyleDictionary.registerFilter({
+      name: 'filter/test',
+      matcher: () => true
+    })
+    expect(StyleDictionary.filter['filter/test']).toEqual(expect.any(Function))
+  })
+
+  it('can be extended with a parser', () => {
+    StyleDictionary.registerParser({
+      pattern: /\.json$/,
+      // @ts-expect-error: not a valid token
+      parse: () => ['test']
+    })
+
+    expect(StyleDictionary.parsers[1]).toEqual({
+      "parse": expect.any(Function),
+      "pattern": /\.json$/,
+    })
+  })
+
 })

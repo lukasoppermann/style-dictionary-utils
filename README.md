@@ -42,6 +42,26 @@ myStyleDictionary.buildAllPlatforms();
 Now all the included utilities<sup>*</sup> are available to you via the keys mentioned in the docs below.
 
 <sup>*</sup> You only need to register the [`w3cTokenJson5Parser`](#w3ctokenjson5parser-not-autoloaded) if you want to use `json5`.
+
+## Extending style dictionary
+
+You can still extend style dictionary with your own transformers and formats like before.
+The only difference is that you must use the `StyleDictionary` object that you import from `style-dictionary-utils`.
+
+```js
+// build.ts
+import StyleDictionary from 'style-dictionary-utils'
+
+StyleDictionary.registerTransform({
+  name: 'transform/pxToRem',
+  type: `value`,
+  transitive: true,
+  transformer: () => // ...
+})
+```
+
+[Look at the tests](./__tests__/index.test.ts) to get an idea how it works.
+
 ## Included utilities
 
 - Parsers
