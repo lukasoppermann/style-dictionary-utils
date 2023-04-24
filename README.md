@@ -28,7 +28,7 @@ const myStyleDictionary = StyleDictionary.extend({
     "ts": {
       "transforms": ['color/hexAlpha', 'shadow/css'],
       "files": [{
-        "filter": "isSource"
+        "filter": "isSource",
         "destination": "tokens.ts",
         "format": "javascript/esm",
       }]
@@ -1047,13 +1047,19 @@ You can provide one or multiple arguments that are used to check of the token ha
 ##### Register as a new filter
 
 ```js
-OrigialStyleDictionary.registerFilter({
+import StyleDictionary from 'style-dictionary-utils'
+import {getHasAttribute} from 'style-dictionary-utils/dist/filter/getHasAttribute'
+
+StyleDictionary.registerFilter({
   name: 'shouldAvoid',
   matcher: getHasAttribute('deprecated','removed')
 })
 ```
 ##### Use directly in platform
 ```js
+import StyleDictionary from 'style-dictionary-utils'
+import {getHasAttribute} from 'style-dictionary-utils/dist/filter/getHasAttribute'
+
 const myStyleDictionary = StyleDictionary.extend({
   "platforms": {
     "deprecatedJson": {
@@ -1090,13 +1096,19 @@ getHasAttributeValue(attributes: string[], values: any[])
 ##### Register as a new filter
 
 ```js
-OrigialStyleDictionary.registerFilter({
+import StyleDictionary from 'style-dictionary-utils'
+import {getHasAttributeValue} from 'style-dictionary-utils/dist/filter/getHasAttributeValue'
+
+StyleDictionary.registerFilter({
   name: 'isDeprecated',
   matcher: getHasAttributeValue('deprecated',true)
 })
 ```
 ##### Use directly in platform
 ```js
+import StyleDictionary from 'style-dictionary-utils'
+import {getHasAttributeValue} from 'style-dictionary-utils/dist/filter/getHasAttributeValue'
+
 const myStyleDictionary = StyleDictionary.extend({
   "platforms": {
     "deprecatedJson": {
@@ -1118,13 +1130,19 @@ You can provide one or multiple arguments that are used as `types` to filter aga
 ##### Register as a new filter
 
 ```js
-OrigialStyleDictionary.registerFilter({
+import StyleDictionary from 'style-dictionary-utils'
+import {getIsType} from 'style-dictionary-utils/dist/filter/getIsType'
+
+StyleDictionary.registerFilter({
   name: 'isAnimation',
   matcher: getIsType('duration','transition', 'cubicBezier')
 })
 ```
 ##### Use directly in platform
 ```js
+import StyleDictionary from 'style-dictionary-utils'
+import {getIsType} from 'style-dictionary-utils/dist/filter/getIsType'
+
 const myStyleDictionary = StyleDictionary.extend({
   "platforms": {
     "ts": {
