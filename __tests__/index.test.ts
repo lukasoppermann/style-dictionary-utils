@@ -5,7 +5,7 @@ describe('index.ts', () => {
   it('has json parser', () => {
     expect(StyleDictionary.parsers[0]).toEqual({
       "parse": expect.any(Function),
-      "pattern": /\.json|\.tokens\.json|\.tokens$/,
+      "pattern": /\.json$|\.tokens\.json$|\.tokens$/,
     })
   })
 
