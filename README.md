@@ -131,7 +131,7 @@ To register the parsers add the following code to your build file.
 
 ```js
 import StyleDictionary from 'style-dictionary-utils'
-import { w3cTokenJsonParser } from './parser/w3c-token-json-parser'
+import { w3cTokenJsonParser } from 'style-dictionary-utils/dist/parser/w3c-token-json-parser'
 
 StyleDictionary.registerParser(w3cTokenJsonParser)
 ```
@@ -145,7 +145,7 @@ To register the parsers add the following code to your build file.
 
 ```js
 import StyleDictionary from 'style-dictionary-utils'
-import { w3cTokenJson5Parser } from './parser/w3c-token-json5-parser'
+import { w3cTokenJson5Parser } from 'style-dictionary-utils/dist/parser/w3c-token-json5-parser'
 
 StyleDictionary.registerParser(w3cTokenJson5Parser)
 ```
