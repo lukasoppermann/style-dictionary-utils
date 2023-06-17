@@ -30,6 +30,7 @@ import { fontFamilyCss } from './transformer/font-family-css'
 import { fontWeightToNumber } from './transformer/font-weight-to-number'
 import { namePathToDotNotation } from './transformer/name-path-to-dot-notation'
 import { shadowCss } from './transformer/shadow-css'
+import { cssExtended } from './transformGroups/cssExtended'
 
 /**
  * Parsers
@@ -120,7 +121,11 @@ OrigialStyleDictionary.registerTransform({
   name: 'border/css',
   ...borderCss
 })
-
+/**
+ * Transform groups
+ *
+ */
+OrigialStyleDictionary.registerTransformGroup(cssExtended)
 /**
  * Filters
  *
@@ -199,6 +204,8 @@ OrigialStyleDictionary.registerFilter({
   name: 'isBorder',
   matcher: isBorder
 })
+
+
 
 /**
  * @name {@link StyleDictionary}

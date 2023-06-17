@@ -29,6 +29,10 @@ describe('index.ts', () => {
     expect(StyleDictionary.transform['dimension/remToPixel']).toBeDefined()
   })
 
+  it('all transformGroups are attached', () => {
+    expect(StyleDictionary.transformGroup['css/extended']).toBeDefined()
+  })
+
   it('all filters are attached',() => {
     expect(StyleDictionary.filter['isBorder']).toBeDefined()
     expect(StyleDictionary.filter['isColor']).toBeDefined()

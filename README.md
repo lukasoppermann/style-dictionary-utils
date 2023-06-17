@@ -224,6 +224,25 @@ StyleDictionary.registerTransformGroup({
 });
 ```
 
+#### `css/extended` transform group
+This packages ships a predefined transform group, called `css/extended`.
+It includes all transforms from the original [`css` transform group](https://amzn.github.io/style-dictionary/#/transform_groups?id=css) as well as the following transforms: `color/rgbAlpha`, `shadow/css`, `font/css`, `fontFamily/css`, `fontWeight/number`, `name/pathToDotNotation`, `cubicBezier/css`, `border/css`.
+
+You can use it like any other transform Group:
+
+```js
+const myStyleDictionary = StyleDictionary.extend({
+  "platforms": {
+    "css": {
+      "transformGroup": 'css/extended',
+      "files": [{
+        // ...
+      }]
+    }
+  }
+});
+```
+
 ### name/pathToDotNotation
 
 This `name` transformer replaces the token name with the entire path of the token in dot.notation.
