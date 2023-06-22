@@ -12,5 +12,5 @@ export const gradientCss: StyleDictionary.Transform = {
   transitive: true,
   matcher: isGradient,
   transformer: ({ value }: { value: TokenGradient }) =>
-    `${value.x || 0} ${value.y || 0} ${value.blur || 0} ${value.spread || 0} ${value.color}`
+    `${value.angle} ${value.color1} ${value.color2}`
 }
