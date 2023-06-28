@@ -7,11 +7,16 @@ describe('Transformer: gradientCss', () => {
     value: '',
     $type: 'color',
   }, {
-    value: {
-      "color1": "#FF0000",
-      "color2": "#0000FF",
-      "angle": "90deg"
-    },
+    value: [
+        {
+          "color": "#ffff00",
+          "position": 0.666
+        },
+        {
+          "color": "#ff0000",
+          "position": 1
+        }
+      ],
     $type: 'gradient',
   }, {
     value: '',
@@ -23,7 +28,8 @@ describe('Transformer: gradientCss', () => {
 
   it('transforms `gradient` tokens', () => {
     expect(items.filter(gradientCss.matcher as Matcher).map(item => gradientCss.transformer(item))).toStrictEqual([
-      "#FF0000 #0000FF 90deg"
+        "#ffff00 0.666",
+        "#ff0000 1"
     ]);
   });
 })

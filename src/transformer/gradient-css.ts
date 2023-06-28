@@ -2,9 +2,9 @@ import StyleDictionary from 'style-dictionary'
 import { isGradient } from '../filter/isGradient'
 
 type TokenGradient = {
-  color1: string
-  color2: string
-  angle: string
+  color: number
+  position: string
+  angle: number
 }
 
 export const gradientCss: StyleDictionary.Transform = {
@@ -12,5 +12,5 @@ export const gradientCss: StyleDictionary.Transform = {
   transitive: true,
   matcher: isGradient,
   transformer: ({ value }: { value: TokenGradient }) =>
-    `${value.angle} ${value.color1} ${value.color2}`
+    `${value.angle} ${value.color} ${value.position}`
 }
