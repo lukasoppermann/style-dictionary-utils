@@ -38,6 +38,7 @@
   "homepage": "https://github.com/lukasoppermann/style-dictionary-utils#readme",
   "devDependencies": {
     "@types/jest": "^29.2.4",
+    "@types/node": "^20.3.2",
     "eslint": "^8.24.0",
     "eslint-plugin-github": "^4.3.7",
     "jest": "^29.0.3",
