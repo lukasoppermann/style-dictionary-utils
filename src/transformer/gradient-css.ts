@@ -13,4 +13,6 @@ export const gradientCss: StyleDictionary.Transform = {
   matcher: isGradient,
   transformer: ({ value }: { value: TokenGradient }) =>
     `${value.angle} ${value.color} ${value.position}`
+  // transformer: (token: StyleDictionary.TransformedToken) => token.value.map((string: string) => hasSpaceInName(string) ? `'${string}'` : string).join(", ")
+
 }

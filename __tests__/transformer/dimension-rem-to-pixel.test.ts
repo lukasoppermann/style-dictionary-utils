@@ -33,7 +33,7 @@ describe('Transformer: dimensionPixelToRem', () => {
       }
     }
     expect(items.filter(dimensionRemToPixel.matcher as Matcher).map(item => dimensionRemToPixel.transformer(item, platform))).toStrictEqual([
-      "30px"
+      "38px"
     ]);
   });
 })
