@@ -70,30 +70,26 @@ describe('Transformer: gradientCss', () => {
   });
 
   it('transforms `gradient` tokens', () => {
-    const platform = {
-        options: {
-          basePxFontSize: 10
-        }
-      }
-    expect(items.filter(gradientCss.matcher as Matcher).map(item => gradientCss.transformer(item, platform))).toStrictEqual([
-        "#ffff00 0.666",
-        "#ff0000 1"
+    expect(items.filter(gradientCss.matcher as Matcher).map(item => gradientCss.transformer(item, {}))).toStrictEqual([
+    ["#ffff00 0.666",
+    "#ff0000 1"]
     ]);
   });
 
-//   it('transforms `gradient` tokens with angles', () => {
-//     expect(itemsWAngle.filter(gradientCss.matcher as Matcher).map(item => gradientCss.transformer(item))).toStrictEqual([
-//         "45deg",
-//         "#ffff00 0.666",
-//         "#ff0000 1"
-//     ]);
-//   });
+  it('transforms `gradient` tokens with angles', () => {
+    expect(itemsWAngle.filter(gradientCss.matcher as Matcher).map(item => gradientCss.transformer(item, {}))).toStrictEqual([
+        ["45deg",
+        "#ffff00 0.666",
+        "#ff0000 1"]
+    ]);
+  });
 
-//   it('transforms `gradient` tokens with added colors', () => {
-//     expect(itemsExtended.filter(gradientCss.matcher as Matcher).map(item => gradientCss.transformer(item))).toStrictEqual([
-//         "#020024 0",
-//         "#090979 0.35",
-//         "#00d4ff 1",
-//     ]);
-//   });
+  it('transforms `gradient` tokens with added colors', () => {
+
+    expect(itemsExtended.filter(gradientCss.matcher as Matcher).map(item => gradientCss.transformer(item, {}))).toStrictEqual([
+       ["#020024",
+        "#090979 0.35",
+        "#00d4ff 1"]
+    ]);
+  });
 })
