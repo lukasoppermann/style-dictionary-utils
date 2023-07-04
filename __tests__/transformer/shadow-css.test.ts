@@ -20,7 +20,7 @@ describe('Transformer: shadowCss', () => {
   }] as StyleDictionary.TransformedToken[];
 
   it('matches `shadow` tokens', () => {
-    expect(items.filter(shadowCss.matcher as Matcher)).toStrictEqual([items[0], items[1]]);
+    expect(items.filter(shadowCss.matcher as Matcher)).toStrictEqual([items[1]]);
   });
 
   it('transforms `shadow` tokens', () => {
