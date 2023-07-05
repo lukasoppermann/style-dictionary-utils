@@ -26,8 +26,8 @@ describe('Transformer: gradientCss', () => {
     value: '',
     $type: 'color',
   }, {
+    angle: "45deg",
     value: [
-        {"angle": "45deg"},
         {
           "color": "#ffff00",
           "position": 0.666
@@ -65,25 +65,50 @@ describe('Transformer: gradientCss', () => {
     value: '',
   }] as StyleDictionary.TransformedToken[];
 
+  const itemsExtended2 = [{
+    value: '',
+    $type: 'color',
+  }, {
+    angle: "45deg",
+    value: [
+        {
+          "color": "#020024",
+          "position": 0
+        },
+        {
+          "color": "#090979",
+          
+        },
+        {
+            "color": "#00d4ff",
+        
+        }
+      ],
+    $type: 'gradient',
+  }, {
+    value: '',
+  }] as StyleDictionary.TransformedToken[];
+
   it('matches `gradient` tokens', () => {
     expect(items.filter(gradientCss.matcher as Matcher)).toStrictEqual([items[1]]);
   });
 
   it('transforms `gradient` tokens', () => {
     expect(items.filter(gradientCss.matcher as Matcher).map(item => gradientCss.transformer(item, {}))).toStrictEqual([
-    "#ffff00 0.666, #ff0000 1"
+    "#ffff00 66%, #ff0000 100%"
     ]);
   });
 
   it('transforms `gradient` tokens with angles', () => {
     expect(itemsWAngle.filter(gradientCss.matcher as Matcher).map(item => gradientCss.transformer(item, {}))).toStrictEqual([
-        "45deg, #ffff00 0.666, #ff0000 1"
+        "45deg, #ffff00 66%, #ff0000 100%"
     ]);
   });
 
   it('transforms `gradient` tokens with added colors', () => {
     expect(itemsExtended.filter(gradientCss.matcher as Matcher).map(item => gradientCss.transformer(item, {}))).toStrictEqual([
-       "#020024, #090979 0.35, #00d4ff 1"
+       "#020024, #090979 35%, #00d4ff 100%"
     ]);
   });
+
 })
