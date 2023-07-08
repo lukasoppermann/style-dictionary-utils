@@ -85,6 +85,7 @@ StyleDictionary.registerTransform({
   - [font/css](#fontcss)
   - [fontFamily/css](#fontFamilycss)
   - [fontWeight/number](#fontWeightnumber)
+  - [gradient/css](#gradientcss)
   - [cubicBezier/css](#cubicBeziercss)
   - [dimension/pixelToRem](#dimensionpixelToRem)
   - [dimension/remToPixel](#dimensionremToPixel)
@@ -655,6 +656,56 @@ const myStyleDictionary = StyleDictionary.extend({
     body: {
       value: 300,
       $type: "fontWeight"
+    }
+  }
+}
+```
+### gradient/css
+This `value` transformer replaces the value of a w3c gradient token with a `$type` or `type` of `gradient` with a `css` gradient string.
+
+```js
+const myStyleDictionary = StyleDictionary.extend({
+  "platforms": {
+    "ts": {
+      "transforms": ['gradient/css'],
+      "files": [{
+        // ...
+      }]
+    }
+  }
+});
+```
+##### Before transformation
+
+```js
+{
+  gradients: {
+    blueToGreen: {
+      angle: "45deg"
+      value: value: [
+        {
+          "color": "#288BD2",
+          "position": 0
+        },
+        {
+          "color": "#28D29F",
+          "position": 1
+        }
+      ],
+      $type: "gradient"
+    }
+  }
+}
+```
+
+##### After transformation
+
+```js
+{
+  gradients: {
+    blueToGreen: {
+      value: "45deg, #288BD2 0%, #28D29F 100%",
+      $type: "gradient"
     }
   }
 }
