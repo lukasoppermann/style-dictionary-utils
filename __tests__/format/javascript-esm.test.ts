@@ -49,4 +49,20 @@ describe('Format: ESM', () => {
     expect(javascriptEsm({dictionary, file, options: undefined, undefined})).toStrictEqual(output)
   })
 
+  it('Formats tokens accepting a custom prettier configuration', () => {
+    const output = `export default {
+  colors: {
+    red: '#FF0000',
+  },
+};
+`
+    const prettier = {
+      singleQuote: true
+    }
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore: fake values to test formatter
+    expect(javascriptEsm({dictionary, file, options: {prettier}, undefined})).toStrictEqual(output)
+  })
+
 })
