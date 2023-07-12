@@ -29,7 +29,7 @@ const hasUnit = (value: string | number, unit: string): boolean => {
  * @matcher matches all tokens of $type `dimension`
  * @transformer returns a float number
  */
-export const dimensionToFloat: StyleDictionary.Transform = {
+export const dimensionToPixelUnitless: StyleDictionary.Transform = {
   type: `value`,
   transitive: true,
   matcher: isDimension,

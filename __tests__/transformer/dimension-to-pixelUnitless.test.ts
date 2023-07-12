@@ -1,6 +1,6 @@
 import StyleDictionary from 'style-dictionary';
 import { Matcher } from 'style-dictionary/types/Matcher';
-import { dimensionToFloat } from '../../src/transformer/dimension-to-float';
+import { dimensionToPixelUnitless } from '../../src/transformer/dimension-to-pixelUnitless';
 
 describe('Transformer: dimensionPixelToRem', () => {
   const items = [{
@@ -17,7 +17,7 @@ describe('Transformer: dimensionPixelToRem', () => {
   }] as StyleDictionary.TransformedToken[];
 
   it('transforms `dimension` tokens', () => {
-    expect(items.filter(dimensionToFloat.matcher as Matcher).map(item => dimensionToFloat.transformer(item))).toStrictEqual([
+    expect(items.filter(dimensionToPixelUnitless.matcher as Matcher).map(item => dimensionToPixelUnitless.transformer(item))).toStrictEqual([
       20,
       48,
     ]);
@@ -27,7 +27,7 @@ describe('Transformer: dimensionPixelToRem', () => {
     const platform = {
       basePxFontSize: 10
     }
-    expect(items.filter(dimensionToFloat.matcher as Matcher).map(item => dimensionToFloat.transformer(item, platform))).toStrictEqual([
+    expect(items.filter(dimensionToPixelUnitless.matcher as Matcher).map(item => dimensionToPixelUnitless.transformer(item, platform))).toStrictEqual([
       20,
       30
     ]);
