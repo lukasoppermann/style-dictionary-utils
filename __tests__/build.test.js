@@ -10,6 +10,7 @@ describe('index.js', () => {
     expect(StyleDictionary.transform["color/hex"]).toBeDefined();
     expect(StyleDictionary.transform["color/rgba"]).toBeDefined();
     expect(StyleDictionary.transform["color/rgbAlpha"]).toBeDefined();
+    expect(StyleDictionary.transform["color/rgbaFloat"]).toBeDefined();
     expect(StyleDictionary.transform["color/hexAlpha"]).toBeDefined();
     expect(StyleDictionary.transform["name/pathToDotNotation"]).toBeDefined();
     expect(StyleDictionary.transform["shadow/css"]).toBeDefined();

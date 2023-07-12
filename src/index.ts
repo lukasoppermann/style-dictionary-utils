@@ -32,6 +32,7 @@ import { namePathToDotNotation } from './transformer/name-path-to-dot-notation'
 import { shadowCss } from './transformer/shadow-css'
 import { cssExtended } from './transformGroups/cssExtended'
 import { gradientCss } from './transformer/gradient-css'
+import { colorToRgbaFloat } from './transformer/color-to-rgba-float'
 
 /**
  * Parsers
@@ -76,6 +77,11 @@ OrigialStyleDictionary.registerTransform({
 OrigialStyleDictionary.registerTransform({
   name: 'color/rgba',
   ...colorToRgba
+})
+
+OrigialStyleDictionary.registerTransform({
+  name: 'color/rgbaFloat',
+  ...colorToRgbaFloat
 })
 
 OrigialStyleDictionary.registerTransform({
