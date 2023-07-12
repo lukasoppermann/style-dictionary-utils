@@ -10,7 +10,7 @@ export const dimensionRemToPixel: StyleDictionary.Transform = {
   transitive: true,
   matcher: (token: StyleDictionary.TransformedToken) => isDimension(token) && token.value.substring(token.value.length - 3) === 'rem',
   transformer: (token: StyleDictionary.TransformedToken, platform: StyleDictionary.Platform | undefined) => {
-    const baseFont = platform?.options?.basePxFontSize || 16;
+    const baseFont = platform?.basePxFontSize || 16;
     const floatVal = parseFloat(token.value)
 
     if (isNaN(floatVal)) {

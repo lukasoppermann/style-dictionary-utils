@@ -21,6 +21,7 @@ describe('index.js', () => {
     expect(StyleDictionary.transform["cubicBezier/css"]).toBeDefined();
     expect(StyleDictionary.transform["dimension/pixelToRem"]).toBeDefined();
     expect(StyleDictionary.transform["dimension/remToPixel"]).toBeDefined();
+    expect(StyleDictionary.transform["dimension/float"]).toBeDefined();
   });
 
   it("all transformGroups are attached", () => {

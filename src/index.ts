@@ -33,6 +33,7 @@ import { shadowCss } from './transformer/shadow-css'
 import { cssExtended } from './transformGroups/cssExtended'
 import { gradientCss } from './transformer/gradient-css'
 import { colorToRgbaFloat } from './transformer/color-to-rgba-float'
+import { dimensionToFloat } from './transformer/dimension-to-float'
 
 /**
  * Parsers
@@ -127,6 +128,11 @@ OrigialStyleDictionary.registerTransform({
 OrigialStyleDictionary.registerTransform({
   name: 'dimension/remToPixel',
   ...dimensionRemToPixel
+})
+
+OrigialStyleDictionary.registerTransform({
+  name: 'dimension/float',
+  ...dimensionToFloat
 })
 
 OrigialStyleDictionary.registerTransform({
