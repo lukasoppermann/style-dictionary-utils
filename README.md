@@ -90,6 +90,7 @@ StyleDictionary.registerTransform({
   - [cubicBezier/css](#cubicBeziercss)
   - [dimension/pixelToRem](#dimensionpixelToRem)
   - [dimension/remToPixel](#dimensionremToPixel)
+  - [dimension/pixelUnitless](#dimensionpixelUnitless)
 - Filters
   - [isSource](#isSource)
   - [isColor](#isColor)
@@ -897,6 +898,52 @@ const myStyleDictionary = StyleDictionary.extend({
   }
 }
 ```
+
+### dimension/pixelUnitless
+
+This `value` transformer replaces the value of a token with a `$type` or `type` of `dimension` that has a `rem` or `px` value, with a unitless `pixel` based value. This is usefule for example when preparing tokens to be imported into Figma.
+
+```js
+const myStyleDictionary = StyleDictionary.extend({
+  "platforms": {
+    "json": {
+      "transforms": ['dimension/pixelUnitless'],
+      "files": [{
+        // ...
+      }],
+      options: {
+        basePxFontSize: 16
+      }
+    }
+  }
+});
+```
+##### Before transformation
+
+```js
+{
+  size: {
+    small: {
+      value: "2rem",
+      $type: "dimension"
+    }
+  }
+}
+``` 
+
+##### After transformation
+
+```js
+{
+  size: {
+    small: {
+      value: 32,
+      $type: "dimension"
+    }
+  }
+}
+```
+
 ## 🚦 Filters
 
 Filters are used to filter out unwanted tokens when [configuring output files](https://amzn.github.io/style-dictionary/#/config?id=file)
