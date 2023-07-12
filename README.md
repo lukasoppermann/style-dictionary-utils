@@ -81,6 +81,7 @@ StyleDictionary.registerTransform({
   - [color/hexAlpha](#colorhexAlpha)
   - [color/hex](#colorhex)
   - [color/rgba](#colorrgba)
+  - [color/rgbaFloat](#colorrgbafloat)
   - [shadow/css](#shadowcss)
   - [font/css](#fontcss)
   - [fontFamily/css](#fontFamilycss)
@@ -477,6 +478,58 @@ const myStyleDictionary = StyleDictionary.extend({
     blue: {
       500: { 
         value: "rgba(13, 112, 230, 0.4)",
+        $type: "color"
+      }
+    }
+  }
+}
+```
+
+### color/rgbaFloat
+
+This `value` transformer replaces the value of a token with a `$type` or `type` of `color` with an `rgba float` object.
+This is helpful for tools and platforms and use float rgba values where the `r`, `g`, `b` and `a` values go from `0` to `1`. For example when preparing tokens to be imported into Figma.
+
+```js
+const myStyleDictionary = StyleDictionary.extend({
+  "platforms": {
+    "json": {
+      "transforms": ['color/rgbaFloat'],
+      "files": [{
+        // ...
+      }]
+    }
+  }
+});
+```
+##### Before transformation
+
+```js
+{
+  colors: {
+    blue: {
+      500: { 
+        value: "#0D70E666",
+        $type: "color"
+      }
+    }
+  }
+}
+``` 
+
+##### After transformation
+
+```js
+{
+  colors: {
+    blue: {
+      500: { 
+        value: {
+          r: 0.051, 
+          g: 0.439, 
+          b: 0.902, 
+          a: 0.4
+        },
         $type: "color"
       }
     }
