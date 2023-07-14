@@ -70,15 +70,15 @@ StyleDictionary.registerTransform({
 ## Included utilities
 
 - Parsers
-  - [w3c token json parser](#w3cTokenJsonParser)
-  - [w3c token json5 parser](#w3cTokenJson5Parser)
+  - [w3c token json parser](#w3ctokenjsonparser)
+  - [w3c token json5 parser](#w3ctokenjson5parser)
 - Formats
   - [javascript/esm](#javascriptesm)
   - [javascript/commonJs](#javascriptcommonJs)
 - Transformers
-  - [name/pathToDotNotation](#namepathToDotNotation)
-  - [color/rgbAlpha](#colorrgbAlpha)
-  - [color/hexAlpha](#colorhexAlpha)
+  - [name/pathToDotNotation](#namepathtodotnotation)
+  - [color/rgbAlpha](#colorrgbalpha)
+  - [color/hexAlpha](#colorhexalpha)
   - [color/hex](#colorhex)
   - [color/rgba](#colorrgba)
   - [color/rgbaFloat](#colorrgbafloat)
