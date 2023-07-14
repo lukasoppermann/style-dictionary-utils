@@ -70,47 +70,47 @@ StyleDictionary.registerTransform({
 ## Included utilities
 
 - Parsers
-  - [w3c token json parser](#w3cTokenJsonParser)
-  - [w3c token json5 parser](#w3cTokenJson5Parser)
+  - [w3c token json parser](#w3ctokenjsonparser)
+  - [w3c token json5 parser](#w3ctokenjson5parser)
 - Formats
   - [javascript/esm](#javascriptesm)
   - [javascript/commonJs](#javascriptcommonJs)
 - Transformers
-  - [name/pathToDotNotation](#namepathToDotNotation)
-  - [color/rgbAlpha](#colorrgbAlpha)
-  - [color/hexAlpha](#colorhexAlpha)
+  - [name/pathToDotNotation](#namepathtodotnotation)
+  - [color/rgbAlpha](#colorrgbalpha)
+  - [color/hexAlpha](#colorhexalpha)
   - [color/hex](#colorhex)
   - [color/rgba](#colorrgba)
   - [color/rgbaFloat](#colorrgbafloat)
   - [shadow/css](#shadowcss)
   - [font/css](#fontcss)
-  - [fontFamily/css](#fontFamilycss)
-  - [fontWeight/number](#fontWeightnumber)
+  - [fontFamily/css](#fontfamilycss)
+  - [fontWeight/number](#fontweightnumber)
   - [gradient/css](#gradientcss)
-  - [cubicBezier/css](#cubicBeziercss)
-  - [dimension/pixelToRem](#dimensionpixelToRem)
-  - [dimension/remToPixel](#dimensionremToPixel)
-  - [dimension/pixelUnitless](#dimensionpixelUnitless)
+  - [cubicBezier/css](#cubicbeziercss)
+  - [dimension/pixelToRem](#dimensionpixeltorem)
+  - [dimension/remToPixel](#dimensionremtopixel)
+  - [dimension/pixelUnitless](#dimensionpixelunitless)
 - Filters
-  - [isSource](#isSource)
-  - [isColor](#isColor)
-  - [isGradient](#isGradient)
-  - [isColorOrGradient](#isColorOrGradient)
-  - [isTypography](#isTypography)
-  - [isTypographic](#isTypographic)
-  - [isTransition](#isTransition)
-  - [isStrokeStyle](#isStrokeStyle)
-  - [isShadow](#isShadow)
-  - [isFontWeight](#isFontWeight)
-  - [isFontFamily](#isFontFamily)
-  - [isDuration](#isDuration)
-  - [isDimension](#isDimension)
-  - [isCubicBezier](#isCubicBezier)
-  - [isBorder](#isBorder)
+  - [isSource](#issource)
+  - [isColor](#iscolor)
+  - [isGradient](#isgradient)
+  - [isColorOrGradient](#iscolororgradient)
+  - [isTypography](#istypography)
+  - [isTypographic](#istypographic)
+  - [isTransition](#istransition)
+  - [isStrokeStyle](#isstrokestyle)
+  - [isShadow](#isshadow)
+  - [isFontWeight](#isfontweight)
+  - [isFontFamily](#isfontfamily)
+  - [isDuration](#isduration)
+  - [isDimension](#isdimension)
+  - [isCubicBezier](#iscubicbezier)
+  - [isBorder](#isborder)
 - Special Filter
-  - [getHasAttribute](#getHasAttribute)
-  - [getHasAttributeValue](#getHasAttributeValue)
-  - [getIsType](#getIsType)
+  - [getHasAttribute](#gethasattribute)
+  - [getHasAttributeValue](#gethasattributevalue)
+  - [getIsType](#getisyype)
 ## 📠 Parsers
 
 ### w3cTokenJsonParser
@@ -277,19 +277,19 @@ const myStyleDictionary = StyleDictionary.extend({
 {
   colors: {
     red: {
-      100: { 
+      100: {
         // ...
       }
     }
   }
 }
-``` 
+```
 
 ##### After transformation
 
 ```js
 {
-  "colors.red.100": { 
+  "colors.red.100": {
     // ...
   }
 }
@@ -319,7 +319,7 @@ const myStyleDictionary = StyleDictionary.extend({
 {
   colors: {
     blue: {
-      500: { 
+      500: {
         value: "#0D70E6",
         $type: "color",
         alpha: 0.4
@@ -327,7 +327,7 @@ const myStyleDictionary = StyleDictionary.extend({
     }
   }
 }
-``` 
+```
 
 ##### After transformation
 
@@ -335,7 +335,7 @@ const myStyleDictionary = StyleDictionary.extend({
 {
   colors: {
     blue: {
-      500: { 
+      500: {
         value: "rgba(13, 112, 230, 0.4)",
         $type: "color",
         alpha: 0.4
@@ -368,7 +368,7 @@ const myStyleDictionary = StyleDictionary.extend({
 {
   colors: {
     blue: {
-      500: { 
+      500: {
         value: "rgba(13, 112, 230, 0.4)",
         $type: "color",
         alpha: 0.2
@@ -376,7 +376,7 @@ const myStyleDictionary = StyleDictionary.extend({
     }
   }
 }
-``` 
+```
 
 ##### After transformation
 
@@ -384,7 +384,7 @@ const myStyleDictionary = StyleDictionary.extend({
 {
   colors: {
     blue: {
-      500: { 
+      500: {
         value: "#0D70E633", // prev alpha value is replaced with 0.2 from alpha property
         $type: "color",
         alpha: 0.2
@@ -416,14 +416,14 @@ const myStyleDictionary = StyleDictionary.extend({
 {
   colors: {
     blue: {
-      500: { 
+      500: {
         value: "rgba(13, 112, 230, 0.4)",
         $type: "color"
       }
     }
   }
 }
-``` 
+```
 
 ##### After transformation
 
@@ -431,7 +431,7 @@ const myStyleDictionary = StyleDictionary.extend({
 {
   colors: {
     blue: {
-      500: { 
+      500: {
         value: "#0D70E666",
         $type: "color"
       }
@@ -462,14 +462,14 @@ const myStyleDictionary = StyleDictionary.extend({
 {
   colors: {
     blue: {
-      500: { 
+      500: {
         value: "#0D70E666",
         $type: "color"
       }
     }
   }
 }
-``` 
+```
 
 ##### After transformation
 
@@ -477,7 +477,7 @@ const myStyleDictionary = StyleDictionary.extend({
 {
   colors: {
     blue: {
-      500: { 
+      500: {
         value: "rgba(13, 112, 230, 0.4)",
         $type: "color"
       }
@@ -509,14 +509,14 @@ const myStyleDictionary = StyleDictionary.extend({
 {
   colors: {
     blue: {
-      500: { 
+      500: {
         value: "#0D70E666",
         $type: "color"
       }
     }
   }
 }
-``` 
+```
 
 ##### After transformation
 
@@ -524,11 +524,11 @@ const myStyleDictionary = StyleDictionary.extend({
 {
   colors: {
     blue: {
-      500: { 
+      500: {
         value: {
-          r: 0.051, 
-          g: 0.439, 
-          b: 0.902, 
+          r: 0.051,
+          g: 0.439,
+          b: 0.902,
           a: 0.4
         },
         $type: "color"
@@ -571,7 +571,7 @@ const myStyleDictionary = StyleDictionary.extend({
     }
   }
 }
-``` 
+```
 
 ##### After transformation
 
@@ -840,7 +840,7 @@ const myStyleDictionary = StyleDictionary.extend({
     }
   }
 }
-``` 
+```
 
 ##### After transformation
 
@@ -884,7 +884,7 @@ const myStyleDictionary = StyleDictionary.extend({
     }
   }
 }
-``` 
+```
 
 ##### After transformation
 
@@ -929,7 +929,7 @@ const myStyleDictionary = StyleDictionary.extend({
     }
   }
 }
-``` 
+```
 
 ##### After transformation
 
@@ -1205,7 +1205,7 @@ const myStyleDictionary = StyleDictionary.extend({
 ## 🚦 Special Filter
 
 ### getHasAttribute
-The `getHasAttribute` function returns a `filter` function that filters by one or multiple properties. 
+The `getHasAttribute` function returns a `filter` function that filters by one or multiple properties.
 You can provide one or multiple arguments that are used to check of the token has at least one of those properties.
 
 ```js
@@ -1299,7 +1299,7 @@ const myStyleDictionary = StyleDictionary.extend({
 
 
 ### getIsType
-The `getIsType` function returns a `filter` function that filters by one or multiple types. 
+The `getIsType` function returns a `filter` function that filters by one or multiple types.
 You can provide one or multiple arguments that are used as `types` to filter against the `type` or `$type` property.
 
 ##### Register as a new filter
@@ -1323,7 +1323,7 @@ const myStyleDictionary = StyleDictionary.extend({
     "ts": {
       "transforms": //...,
       "files": [{
-        "filter": getIsType('size','dimension'), // allows only tokens with type `size` or `dimension` 
+        "filter": getIsType('size','dimension'), // allows only tokens with type `size` or `dimension`
         // ...
       }]
     }
