@@ -71,7 +71,7 @@ StyleDictionary.registerTransform({
 
 - Parsers
   - [w3c token json parser](#w3ctokenjsonparser)
-  - [w3c token json5 parser](#w3ctokenjson5parser)
+  - [w3c token json5 parser](#w3ctokenjson5parser-not-autoloaded)
 - Formats
   - [javascript/esm](#javascriptesm)
   - [javascript/commonJs](#javascriptcommonJs)
