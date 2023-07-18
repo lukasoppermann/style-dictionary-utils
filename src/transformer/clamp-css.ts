@@ -1,5 +1,5 @@
 import StyleDictionary from 'style-dictionary'
-import { isGradient } from '../filter/isGradient'
+import { isClamp } from '../filter/isClamp'
 
 type TokenClamp = {
   min: string
@@ -10,9 +10,9 @@ type TokenClamp = {
 export const clampCss: StyleDictionary.Transform = {
   type: `value`,
   transitive: true,
-//   matcher: isGradient,
+  matcher: isClamp,
   transformer: ({ value }: { value: TokenClamp }) =>
-    `${value.min} ${value.ideal} ${value.max}`
+    `clamp(${value.min}, ${value.ideal}, ${value.max})`
 
 //      transformer: (token: StyleDictionary.TransformedToken) => {
 //     // combine stops to string
