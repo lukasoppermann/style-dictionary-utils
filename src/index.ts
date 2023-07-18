@@ -32,6 +32,7 @@ import { namePathToDotNotation } from './transformer/name-path-to-dot-notation'
 import { shadowCss } from './transformer/shadow-css'
 import { cssExtended } from './transformGroups/cssExtended'
 import { gradientCss } from './transformer/gradient-css'
+import { clampCss } from './transformer/clamp-css'
 import { colorToRgbaFloat } from './transformer/color-to-rgba-float'
 import { dimensionToPixelUnitless } from './transformer/dimension-to-pixelUnitless'
 
@@ -98,6 +99,11 @@ OrigialStyleDictionary.registerTransform({
 OrigialStyleDictionary.registerTransform({
   name: 'gradient/css',
   ...gradientCss
+})
+
+OrigialStyleDictionary.registerTransform({
+  name: 'clamp/css',
+  ...clampCss
 })
 
 OrigialStyleDictionary.registerTransform({
