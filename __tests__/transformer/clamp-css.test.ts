@@ -8,17 +8,12 @@ describe('Transformer: clampCss', () => {
     value: '',
     $type: 'color',
   }, {
-    value: [
-        {
-          "color": "#ffff00",
-          "position": 0.669
-        },
-        {
-          "color": "#ff0000",
-          "position": 1
-        }
-      ],
-    $type: 'gradient',
+    value: {
+        "min": "1.5rem",
+        "ideal": "5vw",
+        "max": "2.5rem",
+      },
+    $type: 'clamp',
   }, {
     value: '',
   }] as StyleDictionary.TransformedToken[];
@@ -29,7 +24,7 @@ describe('Transformer: clampCss', () => {
 
   it('transforms `clamp` tokens', () => {
     expect(items.filter(clampCss.matcher as Matcher).map(item => clampCss.transformer(item, {}))).toStrictEqual([
-      "#ffff00 66%, #ff0000 100%fsad"
+      "clamp(1.5rem, 5vw, 2.5rem)"
     ]);
   });
 
