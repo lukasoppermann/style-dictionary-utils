@@ -5,7 +5,7 @@ import { clampCss } from '../../src/transformer/clamp-css';
 describe('Transformer: clampCss', () => {
   const items = [{
     value: '',
-    $type: 'color',
+    $type: 'clamp',
   }, {
     value: {
         "min": "1.5rem",
