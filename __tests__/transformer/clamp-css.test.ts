@@ -28,7 +28,6 @@ describe('Transformer: clampCss', () => {
   });
 
   it('transforms `clamp` tokens with modified ideal value', () => {
-
     const idealClamp = [{
         value: {
             "min": "1.5rem",
@@ -39,10 +38,8 @@ describe('Transformer: clampCss', () => {
       }, {
         value: '',
       }] as StyleDictionary.TransformedToken[];
-
     expect(idealClamp.filter(clampCss.matcher as Matcher).map(item => clampCss.transformer(item, {}))).toStrictEqual([
       "clamp(1.5rem, 0.5vw + 0.75rem, 2.5rem)"
     ]);
   });
-
 })
