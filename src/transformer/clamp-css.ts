@@ -13,12 +13,4 @@ export const clampCss: StyleDictionary.Transform = {
   matcher: isClamp,
   transformer: ({ value }: { value: TokenClamp }) =>
     `clamp(${value.min}, ${value.ideal}, ${value.max})`
-
-//      transformer: (token: StyleDictionary.TransformedToken) => {
-//     // combine stops to string
-//     const stops = token.value.map((stop: TokenGradient) => `${stop.color}${stop.position ? ` ${Math.floor(stop.position * 100)}%` : ""}`).join(", ")
-//     // return gradient value
-//     return `${token.angle ? `${token.angle}, ` : ""}${stops}`
-//   }
-
 }
