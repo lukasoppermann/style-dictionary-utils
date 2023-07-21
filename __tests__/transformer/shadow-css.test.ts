@@ -24,7 +24,7 @@ describe('Transformer: shadowCss', () => {
   });
 
   it('transforms `shadow` tokens', () => {
-    expect(items.filter(shadowCss.matcher as Matcher).map(item => shadowCss.transformer(item))).toStrictEqual([
+    expect(items.filter(shadowCss.matcher as Matcher).map(item => shadowCss.transformer(item, {}))).toStrictEqual([
       "0px 0px 0px 3px #00000066"
     ]);
   });

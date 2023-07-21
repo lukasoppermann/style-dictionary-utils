@@ -21,9 +21,9 @@ describe('Transformer: cubicBezierCss', () => {
   });
 
   it('transforms `cubicBezier` array tokens', () => {
-    expect(items.filter(cubicBezierCss.matcher as Matcher).map(item => cubicBezierCss.transformer(item))).toStrictEqual([
-      "cubic-bezier(0, 0, 0.5, 1);",
-      "cubic-bezier(0.5, 0, 1, 1);"
+    expect(items.filter(cubicBezierCss.matcher as Matcher).map(item => cubicBezierCss.transformer(item, {}))).toStrictEqual([
+      "cubic-bezier(0, 0, 0.5, 1)",
+      "cubic-bezier(0.5, 0, 1, 1)"
     ]);
   });
 })

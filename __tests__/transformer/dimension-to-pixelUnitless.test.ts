@@ -17,7 +17,7 @@ describe('Transformer: dimensionPixelToRem', () => {
   }] as StyleDictionary.TransformedToken[];
 
   it('transforms `dimension` tokens', () => {
-    expect(items.filter(dimensionToPixelUnitless.matcher as Matcher).map(item => dimensionToPixelUnitless.transformer(item))).toStrictEqual([
+    expect(items.filter(dimensionToPixelUnitless.matcher as Matcher).map(item => dimensionToPixelUnitless.transformer(item, {}))).toStrictEqual([
       20,
       48,
     ]);

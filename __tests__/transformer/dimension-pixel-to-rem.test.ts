@@ -21,7 +21,7 @@ describe('Transformer: dimensionPixelToRem', () => {
   });
 
   it('transforms `dimension` tokens', () => {
-    expect(items.filter(dimensionPixelToRem.matcher as Matcher).map(item => dimensionPixelToRem.transformer(item))).toStrictEqual([
+    expect(items.filter(dimensionPixelToRem.matcher as Matcher).map(item => dimensionPixelToRem.transformer(item, {}))).toStrictEqual([
       "1.25rem"
     ]);
   })
