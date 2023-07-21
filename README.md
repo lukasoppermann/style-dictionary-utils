@@ -91,6 +91,7 @@ StyleDictionary.registerTransform({
   - [dimension/pixelToRem](#dimensionpixeltorem)
   - [dimension/remToPixel](#dimensionremtopixel)
   - [dimension/pixelUnitless](#dimensionpixelunitless)
+  - [clamp/css](#clampcss)
 - Filters
   - [isSource](#issource)
   - [isColor](#iscolor)
@@ -107,6 +108,7 @@ StyleDictionary.registerTransform({
   - [isDimension](#isdimension)
   - [isCubicBezier](#iscubicbezier)
   - [isBorder](#isborder)
+  - [isClamp](#isclamp)
 - Special Filter
   - [getHasAttribute](#gethasattribute)
   - [getHasAttributeValue](#gethasattributevalue)
@@ -901,7 +903,7 @@ const myStyleDictionary = StyleDictionary.extend({
 
 ### dimension/pixelUnitless
 
-This `value` transformer replaces the value of a token with a `$type` or `type` of `dimension` that has a `rem` or `px` value, with a unitless `pixel` based value. This is usefule for example when preparing tokens to be imported into Figma.
+This `value` transformer replaces the value of a token with a `$type` or `type` of `dimension` that has a `rem` or `px` value, with a unitless `pixel` based value. This is useful for example when preparing tokens to be imported into Figma.
 
 ```js
 const myStyleDictionary = StyleDictionary.extend({
@@ -918,14 +920,35 @@ const myStyleDictionary = StyleDictionary.extend({
   }
 });
 ```
+
+### clamp/css
+
+This `value` transformer replaces the value of a token with a `$type` or `type` of `clamp` that has a `$value` object with `min`, `ideal` and `max` property, with a css `clamp` function.
+
+```js
+const myStyleDictionary = StyleDictionary.extend({
+  "platforms": {
+    "json": {
+      "transforms": ['clamp/css'],
+      "files": [{
+        // ...
+      }],
+    }
+  }
+});
+```
 ##### Before transformation
 
 ```js
 {
   size: {
     small: {
-      value: "2rem",
-      $type: "dimension"
+      value: {
+        min: "1.5rem",
+        ideal: "0.5vw + 0.75rem",
+        max: "2.5rem"
+      },
+      $type: "clamp"
     }
   }
 }
@@ -937,8 +960,8 @@ const myStyleDictionary = StyleDictionary.extend({
 {
   size: {
     small: {
-      value: 32,
-      $type: "dimension"
+      value: "clamp(1.5rem, 0.5vw + 0.75rem, 2.5rem)",
+      $type: "clamp"
     }
   }
 }
@@ -1195,6 +1218,23 @@ const myStyleDictionary = StyleDictionary.extend({
       "transforms": //...,
       "files": [{
         "filter": "isBorder",
+        // ...
+      }]
+    }
+  }
+});
+```
+
+### isClamp
+Only allows tokens with a `type` or `$type` property of `clamp` and an object as the `$value` with a `min`, `ideal` and `max` property.
+
+```js
+const myStyleDictionary = StyleDictionary.extend({
+  "platforms": {
+    "ts": {
+      "transforms": //...,
+      "files": [{
+        "filter": "isClamp",
         // ...
       }]
     }

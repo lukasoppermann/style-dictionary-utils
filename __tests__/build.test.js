@@ -12,6 +12,7 @@ describe('index.js', () => {
     expect(StyleDictionary.transform["color/rgbAlpha"]).toBeDefined();
     expect(StyleDictionary.transform["color/rgbaFloat"]).toBeDefined();
     expect(StyleDictionary.transform["color/hexAlpha"]).toBeDefined();
+    expect(StyleDictionary.transform["clamp/css"]).toBeDefined();
     expect(StyleDictionary.transform["name/pathToDotNotation"]).toBeDefined();
     expect(StyleDictionary.transform["shadow/css"]).toBeDefined();
     expect(StyleDictionary.transform["font/css"]).toBeDefined();
@@ -33,6 +34,7 @@ describe('index.js', () => {
     expect(StyleDictionary.filter["isColor"]).toBeDefined();
     expect(StyleDictionary.filter["isColorOrGradient"]).toBeDefined();
     expect(StyleDictionary.filter["isCubicBezier"]).toBeDefined();
+    expect(StyleDictionary.filter["isClamp"]).toBeDefined();
     expect(StyleDictionary.filter["isDimension"]).toBeDefined();
     expect(StyleDictionary.filter["isDuration"]).toBeDefined();
     expect(StyleDictionary.filter["isFontFamily"]).toBeDefined();

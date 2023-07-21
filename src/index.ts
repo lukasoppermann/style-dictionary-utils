@@ -35,6 +35,7 @@ import { gradientCss } from './transformer/gradient-css'
 import { clampCss } from './transformer/clamp-css'
 import { colorToRgbaFloat } from './transformer/color-to-rgba-float'
 import { dimensionToPixelUnitless } from './transformer/dimension-to-pixelUnitless'
+import { isClamp } from './filter/isClamp'
 
 /**
  * Parsers
@@ -162,6 +163,11 @@ OrigialStyleDictionary.registerFilter({
 OrigialStyleDictionary.registerFilter({
   name: 'isColor',
   matcher: isColor
+})
+
+OrigialStyleDictionary.registerFilter({
+  name: 'isClamp',
+  matcher: isClamp
 })
 
 OrigialStyleDictionary.registerFilter({
