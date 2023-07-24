@@ -8,7 +8,7 @@ describe('Transformer: colorToHex', () => {
       { value: '#343' },
       { value: '#343434' },
       { value: '#34343466' }
-    ].map(item => colorToHex.transformer(item as StyleDictionary.TransformedToken))).toStrictEqual([
+    ].map(item => colorToHex.transformer(item as StyleDictionary.TransformedToken, {}))).toStrictEqual([
       "#334433",
       "#343434",
       "#34343466"
@@ -19,7 +19,7 @@ describe('Transformer: colorToHex', () => {
     expect([
       { value: 'rgb(100,200,255)' },
       { value: 'rgba(100,200,255, .4)' }
-    ].map(item => colorToHex.transformer(item as StyleDictionary.TransformedToken))).toStrictEqual([
+    ].map(item => colorToHex.transformer(item as StyleDictionary.TransformedToken, {}))).toStrictEqual([
       "#64c8ff",
       "#64c8ff66",
     ]);

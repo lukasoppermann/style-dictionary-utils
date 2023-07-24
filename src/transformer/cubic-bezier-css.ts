@@ -13,5 +13,5 @@ export const cubicBezierCss: StyleDictionary.Transform = {
   transitive: true,
   matcher: (token: StyleDictionary.TransformedToken) => isCubicBezier(token) && Array.isArray(token.value),
   transformer: ({ value: [x1, y1, x2, y2] }: { value: TokenCubicBezier }) =>
-    `cubic-bezier(${x1}, ${y1}, ${x2}, ${y2});`
+    `cubic-bezier(${x1}, ${y1}, ${x2}, ${y2})`
 }

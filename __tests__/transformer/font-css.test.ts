@@ -30,7 +30,7 @@ describe('Transformer: fontFamily', () => {
   });
 
   it('transforms `fontFamily` array tokens', () => {
-    expect(items.filter(fontCss.matcher as Matcher).map(item => fontCss.transformer(item))).toStrictEqual([
+    expect(items.filter(fontCss.matcher as Matcher).map(item => fontCss.transformer(item, {}))).toStrictEqual([
       "italic 500 16px/22px Helvetica",
       "16px Helvetica",
     ]);

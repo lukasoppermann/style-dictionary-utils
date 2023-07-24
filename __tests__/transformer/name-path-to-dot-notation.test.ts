@@ -11,7 +11,7 @@ describe('Transformer: namePathToDotNotation', () => {
   }] as StyleDictionary.TransformedToken[];
 
   it('transforms names to dot notation', () => {
-    expect(items.map(item => namePathToDotNotation.transformer(item))).toStrictEqual([
+    expect(items.map(item => namePathToDotNotation.transformer(item, {}))).toStrictEqual([
       "base.color.red",
       "base.red",
     ]);
