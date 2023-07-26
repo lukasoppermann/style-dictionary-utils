@@ -9,8 +9,8 @@ describe('Transformer: shadowCss', () => {
   }, {
     value: {
       "color": "#00000066",
-      "x": "0px",
-      "y": "0px",
+      "offsetX": "0px",
+      "offsetY": "0px",
       "blur": "0px",
       "spread": "3px"
     },
