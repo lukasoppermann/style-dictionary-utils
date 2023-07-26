@@ -564,8 +564,8 @@ const myStyleDictionary = StyleDictionary.extend({
     small: {
       value: {
         "color": "#00000066",
-        "x": "0px",
-        "y": "1px",
+        "offsetX": "0px",
+        "offsetY": "1px",
         "blur": "2px",
         "spread": "0px"
       },
