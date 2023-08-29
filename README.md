@@ -120,17 +120,17 @@ This parser parses `.json` with [w3c design tokens](https://github.com/design-to
 
 This means the following files can be used with this parser.
 
-```js
+```json
 {
   "token": {
-    value: "#223344",
-    type: "color",
-    description: "token description"
+    "value": "#223344",
+    "type": "color",
+    "description": "token description"
   },
   "w3cToken": {
-    $value: "#223344",
-    $type: "color",
-    $description: "token description"
+    "$value": "#223344",
+    "$type": "color",
+    "$description": "token description"
   }
 }
 ```
@@ -161,6 +161,20 @@ StyleDictionary.registerParser(w3cTokenJson5Parser)
 ```
 
 Make sure to install [`json5`](https://json5.org/) by running `npm i -D json5`.
+
+If you’re using [Prettier](https://prettier.io/), be aware that the default configuration removes [quote props](https://prettier.io/docs/en/options.html#quote-props), which are needed in `$type` and `$value` props in order to parse the tokens.
+
+Here’s an example of a prettier config that overrides the default:
+
+```yaml
+semi: false
+singleQuote: true
+overrides:
+  - files: '*.json[c|5]'
+    options:
+      quoteProps: preserve
+      singleQuote: false
+```
 
 ## 📑 Formats
 
