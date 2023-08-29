@@ -120,17 +120,17 @@ This parser parses `.json` with [w3c design tokens](https://github.com/design-to
 
 This means the following files can be used with this parser.
 
-```js
+```json
 {
   "token": {
-    value: "#223344",
-    type: "color",
-    description: "token description"
+    "value": "#223344",
+    "type": "color",
+    "description": "token description"
   },
   "w3cToken": {
-    $value: "#223344",
-    $type: "color",
-    $description: "token description"
+    "$value": "#223344",
+    "$type": "color",
+    "$description": "token description"
   }
 }
 ```
