@@ -56,7 +56,7 @@ describe('Parser: w3c token json5 parser', () => {
     expect(w3cTokenJson5Parser.parse({ contents: '' })).toStrictEqual({});
   });
 
-  it('parses single and double quotes', () => {
+  it('parses single, double and no quotes', () => {
     expect(w3cTokenJson5Parser.parse({
       contents: `{
       "color": {
@@ -68,6 +68,12 @@ describe('Parser: w3c token json5 parser', () => {
       'colorTwo': {
         '$value' : 'red',
         '$description' : 'another red color',
+        '$type' : 'color',
+        'alpha': 0.5
+      },
+      'colorThree': {
+        $value : 'red',
+        $description : 'a third red color',
         '$type' : 'color',
         'alpha': 0.5
       }
@@ -84,7 +90,14 @@ describe('Parser: w3c token json5 parser', () => {
         value: 'red',
         $type: 'color',
         alpha: 0.5,
+      },
+      colorThree: {
+        comment: 'a third red color',
+        value: 'red',
+        $type: 'color',
+        alpha: 0.5,
       }
     });
   });
+  it
 });
