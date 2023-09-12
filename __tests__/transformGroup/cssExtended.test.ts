@@ -16,7 +16,6 @@ describe('TransformGroup: css extended', () => {
     'font/css',
     'fontFamily/css',
     'fontWeight/number',
-    'name/pathToDotNotation',
     'cubicBezier/css',
     'border/css'
   ]
