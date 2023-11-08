@@ -12,7 +12,7 @@ const toRgbaFloat = (color: string, alpha?: number) => {
     r: parseInt(result[1], 16) / 255,
     g: parseInt(result[2], 16) / 255,
     b: parseInt(result[3], 16) / 255,
-    a: alpha !== undefined ? alpha : parseInt(result[4], 16) / 255 || 1,
+    a: alpha !== undefined ? alpha : (!isNaN(parseInt(result[4], 16) / 255)) ? (parseInt(result[4], 16) / 255) : 1,
   }
 }
 // sum up the values of all values in an array

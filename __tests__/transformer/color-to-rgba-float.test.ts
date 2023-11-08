@@ -47,6 +47,25 @@ describe('Transformer: colorToRgbaFloat', () => {
     expect(input.map(item => colorToRgbaFloat.transformer(item as StyleDictionary.TransformedToken, {}))).toStrictEqual(expectedOutput)
   })
 
+  it('transforms `named colors` and `transparent` to rgb float value', () => {
+    const input = [{ value: 'red' }, { value: 'transparent' }]
+    const expectedOutput = [
+      {
+        r: 1,
+        g: 0,
+        b: 0,
+        a: 1,
+      },
+      {
+        r: 0,
+        g: 0,
+        b: 0,
+        a: 0,
+      },
+    ]
+    expect(input.map(item => colorToRgbaFloat.transformer(item as StyleDictionary.TransformedToken, {}))).toStrictEqual(expectedOutput)
+  })
+
   it('transforms `color` tokens including alpha value', () => {
     expect(
       [
