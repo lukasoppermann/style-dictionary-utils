@@ -35,4 +35,13 @@ describe('Transformer: colorToHex', () => {
       "rgba(52, 52, 52, 0.4)"
     ]);
   })
+
+  it('transforms `named colors` and `transparent` to rgb value', () => {
+    const input = [{ value: 'purple' }, { value: 'transparent' }]
+    const expectedOutput = [
+      "rgba(128, 0, 128, 1)",
+      "rgba(0, 0, 0, 0)",
+    ]
+    expect(input.map(item => colorToRgba.transformer(item as StyleDictionary.TransformedToken, {}))).toStrictEqual(expectedOutput)
+  })
 })
