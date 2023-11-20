@@ -35,4 +35,13 @@ describe('Transformer: colorToHex', () => {
       "#34343466"
     ]);
   })
+
+  it('transforms `named colors` and `transparent` to hex value', () => {
+    const input = [{ value: 'purple' }, { value: 'transparent' }]
+    const expectedOutput = [
+      "#800080",
+      "#00000000",
+    ]
+    expect(input.map(item => colorToHex.transformer(item as StyleDictionary.TransformedToken, {}))).toStrictEqual(expectedOutput)
+  })
 })
