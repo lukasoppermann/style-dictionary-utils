@@ -44,7 +44,7 @@ export const dimensionToPixelUnitless: StyleDictionary.Transform = {
     }
 
     if (floatVal === 0) {
-      return '0'
+      return 0
     }
 
     if (hasUnit(token.value, 'rem')) {

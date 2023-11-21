@@ -2,8 +2,14 @@ import StyleDictionary from 'style-dictionary';
 import { Matcher } from 'style-dictionary/types/Matcher';
 import { dimensionToPixelUnitless } from '../../src/transformer/dimension-to-pixelUnitless';
 
-describe('Transformer: dimensionPixelToRem', () => {
+describe('Transformer: dimensionToPixelUnitless', () => {
   const items = [{
+    value: '0px',
+    $type: 'dimension',
+  }, {
+    value: '0',
+    $type: 'dimension',
+  }, {
     value: '20px',
     $type: 'dimension',
   }, {
@@ -18,6 +24,8 @@ describe('Transformer: dimensionPixelToRem', () => {
 
   it('transforms `dimension` tokens', () => {
     expect(items.filter(dimensionToPixelUnitless.matcher as Matcher).map(item => dimensionToPixelUnitless.transformer(item, {}))).toStrictEqual([
+      0,
+      0,
       20,
       48,
     ]);
@@ -28,6 +36,8 @@ describe('Transformer: dimensionPixelToRem', () => {
       basePxFontSize: 10
     }
     expect(items.filter(dimensionToPixelUnitless.matcher as Matcher).map(item => dimensionToPixelUnitless.transformer(item, platform))).toStrictEqual([
+      0,
+      0,
       20,
       30
     ]);
