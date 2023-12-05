@@ -43,17 +43,19 @@
   "dependencies": {
     "color2k": "^2.0.0",
     "json5": "^2.2.1",
-    "prettier": "^2.7.1"
+    "@prettier/sync": "^0.3.0"
   },
   "devDependencies": {
     "@types/jest": "^29.2.4",
+    "color2k": "^2.0.0",
     "eslint": "^8.24.0",
     "eslint-plugin-github": "^4.3.7",
-    "jest": "^29.0.3",
-    "ts-jest": "^29.0.2",
+    "jest": "^29.7.0",
+    "json5": "^2.2.1",  
+    "ts-jest": "^29.1.1",
     "typescript": "^5.1.6"
   },
   "peerDependencies": {
-    "style-dictionary": "v4.0.0-prerelease.2"
+    "style-dictionary": "4.0.0-prerelease.3"
   }
 }

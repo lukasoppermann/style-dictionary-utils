@@ -1,5 +1,6 @@
 import StyleDictionary from 'style-dictionary';
-import { format } from 'prettier'
+// Currently, Style-Dictionary does not yet support async formats, and prettier has changed to async now from v3 onwards
+import syncPrettier from '@prettier/sync'
 import { jsonToNestedValue } from '../utilities/jsonToNestedValue'
 
 const { fileHeader } = StyleDictionary.formatHelpers
@@ -11,5 +12,5 @@ export const javascriptEsm: StyleDictionary.Formatter = ({ dictionary, file, opt
   const output = fileHeader({ file }) +
     `export default \n${JSON.stringify(jsonToNestedValue(tokens), null, 2)}\n`
   // return prettified
-  return format(output, { parser: 'typescript', printWidth: 500, ...options?.prettier })
+  return syncPrettier.format(output, { parser: 'typescript', printWidth: 500, ...options?.prettier })
 }
