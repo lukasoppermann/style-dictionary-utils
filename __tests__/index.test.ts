@@ -86,7 +86,6 @@ describe('index.ts', () => {
   it('can be extended with a parser', () => {
     StyleDictionary.registerParser({
       pattern: /\.json$/,
-      // @ts-expect-error: not a valid token
       parse: () => ['test']
     })
 
