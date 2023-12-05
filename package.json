@@ -1,6 +1,7 @@
 {
   "name": "style-dictionary-utils",
   "version": "2.0.5",
+  "type": "module",
   "publishConfig": {
     "registry": "https://registry.npmjs.org",
     "access": "public"
@@ -9,6 +10,9 @@
     "type": "git",
     "url": "https://github.com/lukasoppermann/style-dictionary-utils.git"
   },
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "description": "Utilities to use in your style dictionary config",
   "main": "dist/index.js",
   "files": [
@@ -16,7 +20,7 @@
     "src/**/*.ts"
   ],
   "scripts": {
-    "test": "npx jest && npm run lint",
+    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest && npm run lint",
     "lint": "npx eslint . --ext .ts",
     "fix": "npx eslint . --ext .ts --fix",
     "clean:dist": "rm -rf dist/",
@@ -41,7 +45,7 @@
     "eslint": "^8.24.0",
     "eslint-plugin-github": "^4.3.7",
     "jest": "^29.0.3",
-    "style-dictionary": "^3.7.1",
+    "style-dictionary": "v4.0.0-prerelease.2",
     "ts-jest": "^29.0.2",
     "typescript": "^5.1.6",
     "color2k": "^2.0.0",
