@@ -1,9 +1,9 @@
-import styleDictionary from "style-dictionary";
+import StyleDictionary from "style-dictionary";
 
 export const cssExtended = {
   name: 'css/extended',
   transforms: [
-    ...styleDictionary.transformGroup['css'],
+    ...StyleDictionary.transformGroup['css'],
     'color/rgbAlpha',
     'shadow/css',
     'font/css',

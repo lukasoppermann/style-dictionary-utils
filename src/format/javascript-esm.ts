@@ -1,4 +1,4 @@
-import StyleDictionary from 'style-dictionary'
+import StyleDictionary from 'style-dictionary';
 import { format } from 'prettier'
 import { jsonToNestedValue } from '../utilities/jsonToNestedValue'
 
