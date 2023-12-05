@@ -1,4 +1,4 @@
-import * as OrigialStyleDictionary from 'style-dictionary'
+import OriginalStyleDictionary from 'style-dictionary'
 import { isBorder } from './filter/isBorder'
 import { isColor } from './filter/isColor'
 import { isColorOrGradient } from './filter/isColorOrGradient'
@@ -41,19 +41,19 @@ import { isClamp } from './filter/isClamp'
  * Parsers
  *
  */
-OrigialStyleDictionary.registerParser(w3cTokenJsonParser)
+OriginalStyleDictionary.registerParser(w3cTokenJsonParser)
 
 /**
  * Formats
  *
  */
 
-OrigialStyleDictionary.registerFormat({
+OriginalStyleDictionary.registerFormat({
   name: 'javascript/esm',
   formatter: javascriptEsm
 })
 
-OrigialStyleDictionary.registerFormat({
+OriginalStyleDictionary.registerFormat({
   name: 'javascript/commonJs',
   formatter: javascriptCommonJs
 })
@@ -62,87 +62,87 @@ OrigialStyleDictionary.registerFormat({
  * Transformers
  *
  */
-OrigialStyleDictionary.registerTransform({
+OriginalStyleDictionary.registerTransform({
   name: 'color/rgbAlpha',
   ...colorAlphaToRgba
 })
 
-OrigialStyleDictionary.registerTransform({
+OriginalStyleDictionary.registerTransform({
   name: 'color/hexAlpha',
   ...colorAlphaToHex
 })
 
-OrigialStyleDictionary.registerTransform({
+OriginalStyleDictionary.registerTransform({
   name: 'color/hex',
   ...colorToHex
 })
 
-OrigialStyleDictionary.registerTransform({
+OriginalStyleDictionary.registerTransform({
   name: 'color/rgba',
   ...colorToRgba
 })
 
-OrigialStyleDictionary.registerTransform({
+OriginalStyleDictionary.registerTransform({
   name: 'color/rgbaFloat',
   ...colorToRgbaFloat
 })
 
-OrigialStyleDictionary.registerTransform({
+OriginalStyleDictionary.registerTransform({
   name: 'name/pathToDotNotation',
   ...namePathToDotNotation
 })
 
-OrigialStyleDictionary.registerTransform({
+OriginalStyleDictionary.registerTransform({
   name: 'shadow/css',
   ...shadowCss
 })
 
-OrigialStyleDictionary.registerTransform({
+OriginalStyleDictionary.registerTransform({
   name: 'gradient/css',
   ...gradientCss
 })
 
-OrigialStyleDictionary.registerTransform({
+OriginalStyleDictionary.registerTransform({
   name: 'clamp/css',
   ...clampCss
 })
 
-OrigialStyleDictionary.registerTransform({
+OriginalStyleDictionary.registerTransform({
   name: 'font/css',
   ...fontCss
 })
 
-OrigialStyleDictionary.registerTransform({
+OriginalStyleDictionary.registerTransform({
   name: 'fontFamily/css',
   ...fontFamilyCss
 })
 
-OrigialStyleDictionary.registerTransform({
+OriginalStyleDictionary.registerTransform({
   name: 'fontWeight/number',
   ...fontWeightToNumber
 })
 
-OrigialStyleDictionary.registerTransform({
+OriginalStyleDictionary.registerTransform({
   name: 'cubicBezier/css',
   ...cubicBezierCss
 })
 
-OrigialStyleDictionary.registerTransform({
+OriginalStyleDictionary.registerTransform({
   name: 'dimension/pixelToRem',
   ...dimensionPixelToRem
 })
 
-OrigialStyleDictionary.registerTransform({
+OriginalStyleDictionary.registerTransform({
   name: 'dimension/remToPixel',
   ...dimensionRemToPixel
 })
 
-OrigialStyleDictionary.registerTransform({
+OriginalStyleDictionary.registerTransform({
   name: 'dimension/pixelUnitless',
   ...dimensionToPixelUnitless
 })
 
-OrigialStyleDictionary.registerTransform({
+OriginalStyleDictionary.registerTransform({
   name: 'border/css',
   ...borderCss
 })
@@ -150,87 +150,87 @@ OrigialStyleDictionary.registerTransform({
  * Transform groups
  *
  */
-OrigialStyleDictionary.registerTransformGroup(cssExtended)
+OriginalStyleDictionary.registerTransformGroup(cssExtended)
 /**
  * Filters
  *
  */
-OrigialStyleDictionary.registerFilter({
+OriginalStyleDictionary.registerFilter({
   name: 'isSource',
   matcher: isSource
 })
 
-OrigialStyleDictionary.registerFilter({
+OriginalStyleDictionary.registerFilter({
   name: 'isColor',
   matcher: isColor
 })
 
-OrigialStyleDictionary.registerFilter({
+OriginalStyleDictionary.registerFilter({
   name: 'isClamp',
   matcher: isClamp
 })
 
-OrigialStyleDictionary.registerFilter({
+OriginalStyleDictionary.registerFilter({
   name: 'isGradient',
   matcher: isGradient
 })
 
-OrigialStyleDictionary.registerFilter({
+OriginalStyleDictionary.registerFilter({
   name: 'isColorOrGradient',
   matcher: isColorOrGradient
 })
 
-OrigialStyleDictionary.registerFilter({
+OriginalStyleDictionary.registerFilter({
   name: 'isTypography',
   matcher: isTypography
 })
 
-OrigialStyleDictionary.registerFilter({
+OriginalStyleDictionary.registerFilter({
   name: 'isTypographic',
   matcher: isTypographic
 })
 
-OrigialStyleDictionary.registerFilter({
+OriginalStyleDictionary.registerFilter({
   name: 'isTransition',
   matcher: isTransition
 })
 
-OrigialStyleDictionary.registerFilter({
+OriginalStyleDictionary.registerFilter({
   name: 'isStrokeStyle',
   matcher: isStrokeStyle
 })
 
-OrigialStyleDictionary.registerFilter({
+OriginalStyleDictionary.registerFilter({
   name: 'isShadow',
   matcher: isShadow
 })
 
-OrigialStyleDictionary.registerFilter({
+OriginalStyleDictionary.registerFilter({
   name: 'isFontWeight',
   matcher: isFontWeight
 })
 
-OrigialStyleDictionary.registerFilter({
+OriginalStyleDictionary.registerFilter({
   name: 'isFontFamily',
   matcher: isFontFamily
 })
 
-OrigialStyleDictionary.registerFilter({
+OriginalStyleDictionary.registerFilter({
   name: 'isDuration',
   matcher: isDuration
 })
 
-OrigialStyleDictionary.registerFilter({
+OriginalStyleDictionary.registerFilter({
   name: 'isDimension',
   matcher: isDimension
 })
 
-OrigialStyleDictionary.registerFilter({
+OriginalStyleDictionary.registerFilter({
   name: 'isCubicBezier',
   matcher: isCubicBezier
 })
 
-OrigialStyleDictionary.registerFilter({
+OriginalStyleDictionary.registerFilter({
   name: 'isBorder',
   matcher: isBorder
 })
@@ -242,7 +242,7 @@ OrigialStyleDictionary.registerFilter({
  * @description Returns style dictionary object with parsers, formats and transformers
  * @documentation https://github.com/lukasoppermann/style-dictionary-utils/blob/main/README.md
  */
-// export default OrigialStyleDictionary as OrigialStyleDictionary.Core
+// export default OriginalStyleDictionary as OriginalStyleDictionary.Core
 
-// OrigialStyleDictionary.default = OrigialStyleDictionary;
-export = OrigialStyleDictionary;
+// OriginalStyleDictionary.default = OriginalStyleDictionary;
+export default OriginalStyleDictionary;
