@@ -36,16 +36,18 @@
     "url": "https://github.com/lukasoppermann/style-dictionary-utils/issues"
   },
   "homepage": "https://github.com/lukasoppermann/style-dictionary-utils#readme",
+  "dependencies": {
+    "color2k": "^2.0.0",
+    "json5": "^2.2.1",
+    "style-dictionary": "^3.7.1",
+    "prettier": "^2.7.1"
+  },
   "devDependencies": {
     "@types/jest": "^29.2.4",
     "eslint": "^8.24.0",
     "eslint-plugin-github": "^4.3.7",
     "jest": "^29.0.3",
-    "style-dictionary": "^3.7.1",
     "ts-jest": "^29.0.2",
-    "typescript": "^5.1.6",
-    "color2k": "^2.0.0",
-    "json5": "^2.2.1",
-    "prettier": "^2.7.1"
+    "typescript": "^5.1.6"
   }
 }
