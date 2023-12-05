@@ -85,7 +85,7 @@ describe('index.ts', () => {
   it('can be extended with a parser', () => {
     StyleDictionary.registerParser({
       pattern: /\.json$/,
-      parse: () => ['test']
+      parse: () => ({ test: { value: "test" } })
     })
 
     expect(StyleDictionary.parsers[1]).toEqual({
