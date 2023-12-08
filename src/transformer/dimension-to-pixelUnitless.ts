@@ -1,13 +1,12 @@
 import { isDimension } from '../filter/isDimension';
 import type StyleDictionary from 'style-dictionary'
-import type { Platform } from 'style-dictionary'
 
 /**
  * @description base font size from options or 16
  * @param options
  * @returns number
  */
-const getBasePxFontSize = (options?: Platform): number => options?.basePxFontSize ? options.basePxFontSize : 16
+const getBasePxFontSize = (options?: StyleDictionary.Platform): number => options?.basePxFontSize ? options.basePxFontSize : 16
 
 /**
  * @description checks if token value has a specific unit
@@ -33,7 +32,7 @@ export const dimensionToPixelUnitless: StyleDictionary.Transform = {
   type: `value`,
   transitive: true,
   matcher: isDimension,
-  transformer: (token: StyleDictionary.TransformedToken, options?: Platform) => {
+  transformer: (token: StyleDictionary.TransformedToken, options?: StyleDictionary.Platform) => {
     const baseFont = getBasePxFontSize(options)
     const floatVal = parseFloat(token.value)
 
