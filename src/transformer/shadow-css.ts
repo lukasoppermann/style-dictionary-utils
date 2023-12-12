@@ -18,7 +18,5 @@ export const shadowCss: StyleDictionary.Transform = {
   transformer: ({ value }: { value: string | TokenShadow }) =>
   typeof value === 'string'
     ? value
-    : `${value.offsetX || 0} ${value.offsetY || 0} ${value.blur || 0} ${value.spread || 0} ${
-        value.color
-      }`,
+    : `${value.offsetX || 0} ${value.offsetY || 0} ${value.blur || 0} ${value.spread || 0} ${value.color}`,
 }
