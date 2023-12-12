@@ -1,5 +1,6 @@
 import StyleDictionary from 'style-dictionary';
 import { colorToHex } from '../../src/transformer/color-to-hex';
+import { getMockToken } from '../../src/testUtilities/getMockToken';
 
 describe('Transformer: colorToHex', () => {
 
@@ -27,10 +28,9 @@ describe('Transformer: colorToHex', () => {
 
   it('transforms `color` tokens and ignores alpha value', () => {
     expect([
-      { value: '#343434', alpha: .4 },
-      { value: '#34343466', alpha: .8 }
-      // @ts-expect-error: fake token for test causes error
-    ].map(item => colorToHex.transformer(item))).toStrictEqual([
+      getMockToken({ value: '#343434', alpha: .4 }),
+      getMockToken({ value: '#34343466', alpha: .8 })
+    ].map(item => colorToHex.transformer(item as StyleDictionary.TransformedToken, {}))).toStrictEqual([
       "#343434",
       "#34343466"
     ]);

@@ -1,5 +1,6 @@
 import StyleDictionary from 'style-dictionary';
 import { colorToRgba } from '../../src/transformer/color-to-rgba';
+import { getMockToken } from '../../src/testUtilities/getMockToken';
 
 describe('Transformer: colorToHex', () => {
 
@@ -27,10 +28,9 @@ describe('Transformer: colorToHex', () => {
 
   it('transforms `color` tokens and ignores alpha value', () => {
     expect([
-      { value: '#343434', alpha: .4 },
-      { value: '#34343466', alpha: .8 }
-      // @ts-expect-error: fake token for test causes error
-    ].map(item => colorToRgba.transformer(item))).toStrictEqual([
+      getMockToken({ value: '#343434', alpha: .4 }),
+      getMockToken({ value: '#34343466', alpha: .8 })
+    ].map(item => colorToRgba.transformer(item as StyleDictionary.TransformedToken, {}))).toStrictEqual([
       "rgba(52, 52, 52, 1)",
       "rgba(52, 52, 52, 0.4)"
     ]);

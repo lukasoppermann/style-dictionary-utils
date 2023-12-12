@@ -1,5 +1,5 @@
 import StyleDictionary from 'style-dictionary';
-import { Matcher } from 'style-dictionary/types/Matcher';
+
 import { shadowCss } from '../../src/transformer/shadow-css';
 
 describe('Transformer: shadowCss', () => {
@@ -20,11 +20,11 @@ describe('Transformer: shadowCss', () => {
   }] as StyleDictionary.TransformedToken[];
 
   it('matches `shadow` tokens', () => {
-    expect(items.filter(shadowCss.matcher as Matcher)).toStrictEqual([items[1]]);
+    expect(items.filter(shadowCss.matcher as StyleDictionary.Matcher)).toStrictEqual([items[1]]);
   });
 
   it('transforms `shadow` tokens', () => {
-    expect(items.filter(shadowCss.matcher as Matcher).map(item => shadowCss.transformer(item, {}))).toStrictEqual([
+    expect(items.filter(shadowCss.matcher as StyleDictionary.Matcher).map(item => shadowCss.transformer(item, {}))).toStrictEqual([
       "0px 0px 0px 3px #00000066"
     ]);
   });

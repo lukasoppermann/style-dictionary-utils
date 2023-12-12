@@ -1,5 +1,5 @@
 import StyleDictionary from 'style-dictionary';
-import { Matcher } from 'style-dictionary/types/Matcher';
+
 import { gradientCss } from '../../src/transformer/gradient-css';
 
 describe('Transformer: gradientCss', () => {
@@ -23,11 +23,11 @@ describe('Transformer: gradientCss', () => {
   }] as StyleDictionary.TransformedToken[];
 
   it('matches `gradient` tokens', () => {
-    expect(items.filter(gradientCss.matcher as Matcher)).toStrictEqual([items[1]]);
+    expect(items.filter(gradientCss.matcher as StyleDictionary.Matcher)).toStrictEqual([items[1]]);
   });
 
   it('transforms `gradient` tokens', () => {
-    expect(items.filter(gradientCss.matcher as Matcher).map(item => gradientCss.transformer(item, {}))).toStrictEqual([
+    expect(items.filter(gradientCss.matcher as StyleDictionary.Matcher).map(item => gradientCss.transformer(item, {}))).toStrictEqual([
       "#ffff00 66%, #ff0000 100%"
     ]);
   });
@@ -37,7 +37,7 @@ describe('Transformer: gradientCss', () => {
       ...items[1],
       angle: "45deg"
     }]
-    expect(gradient.filter(gradientCss.matcher as Matcher).map(item => gradientCss.transformer(item, {}))).toStrictEqual([
+    expect(gradient.filter(gradientCss.matcher as StyleDictionary.Matcher).map(item => gradientCss.transformer(item, {}))).toStrictEqual([
       "45deg, #ffff00 66%, #ff0000 100%"
     ]);
   });
@@ -64,7 +64,7 @@ describe('Transformer: gradientCss', () => {
         value: '',
       }] as StyleDictionary.TransformedToken[];
 
-    expect(gradient.filter(gradientCss.matcher as Matcher).map(item => gradientCss.transformer(item, {}))).toStrictEqual([
+    expect(gradient.filter(gradientCss.matcher as StyleDictionary.Matcher).map(item => gradientCss.transformer(item, {}))).toStrictEqual([
        "#020024, #090979 35%, #00d4ff 100%"
     ]);
   });
