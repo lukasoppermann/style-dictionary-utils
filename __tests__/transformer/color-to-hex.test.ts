@@ -29,8 +29,8 @@ describe('Transformer: colorToHex', () => {
     expect([
       { value: '#343434', alpha: .4 },
       { value: '#34343466', alpha: .8 }
-      // @ts-expect-error: fake token for test causes error
-    ].map(item => colorToHex.transformer(item))).toStrictEqual([
+      // @ts-ignore: type not matching in test
+    ].map(item => colorToHex.transformer(item as StyleDictionary.TransformedToken, {}))).toStrictEqual([
       "#343434",
       "#34343466"
     ]);

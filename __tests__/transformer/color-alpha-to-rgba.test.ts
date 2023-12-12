@@ -32,7 +32,7 @@ describe('Transformer: colorToRgba', () => {
       { value: '#343434', alpha: .4 },
       { value: '#343434cc', alpha: .2 },
       { value: '#343434', alpha: 0 }
-      // @ts-expect-error: fake token for test causes error
+      // @ts-ignore: wrong type in test
     ].map(item => colorAlphaToRgba.transformer(item, {}))).toStrictEqual([
       "rgba(52, 52, 52, 0.4)",
       "rgba(52, 52, 52, 0.2)",

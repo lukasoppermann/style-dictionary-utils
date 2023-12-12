@@ -29,8 +29,8 @@ describe('Transformer: colorToHex', () => {
     expect([
       { value: '#343434', alpha: .4 },
       { value: '#34343466', alpha: .8 }
-      // @ts-expect-error: fake token for test causes error
-    ].map(item => colorToRgba.transformer(item))).toStrictEqual([
+      // @ts-ignore: wrong type in test
+    ].map(item => colorToRgba.transformer(item as StyleDictionary.TransformedToken, {}))).toStrictEqual([
       "rgba(52, 52, 52, 1)",
       "rgba(52, 52, 52, 0.4)"
     ]);
