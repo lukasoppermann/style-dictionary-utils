@@ -1,5 +1,6 @@
 import StyleDictionary from 'style-dictionary';
 import { colorAlphaToRgba } from '../../src/transformer/color-alpha-to-rgba';
+import { getMockToken } from '../../src/testUtilities/getMockToken';
 
 describe('Transformer: colorToRgba', () => {
 
@@ -29,10 +30,9 @@ describe('Transformer: colorToRgba', () => {
 
   it('transforms `color` tokens with alpha', () => {
     expect([
-      { value: '#343434', alpha: .4 },
-      { value: '#343434cc', alpha: .2 },
-      { value: '#343434', alpha: 0 }
-      // @ts-ignore: wrong type in test
+      getMockToken({ value: '#343434', alpha: .4 }),
+      getMockToken({ value: '#343434cc', alpha: .2 }),
+      getMockToken({ value: '#343434', alpha: 0 })
     ].map(item => colorAlphaToRgba.transformer(item, {}))).toStrictEqual([
       "rgba(52, 52, 52, 0.4)",
       "rgba(52, 52, 52, 0.2)",
