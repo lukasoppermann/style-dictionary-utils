@@ -1,4 +1,4 @@
-import StyleDictionary from "style-dictionary";
+import StyleDictionary from 'style-dictionary'
 
 export const cssExtended = {
   name: 'css/extended',

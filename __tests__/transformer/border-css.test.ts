@@ -1,4 +1,4 @@
-import { TransformedToken } from 'style-dictionary';
+import StyleDictionary from 'style-dictionary';
 import { borderCss } from '../../src/transformer/border-css';
 
 describe('Transformer: border', () => {
@@ -19,8 +19,8 @@ describe('Transformer: border', () => {
   }];
 
   it('transforms `border` tokens', () => {
-    // @ts-expect-error: because it is not a real token
-    expect(items.map(item => borderCss.transformer(item as TransformedToken))).toStrictEqual([
+    // @ts-ignore: wrong type in test
+    expect(items.map(item => borderCss.transformer(item as StyleDictionary.TransformedToken, {}))).toStrictEqual([
       "1px dashed #334455",
       "5px solid #33445566",
     ]);
