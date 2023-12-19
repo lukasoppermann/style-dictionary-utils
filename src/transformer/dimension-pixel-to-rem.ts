@@ -1,15 +1,15 @@
-import StyleDictionary from 'style-dictionary'
-import { isDimension } from '../filter/isDimension';
+import type { ValueTransform, TransformedToken, PlatformConfig } from 'style-dictionary/types'
+import { isDimension } from '../filter/isDimension.js';
 /**
  * dimensionPixelToRem
  * @description convert all dimensions that use pixel value to rem, uses `platform.options.basePxFontSize`
  * as the base font, or `16` if not provided
  */
-export const dimensionPixelToRem: StyleDictionary.Transform = {
+export const dimensionPixelToRem: Omit<ValueTransform, 'name'> = {
   type: `value`,
   transitive: true,
-  matcher: (token: StyleDictionary.TransformedToken) => isDimension(token) && token.value.substring(token.value.length - 2) === 'px',
-  transformer: (token: StyleDictionary.TransformedToken, platform: StyleDictionary.Platform | undefined) => {
+  matcher: (token: TransformedToken) => isDimension(token) && token.value.substring(token.value.length - 2) === 'px',
+  transformer: (token: TransformedToken, platform: PlatformConfig | undefined) => {
     const baseFont = platform?.basePxFontSize || 16;
     const floatVal = parseFloat(token.value)
 
