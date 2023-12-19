@@ -1,6 +1,6 @@
-import StyleDictionary from 'style-dictionary';
-import { colorAlphaToRgba } from '../../src/transformer/color-alpha-to-rgba';
-import { getMockToken } from '../../src/testUtilities/getMockToken';
+import { TransformedToken } from 'style-dictionary/types';
+import { colorAlphaToRgba } from '../../src/transformer/color-alpha-to-rgba.js';
+import { getMockToken } from '../../src/testUtilities/getMockToken.js';
 
 describe('Transformer: colorToRgba', () => {
 
@@ -9,7 +9,7 @@ describe('Transformer: colorToRgba', () => {
       { value: '#343' },
       { value: '#343434' },
       { value: '#34343466' }
-    ].map(item => colorAlphaToRgba.transformer(item as StyleDictionary.TransformedToken, {}))).toStrictEqual([
+    ].map(item => colorAlphaToRgba.transformer(item as TransformedToken, {}))).toStrictEqual([
       "rgba(51, 68, 51, 1)",
       "rgba(52, 52, 52, 1)",
       "rgba(52, 52, 52, 0.4)"
@@ -21,7 +21,7 @@ describe('Transformer: colorToRgba', () => {
       { value: 'rgb(100,200,255)' },
       { value: 'rgba(100,200,255, .4)' },
       { value: 'rgba(100,200,255, 0)' }
-    ].map(item => colorAlphaToRgba.transformer(item as StyleDictionary.TransformedToken, {}))).toStrictEqual([
+    ].map(item => colorAlphaToRgba.transformer(item as TransformedToken, {}))).toStrictEqual([
       'rgba(100, 200, 255, 1)',
       'rgba(100, 200, 255, 0.4)',
       'rgba(100, 200, 255, 0)'

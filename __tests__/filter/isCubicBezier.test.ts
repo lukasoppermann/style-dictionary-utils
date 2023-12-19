@@ -1,5 +1,5 @@
-import StyleDictionary from 'style-dictionary';
-import { isCubicBezier } from '../../src/filter/isCubicBezier';
+import { TransformedToken } from 'style-dictionary/types';
+import { isCubicBezier } from '../../src/filter/isCubicBezier.js';
 
 describe('Filter: isCubicBezier', () => {
   const items = [{
@@ -13,7 +13,7 @@ describe('Filter: isCubicBezier', () => {
     type: 'cubicBezier',
   }, {
     value: 'string',
-  }] as StyleDictionary.TransformedToken[];
+  }] as TransformedToken[];
   it('filters cubicBezier tokens', () => {
     expect(items.filter(isCubicBezier)).toStrictEqual([items[0], items[2]]);
   });

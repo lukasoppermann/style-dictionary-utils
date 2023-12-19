@@ -1,5 +1,5 @@
-import StyleDictionary from 'style-dictionary';
-import { isFontFamily } from '../../src/filter/isFontFamily';
+import { TransformedToken } from 'style-dictionary/types';
+import { isFontFamily } from '../../src/filter/isFontFamily.js';
 
 describe('Filter: isFontFamily', () => {
   const items = [{
@@ -13,7 +13,7 @@ describe('Filter: isFontFamily', () => {
     type: 'fontFamily',
   }, {
     value: 'string',
-  }] as StyleDictionary.TransformedToken[];
+  }] as TransformedToken[];
   it('filters fontFamily tokens', () => {
     expect(items.filter(isFontFamily)).toStrictEqual([items[0], items[2]]);
   });

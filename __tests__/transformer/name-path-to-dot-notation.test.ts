@@ -1,5 +1,5 @@
-import StyleDictionary from 'style-dictionary';
-import { namePathToDotNotation } from '../../src/transformer/name-path-to-dot-notation';
+import { TransformedToken } from 'style-dictionary/types';
+import { namePathToDotNotation } from '../../src/transformer/name-path-to-dot-notation.js';
 
 describe('Transformer: namePathToDotNotation', () => {
   const items = [{
@@ -8,7 +8,7 @@ describe('Transformer: namePathToDotNotation', () => {
   }, {
     name: "red",
     path: ['base', 'red'],
-  }] as StyleDictionary.TransformedToken[];
+  }] as TransformedToken[];
 
   it('transforms names to dot notation', () => {
     expect(items.map(item => namePathToDotNotation.transformer(item, {}))).toStrictEqual([

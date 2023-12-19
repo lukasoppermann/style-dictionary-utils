@@ -1,5 +1,5 @@
-import StyleDictionary from 'style-dictionary';
-import { isTypographic } from '../../src/filter/isTypographic';
+import { TransformedToken } from 'style-dictionary/types';
+import { isTypographic } from '../../src/filter/isTypographic.js';
 
 describe('Filter: isTypographic', () => {
   const items = [{
@@ -16,7 +16,7 @@ describe('Filter: isTypographic', () => {
     type: 'typography',
   }, {
     value: 'string',
-  }] as StyleDictionary.TransformedToken[];
+  }] as TransformedToken[];
   it('filters typographic types like fontFamily or typography tokens', () => {
     expect(items.filter(isTypographic)).toStrictEqual([items[0], items[2], items[3]]);
   });

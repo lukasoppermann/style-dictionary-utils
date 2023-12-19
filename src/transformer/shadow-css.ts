@@ -1,5 +1,5 @@
-import StyleDictionary from 'style-dictionary'
-import { isShadow } from '../filter/isShadow'
+import type { ValueTransform } from 'style-dictionary/types'
+import { isShadow } from '../filter/isShadow.js'
 
 type TokenShadow = {
   color: string
@@ -9,9 +9,7 @@ type TokenShadow = {
   spread: string
 }
 
-
-
-export const shadowCss: StyleDictionary.Transform = {
+export const shadowCss: Omit<ValueTransform, 'name'> = {
   type: `value`,
   transitive: true,
   matcher: isShadow,

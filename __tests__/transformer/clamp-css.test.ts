@@ -1,6 +1,6 @@
-import StyleDictionary from 'style-dictionary';
+import { TransformedToken, Filter } from 'style-dictionary/types';
 
-import { clampCss } from '../../src/transformer/clamp-css';
+import { clampCss } from '../../src/transformer/clamp-css.js';
 
 describe('Transformer: clampCss', () => {
   const items = [{
@@ -15,14 +15,14 @@ describe('Transformer: clampCss', () => {
     $type: 'clamp',
   }, {
     value: '',
-  }] as StyleDictionary.TransformedToken[];
+  }] as TransformedToken[];
 
   it('matches `clamp` tokens', () => {
-    expect(items.filter(clampCss.matcher as StyleDictionary.Matcher)).toStrictEqual([items[1]]);
+    expect(items.filter(clampCss.matcher as Filter['matcher'])).toStrictEqual([items[1]]);
   });
 
   it('transforms `clamp` tokens', () => {
-    expect(items.filter(clampCss.matcher as StyleDictionary.Matcher).map(item => clampCss.transformer(item, {}))).toStrictEqual([
+    expect(items.filter(clampCss.matcher as Filter['matcher']).map(item => clampCss.transformer(item, {}))).toStrictEqual([
       "clamp(1.5rem, 5vw, 2.5rem)"
     ]);
   });
@@ -37,8 +37,8 @@ describe('Transformer: clampCss', () => {
         $type: 'clamp',
       }, {
         value: '',
-      }] as StyleDictionary.TransformedToken[];
-    expect(idealClamp.filter(clampCss.matcher as StyleDictionary.Matcher).map(item => clampCss.transformer(item, {}))).toStrictEqual([
+      }] as TransformedToken[];
+    expect(idealClamp.filter(clampCss.matcher as Filter['matcher']).map(item => clampCss.transformer(item, {}))).toStrictEqual([
       "clamp(1.5rem, 0.5vw + 0.75rem, 2.5rem)"
     ]);
   });

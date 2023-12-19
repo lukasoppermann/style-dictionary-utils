@@ -1,5 +1,5 @@
-import StyleDictionary from 'style-dictionary';
-import { isStrokeStyle } from '../../src/filter/isStrokeStyle';
+import { TransformedToken } from 'style-dictionary/types';
+import { isStrokeStyle } from '../../src/filter/isStrokeStyle.js';
 
 describe('Filter: isStrokeStyle', () => {
   const items = [{
@@ -13,7 +13,7 @@ describe('Filter: isStrokeStyle', () => {
     type: 'strokeStyle',
   }, {
     value: 'string',
-  }] as StyleDictionary.TransformedToken[];
+  }] as TransformedToken[];
   it('filters strokeStyle tokens', () => {
     expect(items.filter(isStrokeStyle)).toStrictEqual([items[0], items[2]]);
   });
