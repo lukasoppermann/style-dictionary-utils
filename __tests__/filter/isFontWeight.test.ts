@@ -1,5 +1,5 @@
-import StyleDictionary from 'style-dictionary';
-import { isFontWeight } from '../../src/filter/isFontWeight';
+import { TransformedToken } from 'style-dictionary/types';
+import { isFontWeight } from '../../src/filter/isFontWeight.js';
 
 describe('Filter: isFontWeight', () => {
   const items = [{
@@ -13,7 +13,7 @@ describe('Filter: isFontWeight', () => {
     type: 'fontWeight',
   }, {
     value: 'string',
-  }] as StyleDictionary.TransformedToken[];
+  }] as TransformedToken[];
   it('filters fontWeight tokens', () => {
     expect(items.filter(isFontWeight)).toStrictEqual([items[0], items[2]]);
   });

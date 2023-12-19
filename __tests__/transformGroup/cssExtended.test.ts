@@ -1,4 +1,4 @@
-import { cssExtended } from '../../src/transformGroups/cssExtended';
+import { cssExtended } from '../../src/transformGroups/cssExtended.js';
 
 describe('TransformGroup: css extended', () => {
   const defaultArray = [

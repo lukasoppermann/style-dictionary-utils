@@ -1,4 +1,4 @@
-import { alpha } from '../../src/utilities/alpha';
+import { alpha } from '../../src/utilities/alpha.js';
 
 describe('Utilities: alpha', () => {
 

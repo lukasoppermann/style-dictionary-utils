@@ -1,5 +1,5 @@
-import StyleDictionary from 'style-dictionary';
-import { fontWeightToNumber } from '../../src/transformer/font-weight-to-number';
+import { TransformedToken, Filter } from 'style-dictionary/types';
+import { fontWeightToNumber } from '../../src/transformer/font-weight-to-number.js';
 
 describe('Transformer: fontWeight', () => {
   const items = [{
@@ -16,14 +16,14 @@ describe('Transformer: fontWeight', () => {
   }, {
     value: '',
     $type: 'color',
-  }] as StyleDictionary.TransformedToken[];
+  }] as TransformedToken[];
 
   it('matches `fontWeight` tokens with a string value', () => {
-    expect(items.filter(fontWeightToNumber.matcher as StyleDictionary.Matcher)).toStrictEqual([items[1], items[2]]);
+    expect(items.filter(fontWeightToNumber.matcher as Filter['matcher'])).toStrictEqual([items[1], items[2]]);
   });
 
   it('transforms `fontWeight` string to number', () => {
-    expect(items.filter(fontWeightToNumber.matcher as StyleDictionary.Matcher).map(item => fontWeightToNumber.transformer(item, {}))).toStrictEqual([
+    expect(items.filter(fontWeightToNumber.matcher as Filter['matcher']).map(item => fontWeightToNumber.transformer(item, {}))).toStrictEqual([
       300,
       300
     ]);

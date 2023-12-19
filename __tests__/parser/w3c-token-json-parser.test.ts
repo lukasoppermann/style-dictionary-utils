@@ -1,4 +1,4 @@
-import { w3cTokenJsonParser } from '../../src/parser/w3c-token-json-parser';
+import { w3cTokenJsonParser } from '../../src/parser/w3c-token-json-parser.js';
 
 describe('Parser: w3c token json parser', () => {
   it('parses valid json', () => {

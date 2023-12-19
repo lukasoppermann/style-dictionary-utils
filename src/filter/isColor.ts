@@ -1,7 +1,7 @@
-import StyleDictionary from 'style-dictionary';
+import type { TransformedToken } from 'style-dictionary/types';
 /**
  * @name isColor
  * @type filter
  * @description only returns tokens of type `color`
  */
-export const isColor = (token: StyleDictionary.TransformedToken): boolean => token?.$type === 'color' || token?.type === 'color';
+export const isColor = (token: TransformedToken): boolean => token?.$type === 'color' || token?.type === 'color';

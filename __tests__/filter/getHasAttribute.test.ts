@@ -1,5 +1,5 @@
-import StyleDictionary from 'style-dictionary';
-import { getHasAttribute } from '../../src/filter/getHasAttribute';
+import { TransformedToken } from 'style-dictionary/types';
+import { getHasAttribute } from '../../src/filter/getHasAttribute.js';
 
 describe('Filter: hasAttribute', () => {
   const items = [{
@@ -11,7 +11,7 @@ describe('Filter: hasAttribute', () => {
     $deprecated: false,
   }, {
     value: 'string',
-  }] as StyleDictionary.TransformedToken[];
+  }] as TransformedToken[];
 
   it('filters type tokens', () => {
     expect(items.filter(getHasAttribute('deprecated', '$deprecated'))).toStrictEqual([items[0], items[1]]);
