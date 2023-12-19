@@ -1,5 +1,5 @@
-import StyleDictionary from 'style-dictionary'
-import { isShadow } from '../filter/isShadow'
+import type { ValueTransform } from 'style-dictionary/types'
+import { isShadow } from '../filter/isShadow.js'
 
 type TokenShadow = {
   color: string
@@ -17,11 +17,11 @@ const formatShadow = ({
   color,
 }: TokenShadow ): string => `${offsetX} ${offsetY} ${blur} ${spread} ${color}`;
 
-export const shadowCss: StyleDictionary.Transform = {
+export const shadowCss: Omit<ValueTransform, 'name'> = {
   type: `value`,
   transitive: true,
   matcher: isShadow,
-  transformer: ({ value }: { value: string | TokenShadow }) => {
+  transformer: ({ value }) => {
     if (Array.isArray(value)) {
       return value.map(formatShadow).join(", ");
     }

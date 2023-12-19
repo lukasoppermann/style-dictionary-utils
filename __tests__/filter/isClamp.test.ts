@@ -1,5 +1,5 @@
-import StyleDictionary from 'style-dictionary';
-import { isClamp } from '../../src/filter/isClamp';
+import { TransformedToken } from 'style-dictionary/types';
+import { isClamp } from '../../src/filter/isClamp.js';
 
 describe('Filter: isClamp', () => {
   const items = [{
@@ -33,7 +33,7 @@ describe('Filter: isClamp', () => {
         max: '3rem'
       },
       type: 'dimension',
-  }] as StyleDictionary.TransformedToken[];
+  }] as TransformedToken[];
   it('filters clamp tokens', () => {
     expect(items.filter(isClamp)).toStrictEqual([items[4]]);
   });

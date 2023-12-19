@@ -1,6 +1,6 @@
-import StyleDictionary from 'style-dictionary';
+import { TransformedToken, Filter } from 'style-dictionary/types';
 
-import { fontFamilyCss } from '../../src/transformer/font-family-css';
+import { fontFamilyCss } from '../../src/transformer/font-family-css.js';
 
 describe('Transformer: fontFamily', () => {
   const items = [{
@@ -14,14 +14,14 @@ describe('Transformer: fontFamily', () => {
   }, {
     value: '',
     $type: 'color',
-  }] as StyleDictionary.TransformedToken[];
+  }] as TransformedToken[];
 
   it('matches `fontFamily` tokens with an array as a value', () => {
-    expect(items.filter(fontFamilyCss.matcher as StyleDictionary.Matcher)).toStrictEqual([items[1]]);
+    expect(items.filter(fontFamilyCss.matcher as Filter['matcher'])).toStrictEqual([items[1]]);
   });
 
   it('transforms `fontFamily` array tokens', () => {
-    expect(items.filter(fontFamilyCss.matcher as StyleDictionary.Matcher).map(item => fontFamilyCss.transformer(item, {}))).toStrictEqual([
+    expect(items.filter(fontFamilyCss.matcher as Filter['matcher']).map(item => fontFamilyCss.transformer(item, {}))).toStrictEqual([
       "helvetica, sans-serif, 'Helvetica Neue'"
     ]);
   });

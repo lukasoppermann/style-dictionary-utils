@@ -1,4 +1,4 @@
-import StyleDictionary from '../src/index';
+import StyleDictionary from '../src/index.js';
 
 describe('index.ts', () => {
 
