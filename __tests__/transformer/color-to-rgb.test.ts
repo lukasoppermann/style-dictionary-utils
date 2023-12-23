@@ -1,6 +1,6 @@
-import StyleDictionary from 'style-dictionary';
-import { colorToRgba } from '../../src/transformer/color-to-rgba';
-import { getMockToken } from '../../src/testUtilities/getMockToken';
+import { TransformedToken } from 'style-dictionary/types';
+import { colorToRgba } from '../../src/transformer/color-to-rgba.js';
+import { getMockToken } from '../../src/testUtilities/getMockToken.js';
 
 describe('Transformer: colorToHex', () => {
 
@@ -9,7 +9,7 @@ describe('Transformer: colorToHex', () => {
       { value: '#343' },
       { value: '#343434' },
       { value: '#34343466' }
-    ].map(item => colorToRgba.transformer(item as StyleDictionary.TransformedToken, {}))).toStrictEqual([
+    ].map(item => colorToRgba.transformer(item as TransformedToken, {}))).toStrictEqual([
       "rgba(51, 68, 51, 1)",
       "rgba(52, 52, 52, 1)",
       "rgba(52, 52, 52, 0.4)"
@@ -20,7 +20,7 @@ describe('Transformer: colorToHex', () => {
     expect([
       { value: 'rgb(100,200,255)' },
       { value: 'rgba(100,200,255, .4)' }
-    ].map(item => colorToRgba.transformer(item as StyleDictionary.TransformedToken, {}))).toStrictEqual([
+    ].map(item => colorToRgba.transformer(item as TransformedToken, {}))).toStrictEqual([
       "rgba(100, 200, 255, 1)",
       "rgba(100, 200, 255, 0.4)",
     ]);
@@ -30,7 +30,7 @@ describe('Transformer: colorToHex', () => {
     expect([
       getMockToken({ value: '#343434', alpha: .4 }),
       getMockToken({ value: '#34343466', alpha: .8 })
-    ].map(item => colorToRgba.transformer(item as StyleDictionary.TransformedToken, {}))).toStrictEqual([
+    ].map(item => colorToRgba.transformer(item as TransformedToken, {}))).toStrictEqual([
       "rgba(52, 52, 52, 1)",
       "rgba(52, 52, 52, 0.4)"
     ]);
@@ -42,6 +42,6 @@ describe('Transformer: colorToHex', () => {
       "rgba(128, 0, 128, 1)",
       "rgba(0, 0, 0, 0)",
     ]
-    expect(input.map(item => colorToRgba.transformer(item as StyleDictionary.TransformedToken, {}))).toStrictEqual(expectedOutput)
+    expect(input.map(item => colorToRgba.transformer(item as TransformedToken, {}))).toStrictEqual(expectedOutput)
   })
 })

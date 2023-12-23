@@ -1,6 +1,6 @@
-import StyleDictionary from 'style-dictionary';
-import { borderCss } from '../../src/transformer/border-css';
-import { getMockToken } from '../../src/testUtilities/getMockToken';
+import { TransformedToken } from 'style-dictionary/types';
+import { borderCss } from '../../src/transformer/border-css.js';
+import { getMockToken } from '../../src/testUtilities/getMockToken.js';
 
 
 describe('Transformer: border', () => {
@@ -21,7 +21,7 @@ describe('Transformer: border', () => {
   })];
 
   it('transforms `border` tokens', () => {
-    expect(items.map(item => borderCss.transformer(item as StyleDictionary.TransformedToken, {}))).toStrictEqual([
+    expect(items.map(item => borderCss.transformer(item as TransformedToken, {}))).toStrictEqual([
       "1px dashed #334455",
       "5px solid #33445566",
     ]);

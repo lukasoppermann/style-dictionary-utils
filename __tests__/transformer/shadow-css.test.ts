@@ -1,6 +1,6 @@
-import StyleDictionary from 'style-dictionary';
+import { TransformedToken, Filter } from 'style-dictionary/types';
 
-import { shadowCss } from '../../src/transformer/shadow-css';
+import { shadowCss } from '../../src/transformer/shadow-css.js';
 
 describe('Transformer: shadowCss', () => {
   const items = [{
@@ -17,14 +17,14 @@ describe('Transformer: shadowCss', () => {
     $type: 'shadow',
   }, {
     value: '',
-  }] as StyleDictionary.TransformedToken[];
+  }] as TransformedToken[];
 
   it('matches `shadow` tokens', () => {
-    expect(items.filter(shadowCss.matcher as StyleDictionary.Matcher)).toStrictEqual([items[1]]);
+    expect(items.filter(shadowCss.matcher as Filter['matcher'])).toStrictEqual([items[1]]);
   });
 
   it('transforms `shadow` tokens', () => {
-    expect(items.filter(shadowCss.matcher as StyleDictionary.Matcher).map(item => shadowCss.transformer(item, {}))).toStrictEqual([
+    expect(items.filter(shadowCss.matcher as Filter['matcher']).map(item => shadowCss.transformer(item, {}))).toStrictEqual([
       "0px 0px 0px 3px #00000066"
     ]);
   });

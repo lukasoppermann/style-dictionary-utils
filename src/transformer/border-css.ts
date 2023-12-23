@@ -1,5 +1,5 @@
-import StyleDictionary from 'style-dictionary'
-import { isBorder } from '../filter/isBorder'
+import type { ValueTransform } from 'style-dictionary/types'
+import { isBorder } from '../filter/isBorder.js'
 
 type StrokeStyleString = 'solid' |
 'dashed' |
@@ -8,7 +8,7 @@ type StrokeStyleString = 'solid' |
 'groove' |
 'ridge' |
 'outset' |
-'inset' 
+'inset'
 
 type TokenBorder = {
   color: string,
@@ -19,7 +19,7 @@ type TokenBorder = {
 /**
  * @description convert a w3c `border` token to a value that can be used with the css `border` property
  */
-export const borderCss: StyleDictionary.Transform = {
+export const borderCss: Omit<ValueTransform, 'name'> = {
   type: `value`,
   transitive: true,
   matcher: isBorder,

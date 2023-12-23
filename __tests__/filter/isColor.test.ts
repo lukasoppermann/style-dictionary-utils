@@ -1,5 +1,5 @@
-import StyleDictionary from 'style-dictionary';
-import { isColor } from '../../src/filter/isColor';
+import { TransformedToken } from 'style-dictionary/types';
+import { isColor } from '../../src/filter/isColor.js';
 
 describe('Filter: isColor', () => {
   const items = [{
@@ -13,7 +13,7 @@ describe('Filter: isColor', () => {
     type: 'color',
   }, {
     value: 'string',
-  }] as StyleDictionary.TransformedToken[];
+  }] as TransformedToken[];
   it('filters color tokens', () => {
     expect(items.filter(isColor)).toStrictEqual([items[0], items[2]]);
   });

@@ -1,5 +1,5 @@
-import StyleDictionary from 'style-dictionary';
-import { isSource } from '../../src/filter/isSource';
+import { TransformedToken } from 'style-dictionary/types';
+import { isSource } from '../../src/filter/isSource.js';
 
 describe('Filter: isSource', () => {
   const items = [{
@@ -10,7 +10,7 @@ describe('Filter: isSource', () => {
     isSource: false,
   }, {
     value: 'yellow is not source',
-  }] as StyleDictionary.TransformedToken[];
+  }] as TransformedToken[];
   it('filters out non-source items', () => {
     expect(items.filter(isSource)).toStrictEqual([items[0]]);
   });

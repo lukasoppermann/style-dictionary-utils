@@ -1,5 +1,5 @@
-import StyleDictionary from 'style-dictionary'
-import { isClamp } from '../filter/isClamp'
+import type { ValueTransform } from 'style-dictionary/types'
+import { isClamp } from '../filter/isClamp.js'
 
 type TokenClamp = {
   min: string
@@ -7,7 +7,7 @@ type TokenClamp = {
   max: string
 }
 
-export const clampCss: StyleDictionary.Transform = {
+export const clampCss: Omit<ValueTransform, 'name'> = {
   type: `value`,
   transitive: true,
   matcher: isClamp,

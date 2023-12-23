@@ -1,6 +1,6 @@
-import StyleDictionary from 'style-dictionary';
+import { TransformedToken, Filter } from 'style-dictionary/types';
 
-import { gradientCss } from '../../src/transformer/gradient-css';
+import { gradientCss } from '../../src/transformer/gradient-css.js';
 
 describe('Transformer: gradientCss', () => {
   const items = [{
@@ -20,14 +20,14 @@ describe('Transformer: gradientCss', () => {
     $type: 'gradient',
   }, {
     value: '',
-  }] as StyleDictionary.TransformedToken[];
+  }] as TransformedToken[];
 
   it('matches `gradient` tokens', () => {
-    expect(items.filter(gradientCss.matcher as StyleDictionary.Matcher)).toStrictEqual([items[1]]);
+    expect(items.filter(gradientCss.matcher as Filter['matcher'])).toStrictEqual([items[1]]);
   });
 
   it('transforms `gradient` tokens', () => {
-    expect(items.filter(gradientCss.matcher as StyleDictionary.Matcher).map(item => gradientCss.transformer(item, {}))).toStrictEqual([
+    expect(items.filter(gradientCss.matcher as Filter['matcher']).map(item => gradientCss.transformer(item, {}))).toStrictEqual([
       "#ffff00 66%, #ff0000 100%"
     ]);
   });
@@ -37,7 +37,7 @@ describe('Transformer: gradientCss', () => {
       ...items[1],
       angle: "45deg"
     }]
-    expect(gradient.filter(gradientCss.matcher as StyleDictionary.Matcher).map(item => gradientCss.transformer(item, {}))).toStrictEqual([
+    expect(gradient.filter(gradientCss.matcher as Filter['matcher']).map(item => gradientCss.transformer(item, {}))).toStrictEqual([
       "45deg, #ffff00 66%, #ff0000 100%"
     ]);
   });
@@ -62,9 +62,9 @@ describe('Transformer: gradientCss', () => {
     },
       {
         value: '',
-      }] as StyleDictionary.TransformedToken[];
+      }] as TransformedToken[];
 
-    expect(gradient.filter(gradientCss.matcher as StyleDictionary.Matcher).map(item => gradientCss.transformer(item, {}))).toStrictEqual([
+    expect(gradient.filter(gradientCss.matcher as Filter['matcher']).map(item => gradientCss.transformer(item, {}))).toStrictEqual([
        "#020024, #090979 35%, #00d4ff 100%"
     ]);
   });

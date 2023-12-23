@@ -1,6 +1,6 @@
-import StyleDictionary from 'style-dictionary';
+import { TransformedToken, Filter } from 'style-dictionary/types';
 
-import { fontCss } from '../../src/transformer/font-css';
+import { fontCss } from '../../src/transformer/font-css.js';
 
 describe('Transformer: fontFamily', () => {
   const items = [{
@@ -23,14 +23,14 @@ describe('Transformer: fontFamily', () => {
   }, {
     value: '',
     $type: 'color',
-  }] as StyleDictionary.TransformedToken[];
+  }] as TransformedToken[];
 
   it('matches `fontFamily` tokens with an array as a value', () => {
-    expect(items.filter(fontCss.matcher as StyleDictionary.Matcher)).toStrictEqual([items[0], items[1]]);
+    expect(items.filter(fontCss.matcher as Filter['matcher'])).toStrictEqual([items[0], items[1]]);
   });
 
   it('transforms `fontFamily` array tokens', () => {
-    expect(items.filter(fontCss.matcher as StyleDictionary.Matcher).map(item => fontCss.transformer(item, {}))).toStrictEqual([
+    expect(items.filter(fontCss.matcher as Filter['matcher']).map(item => fontCss.transformer(item, {}))).toStrictEqual([
       "italic 500 16px/22px Helvetica",
       "16px Helvetica",
     ]);

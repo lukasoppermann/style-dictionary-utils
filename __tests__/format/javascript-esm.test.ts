@@ -1,4 +1,4 @@
-import {javascriptEsm} from '../../src/format/javascript-esm'
+import {javascriptEsm} from '../../src/format/javascript-esm.js'
 
 describe('Format: ESM', () => {
   const dictionary = {

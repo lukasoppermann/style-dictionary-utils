@@ -1,6 +1,6 @@
-import StyleDictionary from 'style-dictionary';
+import { TransformedToken, Filter } from 'style-dictionary/types';
 
-import { cubicBezierCss } from '../../src/transformer/cubic-bezier-css';
+import { cubicBezierCss } from '../../src/transformer/cubic-bezier-css.js';
 
 describe('Transformer: cubicBezierCss', () => {
   const items = [{
@@ -14,14 +14,14 @@ describe('Transformer: cubicBezierCss', () => {
     $type: 'cubicBezier',
   }, {
     value: '',
-  }] as StyleDictionary.TransformedToken[];
+  }] as TransformedToken[];
 
   it('matches `cubicBezier` tokens with an array as a value', () => {
-    expect(items.filter(cubicBezierCss.matcher as StyleDictionary.Matcher)).toStrictEqual([items[1], items[2]]);
+    expect(items.filter(cubicBezierCss.matcher as Filter['matcher'])).toStrictEqual([items[1], items[2]]);
   });
 
   it('transforms `cubicBezier` array tokens', () => {
-    expect(items.filter(cubicBezierCss.matcher as StyleDictionary.Matcher).map(item => cubicBezierCss.transformer(item, {}))).toStrictEqual([
+    expect(items.filter(cubicBezierCss.matcher as Filter['matcher']).map(item => cubicBezierCss.transformer(item, {}))).toStrictEqual([
       "cubic-bezier(0, 0, 0.5, 1)",
       "cubic-bezier(0.5, 0, 1, 1)"
     ]);
