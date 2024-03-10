@@ -21,7 +21,7 @@ describe('Transformer: dimensionPixelToRem', () => {
   });
 
   it('transforms `dimension` tokens', () => {
-    expect(items.filter(dimensionPixelToRem.matcher as Filter['matcher']).map(item => dimensionPixelToRem.transformer(item, {}))).toStrictEqual([
+    expect(items.filter(dimensionPixelToRem.matcher as Filter['matcher']).map(item => dimensionPixelToRem.transformer(item, {}, {}))).toStrictEqual([
       "1.25rem"
     ]);
   })
@@ -30,7 +30,7 @@ describe('Transformer: dimensionPixelToRem', () => {
     const platform = {
       basePxFontSize: 10
     }
-    expect(items.filter(dimensionPixelToRem.matcher as Filter['matcher']).map(item => dimensionPixelToRem.transformer(item, platform))).toStrictEqual([
+    expect(items.filter(dimensionPixelToRem.matcher as Filter['matcher']).map(item => dimensionPixelToRem.transformer(item, platform, {}))).toStrictEqual([
       "2rem"
     ]);
   });

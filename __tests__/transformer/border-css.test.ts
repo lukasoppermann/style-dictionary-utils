@@ -21,7 +21,7 @@ describe('Transformer: border', () => {
   })];
 
   it('transforms `border` tokens', () => {
-    expect(items.map(item => borderCss.transformer(item as TransformedToken, {}))).toStrictEqual([
+    expect(items.map(item => borderCss.transformer(item as TransformedToken, {}, {}))).toStrictEqual([
       "1px dashed #334455",
       "5px solid #33445566",
     ]);

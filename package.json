@@ -30,7 +30,7 @@
     "src/**/*.ts"
   ],
   "scripts": {
-    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest && npm run lint",
+    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest && npm run lint && tsc --noEmit",
     "lint": "npx eslint . --ext .ts",
     "fix": "npx eslint . --ext .ts --fix",
     "clean:dist": "rm -rf dist/",
@@ -65,6 +65,6 @@
     "typescript": "^5.1.6"
   },
   "peerDependencies": {
-    "style-dictionary": "4.0.0-prerelease.15"
+    "style-dictionary": "4.0.0-prerelease.14"
   }
 }

@@ -1,19 +1,12 @@
 import type { ValueTransform } from 'style-dictionary/types'
 import { isShadow } from '../filter/isShadow.js'
-
-type TokenShadow = {
-  color: string
-  offsetX: string
-  offsetY: string
-  blur: string
-  spread: string
-}
+import type { TransformedToken } from 'style-dictionary/types';
 
 export const shadowCss: Omit<ValueTransform, 'name'> = {
   type: `value`,
   transitive: true,
   matcher: isShadow,
-  transformer: ({ value }: { value: string | TokenShadow }) =>
+  transformer: ({ value }: TransformedToken) =>
   typeof value === 'string'
     ? value
     : `${value.offsetX || 0} ${value.offsetY || 0} ${value.blur || 0} ${value.spread || 0} ${value.color}`,

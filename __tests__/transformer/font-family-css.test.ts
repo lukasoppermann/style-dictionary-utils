@@ -21,7 +21,7 @@ describe('Transformer: fontFamily', () => {
   });
 
   it('transforms `fontFamily` array tokens', () => {
-    expect(items.filter(fontFamilyCss.matcher as Filter['matcher']).map(item => fontFamilyCss.transformer(item, {}))).toStrictEqual([
+    expect(items.filter(fontFamilyCss.matcher as Filter['matcher']).map(item => fontFamilyCss.transformer(item, {}, {}))).toStrictEqual([
       "helvetica, sans-serif, 'Helvetica Neue'"
     ]);
   });

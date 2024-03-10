@@ -11,14 +11,14 @@ describe('Transformer: namePathToDotNotation', () => {
   }] as TransformedToken[];
 
   it('transforms names to dot notation', () => {
-    expect(items.map(item => namePathToDotNotation.transformer(item, {}))).toStrictEqual([
+    expect(items.map(item => namePathToDotNotation.transformer(item, {}, {}))).toStrictEqual([
       "base.color.red",
       "base.red",
     ]);
   });
 
   it('adds prefix', () => {
-    expect(items.map(item => namePathToDotNotation.transformer(item, { prefix: 'PREFIX' }))).toStrictEqual([
+    expect(items.map(item => namePathToDotNotation.transformer(item, { prefix: 'PREFIX' }, {}))).toStrictEqual([
       "PREFIX.base.color.red",
       "PREFIX.base.red",
     ]);
