@@ -6,11 +6,11 @@ import { jsonToNestedValue } from '../utilities/jsonToNestedValue.js'
 
 const { fileHeader } = StyleDictionary.formatHelpers
 
-export const javascriptEsm: Format['formatter'] = ({ dictionary, file, options, platform = {} }) => {
+export const javascriptEsm: Format['formatter'] = async ({ dictionary, file, options, platform = {} }) => {
   const { prefix } = platform
   const tokens = prefix ? { [prefix]: dictionary.tokens } : dictionary.tokens
   //
-  const output = fileHeader({ file }) +
+  const output = await fileHeader({ file }) +
     `export default \n${JSON.stringify(jsonToNestedValue(tokens), null, 2)}\n`
   // return prettified
   return syncPrettier.format(output, { parser: 'typescript', printWidth: 500, ...options?.prettier })
