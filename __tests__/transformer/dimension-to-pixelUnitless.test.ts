@@ -23,7 +23,7 @@ describe('Transformer: dimensionToPixelUnitless', () => {
   }] as TransformedToken[];
 
   it('transforms `dimension` tokens', () => {
-    expect(items.filter(dimensionToPixelUnitless.matcher as Filter['matcher']).map(item => dimensionToPixelUnitless.transformer(item, {}))).toStrictEqual([
+    expect(items.filter(dimensionToPixelUnitless.matcher as Filter['matcher']).map(item => dimensionToPixelUnitless.transformer(item, {}, {}))).toStrictEqual([
       0,
       0,
       20,
@@ -35,7 +35,7 @@ describe('Transformer: dimensionToPixelUnitless', () => {
     const platform = {
       basePxFontSize: 10
     }
-    expect(items.filter(dimensionToPixelUnitless.matcher as Filter['matcher']).map(item => dimensionToPixelUnitless.transformer(item, platform))).toStrictEqual([
+    expect(items.filter(dimensionToPixelUnitless.matcher as Filter['matcher']).map(item => dimensionToPixelUnitless.transformer(item, platform, {}))).toStrictEqual([
       0,
       0,
       20,

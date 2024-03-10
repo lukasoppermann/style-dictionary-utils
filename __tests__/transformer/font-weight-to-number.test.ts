@@ -23,7 +23,7 @@ describe('Transformer: fontWeight', () => {
   });
 
   it('transforms `fontWeight` string to number', () => {
-    expect(items.filter(fontWeightToNumber.matcher as Filter['matcher']).map(item => fontWeightToNumber.transformer(item, {}))).toStrictEqual([
+    expect(items.filter(fontWeightToNumber.matcher as Filter['matcher']).map(item => fontWeightToNumber.transformer(item, {}, {}))).toStrictEqual([
       300,
       300
     ]);

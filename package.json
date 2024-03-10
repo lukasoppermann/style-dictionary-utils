@@ -30,7 +30,7 @@
     "src/**/*.ts"
   ],
   "scripts": {
-    "test": "npm run build && NODE_OPTIONS=--experimental-vm-modules npx jest && npm run lint",
+    "test": "npm run build && NODE_OPTIONS=--experimental-vm-modules npx jest && npm run lint && tsc --noEmit",
     "test:action": "jest -c ./jest.action.config.ts",
     "lint": "npx eslint . --ext .ts",
     "lint:fix": "npx eslint . --ext .ts --fix",

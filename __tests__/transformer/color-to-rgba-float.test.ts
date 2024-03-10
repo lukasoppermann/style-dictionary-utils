@@ -25,7 +25,7 @@ describe('Transformer: colorToRgbaFloat', () => {
         a: 0.4,
       },
     ]
-    expect(input.map(item => colorToRgbaFloat.transformer(item as TransformedToken, {}))).toStrictEqual(expectedOutput)
+    expect(input.map(item => colorToRgbaFloat.transformer(item as TransformedToken, {}, {}))).toStrictEqual(expectedOutput)
   })
 
   it('transforms `rgb` and `rgba` to rgb float value', () => {
@@ -44,7 +44,7 @@ describe('Transformer: colorToRgbaFloat', () => {
         a: 0.4,
       },
     ]
-    expect(input.map(item => colorToRgbaFloat.transformer(item as TransformedToken, {}))).toStrictEqual(expectedOutput)
+    expect(input.map(item => colorToRgbaFloat.transformer(item as TransformedToken, {}, {}))).toStrictEqual(expectedOutput)
   })
 
   it('transforms `color` tokens including alpha value', () => {
@@ -54,7 +54,7 @@ describe('Transformer: colorToRgbaFloat', () => {
         getMockToken({ value: '#34343466', alpha: 0.9 }),
         getMockToken({ value: 'rgb(100,200,255)', alpha: 0.4 }),
         getMockToken({ value: 'rgba(100,200,255,0.8)', alpha: 0.4 }),
-      ].map(item => colorToRgbaFloat.transformer(item as TransformedToken, {})),
+      ].map(item => colorToRgbaFloat.transformer(item as TransformedToken, {}, {})),
     ).toStrictEqual([
       {
         r: 0.20392156862745098,
@@ -116,7 +116,7 @@ describe('Transformer: colorToRgbaFloat', () => {
         a: 0.4,
       },
     ]
-    expect(input.map(item => colorToRgbaFloat.transformer(item as TransformedToken, {}))).toStrictEqual(expectedOutput)
+    expect(input.map(item => colorToRgbaFloat.transformer(item as TransformedToken, {}, {}))).toStrictEqual(expectedOutput)
   })
 
   it('transforms `named colors` and `transparent` to rgb float value', () => {
@@ -135,6 +135,6 @@ describe('Transformer: colorToRgbaFloat', () => {
         a: 0,
       },
     ]
-    expect(input.map(item => colorToRgbaFloat.transformer(item as TransformedToken, {}))).toStrictEqual(expectedOutput)
+    expect(input.map(item => colorToRgbaFloat.transformer(item as TransformedToken, {}, {}))).toStrictEqual(expectedOutput)
   })
 })

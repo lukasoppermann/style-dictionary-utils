@@ -22,7 +22,7 @@ describe('Transformer: clampCss', () => {
   });
 
   it('transforms `clamp` tokens', () => {
-    expect(items.filter(clampCss.matcher as Filter['matcher']).map(item => clampCss.transformer(item, {}))).toStrictEqual([
+    expect(items.filter(clampCss.matcher as Filter['matcher']).map(item => clampCss.transformer(item, {}, {}))).toStrictEqual([
       "clamp(1.5rem, 5vw, 2.5rem)"
     ]);
   });
@@ -38,7 +38,7 @@ describe('Transformer: clampCss', () => {
       }, {
         value: '',
       }] as TransformedToken[];
-    expect(idealClamp.filter(clampCss.matcher as Filter['matcher']).map(item => clampCss.transformer(item, {}))).toStrictEqual([
+    expect(idealClamp.filter(clampCss.matcher as Filter['matcher']).map(item => clampCss.transformer(item, {}, {}))).toStrictEqual([
       "clamp(1.5rem, 0.5vw + 0.75rem, 2.5rem)"
     ]);
   });
