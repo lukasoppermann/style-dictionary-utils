@@ -33,7 +33,7 @@
     "test": "NODE_OPTIONS=--experimental-vm-modules npx jest && npm run lint && tsc --noEmit",
     "lint": "npx eslint . --ext .ts",
     "fix": "npx eslint . --ext .ts --fix",
-    "clean:dist": "rm -rf dist/",
+    "clean:dist": "rm -rf dist/ && rm -rf dist-cjs/",
     "prebuild": "npm run clean:dist",
     "build": "tsc && tsc -p tsconfig-esm.json",
     "preversion": "npm run build && npm run test",
