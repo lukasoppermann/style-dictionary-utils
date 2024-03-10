@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const StyleDictionary = require("../dist");
+import StyleDictionary from "../dist-cjs/index.js";
 
 describe('index.js', () => {  
   it("all formats are attached", () => {
