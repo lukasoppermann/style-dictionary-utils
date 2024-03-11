@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-import StyleDictionary from "../dist-cjs/index.js";
+import StyleDictionary from "../dist/index.js";
 
-describe('index.js', () => {  
+describe('index.js', () => {
   it("all formats are attached", () => {
     expect(StyleDictionary.format["javascript/esm"]).toBeDefined();
     expect(StyleDictionary.format["javascript/commonJs"]).toBeDefined();
