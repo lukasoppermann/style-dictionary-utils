@@ -23,7 +23,7 @@ describe('Format: CommonJs', () => {
     }
   }
 
-  it('Formats tokens adding prefix', () => {
+  it('Formats tokens adding prefix', async () => {
     const output = `exports.default = {
   test: {
     colors: {
@@ -32,24 +32,24 @@ describe('Format: CommonJs', () => {
   },
 };
 `
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore: fake values to test formatter
-    expect(javascriptCommonJs({dictionary, file, options: undefined, platform})).toStrictEqual(output)
+    // @ts-expect-error: fake values to test formatter
+    const result = await javascriptCommonJs({ dictionary, file, options: undefined, platform })
+    expect(result).toStrictEqual(output)
   })
 
-  it('Formats tokens without prefix', () => {
+  it('Formats tokens without prefix', async () => {
     const output = `exports.default = {
   colors: {
     red: "#FF0000",
   },
 };
 `
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore: fake values to test formatter
-    expect(javascriptCommonJs({dictionary, file, options: undefined, undefined})).toStrictEqual(output)
+    // @ts-expect-error: fake values to test formatter
+    const result = await javascriptCommonJs({ dictionary, file, options: undefined, undefined })
+    expect(result).toStrictEqual(output)
   })
 
-  it('Formats tokens accepting a custom prettier configuration', () => {
+  it('Formats tokens accepting a custom prettier configuration', async () => {
     const output = `exports.default = {
   colors: {
     red: '#FF0000',
@@ -60,9 +60,9 @@ describe('Format: CommonJs', () => {
       singleQuote: true
     }
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore: fake values to test formatter
-    expect(javascriptCommonJs({dictionary, file, options: {prettier}, undefined})).toStrictEqual(output)
+    // @ts-expect-error: fake values to test formatter
+    const result = await javascriptCommonJs({ dictionary, file, options: { prettier }, undefined })
+    expect(result).toStrictEqual(output)
   })
 
 })
