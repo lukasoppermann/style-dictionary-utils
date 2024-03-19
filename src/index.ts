@@ -36,6 +36,7 @@ import { clampCss } from './transformer/clamp-css'
 import { colorToRgbaFloat } from './transformer/color-to-rgba-float'
 import { dimensionToPixelUnitless } from './transformer/dimension-to-pixelUnitless'
 import { isClamp } from './filter/isClamp'
+import { cssAdvanced } from './format/css-advanced'
 
 /**
  * Parsers
@@ -56,6 +57,11 @@ OrigialStyleDictionary.registerFormat({
 OrigialStyleDictionary.registerFormat({
   name: 'javascript/commonJs',
   formatter: javascriptCommonJs
+})
+
+OrigialStyleDictionary.registerFormat({
+  name: 'css/advanced',
+  formatter: cssAdvanced
 })
 
 /**
