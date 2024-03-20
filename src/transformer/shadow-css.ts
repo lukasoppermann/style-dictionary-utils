@@ -23,13 +23,13 @@ export const shadowCss: StyleDictionary.Transform = {
   matcher: isShadow,
   transformer: ({ value }: { value: string | TokenShadow }) => {
     if (Array.isArray(value)) {
-      return value.map(formatShadow).join(', ');
+      return value.map(formatShadow).join(", ");
     }
 
-    if (typeof value === 'string') {
-      return value;
+    if (typeof value === "object") {
+      return formatShadow(value);
     }
 
-    return formatShadow(value);
+    return value;
   },
 }
