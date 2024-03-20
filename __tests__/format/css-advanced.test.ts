@@ -174,4 +174,40 @@ describe('Format: CSS Advanced', () => {
     // @ts-ignore: fake values to test formatter
     expect(cssAdvanced({ dictionary, file: fileOptions, options: undefined, platform })).toStrictEqual(output)
   })
+
+  it('Ignore empty groups', () => {
+    const fileOptions = {
+      ...file,
+      options: {
+        ...file.options,
+        queries: [{
+          query: '@media (prefers-color-scheme: dark)',
+          matcher: (token: StyleDictionary.TransformedToken) => token.filePath.includes('notDark'),
+        },
+        {
+          query: '@media (prefers-color-scheme: light)',
+          matcher: (token: StyleDictionary.TransformedToken) => token.filePath.includes('light'),
+        },
+        {
+          query: '@media (screen)',
+          matcher: (token: StyleDictionary.TransformedToken) => !token.filePath.includes('light') && !token.filePath.includes('dark'),
+        }]
+      }
+    }
+
+    const output = `@media (prefers-color-scheme: light) {
+  :root {
+    --customPrefix-color-background-secondary: #0000ff;
+  }
+}
+@media (screen) {
+  :root {
+    --customPrefix-color-background-green: #00ff00;
+  }
+}
+`
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore: fake values to test formatter
+    expect(cssAdvanced({ dictionary, file: fileOptions, options: undefined, platform })).toStrictEqual(output)
+  })
 })
