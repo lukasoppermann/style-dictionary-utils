@@ -16,6 +16,7 @@ import { isTypographic } from './filter/isTypographic'
 import { isTypography } from './filter/isTypography'
 import { javascriptCommonJs } from './format/javascript-commonJs'
 import { javascriptEsm } from './format/javascript-esm'
+import { typescriptEsmDeclarations } from './format/typescript-esm-declarations'
 import { w3cTokenJsonParser } from './parser/w3c-token-json-parser'
 import { borderCss } from './transformer/border-css'
 import { colorAlphaToHex } from './transformer/color-alpha-to-hex'
@@ -57,6 +58,11 @@ OrigialStyleDictionary.registerFormat({
 OrigialStyleDictionary.registerFormat({
   name: 'javascript/commonJs',
   formatter: javascriptCommonJs
+})
+
+OrigialStyleDictionary.registerFormat({
+  name: 'typescript/esm-declarations',
+  formatter: typescriptEsmDeclarations
 })
 
 OrigialStyleDictionary.registerFormat({
