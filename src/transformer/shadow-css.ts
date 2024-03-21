@@ -9,14 +9,27 @@ type TokenShadow = {
   spread: string
 }
 
-
+const formatShadow = ({
+  offsetX = '0',
+  offsetY = '0',
+  blur = '0',
+  spread = '0',
+  color,
+}: TokenShadow ): string => `${offsetX} ${offsetY} ${blur} ${spread} ${color}`;
 
 export const shadowCss: StyleDictionary.Transform = {
   type: `value`,
   transitive: true,
   matcher: isShadow,
-  transformer: ({ value }: { value: string | TokenShadow }) =>
-  typeof value === 'string'
-    ? value
-    : `${value.offsetX || 0} ${value.offsetY || 0} ${value.blur || 0} ${value.spread || 0} ${value.color}`,
+  transformer: ({ value }: { value: string | TokenShadow }) => {
+    if (Array.isArray(value)) {
+      return value.map(formatShadow).join(", ");
+    }
+
+    if (typeof value === "object") {
+      return formatShadow(value);
+    }
+
+    return value;
+  },
 }
