@@ -16,7 +16,8 @@
     "src/**/*.ts"
   ],
   "scripts": {
-    "test": "npx jest && npm run lint",
+    "test": "npm run build && npx jest && npm run lint",
+    "jest": "jest",
     "lint": "npx eslint . --ext .ts",
     "fix": "npx eslint . --ext .ts --fix",
     "clean:dist": "rm -rf dist/",
