@@ -1,0 +1,28 @@
+name: Lint & test
+on: [push, workflow_dispatch]
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@v4
+        with:
+          cache: 'npm'
+      - name: install
+        run: npm i
+      - name: Lint
+        run: npm run lint
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@v4
+        with:
+          cache: 'npm'
+      - name: install
+        run: npm i
+      - name: build
+        run: npm run build
+      - name: test
+        run: npm run jest
+  
