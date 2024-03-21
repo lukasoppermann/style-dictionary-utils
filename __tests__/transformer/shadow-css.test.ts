@@ -29,6 +29,18 @@ describe('Transformer: shadowCss', () => {
     ]);
   });
 
+  it('should forward `shadow` string', () => {
+    // @ts-expect-error: missing properties
+    const stringItem = {
+      value: "0px 0px 0px 2px #00000022",
+      $type: 'shadow',
+    } as StyleDictionary.TransformedToken;
+
+    expect(shadowCss.transformer(stringItem, {})).toStrictEqual(
+      "0px 0px 0px 2px #00000022"
+    );
+  });
+
   it('should transform an array of shadow values', () => {
     const shadows = [{
       value: '',
