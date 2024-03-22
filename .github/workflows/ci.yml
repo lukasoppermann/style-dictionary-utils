@@ -4,7 +4,8 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 jobs:
-  lint:
+  Lint-and-test:
+    name: Lint and run tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
@@ -16,5 +17,7 @@ jobs:
         run: npm i
       - name: Lint
         run: npm run lint
+      - name: Build
+        run: npm run build
       - name: Run tests
         run: npm run jest
