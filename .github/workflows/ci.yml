@@ -1,28 +1,23 @@
 name: Lint & test
-on: [push, pull_request, workflow_dispatch]
+on: [pull_request, workflow_dispatch]
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
-  lint:
+  Lint-and-test:
+    name: Lint and run tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
       - uses: actions/setup-node@v4
         with:
+          node-version: 20
           cache: 'npm'
       - name: install
-        run: npm i
+        run: npm ci
       - name: Lint
         run: npm run lint
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@master
-      - uses: actions/setup-node@v4
-        with:
-          cache: 'npm'
-      - name: install
-        run: npm i
-      - name: build
+      - name: Build
         run: npm run build
-      - name: test
+      - name: Run tests
         run: npm run jest
-  
