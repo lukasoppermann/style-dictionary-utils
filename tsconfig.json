@@ -105,6 +105,6 @@
   ],
   "exclude": [
     "node_modules",
-    "__tests__/**/*"
+    "__tests__/**/*",
   ]
 }
