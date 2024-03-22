@@ -1,8 +1,15 @@
 name: Lint & test
-on: [pull_request, workflow_dispatch]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
+
 jobs:
   Lint-and-test:
     name: Lint and run tests
@@ -16,7 +23,14 @@ jobs:
       - name: install
         run: npm ci
       - name: Lint
-        run: npm run lint
+        run: npm run lint:report
+        continue-on-error: true
+      - name: Annotate Code Linting Results
+        uses: ataylorme/eslint-annotate-action@v2
+        with:
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          report-json: "eslint_report.json"
+          markdown-report-on-step-summary: true
       - name: Build
         run: npm run build
       - name: Run tests
