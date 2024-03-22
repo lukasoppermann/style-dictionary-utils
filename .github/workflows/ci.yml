@@ -1,28 +1,37 @@
 name: Lint & test
-on: [push, pull_request, workflow_dispatch]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  lint:
+  Lint-and-test:
+    name: Lint and run tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
       - uses: actions/setup-node@v4
         with:
+          node-version: 20
           cache: 'npm'
       - name: install
-        run: npm i
+        run: npm ci
       - name: Lint
-        run: npm run lint
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@master
-      - uses: actions/setup-node@v4
+        run: npm run lint:report
+        continue-on-error: true
+      - name: Annotate Code Linting Results
+        uses: ataylorme/eslint-annotate-action@v2
         with:
-          cache: 'npm'
-      - name: install
-        run: npm i
-      - name: build
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          report-json: "eslint_report.json"
+          markdown-report-on-step-summary: true
+      - name: Build
         run: npm run build
-      - name: test
+      - name: Run tests
         run: npm run jest
-  
