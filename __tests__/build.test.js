@@ -5,6 +5,7 @@ describe('index.js', () => {
   it("all formats are attached", () => {
     expect(StyleDictionary.format["javascript/esm"]).toBeDefined();
     expect(StyleDictionary.format["javascript/commonJs"]).toBeDefined();
+    expect(StyleDictionary.format["typescript/esm-declarations"]).toBeDefined();
   });
   it("all transformers are attached", () => {
     expect(StyleDictionary.transform["color/hex"]).toBeDefined();
