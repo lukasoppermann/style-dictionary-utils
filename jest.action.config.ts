@@ -3,7 +3,7 @@ import type { Config } from 'jest';
 const config: Config = {
   preset: 'ts-jest',
   testEnvironment: 'node',
-  reporters: ['default'],
+  reporters: [['github-actions', { silent: false }], 'summary'],
 };
 
 export default config;
