@@ -17,9 +17,10 @@
   ],
   "scripts": {
     "test": "npm run build && npx jest && npm run lint",
-    "jest": "jest",
+    "test:action": "jest -c ./jest.action.config.ts",
     "lint": "npx eslint . --ext .ts",
-    "fix": "npx eslint . --ext .ts --fix",
+    "lint:fix": "npx eslint . --ext .ts --fix",
+    "lint:report": "npx eslint --output-file eslint_report.json --format json src",
     "clean:dist": "rm -rf dist/",
     "prebuild": "npm run clean:dist",
     "build": "tsc --module commonjs",
@@ -48,6 +49,7 @@
     "eslint-plugin-github": "^4.3.7",
     "jest": "^29.0.3",
     "ts-jest": "^29.0.2",
+    "ts-node": "^10.9.2",
     "typescript": "^5.1.6"
   },
   "peerDependencies": {
