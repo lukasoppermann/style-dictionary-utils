@@ -34,4 +34,4 @@ jobs:
       - name: Build
         run: npm run build
       - name: Run tests
-        run: npm run jest
+        run: npm run test:action

@@ -1,3 +1,4 @@
 *.d.ts
 # jest
 jest.config.*
+jest.action.config.*
