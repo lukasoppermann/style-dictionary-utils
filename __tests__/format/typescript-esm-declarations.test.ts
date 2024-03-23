@@ -14,12 +14,20 @@ describe.only('Format: ESM Declarations', () => {
           $type: 'color',
           value: '#FF0000'
         }
+      },
+      shadows: {
+        small: {
+          $type: 'shadow',
+          value: {
+            "color": "#00000066",
+            "offsetX": "1px",
+            "offsetY": "0px",
+            "blur": "2px",
+            "spread": "0px"
+          }
+        }
       }
     }
-  }
-
-  const platform = {
-    prefix: 'test'
   }
 
   const file = {
@@ -29,7 +37,8 @@ describe.only('Format: ESM Declarations', () => {
     }
   }
 
-  it('Formats tokens adding prefix', () => {
+
+  it('Formats tokens with prefix and rootName', () => {
     const inFile = {
       destination: 'tokens.d.ts',
       options: {
@@ -38,7 +47,11 @@ describe.only('Format: ESM Declarations', () => {
       }
     }
 
-    const output = `export type Tokens = {
+    const platform = {
+      prefix: 'test'
+    }
+
+    const prefixedOutput = `export type Tokens = {
   test: {
     spacing: {
       small: number;
@@ -46,12 +59,22 @@ describe.only('Format: ESM Declarations', () => {
     colors: {
       red: string;
     };
+    shadows: {
+      small: {
+        color: string;
+        offsetX: string;
+        offsetY: string;
+        blur: string;
+        spread: string;
+      };
+    };
   };
 };
 `
+
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore: fake values to test formatter
-    expect(typescriptEsmDeclarations({dictionary, file: inFile, options: undefined, platform})).toStrictEqual(output)
+    expect(typescriptEsmDeclarations({ dictionary, file: inFile, options: undefined, platform })).toStrictEqual(prefixedOutput)
   })
 
   it('Formats tokens without prefix', () => {
@@ -61,6 +84,15 @@ describe.only('Format: ESM Declarations', () => {
   };
   colors: {
     red: string;
+  };
+  shadows: {
+    small: {
+      color: string;
+      offsetX: string;
+      offsetY: string;
+      blur: string;
+      spread: string;
+    };
   };
 };
 `
@@ -77,8 +109,18 @@ describe.only('Format: ESM Declarations', () => {
   colors: {
     red: string;
   };
+  shadows: {
+    small: {
+      color: string;
+      offsetX: string;
+      offsetY: string;
+      blur: string;
+      spread: string;
+    };
+  };
 };
 `
+
     const prettier = {
       singleQuote: true
     }
