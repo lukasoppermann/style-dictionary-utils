@@ -1,10 +1,12 @@
-import StyleDictionary, { TransformedToken } from 'style-dictionary'
+import StyleDictionary from 'style-dictionary'
+import { TransformedToken } from 'style-dictionary/types'
 import type { FormatterArguments } from 'style-dictionary/types/Format'
 import { format } from 'prettier'
-import type { LineFormatting } from 'style-dictionary/types/FormatHelpers'
+import { Formatter } from 'style-dictionary/types/Format'
+import type { FormattingOptions } from 'style-dictionary/types/File'
 const { fileHeader, formattedVariables } = StyleDictionary.formatHelpers
 
-export const cssAdvanced: StyleDictionary.Formatter = ({ dictionary: originalDictionary, options = {
+export const cssAdvanced: Formatter = ({ dictionary: originalDictionary, options = {
   queries: []
 }, file, platform }: FormatterArguments) => {
   const { outputReferences, descriptions } = options
@@ -12,7 +14,7 @@ export const cssAdvanced: StyleDictionary.Formatter = ({ dictionary: originalDic
     query: undefined,
     matcher: () => true
   }]
-  const formatting: LineFormatting = {
+  const formatting: FormattingOptions = {
     commentStyle: descriptions ? 'long' : 'none',
   }
   const dictionary = { ...originalDictionary }

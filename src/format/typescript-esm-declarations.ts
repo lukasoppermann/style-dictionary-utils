@@ -1,11 +1,12 @@
 import { format } from 'prettier'
 import StyleDictionary from 'style-dictionary'
+import { Formatter } from 'style-dictionary/types/Format'
 import { jsonToNestedValue } from '../utilities/jsonToNestedValue'
 import { jsonToTypes } from '../utilities/jsonToTypes'
 
 const { fileHeader } = StyleDictionary.formatHelpers
 
-export const typescriptEsmDeclarations: StyleDictionary.Formatter = ({ dictionary, file, options, platform = {} }) => {
+export const typescriptEsmDeclarations: Formatter = ({ dictionary, file, options, platform = {} }) => {
   const { prefix } = platform
   const tokens = prefix ? { [prefix]: dictionary.tokens } : dictionary.tokens
 
