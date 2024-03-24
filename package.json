@@ -57,6 +57,6 @@
     "typescript": "^5.1.6"
   },
   "peerDependencies": {
-    "style-dictionary": "4.0.0-prerelease.17"
+    "style-dictionary": "4.0.0-prerelease.19"
   }
 }
