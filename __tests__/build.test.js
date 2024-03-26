@@ -18,6 +18,7 @@ describe('index.js', () => {
     expect(StyleDictionary.transform["shadow/css"]).toBeDefined();
     expect(StyleDictionary.transform["font/css"]).toBeDefined();
     expect(StyleDictionary.transform["fontFamily/css"]).toBeDefined();
+    expect(StyleDictionary.transform["variables/css"]).toBeDefined();
     expect(StyleDictionary.transform["fontWeight/number"]).toBeDefined();
     expect(StyleDictionary.transform["gradient/css"]).toBeDefined();
     expect(StyleDictionary.transform["cubicBezier/css"]).toBeDefined();
