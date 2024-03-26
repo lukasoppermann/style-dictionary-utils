@@ -60,12 +60,12 @@ OriginalStyleDictionary.registerFormat({
   formatter: javascriptCommonJs
 })
 
-OrigialStyleDictionary.registerFormat({
+OriginalStyleDictionary.registerFormat({
   name: 'typescript/esm-declarations',
   formatter: typescriptEsmDeclarations
 })
 
-OrigialStyleDictionary.registerFormat({
+OriginalStyleDictionary.registerFormat({
   name: 'css/advanced',
   formatter: cssAdvanced
 })

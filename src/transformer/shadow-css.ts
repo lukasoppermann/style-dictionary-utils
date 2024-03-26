@@ -6,7 +6,7 @@ const formatShadow = ({
   offsetY = '0',
   blur = '0',
   spread = '0',
-  color,
+  color = "#000",
 }): string => `${offsetX} ${offsetY} ${blur} ${spread} ${color}`;
 
 export const shadowCss: Omit<ValueTransform, 'name'> = {
