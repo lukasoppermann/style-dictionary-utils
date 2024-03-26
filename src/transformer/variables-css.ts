@@ -1,11 +1,29 @@
-import StyleDictionary from 'style-dictionary';
+import StyleDictionary from "style-dictionary";
+
+interface CssOptions {
+  cssVarPrefix: string | null;
+  withValueFallback: string | null;
+}
 
 /**
- * getCssVarPrefix
- * @description get the cssVarPrefix from the options
+ * getCssOptions
+ * @description get the css options from the options object
  */
-function getCssVarPrefix(options: StyleDictionary.Options) {
-  return (options && options?.cssVarPrefix) || null
+function getCssOptions(options: StyleDictionary.Options) {
+  return {
+    cssVarPrefix: options?.cssVarPrefix || null,
+    withValueFallback: options?.withValueFallback || null,
+  };
+}
+
+/**
+ * formatCssVariable
+ * @description format the css variable with prefix and fallback
+ */
+function formatCssVariable(name: string, value: string, options: CssOptions) {
+  const varPrefix = options.cssVarPrefix ? `${options.cssVarPrefix}-` : "";
+  const fallback = options.withValueFallback ? `, ${value}` : "";
+  return `var(--${varPrefix}${name}${fallback})`;
 }
 
 /**
@@ -15,9 +33,15 @@ function getCssVarPrefix(options: StyleDictionary.Options) {
 export const variablesCss: StyleDictionary.Transform = {
   type: `value`,
   transitive: true,
-  transformer: (token: StyleDictionary.TransformedToken, options: StyleDictionary.Options) => {
-    const cssVarPrefix = getCssVarPrefix(options);
-    const varPrefix = cssVarPrefix ? `${cssVarPrefix}-` : ''
-    return `var(--${varPrefix}${token.name})`
+  transformer: (
+    token: StyleDictionary.TransformedToken,
+    options: StyleDictionary.Options
+  ) => {
+    const { cssVarPrefix, withValueFallback } = getCssOptions(options);
+    console.log(token);
+    return formatCssVariable(token.name, token.value, {
+      cssVarPrefix,
+      withValueFallback,
+    });
   },
-}
+};
