@@ -2,14 +2,14 @@ import StyleDictionary from "style-dictionary";
 
 interface CssOptions {
   cssVarPrefix: string | null;
-  withValueFallback: string | null;
+  withValueFallback: boolean | null;
 }
 
 /**
  * getCssOptions
  * @description get the css options from the options object
  */
-function getCssOptions(options: StyleDictionary.Options) {
+function getCssOptions(options: StyleDictionary.Options): CssOptions {
   return {
     cssVarPrefix: options?.cssVarPrefix || null,
     withValueFallback: options?.withValueFallback || null,
@@ -38,7 +38,6 @@ export const variablesCss: StyleDictionary.Transform = {
     options: StyleDictionary.Options
   ) => {
     const { cssVarPrefix, withValueFallback } = getCssOptions(options);
-    console.log(token);
     return formatCssVariable(token.name, token.value, {
       cssVarPrefix,
       withValueFallback,
