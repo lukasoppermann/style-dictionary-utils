@@ -1,5 +1,4 @@
 import { TransformedToken, Filter, Matcher } from 'style-dictionary/types';
-
 import { shadowCss } from '../../src/transformer/shadow-css.js';
 
 describe('Transformer: shadowCss', () => {
