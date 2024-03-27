@@ -1,6 +1,6 @@
 {
   "name": "style-dictionary-utils",
-  "version": "2.0.7",
+  "version": "2.2.1",
   "type": "module",
   "publishConfig": {
     "registry": "https://registry.npmjs.org",
@@ -22,9 +22,11 @@
     "src/**/*.ts"
   ],
   "scripts": {
-    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest && npm run lint && tsc --noEmit",
+    "test": "npm run build && NODE_OPTIONS=--experimental-vm-modules npx jest && npm run lint && tsc --noEmit",
+    "test:action": "npm run build && NODE_OPTIONS=--experimental-vm-modules jest -c ./jest.action.config.ts",
     "lint": "npx eslint . --ext .ts",
-    "fix": "npx eslint . --ext .ts --fix",
+    "lint:fix": "npx eslint . --ext .ts --fix",
+    "lint:report": "npx eslint --output-file eslint_report.json --format json src",
     "clean:dist": "rm -rf dist/",
     "prebuild": "npm run clean:dist",
     "build": "tsc",
@@ -52,11 +54,13 @@
     "color2k": "^2.0.0",
     "eslint": "^8.24.0",
     "eslint-plugin-github": "^4.3.7",
+    "json5": "^2.2.1",
     "jest": "^29.7.0",
+    "ts-node": "^10.9.2",
     "ts-jest": "^29.1.1",
     "typescript": "^5.1.6"
   },
   "peerDependencies": {
-    "style-dictionary": "4.0.0-prerelease.19"
+    "style-dictionary": "4.0.0-prerelease.23"
   }
 }

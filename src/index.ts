@@ -16,6 +16,7 @@ import { isTypographic } from './filter/isTypographic.js'
 import { isTypography } from './filter/isTypography.js'
 import { javascriptCommonJs } from './format/javascript-commonJs.js'
 import { javascriptEsm } from './format/javascript-esm.js'
+import { typescriptEsmDeclarations } from './format/typescript-esm-declarations.js'
 import { w3cTokenJsonParser } from './parser/w3c-token-json-parser.js'
 import { borderCss } from './transformer/border-css.js'
 import { colorAlphaToHex } from './transformer/color-alpha-to-hex.js'
@@ -36,6 +37,7 @@ import { clampCss } from './transformer/clamp-css.js'
 import { colorToRgbaFloat } from './transformer/color-to-rgba-float.js'
 import { dimensionToPixelUnitless } from './transformer/dimension-to-pixelUnitless.js'
 import { isClamp } from './filter/isClamp.js'
+import { cssAdvanced } from './format/css-advanced.js'
 
 /**
  * Parsers
@@ -56,6 +58,16 @@ OriginalStyleDictionary.registerFormat({
 OriginalStyleDictionary.registerFormat({
   name: 'javascript/commonJs',
   formatter: javascriptCommonJs
+})
+
+OriginalStyleDictionary.registerFormat({
+  name: 'typescript/esm-declarations',
+  formatter: typescriptEsmDeclarations
+})
+
+OriginalStyleDictionary.registerFormat({
+  name: 'css/advanced',
+  formatter: cssAdvanced
 })
 
 /**
