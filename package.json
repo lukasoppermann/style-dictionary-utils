@@ -23,7 +23,7 @@
   ],
   "scripts": {
     "test": "npm run build && NODE_OPTIONS=--experimental-vm-modules npx jest && npm run lint && tsc --noEmit",
-    "test:action": "jest -c ./jest.action.config.ts",
+    "test:action": "npm run build && NODE_OPTIONS=--experimental-vm-modules jest -c ./jest.action.config.ts",
     "lint": "npx eslint . --ext .ts",
     "lint:fix": "npx eslint . --ext .ts --fix",
     "lint:report": "npx eslint --output-file eslint_report.json --format json src",
