@@ -1,11 +1,11 @@
-import StyleDictionary from 'style-dictionary'
+import StyleDictionary, { Dictionary } from 'style-dictionary'
 import { TransformedToken } from 'style-dictionary/types'
-import type { Format } from 'style-dictionary/types'
+import type { Formatter, FormatterArguments } from 'style-dictionary/types'
 import { format } from 'prettier'
-import type { FormattingOptions } from 'style-dictionary/types/File'
+import type { FormattingOptions } from 'style-dictionary/types'
 const { fileHeader, formattedVariables } = StyleDictionary.formatHelpers
 
-export const cssAdvanced: Format['formatter'] = async ({ dictionary: originalDictionary, options = {
+export const cssAdvanced: Formatter = async ({ dictionary: originalDictionary, options = {
   queries: []
 }, file, platform }: FormatterArguments) => {
   const { outputReferences, descriptions } = options
@@ -16,7 +16,7 @@ export const cssAdvanced: Format['formatter'] = async ({ dictionary: originalDic
   const formatting: FormattingOptions = {
     commentStyle: descriptions ? 'long' : 'none',
   }
-  const dictionary: FormatterArguments = { ...originalDictionary }
+  const dictionary: Dictionary = { ...originalDictionary }
   // add prefix to tokens
   if (platform.prefix) {
     dictionary.allTokens = dictionary.allTokens.map((token) => ({ ...token, name: platform.prefix + '-' + token.name, path: [platform.prefix, ...token.path] } as TransformedToken))

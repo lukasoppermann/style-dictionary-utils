@@ -1,4 +1,4 @@
-import StyleDictionary from 'style-dictionary'
+import type { TransformedToken } from 'style-dictionary/types'
 import { cssAdvanced } from '../../src/format/css-advanced'
 
 describe('Format: CSS Advanced', () => {
@@ -68,20 +68,20 @@ describe('Format: CSS Advanced', () => {
       showFileHeader: false,
       queries: [{
         query: '@media (prefers-color-scheme: dark)',
-        matcher: (token: StyleDictionary.TransformedToken) => token.filePath.includes('dark'),
+        matcher: (token: TransformedToken) => token.filePath.includes('dark'),
       },
       {
         query: '@media (prefers-color-scheme: light)',
-        matcher: (token: StyleDictionary.TransformedToken) => token.filePath.includes('light'),
+        matcher: (token: TransformedToken) => token.filePath.includes('light'),
       },
       {
         query: '@media (screen)',
-        matcher: (token: StyleDictionary.TransformedToken) => !token.filePath.includes('light') && !token.filePath.includes('dark'),
+        matcher: (token: TransformedToken) => !token.filePath.includes('light') && !token.filePath.includes('dark'),
       }]
     }
   }
 
-  it('Formats tokens with queries per file path', () => {
+  it('Formats tokens with queries per file path', async () => {
     const output = `@media (prefers-color-scheme: dark) {
   :root {
     --customPrefix-color-background-primary: #ff0000;
@@ -100,10 +100,11 @@ describe('Format: CSS Advanced', () => {
 `
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore: fake values to test formatter
-    expect(cssAdvanced({ dictionary, file, options: undefined, platform })).toStrictEqual(output)
+    const result = await cssAdvanced({ dictionary, file, options: undefined, platform })
+    expect(result).toStrictEqual(output)
   })
 
-  it('Formats tokens with only one media query', () => {
+  it('Formats tokens with only one media query', async () => {
 
     const fileOptions = {
       ...file,
@@ -111,7 +112,7 @@ describe('Format: CSS Advanced', () => {
         ...file.options,
         queries: [{
           query: '@media (prefers-color-scheme: dark)',
-          matcher: (_token: StyleDictionary.TransformedToken) => true,
+          matcher: (_token: TransformedToken) => true,
         }]
       }
     }
@@ -126,10 +127,11 @@ describe('Format: CSS Advanced', () => {
 `
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore: fake values to test formatter
-    expect(cssAdvanced({ dictionary, file: fileOptions, options: undefined, platform })).toStrictEqual(output)
+    const result = await cssAdvanced({ dictionary, file: fileOptions, options: undefined, platform })
+    expect(result).toStrictEqual(output)
   })
 
-  it('Formats tokens with only one media query without matcher', () => {
+  it('Formats tokens with only one media query without matcher', async () => {
 
     const fileOptions = {
       ...file,
@@ -151,10 +153,11 @@ describe('Format: CSS Advanced', () => {
 `
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore: fake values to test formatter
-    expect(cssAdvanced({ dictionary, file: fileOptions, options: undefined, platform })).toStrictEqual(output)
+    const result = await cssAdvanced({ dictionary, file: fileOptions, options: undefined, platform })
+    expect(result).toStrictEqual(output)
   })
 
-  it('Formats tokens with no queries defined', () => {
+  it('Formats tokens with no queries defined', async () => {
 
     const fileOptions = {
       ...file,
@@ -172,25 +175,26 @@ describe('Format: CSS Advanced', () => {
 `
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore: fake values to test formatter
-    expect(cssAdvanced({ dictionary, file: fileOptions, options: undefined, platform })).toStrictEqual(output)
+    const result = await cssAdvanced({ dictionary, file: fileOptions, options: undefined, platform })
+    expect(result).toStrictEqual(output)
   })
 
-  it('Ignore empty groups', () => {
+  it('Ignore empty groups', async () => {
     const fileOptions = {
       ...file,
       options: {
         ...file.options,
         queries: [{
           query: '@media (prefers-color-scheme: dark)',
-          matcher: (token: StyleDictionary.TransformedToken) => token.filePath.includes('notDark'),
+          matcher: (token: TransformedToken) => token.filePath.includes('notDark'),
         },
         {
           query: '@media (prefers-color-scheme: light)',
-          matcher: (token: StyleDictionary.TransformedToken) => token.filePath.includes('light'),
+          matcher: (token: TransformedToken) => token.filePath.includes('light'),
         },
         {
           query: '@media (screen)',
-          matcher: (token: StyleDictionary.TransformedToken) => !token.filePath.includes('light') && !token.filePath.includes('dark'),
+          matcher: (token: TransformedToken) => !token.filePath.includes('light') && !token.filePath.includes('dark'),
         }]
       }
     }
@@ -208,6 +212,7 @@ describe('Format: CSS Advanced', () => {
 `
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore: fake values to test formatter
-    expect(cssAdvanced({ dictionary, file: fileOptions, options: undefined, platform })).toStrictEqual(output)
+    const result = await cssAdvanced({ dictionary, file: fileOptions, options: undefined, platform })
+    expect(result).toStrictEqual(output)
   })
 })
