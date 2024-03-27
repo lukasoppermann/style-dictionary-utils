@@ -1,10 +1,11 @@
-import StyleDictionary, { TransformedToken } from 'style-dictionary'
-import type { FormatterArguments } from 'style-dictionary/types/Format'
+import StyleDictionary, { Dictionary } from 'style-dictionary'
+import { TransformedToken } from 'style-dictionary/types'
+import type { Formatter, FormatterArguments } from 'style-dictionary/types'
 import { format } from 'prettier'
-import type { LineFormatting } from 'style-dictionary/types/FormatHelpers'
+import type { FormattingOptions } from 'style-dictionary/types'
 const { fileHeader, formattedVariables } = StyleDictionary.formatHelpers
 
-export const cssAdvanced: StyleDictionary.Formatter = ({ dictionary: originalDictionary, options = {
+export const cssAdvanced: Formatter = async ({ dictionary: originalDictionary, options = {
   queries: []
 }, file, platform }: FormatterArguments) => {
   const { outputReferences, descriptions } = options
@@ -12,16 +13,16 @@ export const cssAdvanced: StyleDictionary.Formatter = ({ dictionary: originalDic
     query: undefined,
     matcher: () => true
   }]
-  const formatting: LineFormatting = {
+  const formatting: FormattingOptions = {
     commentStyle: descriptions ? 'long' : 'none',
   }
-  const dictionary = { ...originalDictionary }
+  const dictionary: Dictionary = { ...originalDictionary }
   // add prefix to tokens
   if (platform.prefix) {
-    dictionary.allTokens = dictionary.allTokens.map(token => ({ ...token, name: platform.prefix + '-' + token.name, path: [platform.prefix, ...token.path] } as TransformedToken))
+    dictionary.allTokens = dictionary.allTokens.map((token) => ({ ...token, name: platform.prefix + '-' + token.name, path: [platform.prefix, ...token.path] } as TransformedToken))
   }
   // add file header
-  const output = [fileHeader({ file })]
+  const output = [await fileHeader({ file })]
   // add single theme css
   for (const query of queries) {
     const { query: queryString, matcher } = query

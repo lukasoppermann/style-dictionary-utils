@@ -1,11 +1,11 @@
-import StyleDictionary from 'style-dictionary'
+import type { DesignToken } from 'style-dictionary/types'
 /**
  * jsonToNestedValue
  * @description creates a nested json three where every final value is the `.value` prop
  * @param token StyleDictionary.DesignToken
  * @returns nested json three
  */
-export const jsonToNestedValue = (token: StyleDictionary.DesignToken | Record<string, unknown>) => {
+export const jsonToNestedValue = (token: DesignToken | Record<string, unknown>) => {
   // is non-object value
   if (!token || typeof token !== 'object') return token
   // is design token

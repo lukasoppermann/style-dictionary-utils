@@ -1,16 +1,11 @@
-import StyleDictionary from 'style-dictionary'
-import { isClamp } from '../filter/isClamp'
+import type { ValueTransform } from 'style-dictionary/types'
+import { isClamp } from '../filter/isClamp.js'
+import type { TransformedToken } from 'style-dictionary/types';
 
-type TokenClamp = {
-  min: string
-  ideal: string
-  max: string
-}
-
-export const clampCss: StyleDictionary.Transform = {
+export const clampCss: Omit<ValueTransform, 'name'> = {
   type: `value`,
   transitive: true,
   matcher: isClamp,
-  transformer: ({ value }: { value: TokenClamp }) =>
+  transformer: ({ value }: TransformedToken) =>
     `clamp(${value.min}, ${value.ideal}, ${value.max})`
 }

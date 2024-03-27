@@ -37,9 +37,8 @@ describe.only('Format: ESM Declarations', () => {
     }
   }
 
-
-  it('Formats tokens with prefix and rootName', () => {
-    const inFile = {
+  it('Formats tokens with prefix and rootName', async () => {
+    const fileWithRoot = {
       destination: 'tokens.d.ts',
       options: {
         showFileHeader: false,
@@ -74,10 +73,11 @@ describe.only('Format: ESM Declarations', () => {
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore: fake values to test formatter
-    expect(typescriptEsmDeclarations({ dictionary, file: inFile, options: undefined, platform })).toStrictEqual(prefixedOutput)
+    const result = await typescriptEsmDeclarations({ dictionary, file: fileWithRoot, options: undefined, platform })
+    expect(result).toStrictEqual(prefixedOutput)
   })
 
-  it('Formats tokens without prefix', () => {
+  it('Formats tokens without prefix', async () => {
     const output = `export type DesignToken = {
   spacing: {
     small: number;
@@ -98,10 +98,11 @@ describe.only('Format: ESM Declarations', () => {
 `
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore: fake values to test formatter
-    expect(typescriptEsmDeclarations({dictionary, file, options: undefined, undefined})).toStrictEqual(output)
+    const result = await typescriptEsmDeclarations({ dictionary, file, options: undefined, undefined })
+    expect(result).toStrictEqual(output)
   })
 
-  it('Formats tokens accepting a custom prettier configuration', () => {
+  it('Formats tokens accepting a custom prettier configuration', async () => {
     const output = `export type DesignToken = {
   spacing: {
     small: number;
@@ -127,7 +128,8 @@ describe.only('Format: ESM Declarations', () => {
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore: fake values to test formatter
-    expect(typescriptEsmDeclarations({dictionary, file, options: {prettier}, undefined})).toStrictEqual(output)
+    const res = await typescriptEsmDeclarations({ dictionary, file, options: { prettier }, undefined })
+    expect(res).toStrictEqual(output)
   })
 
 })

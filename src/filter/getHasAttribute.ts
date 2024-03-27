@@ -1,4 +1,4 @@
-import StyleDictionary from 'style-dictionary';
+import type { TransformedToken } from 'style-dictionary/types';
 /**
  * @name getHasAttribute
  * @type filter
@@ -7,5 +7,5 @@ import StyleDictionary from 'style-dictionary';
  * @returns filter function
  */
 export const getHasAttribute = (...attributes: string[]) =>
-  (token: StyleDictionary.TransformedToken): boolean =>
+  (token: TransformedToken): boolean =>
     attributes.some((attr) => Object.prototype.hasOwnProperty.call(token, attr));

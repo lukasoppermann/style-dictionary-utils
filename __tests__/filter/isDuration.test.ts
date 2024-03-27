@@ -1,5 +1,5 @@
-import StyleDictionary from 'style-dictionary';
-import { isDuration } from '../../src/filter/isDuration';
+import { TransformedToken } from 'style-dictionary/types';
+import { isDuration } from '../../src/filter/isDuration.js';
 
 describe('Filter: isDuration', () => {
   const items = [{
@@ -13,7 +13,7 @@ describe('Filter: isDuration', () => {
     type: 'duration',
   }, {
     value: 'string',
-  }] as StyleDictionary.TransformedToken[];
+  }] as TransformedToken[];
   it('filters duration tokens', () => {
     expect(items.filter(isDuration)).toStrictEqual([items[0], items[2]]);
   });

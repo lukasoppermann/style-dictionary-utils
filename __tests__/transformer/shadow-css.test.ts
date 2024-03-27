@@ -1,6 +1,5 @@
-import StyleDictionary from 'style-dictionary';
-import { Matcher } from 'style-dictionary/types/Matcher';
-import { shadowCss } from '../../src/transformer/shadow-css';
+import { TransformedToken, Filter, Matcher } from 'style-dictionary/types';
+import { shadowCss } from '../../src/transformer/shadow-css.js';
 
 describe('Transformer: shadowCss', () => {
   const items = [{
@@ -17,26 +16,25 @@ describe('Transformer: shadowCss', () => {
     $type: 'shadow',
   }, {
     value: '',
-  }] as StyleDictionary.TransformedToken[];
+  }] as TransformedToken[];
 
   it('matches `shadow` tokens', () => {
-    expect(items.filter(shadowCss.matcher as Matcher)).toStrictEqual([items[1]]);
+    expect(items.filter(shadowCss.matcher as Filter['matcher'])).toStrictEqual([items[1]]);
   });
 
   it('transforms `shadow` tokens', () => {
-    expect(items.filter(shadowCss.matcher as Matcher).map(item => shadowCss.transformer(item, {}))).toStrictEqual([
+    expect(items.filter(shadowCss.matcher as Filter['matcher']).map(item => shadowCss.transformer(item, {}, {}))).toStrictEqual([
       "0px 0px 0px 3px #00000066"
     ]);
   });
 
   it('should forward `shadow` string', () => {
-    // @ts-expect-error: missing properties
     const stringItem = {
       value: "0px 0px 0px 2px #00000022",
       $type: 'shadow',
-    } as StyleDictionary.TransformedToken;
+    } as TransformedToken;
 
-    expect(shadowCss.transformer(stringItem, {})).toStrictEqual(
+    expect(shadowCss.transformer(stringItem, {}, {})).toStrictEqual(
       "0px 0px 0px 2px #00000022"
     );
   });
@@ -65,9 +63,9 @@ describe('Transformer: shadowCss', () => {
       $type: 'shadow',
     }, {
       value: '',
-    }] as StyleDictionary.TransformedToken[];
+      }] as TransformedToken[];
 
-    expect(shadows.filter(shadowCss.matcher as Matcher).map(item => shadowCss.transformer(item, {}))).toStrictEqual([
+    expect(shadows.filter(shadowCss.matcher as Matcher).map(item => shadowCss.transformer(item, {}, {}))).toStrictEqual([
       "0px 0px 0px 3px #00000066, 2px 2px 4px 0px #ffffff"
     ]);
   })

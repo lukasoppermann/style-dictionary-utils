@@ -1,4 +1,4 @@
-import StyleDictionary from '../src/index';
+import StyleDictionary from '../src/index.js';
 
 describe('index.ts', () => {
 
@@ -10,6 +10,7 @@ describe('index.ts', () => {
   })
 
   it('all formats are attached', () => {
+    expect(StyleDictionary.format['css/advanced']).toBeDefined()
     expect(StyleDictionary.format['javascript/esm']).toBeDefined()
     expect(StyleDictionary.format['javascript/commonJs']).toBeDefined()
     expect(StyleDictionary.format["typescript/esm-declarations"]).toBeDefined();
@@ -86,8 +87,7 @@ describe('index.ts', () => {
   it('can be extended with a parser', () => {
     StyleDictionary.registerParser({
       pattern: /\.json$/,
-      // @ts-expect-error: not a valid token
-      parse: () => ['test']
+      parse: () => ({ test: { value: "test" } })
     })
 
     expect(StyleDictionary.parsers[1]).toEqual({
