@@ -1,6 +1,5 @@
 import * as OrigialStyleDictionary from 'style-dictionary'
 import { isBorder } from './filter/isBorder'
-import { isClamp } from './filter/isClamp'
 import { isColor } from './filter/isColor'
 import { isColorOrGradient } from './filter/isColorOrGradient'
 import { isCubicBezier } from './filter/isCubicBezier'
@@ -15,30 +14,30 @@ import { isStrokeStyle } from './filter/isStrokeStyle'
 import { isTransition } from './filter/isTransition'
 import { isTypographic } from './filter/isTypographic'
 import { isTypography } from './filter/isTypography'
-import { cssAdvanced } from './format/css-advanced'
 import { javascriptCommonJs } from './format/javascript-commonJs'
 import { javascriptEsm } from './format/javascript-esm'
 import { typescriptEsmDeclarations } from './format/typescript-esm-declarations'
 import { w3cTokenJsonParser } from './parser/w3c-token-json-parser'
-import { cssExtended } from './transformGroups/cssExtended'
 import { borderCss } from './transformer/border-css'
-import { clampCss } from './transformer/clamp-css'
 import { colorAlphaToHex } from './transformer/color-alpha-to-hex'
 import { colorAlphaToRgba } from './transformer/color-alpha-to-rgba'
 import { colorToHex } from './transformer/color-to-hex'
 import { colorToRgba } from './transformer/color-to-rgba'
-import { colorToRgbaFloat } from './transformer/color-to-rgba-float'
 import { cubicBezierCss } from './transformer/cubic-bezier-css'
 import { dimensionPixelToRem } from './transformer/dimension-pixel-to-rem'
 import { dimensionRemToPixel } from './transformer/dimension-rem-to-pixel'
-import { dimensionToPixelUnitless } from './transformer/dimension-to-pixelUnitless'
 import { fontCss } from './transformer/font-css'
 import { fontFamilyCss } from './transformer/font-family-css'
 import { fontWeightToNumber } from './transformer/font-weight-to-number'
-import { gradientCss } from './transformer/gradient-css'
 import { namePathToDotNotation } from './transformer/name-path-to-dot-notation'
 import { shadowCss } from './transformer/shadow-css'
-import { variablesCss } from './transformer/variables-css'
+import { cssExtended } from './transformGroups/cssExtended'
+import { gradientCss } from './transformer/gradient-css'
+import { clampCss } from './transformer/clamp-css'
+import { colorToRgbaFloat } from './transformer/color-to-rgba-float'
+import { dimensionToPixelUnitless } from './transformer/dimension-to-pixelUnitless'
+import { isClamp } from './filter/isClamp'
+import { cssAdvanced } from './format/css-advanced'
 
 /**
  * Parsers
@@ -158,11 +157,6 @@ OrigialStyleDictionary.registerTransform({
 OrigialStyleDictionary.registerTransform({
   name: 'border/css',
   ...borderCss
-})
-
-OrigialStyleDictionary.registerTransform({
-  name: 'variables/css',
-  ...variablesCss
 })
 /**
  * Transform groups
