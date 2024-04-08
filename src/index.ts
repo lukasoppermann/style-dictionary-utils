@@ -52,22 +52,22 @@ OriginalStyleDictionary.registerParser(w3cTokenJsonParser)
 
 OriginalStyleDictionary.registerFormat({
   name: 'javascript/esm',
-  formatter: javascriptEsm
+  format: javascriptEsm
 })
 
 OriginalStyleDictionary.registerFormat({
   name: 'javascript/commonJs',
-  formatter: javascriptCommonJs
+  format: javascriptCommonJs
 })
 
 OriginalStyleDictionary.registerFormat({
   name: 'typescript/esm-declarations',
-  formatter: typescriptEsmDeclarations
+  format: typescriptEsmDeclarations
 })
 
 OriginalStyleDictionary.registerFormat({
   name: 'css/advanced',
-  formatter: cssAdvanced
+  format: cssAdvanced
 })
 
 /**
@@ -75,87 +75,70 @@ OriginalStyleDictionary.registerFormat({
  *
  */
 OriginalStyleDictionary.registerTransform({
-  name: 'color/rgbAlpha',
   ...colorAlphaToRgba
 })
 
 OriginalStyleDictionary.registerTransform({
-  name: 'color/hexAlpha',
   ...colorAlphaToHex
 })
 
 OriginalStyleDictionary.registerTransform({
-  name: 'color/hex',
   ...colorToHex
 })
 
 OriginalStyleDictionary.registerTransform({
-  name: 'color/rgba',
   ...colorToRgba
 })
 
 OriginalStyleDictionary.registerTransform({
-  name: 'color/rgbaFloat',
   ...colorToRgbaFloat
 })
 
 OriginalStyleDictionary.registerTransform({
-  name: 'name/pathToDotNotation',
   ...namePathToDotNotation
 })
 
 OriginalStyleDictionary.registerTransform({
-  name: 'shadow/css',
   ...shadowCss
 })
 
 OriginalStyleDictionary.registerTransform({
-  name: 'gradient/css',
   ...gradientCss
 })
 
 OriginalStyleDictionary.registerTransform({
-  name: 'clamp/css',
   ...clampCss
 })
 
 OriginalStyleDictionary.registerTransform({
-  name: 'font/css',
   ...fontCss
 })
 
 OriginalStyleDictionary.registerTransform({
-  name: 'fontFamily/css',
   ...fontFamilyCss
 })
 
 OriginalStyleDictionary.registerTransform({
-  name: 'fontWeight/number',
   ...fontWeightToNumber
 })
 
 OriginalStyleDictionary.registerTransform({
-  name: 'cubicBezier/css',
   ...cubicBezierCss
 })
 
 OriginalStyleDictionary.registerTransform({
-  name: 'dimension/pixelToRem',
   ...dimensionPixelToRem
 })
 
 OriginalStyleDictionary.registerTransform({
-  name: 'dimension/remToPixel',
   ...dimensionRemToPixel
 })
 
 OriginalStyleDictionary.registerTransform({
-  name: 'dimension/pixelUnitless',
   ...dimensionToPixelUnitless
 })
 
 OriginalStyleDictionary.registerTransform({
-  name: 'border/css',
   ...borderCss
 })
 /**
@@ -169,82 +152,82 @@ OriginalStyleDictionary.registerTransformGroup(cssExtended)
  */
 OriginalStyleDictionary.registerFilter({
   name: 'isSource',
-  matcher: isSource
+  filter: isSource
 })
 
 OriginalStyleDictionary.registerFilter({
   name: 'isColor',
-  matcher: isColor
+  filter: isColor
 })
 
 OriginalStyleDictionary.registerFilter({
   name: 'isClamp',
-  matcher: isClamp
+  filter: isClamp
 })
 
 OriginalStyleDictionary.registerFilter({
   name: 'isGradient',
-  matcher: isGradient
+  filter: isGradient
 })
 
 OriginalStyleDictionary.registerFilter({
   name: 'isColorOrGradient',
-  matcher: isColorOrGradient
+  filter: isColorOrGradient
 })
 
 OriginalStyleDictionary.registerFilter({
   name: 'isTypography',
-  matcher: isTypography
+  filter: isTypography
 })
 
 OriginalStyleDictionary.registerFilter({
   name: 'isTypographic',
-  matcher: isTypographic
+  filter: isTypographic
 })
 
 OriginalStyleDictionary.registerFilter({
   name: 'isTransition',
-  matcher: isTransition
+  filter: isTransition
 })
 
 OriginalStyleDictionary.registerFilter({
   name: 'isStrokeStyle',
-  matcher: isStrokeStyle
+  filter: isStrokeStyle
 })
 
 OriginalStyleDictionary.registerFilter({
   name: 'isShadow',
-  matcher: isShadow
+  filter: isShadow
 })
 
 OriginalStyleDictionary.registerFilter({
   name: 'isFontWeight',
-  matcher: isFontWeight
+  filter: isFontWeight
 })
 
 OriginalStyleDictionary.registerFilter({
   name: 'isFontFamily',
-  matcher: isFontFamily
+  filter: isFontFamily
 })
 
 OriginalStyleDictionary.registerFilter({
   name: 'isDuration',
-  matcher: isDuration
+  filter: isDuration
 })
 
 OriginalStyleDictionary.registerFilter({
   name: 'isDimension',
-  matcher: isDimension
+  filter: isDimension
 })
 
 OriginalStyleDictionary.registerFilter({
   name: 'isCubicBezier',
-  matcher: isCubicBezier
+  filter: isCubicBezier
 })
 
 OriginalStyleDictionary.registerFilter({
   name: 'isBorder',
-  matcher: isBorder
+  filter: isBorder
 })
 
 

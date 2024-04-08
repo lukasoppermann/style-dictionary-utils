@@ -6,9 +6,10 @@ const hasSpaceInName = (string: string) => /\s/g.test(string)
  * fontFamilyCss
  * @description if fontFamily is an array, join it with commas and wrap font names with spaces in quotes
  */
-export const fontFamilyCss: Omit<ValueTransform, 'name'> = {
+export const fontFamilyCss: ValueTransform = {
+  name: 'fontFamily/css',
   type: `value`,
   transitive: true,
-  matcher: (token: TransformedToken) => isFontFamily(token) && Array.isArray(token.value),
-  transformer: (token: TransformedToken) => token.value.map((string: string) => hasSpaceInName(string) ? `'${string}'` : string).join(", ")
+  filter: (token: TransformedToken) => isFontFamily(token, {}) && Array.isArray(token.value),
+  transform: (token: TransformedToken) => token.value.map((string: string) => hasSpaceInName(string) ? `'${string}'` : string).join(", ")
 }

@@ -28,11 +28,12 @@ const hasUnit = (value: string | number, unit: string): boolean => {
  * @matcher matches all tokens of $type `dimension`
  * @transformer returns a float number
  */
-export const dimensionToPixelUnitless: Omit<ValueTransform, 'name'> = {
+export const dimensionToPixelUnitless: ValueTransform = {
+  name: 'dimension/pixelUnitless',
   type: `value`,
   transitive: true,
-  matcher: isDimension,
-  transformer: (token: TransformedToken, options?: PlatformConfig) => {
+  filter: isDimension,
+  transform: (token: TransformedToken, options?: PlatformConfig) => {
     const baseFont = getBasePxFontSize(options)
     const floatVal = parseFloat(token.value)
 

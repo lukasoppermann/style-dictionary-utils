@@ -9,11 +9,12 @@ const formatShadow = ({
   color = "#000",
 }): string => `${offsetX} ${offsetY} ${blur} ${spread} ${color}`;
 
-export const shadowCss: Omit<ValueTransform, 'name'> = {
+export const shadowCss: ValueTransform = {
+  name: "shadow/css",
   type: `value`,
   transitive: true,
-  matcher: isShadow,
-  transformer: ({ value }) => {
+  filter: isShadow,
+  transform: ({ value }) => {
     if (Array.isArray(value)) {
       return value.map(formatShadow).join(", ");
     }

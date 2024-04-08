@@ -1,7 +1,7 @@
-import type { TransformedToken } from 'style-dictionary/types';
+import type { Filter, TransformedToken } from 'style-dictionary/types';
 /**
  * @name isTypographic
  * @type filter
  * @description only returns tokens of type `typography`, `fontFamily`
  */
-export const isTypographic = (token: TransformedToken): boolean => ['typography', 'fontWeight', 'fontFamily'].includes(token?.$type ?? token?.type ?? '');
+export const isTypographic: Filter['filter'] = (token: TransformedToken): boolean => ['typography', 'fontWeight', 'fontFamily'].includes(token?.$type ?? token?.type ?? '');

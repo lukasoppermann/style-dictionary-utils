@@ -7,8 +7,9 @@ import type { Parser } from 'style-dictionary/types'
  * with `comment` to make it work with style dictionary
  */
 export const w3cTokenJsonParser: Parser = {
+  name: "w3cTokenJsonParser",
   pattern: /\.json$|\.tokens\.json$|\.tokens$/,
-  parse: ({ contents }) => {
+  parser: ({ contents }) => {
     // replace $value with value so that style dictionary recognizes it
     const preparedContent = (contents || '{}').replace(/"\$?value"\s*:/g, '"value":')
       // convert $description to comment

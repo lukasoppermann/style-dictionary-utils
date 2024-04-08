@@ -46,21 +46,20 @@
   "homepage": "https://github.com/lukasoppermann/style-dictionary-utils#readme",
   "dependencies": {
     "color2k": "^2.0.0",
-    "json5": "^2.2.1",
-    "@prettier/sync": "^0.3.0"
+    "json5": "^2.2.1"
   },
   "devDependencies": {
-    "@types/jest": "^29.2.4",
+    "@types/jest": "^29.5.12",
     "color2k": "^2.0.0",
-    "eslint": "^8.24.0",
-    "eslint-plugin-github": "^4.3.7",
-    "json5": "^2.2.1",
+    "eslint": "^8.57.0",
+    "eslint-plugin-github": "^4.10.2",
     "jest": "^29.7.0",
-    "ts-node": "^10.9.2",
-    "ts-jest": "^29.1.1",
-    "typescript": "^5.1.6"
+    "json5": "^2.2.1",
+    "prettier": "^3.3.2",
+    "ts-jest": "^29.2.2",
+    "typescript": "5.5"
   },
   "peerDependencies": {
-    "style-dictionary": "4.0.0-prerelease.23"
+    "style-dictionary": "^4.0.0"
   }
 }

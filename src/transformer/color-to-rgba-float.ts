@@ -38,11 +38,12 @@ const isRgbaFloat = (value: unknown) => {
  * @matcher matches all tokens of $type `color`
  * @transformer returns a `rgb` float object
  */
-export const colorToRgbaFloat: Omit<ValueTransform, 'name'> = {
+export const colorToRgbaFloat: ValueTransform = {
+  name: 'color/rgbaFloat',
   type: `value`,
   transitive: true,
-  matcher: isColor,
-  transformer: (token: TransformedToken) => {
+  filter: isColor,
+  transform: (token: TransformedToken) => {
     // skip if value is already rgb float
     if (isRgbaFloat(token.value)) return token.value
     // convert hex or rgb values to rgba float

@@ -37,11 +37,12 @@ const fontWeights: { [key: string]: number } = {
  * fontWeightToNumber
  * @description convert a fontWeight string like `black` to the corresponding number, like `900`
  */
-export const fontWeightToNumber: Omit<ValueTransform, 'name'> = {
+export const fontWeightToNumber: ValueTransform = {
+  name: 'fontWeight/number',
   type: `value`,
   transitive: true,
-  matcher: (token: TransformedToken) => isFontWeight(token) && typeof token.value === 'string',
-  transformer: (token: TransformedToken) => {
+  filter: (token: TransformedToken) => isFontWeight(token, {}) && typeof token.value === 'string',
+  transform: (token: TransformedToken) => {
     // check if value exists in matrix
     const fromMatrix = fontWeights[token.value.toLowerCase()]
     if (fromMatrix !== undefined) return fromMatrix

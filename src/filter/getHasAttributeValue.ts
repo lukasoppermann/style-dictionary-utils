@@ -1,4 +1,4 @@
-import type { TransformedToken } from 'style-dictionary/types';
+import type { Filter, TransformedToken } from 'style-dictionary/types';
 /**
  * @name getHasAttributeValue
  * @type filter
@@ -8,7 +8,7 @@ import type { TransformedToken } from 'style-dictionary/types';
  * @returns filter function
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const getHasAttributeValue = (attributes: string | string[], values: any | any[]) =>
+export const getHasAttributeValue = (attributes: string | string[], values: any | any[]): Filter['filter'] =>
   (token: TransformedToken): boolean => {
   // turn inputs into arrays
     if (!Array.isArray(attributes)) attributes = [attributes];

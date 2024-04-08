@@ -5,9 +5,10 @@ import { isColor } from '../filter/isColor.js'
  * colorToHex
  * @description convert a token of type `color` to a hex value
  */
-export const colorToHex: Omit<ValueTransform, 'name'> = {
+export const colorToHex: ValueTransform = {
+  name: 'color/hex',
   type: `value`,
   transitive: true,
-  matcher: isColor,
-  transformer: (token: TransformedToken) => toHex(token.value)
+  filter: isColor,
+  transform: (token: TransformedToken) => toHex(token.value)
 }

@@ -1,17 +1,15 @@
-import StyleDictionary, { Dictionary } from 'style-dictionary'
-import { TransformedToken } from 'style-dictionary/types'
-import type { Formatter, FormatterArguments } from 'style-dictionary/types'
+import { Dictionary } from 'style-dictionary'
+import type { TransformedToken, FormatFn, FormattingOptions } from 'style-dictionary/types'
+import { fileHeader, formattedVariables } from 'style-dictionary/utils'
 import { format } from 'prettier'
-import type { FormattingOptions } from 'style-dictionary/types'
-const { fileHeader, formattedVariables } = StyleDictionary.formatHelpers
 
-export const cssAdvanced: Formatter = async ({ dictionary: originalDictionary, options = {
+export const cssAdvanced: FormatFn = async ({ dictionary: originalDictionary, options = {
   queries: []
-}, file, platform }: FormatterArguments) => {
+}, file, platform }) => {
   const { outputReferences, descriptions } = options
   const queries = file?.options?.queries || [{
     query: undefined,
-    matcher: () => true
+    filter: () => true
   }]
   const formatting: FormattingOptions = {
     commentStyle: descriptions ? 'long' : 'none',
