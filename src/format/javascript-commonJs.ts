@@ -1,10 +1,9 @@
-import StyleDictionary from 'style-dictionary';
 import type { Format } from 'style-dictionary/types'
+import { fileHeader } from 'style-dictionary/utils'
 // Currently, Style-Dictionary does not yet support async formats, and prettier has changed to async now from v3 onwards
-import syncPrettier from '@prettier/sync'
 import { jsonToNestedValue } from '../utilities/jsonToNestedValue.js'
+import syncPrettier from '@prettier/sync'
 
-const { fileHeader } = StyleDictionary.formatHelpers
 
 export const javascriptCommonJs: Format['formatter'] = async ({ dictionary, file, options, platform = {} }) => {
   const { prefix } = platform

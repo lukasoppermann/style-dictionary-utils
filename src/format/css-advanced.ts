@@ -1,9 +1,8 @@
-import StyleDictionary, { Dictionary } from 'style-dictionary'
+import { Dictionary } from 'style-dictionary'
 import { TransformedToken } from 'style-dictionary/types'
-import type { Formatter, FormatterArguments } from 'style-dictionary/types'
+import type { Formatter, FormatterArguments, FormattingOptions } from 'style-dictionary/types'
+import { fileHeader, formattedVariables } from 'style-dictionary/utils'
 import { format } from 'prettier'
-import type { FormattingOptions } from 'style-dictionary/types'
-const { fileHeader, formattedVariables } = StyleDictionary.formatHelpers
 
 export const cssAdvanced: Formatter = async ({ dictionary: originalDictionary, options = {
   queries: []
