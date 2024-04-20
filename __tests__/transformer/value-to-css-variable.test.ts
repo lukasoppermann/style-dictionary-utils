@@ -1,7 +1,7 @@
 import StyleDictionary from "style-dictionary";
-import { variablesCss } from "../../src/transformer/variables-css";
+import { valueToCssVariable } from "../../src/transformer/value-to-css-variable";
 
-describe("Transformer: variablesCss", () => {
+describe("Transformer: valueToCssVariable", () => {
   const items = [
     {
       name: "red",
@@ -20,13 +20,13 @@ describe("Transformer: variablesCss", () => {
 
   it("transforms names to CSS variable notation", () => {
     expect(
-      items.map((item) => variablesCss.transformer(item, {}))
+      items.map((item) => valueToCssVariable.transformer(item, {}))
     ).toStrictEqual(["var(--red)", "var(--white)"]);
   });
 
   it("adds prefix to CSS variable notation", () => {
     expect(
-      items.map((item) => variablesCss.transformer(item, options))
+      items.map((item) => valueToCssVariable.transformer(item, options))
     ).toStrictEqual([
       "var(--PREFIX-red, #ff0000)",
       "var(--PREFIX-white, #ffffff)",

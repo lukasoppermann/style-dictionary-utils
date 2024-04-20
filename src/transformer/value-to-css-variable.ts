@@ -30,7 +30,7 @@ function formatCssVariable(name: string, value: string, options: CssOptions) {
  * variablesCss
  * @description convert the `name` to a css variable
  */
-export const variablesCss: StyleDictionary.Transform = {
+export const valueToCssVariable: StyleDictionary.Transform = {
   type: `value`,
   transitive: true,
   transformer: (

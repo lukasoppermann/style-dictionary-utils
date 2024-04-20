@@ -92,6 +92,7 @@ StyleDictionary.registerTransform({
   - [dimension/remToPixel](#dimensionremtopixel)
   - [dimension/pixelUnitless](#dimensionpixelunitless)
   - [clamp/css](#clampcss)
+  - [value/cssVariable](#valuetocssvariable)
 - Filters
   - [isSource](#issource)
   - [isColor](#iscolor)
@@ -976,6 +977,49 @@ const myStyleDictionary = StyleDictionary.extend({
     small: {
       value: "clamp(1.5rem, 0.5vw + 0.75rem, 2.5rem)",
       $type: "clamp"
+    }
+  }
+}
+```
+
+### value/cssVariable
+
+This `value` transformer replaces the value of any token, with a css variable of the same name as the token.
+The idea is that if you want to generate e.g. a js object that references css variables, you use this variable
+
+```js
+const myStyleDictionary = StyleDictionary.extend({
+  "platforms": {
+    "js": {
+      "transforms": ['value/cssVariable'],
+      "files": [{
+        // ...
+      }],
+    }
+  }
+});
+```
+##### Before transformation
+
+```js
+{
+  colors: {
+    danger: {
+      value: "#ff0000",
+      $type: "color"
+    }
+  }
+}
+```
+
+##### After transformation
+
+```js
+{
+  size: {
+    small: {
+      value: "var(--colors-danger)",
+      $type: "color"
     }
   }
 }

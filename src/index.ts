@@ -38,7 +38,7 @@ import { fontWeightToNumber } from './transformer/font-weight-to-number'
 import { gradientCss } from './transformer/gradient-css'
 import { namePathToDotNotation } from './transformer/name-path-to-dot-notation'
 import { shadowCss } from './transformer/shadow-css'
-import { variablesCss } from './transformer/variables-css'
+import { valueToCssVariable } from './transformer/value-to-css-variable'
 
 /**
  * Parsers
@@ -161,8 +161,8 @@ OrigialStyleDictionary.registerTransform({
 })
 
 OrigialStyleDictionary.registerTransform({
-  name: 'variables/css',
-  ...variablesCss
+  name: 'value/cssVariable',
+  ...valueToCssVariable
 })
 /**
  * Transform groups
