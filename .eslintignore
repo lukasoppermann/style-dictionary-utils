@@ -2,3 +2,4 @@
 # jest
 jest.config.*
 jest.action.config.*
+src/build.test.js
