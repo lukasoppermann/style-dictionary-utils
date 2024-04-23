@@ -6,19 +6,53 @@ const { fileHeader, formattedVariables } = StyleDictionary.formatHelpers
 
 export const cssAdvanced: StyleDictionary.Formatter = ({ dictionary: originalDictionary, options = {
   queries: []
-}, file, platform }: FormatterArguments) => {
+}, file, platform }: FormatterArguments): string => {
+  // get options
   const { outputReferences, descriptions } = options
+  // selector
+  const selector = file?.options?.selector || ':root'
+  // query extension property
+  const queryExtProp = file?.options?.queryExtensionProperty || 'mediaQuery'
+  // get queries from file options
   const queries = file?.options?.queries || [{
     query: undefined,
     matcher: () => true
   }]
+  // set formatting
   const formatting: LineFormatting = {
     commentStyle: descriptions ? 'long' : 'none',
   }
+  // clone dictionary
   const dictionary = { ...originalDictionary }
   // add prefix to tokens
   if (platform.prefix) {
     dictionary.allTokens = dictionary.allTokens.map(token => ({ ...token, name: platform.prefix + '-' + token.name, path: [platform.prefix, ...token.path] } as TransformedToken))
+  }
+  // get queries from tokens
+  for (const designToken of dictionary.allTokens) {
+    const query = designToken.$extensions?.[queryExtProp]
+    // early abort if query does not exist on token
+    if (!query) continue
+    // if query exists already from other token
+    const currentQueryIndex = queries.findIndex((q: {
+      query: string,
+      matcher: () => boolean
+    }) => q.query === query)
+
+    // if query exists
+    if (currentQueryIndex > -1) {
+      queries[currentQueryIndex] = {
+        ...queries[currentQueryIndex],
+        matcher: (token: TransformedToken) => queries[currentQueryIndex].matcher(token) || token.$extensions[queryExtProp] === queries[currentQueryIndex].query
+      }
+    }
+    // if query does not exist
+    else {
+      queries.push({
+        query,
+        matcher: (token: TransformedToken) => token.$extensions?.[queryExtProp] === query
+      })
+    }
   }
   // add file header
   const output = [fileHeader({ file })]
@@ -33,9 +67,9 @@ export const cssAdvanced: StyleDictionary.Formatter = ({ dictionary: originalDic
     // early abort if no matches
     if (!filteredDictionary.allTokens.length) continue
     // add tokens into root
-    const rootCss = `:root {
-  ${formattedVariables({ format: 'css', dictionary: filteredDictionary, outputReferences, formatting })}
-}`
+    const rootCss = `${selector} {` +
+      formattedVariables({ format: 'css', dictionary: filteredDictionary, outputReferences, formatting }) +
+      `}`
     // add css with or without query
     output.push(queryString ? `${queryString} { ${rootCss} }` : rootCss)
   }

@@ -75,6 +75,7 @@ StyleDictionary.registerTransform({
 - Formats
   - [javascript/esm](#javascriptesm)
   - [javascript/commonJs](#javascriptcommonJs)
+  - [css/advanced](#cssadvanced)
 - Transformers
   - [name/pathToDotNotation](#namepathtodotnotation)
   - [color/rgbAlpha](#colorrgbalpha)
@@ -225,6 +226,46 @@ const myStyleDictionary = StyleDictionary.extend({
       "files": [{
         // ...
         "format": "javascript/commonJs",
+      }]
+    }
+  }
+});
+```
+
+### css/advanced
+
+The `css/advanced` format exports a token dictionary as a `css` file with css variables. It allows you to define media queries that can wrap specific parts of your css variables. If nothing is defined the entire file will be wrapped in a `:root` selector.
+
+```css
+body[theme="dark"] {
+  --color-background-primary: #ff0000;
+  --color-background-secondary: #0000ff;
+}
+@media (min-width: 768px) {
+  body[theme="dark"] {
+    --color-button-primary: #c1c1c1;
+    --color-button-secondary: #007D79;
+  }
+}
+```
+
+##### Usage:
+```js
+const myStyleDictionary = StyleDictionary.extend({
+  "platforms": {
+    "css": {
+      "transforms": //...,
+      "files": [{
+        // ...
+        "format": "css/advanced",
+        "options": {
+          selector: `body[theme="dark"]`, // defaults to :root
+          queries: [
+          {
+            query: '@media (min-width: 768px)',
+            matcher: (token: StyleDictionary.TransformedToken) => token.filePath.includes('mobile'), // tokens that match this filter will be added inside the media query
+          }]
+        }
       }]
     }
   }

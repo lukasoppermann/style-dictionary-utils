@@ -20,6 +20,9 @@ describe('Format: CSS Advanced', () => {
       value: '#FF0000',
       attributes: {
         category: "",
+      },
+      $extensions: {
+        "org.primer.mediaQuery": "@media (min-width: 768px)"
       }
     }, {
       name: "color-background-secondary",
@@ -154,6 +157,33 @@ describe('Format: CSS Advanced', () => {
     expect(cssAdvanced({ dictionary, file: fileOptions, options: undefined, platform })).toStrictEqual(output)
   })
 
+  it('Formats tokens with media query defined in token', () => {
+
+    const fileOptions = {
+      ...file,
+      options: {
+        ...file.options,
+        queries: undefined,
+        queryExtensionProperty: "org.primer.mediaQuery"
+      }
+    }
+    console.log(fileOptions)
+    const output = `:root {
+  --customPrefix-color-background-primary: #ff0000;
+  --customPrefix-color-background-secondary: #0000ff;
+  --customPrefix-color-background-green: #00ff00;
+}
+@media (min-width: 768px) {
+  :root {
+    --customPrefix-color-background-primary: #ff0000;
+  }
+}
+`
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore: fake values to test formatter
+    expect(cssAdvanced({ dictionary, file: fileOptions, options: undefined, platform })).toStrictEqual(output)
+  })
+
   it('Formats tokens with no queries defined', () => {
 
     const fileOptions = {
@@ -204,6 +234,28 @@ describe('Format: CSS Advanced', () => {
   :root {
     --customPrefix-color-background-green: #00ff00;
   }
+}
+`
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore: fake values to test formatter
+    expect(cssAdvanced({ dictionary, file: fileOptions, options: undefined, platform })).toStrictEqual(output)
+  })
+
+  it('Formats tokens with custom selector', () => {
+
+    const fileOptions = {
+      ...file,
+      options: {
+        selector: `body[theme="dark"]`,
+        ...file.options,
+        queries: undefined
+      }
+    }
+
+    const output = `body[theme="dark"] {
+  --customPrefix-color-background-primary: #ff0000;
+  --customPrefix-color-background-secondary: #0000ff;
+  --customPrefix-color-background-green: #00ff00;
 }
 `
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
