@@ -259,6 +259,7 @@ const myStyleDictionary = StyleDictionary.extend({
         // ...
         "format": "css/advanced",
         "options": {
+          queryExtensionProperty: 'org.YOURCOMPANY.mediaQuery' // defaults to mediaQuery
           selector: `body[theme="dark"]`, // defaults to :root
           queries: [
           {
@@ -270,6 +271,20 @@ const myStyleDictionary = StyleDictionary.extend({
     }
   }
 });
+```
+
+Instead of using matchers you can also add a property to every token that defines its media query. Both strategies can also be combined. 
+
+The property has to be added inside the `$extensions` property on the token.
+
+```js
+{
+  $type: 'color',
+  $value: '#FF0000',
+  $extensions: {
+    "org.YOURCOMPANY.mediaQuery": "@media (min-width: 768px)"
+  }
+}
 ```
 
 ## 🤖 Transformers
