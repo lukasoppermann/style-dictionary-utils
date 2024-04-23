@@ -40,7 +40,7 @@ describe('Format: CSS Advanced', () => {
       value: '#0000ff',
       attributes: {
         category: "",
-      }
+      },
     }, {
       name: "color-background-green",
       path: ['color', 'background', 'green'],
@@ -159,6 +159,38 @@ describe('Format: CSS Advanced', () => {
 
   it('Formats tokens with media query defined in token', () => {
 
+    const customDict = JSON.parse(JSON.stringify(dictionary))
+    customDict.allTokens[1].$extensions = {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore: update for test
+      "mediaQuery": "@media (min-width: 868px)"
+    }
+
+    const fileOptions = {
+      ...file,
+      options: {
+        ...file.options,
+        queries: undefined,
+      }
+    }
+    const output = `:root {
+  --customPrefix-color-background-primary: #ff0000;
+  --customPrefix-color-background-secondary: #0000ff;
+  --customPrefix-color-background-green: #00ff00;
+}
+@media (min-width: 868px) {
+  :root {
+    --customPrefix-color-background-secondary: #0000ff;
+  }
+}
+`
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore: fake values to test formatter
+    expect(cssAdvanced({ dictionary: customDict, file: fileOptions, options: undefined, platform })).toStrictEqual(output)
+  })
+
+  it('Formats tokens with custom media query defined in token and custom queryExtensionProperty', () => {
+
     const fileOptions = {
       ...file,
       options: {
@@ -167,7 +199,6 @@ describe('Format: CSS Advanced', () => {
         queryExtensionProperty: "org.primer.mediaQuery"
       }
     }
-    console.log(fileOptions)
     const output = `:root {
   --customPrefix-color-background-primary: #ff0000;
   --customPrefix-color-background-secondary: #0000ff;
