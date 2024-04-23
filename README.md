@@ -75,6 +75,7 @@ StyleDictionary.registerTransform({
 - Formats
   - [javascript/esm](#javascriptesm)
   - [javascript/commonJs](#javascriptcommonJs)
+  - [css/advanced](#cssadvanced)
 - Transformers
   - [name/pathToDotNotation](#namepathtodotnotation)
   - [color/rgbAlpha](#colorrgbalpha)
@@ -229,6 +230,61 @@ const myStyleDictionary = StyleDictionary.extend({
     }
   }
 });
+```
+
+### css/advanced
+
+The `css/advanced` format exports a token dictionary as a `css` file with css variables. It allows you to define media queries that can wrap specific parts of your css variables. If nothing is defined the entire file will be wrapped in a `:root` selector.
+
+```css
+body[theme="dark"] {
+  --color-background-primary: #ff0000;
+  --color-background-secondary: #0000ff;
+}
+@media (min-width: 768px) {
+  body[theme="dark"] {
+    --color-button-primary: #c1c1c1;
+    --color-button-secondary: #007D79;
+  }
+}
+```
+
+##### Usage:
+```js
+const myStyleDictionary = StyleDictionary.extend({
+  "platforms": {
+    "css": {
+      "transforms": //...,
+      "files": [{
+        // ...
+        "format": "css/advanced",
+        "options": {
+          queryExtensionProperty: 'org.YOURCOMPANY.mediaQuery' // defaults to mediaQuery
+          selector: `body[theme="dark"]`, // defaults to :root
+          queries: [
+          {
+            query: '@media (min-width: 768px)',
+            matcher: (token: StyleDictionary.TransformedToken) => token.filePath.includes('mobile'), // tokens that match this filter will be added inside the media query
+          }]
+        }
+      }]
+    }
+  }
+});
+```
+
+Instead of using matchers you can also add a property to every token that defines its media query. Both strategies can also be combined. 
+
+The property has to be added inside the `$extensions` property on the token.
+
+```js
+{
+  $type: 'color',
+  $value: '#FF0000',
+  $extensions: {
+    "org.YOURCOMPANY.mediaQuery": "@media (min-width: 768px)"
+  }
+}
 ```
 
 ## 🤖 Transformers
