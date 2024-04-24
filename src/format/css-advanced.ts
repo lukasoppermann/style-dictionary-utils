@@ -10,7 +10,7 @@ export const cssAdvanced: StyleDictionary.Formatter = ({ dictionary: originalDic
   // get options
   const { outputReferences, descriptions } = options
   // selector
-  const selector = file?.options?.selector || ':root'
+  const selector = file?.options?.selector !== undefined ? file?.options?.selector : ':root'
   // query extension property
   const queryExtProp = file?.options?.queryExtensionProperty || 'mediaQuery'
   // get queries from file options
@@ -67,11 +67,11 @@ export const cssAdvanced: StyleDictionary.Formatter = ({ dictionary: originalDic
     // early abort if no matches
     if (!filteredDictionary.allTokens.length) continue
     // add tokens into root
-    const rootCss = `${selector} {` +
-      formattedVariables({ format: 'css', dictionary: filteredDictionary, outputReferences, formatting }) +
-      `}`
+    const css = formattedVariables({ format: 'css', dictionary: filteredDictionary, outputReferences, formatting })
+    // wrap css
+    const cssWithSelector = selector && selector.trim().length > 0 ? `${selector} { ${css} }` : css
     // add css with or without query
-    output.push(queryString ? `${queryString} { ${rootCss} }` : rootCss)
+    output.push(queryString ? `${queryString} { ${cssWithSelector} }` : cssWithSelector)
   }
   // return prettified
   return format(output.join('\n'), { parser: 'css', printWidth: 500 })

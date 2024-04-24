@@ -236,6 +236,43 @@ describe('Format: CSS Advanced', () => {
     expect(cssAdvanced({ dictionary, file: fileOptions, options: undefined, platform })).toStrictEqual(output)
   })
 
+  it('Formats tokens with no query but selector', () => {
+
+    const fileOptions = {
+      ...file,
+      options: {
+        ...file.options,
+        selector: '[data-theme="dark"]',
+        queries: [
+          {
+            matcher: (token: StyleDictionary.TransformedToken) => {
+              console.log(token.original.name)
+              return token.original.name === 'color-background-primary'
+            },
+          },
+          {
+            query: '@media (min-width: 768px)',
+            matcher: (token: StyleDictionary.TransformedToken) => token.original.name !== 'color-background-primary',
+          }
+        ]
+      }
+    }
+
+    const output = `[data-theme="dark"] {
+  --customPrefix-color-background-primary: #ff0000;
+}
+@media (min-width: 768px) {
+  [data-theme="dark"] {
+    --customPrefix-color-background-secondary: #0000ff;
+    --customPrefix-color-background-green: #00ff00;
+  }
+}
+`
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore: fake values to test formatter
+    expect(cssAdvanced({ dictionary, file: fileOptions, options: undefined, platform })).toStrictEqual(output)
+  })
+
   it('Ignore empty groups', () => {
     const fileOptions = {
       ...file,
@@ -292,5 +329,58 @@ describe('Format: CSS Advanced', () => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore: fake values to test formatter
     expect(cssAdvanced({ dictionary, file: fileOptions, options: undefined, platform })).toStrictEqual(output)
+  })
+
+  it('Formats tokens with default selector', () => {
+
+    const fileOptions = {
+      ...file,
+      options: {
+        ...file.options,
+        queries: undefined
+      }
+    }
+
+    const output = `:root {
+  --customPrefix-color-background-primary: #ff0000;
+  --customPrefix-color-background-secondary: #0000ff;
+  --customPrefix-color-background-green: #00ff00;
+}
+`
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore: fake values to test formatter
+    expect(cssAdvanced({ dictionary, file: fileOptions, options: undefined, platform })).toStrictEqual(output)
+  })
+
+  it('Formats tokens without selector', () => {
+
+    const fileOptions = {
+      ...file,
+      options: {
+        ...file.options,
+        selector: false,
+        queries: undefined
+      }
+    }
+
+    const fileOptionsTwo = {
+      ...file,
+      options: {
+        ...file.options,
+        selector: "",
+        queries: undefined
+      }
+    }
+
+    const output = `--customPrefix-color-background-primary: #ff0000;
+--customPrefix-color-background-secondary: #0000ff;
+--customPrefix-color-background-green: #00ff00;
+`
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore: fake values to test formatter
+    expect(cssAdvanced({ dictionary, file: fileOptions, options: undefined, platform })).toStrictEqual(output)
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore: fake values to test formatter
+    expect(cssAdvanced({ dictionary, file: fileOptionsTwo, options: undefined, platform })).toStrictEqual(output)
   })
 })
