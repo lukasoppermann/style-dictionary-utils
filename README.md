@@ -236,6 +236,14 @@ const myStyleDictionary = StyleDictionary.extend({
 
 The `css/advanced` format exports a token dictionary as a `css` file with css variables. It allows you to define media queries that can wrap specific parts of your css variables. If nothing is defined the entire file will be wrapped in a `:root` selector.
 
+You can change the selector by defining it in `file.options.selector`.
+
+You can define queries on a file level using `file.options.queries`. If one or more queries are defined, only tokens within any of the queries will be output. You can define as many query objects within `file.options.queries` as you want. Tokens can be part of one or multiple queries.
+
+A query object has two properties, a `query` and a `matcher`.
+A `query` is a string that is wrapped around your css and the selector, if present. If the `query` is undefined, only the `selector` will be wrapped around the matching tokens.
+The `matcher` is a filter function that returns true for tokens that should be included in the query. If you want to match all tokens, just return true from the matcher.
+
 ```css
 body[theme="dark"] {
   --color-background-primary: #ff0000;
@@ -260,7 +268,7 @@ const myStyleDictionary = StyleDictionary.extend({
         "format": "css/advanced",
         "options": {
           queryExtensionProperty: 'org.YOURCOMPANY.mediaQuery' // defaults to mediaQuery
-          selector: `body[theme="dark"]`, // defaults to :root
+          selector: `body[theme="dark"]`, // defaults to :root; set to false to disable
           queries: [
           {
             query: '@media (min-width: 768px)',
