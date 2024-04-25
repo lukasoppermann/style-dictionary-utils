@@ -7,6 +7,7 @@ type TokenShadow = {
   offsetY: string
   blur: string
   spread: string
+  inset: boolean
 }
 
 const formatShadow = ({
@@ -15,7 +16,8 @@ const formatShadow = ({
   blur = '0',
   spread = '0',
   color,
-}: TokenShadow ): string => `${offsetX} ${offsetY} ${blur} ${spread} ${color}`;
+  inset = false
+}: TokenShadow ): string => `${offsetX} ${offsetY} ${blur} ${spread} ${color} ${inset ? 'inset' : ''}`.trim();
 
 export const shadowCss: StyleDictionary.Transform = {
   type: `value`,
