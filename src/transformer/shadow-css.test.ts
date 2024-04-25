@@ -52,7 +52,8 @@ describe('Transformer: shadowCss', () => {
           "offsetX": "0px",
           "offsetY": "0px",
           "blur": "0px",
-          "spread": "3px"
+          "spread": "3px",
+          "inset": true
         },
         {
           "color": "#ffffff",
@@ -68,7 +69,7 @@ describe('Transformer: shadowCss', () => {
     }] as StyleDictionary.TransformedToken[];
 
     expect(shadows.filter(shadowCss.matcher as Matcher).map(item => shadowCss.transformer(item, {}))).toStrictEqual([
-      "0px 0px 0px 3px #00000066, 2px 2px 4px 0px #ffffff"
+      "0px 0px 0px 3px #00000066 inset, 2px 2px 4px 0px #ffffff"
     ]);
   })
 })
