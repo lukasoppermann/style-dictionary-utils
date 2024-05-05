@@ -69,16 +69,16 @@ describe('Format: CSS Advanced', () => {
     destination: 'tokens.css',
     options: {
       showFileHeader: false,
-      queries: [{
-        query: '@media (prefers-color-scheme: dark)',
+      rules: [{
+        atRule: '@media (prefers-color-scheme: dark)',
         matcher: (token: StyleDictionary.TransformedToken) => token.filePath.includes('dark'),
       },
       {
-        query: '@media (prefers-color-scheme: light)',
+        atRule: '@media (prefers-color-scheme: light)',
         matcher: (token: StyleDictionary.TransformedToken) => token.filePath.includes('light'),
       },
       {
-        query: '@media (screen)',
+        atRule: '@media screen',
         matcher: (token: StyleDictionary.TransformedToken) => !token.filePath.includes('light') && !token.filePath.includes('dark'),
       }]
     }
@@ -95,7 +95,7 @@ describe('Format: CSS Advanced', () => {
     --customPrefix-color-background-secondary: #0000ff;
   }
 }
-@media (screen) {
+@media screen {
   :root {
     --customPrefix-color-background-green: #00ff00;
   }
@@ -112,8 +112,8 @@ describe('Format: CSS Advanced', () => {
       ...file,
       options: {
         ...file.options,
-        queries: [{
-          query: '@media (prefers-color-scheme: dark)',
+        rules: [{
+          atRule: '@media (prefers-color-scheme: dark)',
           matcher: (_token: StyleDictionary.TransformedToken) => true,
         }]
       }
@@ -132,14 +132,42 @@ describe('Format: CSS Advanced', () => {
     expect(cssAdvanced({ dictionary, file: fileOptions, options: undefined, platform })).toStrictEqual(output)
   })
 
+  it('Formats tokens with one rule with nested atRule', () => {
+
+    const fileOptions = {
+      ...file,
+      options: {
+        ...file.options,
+        rules: [{
+          atRule: ['@media (prefers-color-scheme: dark)', '@supports (display: grid)'],
+          matcher: (_token: StyleDictionary.TransformedToken) => true,
+        }]
+      }
+    }
+
+    const output = `@media (prefers-color-scheme: dark) {
+  @supports (display: grid) {
+    :root {
+      --customPrefix-color-background-primary: #ff0000;
+      --customPrefix-color-background-secondary: #0000ff;
+      --customPrefix-color-background-green: #00ff00;
+    }
+  }
+}
+`
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore: fake values to test formatter
+    expect(cssAdvanced({ dictionary, file: fileOptions, options: undefined, platform })).toStrictEqual(output)
+  })
+
   it('Formats tokens with only one media query without matcher', () => {
 
     const fileOptions = {
       ...file,
       options: {
         ...file.options,
-        queries: [{
-          query: '@media (prefers-color-scheme: light)',
+        rules: [{
+          atRule: '@media (prefers-color-scheme: light)',
         }]
       }
     }
@@ -170,7 +198,7 @@ describe('Format: CSS Advanced', () => {
       ...file,
       options: {
         ...file.options,
-        queries: undefined,
+        rules: undefined,
       }
     }
     const output = `:root {
@@ -195,7 +223,7 @@ describe('Format: CSS Advanced', () => {
       ...file,
       options: {
         ...file.options,
-        queries: undefined,
+        rules: undefined,
         queryExtensionProperty: "org.primer.mediaQuery"
       }
     }
@@ -221,7 +249,7 @@ describe('Format: CSS Advanced', () => {
       ...file,
       options: {
         ...file.options,
-        queries: undefined
+        rules: undefined
       }
     }
 
@@ -236,22 +264,21 @@ describe('Format: CSS Advanced', () => {
     expect(cssAdvanced({ dictionary, file: fileOptions, options: undefined, platform })).toStrictEqual(output)
   })
 
-  it('Formats tokens with no query but selector', () => {
+  it('Formats tokens with no atRule but selector', () => {
 
     const fileOptions = {
       ...file,
       options: {
         ...file.options,
         selector: '[data-theme="dark"]',
-        queries: [
+        rules: [
           {
             matcher: (token: StyleDictionary.TransformedToken) => {
-              console.log(token.original.name)
               return token.original.name === 'color-background-primary'
             },
           },
           {
-            query: '@media (min-width: 768px)',
+            atRule: '@media (min-width: 768px)',
             matcher: (token: StyleDictionary.TransformedToken) => token.original.name !== 'color-background-primary',
           }
         ]
@@ -278,16 +305,16 @@ describe('Format: CSS Advanced', () => {
       ...file,
       options: {
         ...file.options,
-        queries: [{
-          query: '@media (prefers-color-scheme: dark)',
+        rules: [{
+          atRule: '@media (prefers-color-scheme: dark)',
           matcher: (token: StyleDictionary.TransformedToken) => token.filePath.includes('notDark'),
         },
         {
-          query: '@media (prefers-color-scheme: light)',
+          atRule: '@media (prefers-color-scheme: light)',
           matcher: (token: StyleDictionary.TransformedToken) => token.filePath.includes('light'),
         },
         {
-          query: '@media (screen)',
+          atRule: '@media screen',
           matcher: (token: StyleDictionary.TransformedToken) => !token.filePath.includes('light') && !token.filePath.includes('dark'),
         }]
       }
@@ -298,7 +325,7 @@ describe('Format: CSS Advanced', () => {
     --customPrefix-color-background-secondary: #0000ff;
   }
 }
-@media (screen) {
+@media screen {
   :root {
     --customPrefix-color-background-green: #00ff00;
   }
@@ -316,7 +343,7 @@ describe('Format: CSS Advanced', () => {
       options: {
         selector: `body[theme="dark"]`,
         ...file.options,
-        queries: undefined
+        rules: undefined
       }
     }
 
@@ -337,7 +364,7 @@ describe('Format: CSS Advanced', () => {
       ...file,
       options: {
         ...file.options,
-        queries: undefined
+        rules: undefined
       }
     }
 
@@ -359,7 +386,7 @@ describe('Format: CSS Advanced', () => {
       options: {
         ...file.options,
         selector: false,
-        queries: undefined
+        rules: undefined
       }
     }
 
@@ -367,8 +394,10 @@ describe('Format: CSS Advanced', () => {
       ...file,
       options: {
         ...file.options,
-        selector: "",
-        queries: undefined
+        selector: "body",
+        rules: [{
+          selector: false,
+        }]
       }
     }
 
@@ -382,5 +411,31 @@ describe('Format: CSS Advanced', () => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore: fake values to test formatter
     expect(cssAdvanced({ dictionary, file: fileOptionsTwo, options: undefined, platform })).toStrictEqual(output)
+  })
+
+  it('Formats tokens with invalid selector', () => {
+
+    const fileOptions = {
+      ...file,
+      options: {
+        ...file.options,
+        selector: undefined,
+        rules: [
+          {
+            selector: ["selector", "selector2"],
+            matcher: (token: StyleDictionary.TransformedToken) => token.original.name !== 'color-background-primary',
+          }
+        ]
+      }
+    }
+
+    const output = `:root {
+  --customPrefix-color-background-secondary: #0000ff;
+  --customPrefix-color-background-green: #00ff00;
+}
+`
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore: fake values to test formatter
+    expect(cssAdvanced({ dictionary, file: fileOptions, options: undefined, platform })).toStrictEqual(output)
   })
 })

@@ -238,11 +238,13 @@ The `css/advanced` format exports a token dictionary as a `css` file with css va
 
 You can change the selector by defining it in `file.options.selector`.
 
-You can define queries on a file level using `file.options.queries`. If one or more queries are defined, only tokens within any of the queries will be output. You can define as many query objects within `file.options.queries` as you want. Tokens can be part of one or multiple queries.
+You can define rules on a file level using `file.options.rules`. If one or more rules are defined, only tokens within any of the rules will be output. You can define as many rule objects within `file.options.rules` as you want. Tokens can be part of one or multiple rules.
 
-A query object has two properties, a `query` and a `matcher`.
-A `query` is a string that is wrapped around your css and the selector, if present. If the `query` is undefined, only the `selector` will be wrapped around the matching tokens.
-The `matcher` is a filter function that returns true for tokens that should be included in the query. If you want to match all tokens, just return true from the matcher.
+A rule object may have any or all of the three properties `atRule`, `selector` and  `matcher`.
+
+- `selector` is a string that is wrapped around your css. If the `selector` is undefined, the default selector or one define at `file.options.selector` will be used. If you don't want a selector, set it to `false`.
+- `atRule` can be a string or array of strings, that are wrapped around the css and `selector` with the first being the outer layer.
+- `matcher` is a filter function that returns true for tokens that should be included in the query. If you want to match all tokens, just return true from the matcher.
 
 ```css
 body[theme="dark"] {
@@ -267,32 +269,18 @@ const myStyleDictionary = StyleDictionary.extend({
         // ...
         "format": "css/advanced",
         "options": {
-          queryExtensionProperty: 'org.YOURCOMPANY.mediaQuery' // defaults to mediaQuery
           selector: `body[theme="dark"]`, // defaults to :root; set to false to disable
-          queries: [
+          rules: [
           {
-            query: '@media (min-width: 768px)',
-            matcher: (token: StyleDictionary.TransformedToken) => token.filePath.includes('mobile'), // tokens that match this filter will be added inside the media query
+            atRule: '@media (min-width: 768px)',
+            selector: `body[size="medium"]` // this will be used instead of body[theme="dark"]`
+            matcher: (token: StyleDictionary.TransformedToken) => token.filePath.includes('tablet'), // tokens that match this filter will be added inside the media query
           }]
         }
       }]
     }
   }
 });
-```
-
-Instead of using matchers you can also add a property to every token that defines its media query. Both strategies can also be combined. 
-
-The property has to be added inside the `$extensions` property on the token.
-
-```js
-{
-  $type: 'color',
-  $value: '#FF0000',
-  $extensions: {
-    "org.YOURCOMPANY.mediaQuery": "@media (min-width: 768px)"
-  }
-}
 ```
 
 ## 🤖 Transformers

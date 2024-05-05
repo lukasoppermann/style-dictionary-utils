@@ -5,17 +5,18 @@ import type { LineFormatting } from 'style-dictionary/types/FormatHelpers'
 const { fileHeader, formattedVariables } = StyleDictionary.formatHelpers
 
 export const cssAdvanced: StyleDictionary.Formatter = ({ dictionary: originalDictionary, options = {
-  queries: []
+  rules: []
 }, file, platform }: FormatterArguments): string => {
   // get options
   const { outputReferences, descriptions } = options
   // selector
-  const selector = file?.options?.selector !== undefined ? file?.options?.selector : ':root'
+  const defaultSelector = file?.options?.selector !== undefined ? file?.options?.selector : ':root'
   // query extension property
   const queryExtProp = file?.options?.queryExtensionProperty || 'mediaQuery'
   // get queries from file options
-  const queries = file?.options?.queries || [{
-    query: undefined,
+  const rules = file?.options?.rules || [{
+    atRule: undefined,
+    selector: undefined,
     matcher: () => true
   }]
   // set formatting
@@ -30,35 +31,39 @@ export const cssAdvanced: StyleDictionary.Formatter = ({ dictionary: originalDic
   }
   // get queries from tokens
   for (const designToken of dictionary.allTokens) {
-    const query = designToken.$extensions?.[queryExtProp]
+    const atRule = designToken.$extensions?.[queryExtProp]
     // early abort if query does not exist on token
-    if (!query) continue
+    if (!atRule) continue
     // if query exists already from other token
-    const currentQueryIndex = queries.findIndex((q: {
-      query: string,
+    const currentQueryIndex = rules.findIndex((q: {
+      atRule: string[],
       matcher: () => boolean
-    }) => q.query === query)
+    }) => q.atRule === atRule)
 
     // if query exists
     if (currentQueryIndex > -1) {
-      queries[currentQueryIndex] = {
-        ...queries[currentQueryIndex],
-        matcher: (token: TransformedToken) => queries[currentQueryIndex].matcher(token) || token.$extensions[queryExtProp] === queries[currentQueryIndex].query
+      rules[currentQueryIndex] = {
+        ...rules[currentQueryIndex],
+        matcher: (token: TransformedToken) => rules[currentQueryIndex].matcher(token) || token.$extensions[queryExtProp] === rules[currentQueryIndex].atRule
       }
     }
     // if query does not exist
     else {
-      queries.push({
-        query,
-        matcher: (token: TransformedToken) => token.$extensions?.[queryExtProp] === query
+      rules.push({
+        atRule,
+        matcher: (token: TransformedToken) => token.$extensions?.[queryExtProp] === atRule
       })
     }
   }
   // add file header
   const output = [fileHeader({ file })]
   // add single theme css
-  for (const query of queries) {
-    const { query: queryString, matcher } = query
+  for (const { atRule, selector, matcher } of rules) {
+    let preludes: string[] = !Array.isArray(atRule) ? [atRule] : atRule
+    // add selectors to preludes
+    preludes.push(typeof selector === 'string' || selector === false ? selector : defaultSelector)
+    // remove invalid preludes
+    preludes = preludes.filter(Boolean)
     // filter tokens to only include the ones that pass the matcher
     const filteredDictionary = {
       ...dictionary,
@@ -68,10 +73,13 @@ export const cssAdvanced: StyleDictionary.Formatter = ({ dictionary: originalDic
     if (!filteredDictionary.allTokens.length) continue
     // add tokens into root
     const css = formattedVariables({ format: 'css', dictionary: filteredDictionary, outputReferences, formatting })
-    // wrap css
-    const cssWithSelector = selector && selector.trim().length > 0 ? `${selector} { ${css} }` : css
+    // atRule css
+    let cssWithSelector = css
+    for (const prelude of preludes.reverse()) {
+      cssWithSelector = `${prelude} { ${cssWithSelector} }`
+    }
     // add css with or without query
-    output.push(queryString ? `${queryString} { ${cssWithSelector} }` : cssWithSelector)
+    output.push(cssWithSelector)
   }
   // return prettified
   return format(output.join('\n'), { parser: 'css', printWidth: 500 })
