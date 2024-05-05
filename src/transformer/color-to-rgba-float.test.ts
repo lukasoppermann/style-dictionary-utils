@@ -1,6 +1,6 @@
 import StyleDictionary from 'style-dictionary'
 import { colorToRgbaFloat } from './color-to-rgba-float'
-import { getMockToken } from '../testUtilities/getMockToken'
+import { getMockToken } from '../test-utilities/getMockToken'
 
 describe('Transformer: colorToRgbaFloat', () => {
   it('transforms `hex3`, `hex6`, and `hex8` tokens to rgb float value', () => {
