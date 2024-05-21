@@ -78,6 +78,7 @@ StyleDictionary.registerTransform({
   - [css/advanced](#cssadvanced)
 - Transformers
   - [name/pathToDotNotation](#namepathtodotnotation)
+  - [name/pathToCamelCase](#namepathtocamelcase)
   - [color/rgbAlpha](#colorrgbalpha)
   - [color/hexAlpha](#colorhexalpha)
   - [color/hex](#colorhex)
@@ -358,6 +359,49 @@ const myStyleDictionary = StyleDictionary.extend({
 ```js
 {
   "colors.red.100": {
+    // ...
+  }
+}
+```
+
+### name/pathToCamelCase
+
+This `name` transformer replaces the token name with the entire path of the token in camelCase notation.
+
+To use it simply add `name/pathToCamelCase` to the `transforms` array.
+
+```js
+const myStyleDictionary = StyleDictionary.extend({
+  "platforms": {
+    "ts": {
+      "transforms": ['name/pathToCamelCase'],
+      "files": [{
+        // ...
+      }]
+    }
+  }
+});
+```
+
+##### Before transformation
+
+```js
+{
+  colors: {
+    bg: {
+      default: {
+        // ...
+      }
+    }
+  }
+}
+```
+
+##### After transformation
+
+```js
+{
+  "colorsBgDefault": {
     // ...
   }
 }
