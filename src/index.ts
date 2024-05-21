@@ -37,6 +37,7 @@ import { fontFamilyCss } from './transformer/font-family-css'
 import { fontWeightToNumber } from './transformer/font-weight-to-number'
 import { gradientCss } from './transformer/gradient-css'
 import { namePathToDotNotation } from './transformer/name-path-to-dot-notation'
+import { namePathToCamelCase } from './transformer/name-path-to-camel-case'
 import { shadowCss } from './transformer/shadow-css'
 
 /**
@@ -102,6 +103,11 @@ OrigialStyleDictionary.registerTransform({
 OrigialStyleDictionary.registerTransform({
   name: 'name/pathToDotNotation',
   ...namePathToDotNotation
+})
+
+OrigialStyleDictionary.registerTransform({
+  name: 'name/pathToCamelCase',
+  ...namePathToCamelCase
 })
 
 OrigialStyleDictionary.registerTransform({

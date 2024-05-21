@@ -15,6 +15,7 @@ describe('index.js', () => {
     expect(StyleDictionary.transform["color/hexAlpha"]).toBeDefined();
     expect(StyleDictionary.transform["clamp/css"]).toBeDefined();
     expect(StyleDictionary.transform["name/pathToDotNotation"]).toBeDefined();
+    expect(StyleDictionary.transform["name/pathToCamelCase"]).toBeDefined();
     expect(StyleDictionary.transform["shadow/css"]).toBeDefined();
     expect(StyleDictionary.transform["font/css"]).toBeDefined();
     expect(StyleDictionary.transform["fontFamily/css"]).toBeDefined();
