@@ -1,8 +1,7 @@
-import StyleDictionary from 'style-dictionary';
-import { Matcher } from 'style-dictionary/types/Matcher';
+import { TransformedToken } from 'style-dictionary/types';
 import { dimensionToPixelUnitless } from './dimension-to-pixelUnitless';
 
-describe('Transformer: dimensionToPixelUnitless', () => {
+describe('transform: dimensionToPixelUnitless', () => {
   const items = [{
     value: '0px',
     $type: 'dimension',
@@ -20,10 +19,10 @@ describe('Transformer: dimensionToPixelUnitless', () => {
     $type: 'color',
   }, {
     value: '',
-  }] as StyleDictionary.TransformedToken[];
+  }] as TransformedToken[];
 
   it('transforms `dimension` tokens', () => {
-    expect(items.filter(dimensionToPixelUnitless.matcher as Matcher).map(item => dimensionToPixelUnitless.transformer(item, {}))).toStrictEqual([
+    expect(items.filter(dimensionToPixelUnitless.filter).map(item => dimensionToPixelUnitless.transform(item, {}, {}))).toStrictEqual([
       0,
       0,
       20,
@@ -35,7 +34,7 @@ describe('Transformer: dimensionToPixelUnitless', () => {
     const platform = {
       basePxFontSize: 10
     }
-    expect(items.filter(dimensionToPixelUnitless.matcher as Matcher).map(item => dimensionToPixelUnitless.transformer(item, platform))).toStrictEqual([
+    expect(items.filter(dimensionToPixelUnitless.filter).map(item => dimensionToPixelUnitless.transform(item, platform, {}))).toStrictEqual([
       0,
       0,
       20,

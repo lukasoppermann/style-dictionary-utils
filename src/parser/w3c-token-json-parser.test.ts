@@ -2,7 +2,7 @@ import { w3cTokenJsonParser } from './w3c-token-json-parser';
 
 describe('Parser: w3c token json parser', () => {
   it('parses valid json', () => {
-    expect(w3cTokenJsonParser.parse({
+    expect(w3cTokenJsonParser.parser({
       contents: `{
       "color": {
         "$value": "red",
@@ -32,7 +32,7 @@ describe('Parser: w3c token json parser', () => {
   });
 
   it('parses valid with whitespace before colon', () => {
-    expect(w3cTokenJsonParser.parse({
+    expect(w3cTokenJsonParser.parser({
       contents: `{
       "color": {
         "$value" : "red",
@@ -52,12 +52,12 @@ describe('Parser: w3c token json parser', () => {
   });
 
   it('parses empty json', () => {
-    expect(w3cTokenJsonParser.parse({ contents: '' })).toStrictEqual({});
+    expect(w3cTokenJsonParser.parser({ contents: '' })).toStrictEqual({});
   });
 
   it('throws on json5', () => {
     expect(() => {
-      w3cTokenJsonParser.parse(
+      w3cTokenJsonParser.parser(
         {
           contents: `{
           "color": {

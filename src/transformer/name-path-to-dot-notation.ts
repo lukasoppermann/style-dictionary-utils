@@ -1,4 +1,4 @@
-import StyleDictionary from 'style-dictionary'
+import { PlatformConfig, Transform, TransformedToken } from 'style-dictionary/types'
 
 const capitalize = ([firstLetter, ...restOfWord]: string): string => {
   return firstLetter.toUpperCase() + restOfWord.join("")
@@ -15,9 +15,10 @@ const camelCase = (string: string): string => {
  * @description convert the entire `path` to dot notation, parts are converted to camelCase
  * and replaces the `name` with the dot notation path
  */
-export const namePathToDotNotation: StyleDictionary.Transform = {
+export const namePathToDotNotation: Transform = {
+  name: `name/pathToDotNotation`,
   type: `name`,
-  transformer: (token: StyleDictionary.TransformedToken, platform?: StyleDictionary.Platform): string => {
+  transform: (token: TransformedToken, platform?: PlatformConfig): string => {
     return [platform?.prefix, ...token.path]
       .filter((part: unknown): part is string => typeof part === 'string')
       .map(part => camelCase(part)).join('.')

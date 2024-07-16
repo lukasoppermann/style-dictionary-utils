@@ -1,4 +1,4 @@
-import StyleDictionary from 'style-dictionary';
+import { TransformedToken } from 'style-dictionary/types';
 import { isColorOrGradient } from './isColorOrGradient';
 
 describe('Filter: isColorAndGradient', () => {
@@ -13,7 +13,7 @@ describe('Filter: isColorAndGradient', () => {
     type: 'gradient',
   }, {
     value: 'string',
-  }] as StyleDictionary.TransformedToken[];
+  }] as TransformedToken[];
   it('filters color and gradient tokens', () => {
     expect(items.filter(isColorOrGradient)).toStrictEqual([items[0], items[2]]);
   });

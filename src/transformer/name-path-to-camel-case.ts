@@ -1,4 +1,4 @@
-import StyleDictionary from 'style-dictionary'
+import { PlatformConfig, Transform, TransformedToken } from 'style-dictionary/types'
 
 const capitalize = ([firstLetter, ...restOfWord]: string): string => {
   return firstLetter.toUpperCase() + restOfWord.join("")
@@ -14,9 +14,10 @@ const camelCase = (string: string): string => {
  * namePathToCameCase
  * @description convert the entire `path` to camel case and replaces the name
  */
-export const namePathToCamelCase: StyleDictionary.Transform = {
+export const namePathToCamelCase: Transform = {
+  name: `name/pathToCamelCase`,
   type: `name`,
-  transformer: (token: StyleDictionary.TransformedToken, platform?: StyleDictionary.Platform): string => {
+  transform: (token: TransformedToken, platform?: PlatformConfig): string => {
     return camelCase([platform?.prefix, ...token.path]
       .filter((part: unknown): part is string => typeof part === 'string')
       .join("-"))

@@ -3,7 +3,7 @@ import styleDictionary from "style-dictionary";
 export const cssExtended = {
   name: 'css/extended',
   transforms: [
-    ...styleDictionary.transformGroup['css'],
+    ...styleDictionary.hooks.transformGroups['css'],
     'color/rgbAlpha',
     'shadow/css',
     'font/css',

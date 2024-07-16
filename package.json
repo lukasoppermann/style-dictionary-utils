@@ -1,6 +1,7 @@
 {
   "name": "style-dictionary-utils",
   "version": "2.4.1",
+  "type": "module",
   "publishConfig": {
     "registry": "https://registry.npmjs.org",
     "access": "public"
@@ -10,7 +11,9 @@
     "url": "https://github.com/lukasoppermann/style-dictionary-utils.git"
   },
   "description": "Utilities to use in your style dictionary config",
-  "main": "dist/index.js",
+  "exports": {
+    ".": "./dist/index.js"
+  },
   "files": [
     "dist/*",
     "src/**/*.ts"
@@ -22,7 +25,7 @@
     "lint:report": "npx eslint --output-file eslint_report.json --format json src",
     "clean:dist": "rm -rf dist/",
     "prebuild": "npm run clean:dist",
-    "build": "tsc --module commonjs",
+    "build": "tsc",
     "preversion": "npm run build && npm run test",
     "postversion": "git push --follow-tags"
   },
@@ -42,11 +45,10 @@
     "json5": "^2.2.1"
   },
   "devDependencies": {
-    "@prettier/sync": "^0.5.2",
     "eslint": "^8.57.0",
     "eslint-plugin-github": "^4.10.2",
     "prettier": "^3.3.3",
-    "ts-node": "^10.9.2",
+    "style-dictionary": "^4.0.0",
     "typescript": "^5.5.3",
     "vitest": "^2.0.3"
   },

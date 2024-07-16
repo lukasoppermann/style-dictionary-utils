@@ -1,4 +1,4 @@
-import StyleDictionary from 'style-dictionary';
+import { TransformedToken } from 'style-dictionary/types';
 import { isBorder } from './isBorder';
 
 describe('Filter: isBorder', () => {
@@ -13,7 +13,7 @@ describe('Filter: isBorder', () => {
     type: 'border',
   }, {
     value: 'string',
-  }] as StyleDictionary.TransformedToken[];
+  }] as TransformedToken[];
   it('filters border tokens', () => {
     expect(items.filter(isBorder)).toStrictEqual([items[0], items[2]]);
   });
