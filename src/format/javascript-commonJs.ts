@@ -1,5 +1,5 @@
 import StyleDictionary from 'style-dictionary'
-import { format } from 'prettier'
+import { format } from '@prettier/sync'
 import { jsonToNestedValue } from '../utilities/jsonToNestedValue'
 
 const { fileHeader } = StyleDictionary.formatHelpers

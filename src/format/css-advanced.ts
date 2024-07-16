@@ -1,6 +1,6 @@
 import StyleDictionary, { TransformedToken } from 'style-dictionary'
 import type { FormatterArguments } from 'style-dictionary/types/Format'
-import { format } from 'prettier'
+import { format } from '@prettier/sync'
 import type { LineFormatting } from 'style-dictionary/types/FormatHelpers'
 const { fileHeader, formattedVariables } = StyleDictionary.formatHelpers
 

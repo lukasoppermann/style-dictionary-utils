@@ -1,4 +1,4 @@
-import { format } from 'prettier'
+import { format } from '@prettier/sync'
 import StyleDictionary from 'style-dictionary'
 import { jsonToNestedValue } from '../utilities/jsonToNestedValue'
 import { jsonToTypes } from '../utilities/jsonToTypes'
