@@ -1,6 +1,6 @@
 import { typescriptEsmDeclarations } from './typescript-esm-declarations'
 
-describe.only('Format: ESM Declarations', () => {
+describe('Format: ESM Declarations', () => {
   const dictionary = {
     tokens: {
       spacing: {
