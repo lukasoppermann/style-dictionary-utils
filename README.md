@@ -20,6 +20,9 @@ If you are using `.json5` files to define your design tokens install [`json5`](h
 npm i -D json5
 ```
 
+## How to use style dictionary version 3?
+If you are not ready to upgrade to style dictinary version 3 you can continue using `style-dictionary-utils` by locking to `v2` currently [`v2.4.1`](https://github.com/lukasoppermann/style-dictionary-utils/tree/v2.4.1) version.
+
 ## Getting started
 
 The easiest way to use `style-dictionary-utils` is to import the prepared `StyleDictionary` object into your build file:
