@@ -23,6 +23,7 @@ describe('index.ts', () => {
     expect(StyleDictionary.hooks.transforms['color/rgbAlpha']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['color/rgbaFloat']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['color/hexAlpha']).toBeDefined()
+    expect(StyleDictionary.hooks.transforms['comment/deprecated']).toBeDefined()
     expect(StyleDictionary.hooks.transforms["clamp/css"]).toBeDefined();
     expect(StyleDictionary.hooks.transforms['name/pathToDotNotation']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['name/pathToCamelCase']).toBeDefined()
@@ -47,6 +48,7 @@ describe('index.ts', () => {
     expect(StyleDictionary.hooks.filters['isColorOrGradient']).toBeDefined()
     expect(StyleDictionary.hooks.filters['isCubicBezier']).toBeDefined()
     expect(StyleDictionary.hooks.filters["isClamp"]).toBeDefined();
+    expect(StyleDictionary.hooks.filters['isDeprecated']).toBeDefined()
     expect(StyleDictionary.hooks.filters['isDimension']).toBeDefined()
     expect(StyleDictionary.hooks.filters['isDuration']).toBeDefined()
     expect(StyleDictionary.hooks.filters['isFontFamily']).toBeDefined()
