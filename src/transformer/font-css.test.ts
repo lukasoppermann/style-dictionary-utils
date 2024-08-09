@@ -1,8 +1,7 @@
-import StyleDictionary from 'style-dictionary';
-import { Matcher } from 'style-dictionary/types/Matcher';
+import { TransformedToken } from 'style-dictionary/types';
 import { fontCss } from './font-css';
 
-describe('Transformer: fontFamily', () => {
+describe('transform: fontFamily', () => {
   const items = [{
     value: {
       "fontWeight": 500,
@@ -23,14 +22,14 @@ describe('Transformer: fontFamily', () => {
   }, {
     value: '',
     $type: 'color',
-  }] as StyleDictionary.TransformedToken[];
+  }] as TransformedToken[];
 
   it('matches `fontFamily` tokens with an array as a value', () => {
-    expect(items.filter(fontCss.matcher as Matcher)).toStrictEqual([items[0], items[1]]);
+    expect(items.filter(fontCss.filter)).toStrictEqual([items[0], items[1]]);
   });
 
   it('transforms `fontFamily` array tokens', () => {
-    expect(items.filter(fontCss.matcher as Matcher).map(item => fontCss.transformer(item, {}))).toStrictEqual([
+    expect(items.filter(fontCss.filter).map(item => fontCss.transform(item, {}, {}))).toStrictEqual([
       "italic 500 16px/22px Helvetica",
       "16px Helvetica",
     ]);

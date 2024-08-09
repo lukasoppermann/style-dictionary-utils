@@ -1,4 +1,4 @@
-import StyleDictionary from 'style-dictionary';
+import { TransformedToken } from 'style-dictionary/types';
 import { getHasAttributeValue } from './getHasAttributeValue';
 
 describe('Filter: getHasAttributeValue', () => {
@@ -14,7 +14,7 @@ describe('Filter: getHasAttributeValue', () => {
     number: 1,
   }, {
     value: { isValid: true },
-  }] as StyleDictionary.TransformedToken[];
+  }] as TransformedToken[];
 
   it('filters type tokens', () => {
     expect(items.filter(getHasAttributeValue('value', 'string'))).toStrictEqual([items[2]]);

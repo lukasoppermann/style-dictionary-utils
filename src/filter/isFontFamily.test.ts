@@ -1,4 +1,4 @@
-import StyleDictionary from 'style-dictionary';
+import { TransformedToken } from 'style-dictionary/types';
 import { isFontFamily } from './isFontFamily';
 
 describe('Filter: isFontFamily', () => {
@@ -13,7 +13,7 @@ describe('Filter: isFontFamily', () => {
     type: 'fontFamily',
   }, {
     value: 'string',
-  }] as StyleDictionary.TransformedToken[];
+  }] as TransformedToken[];
   it('filters fontFamily tokens', () => {
     expect(items.filter(isFontFamily)).toStrictEqual([items[0], items[2]]);
   });

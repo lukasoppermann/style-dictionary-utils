@@ -3,11 +3,12 @@ import { cssExtended } from '../../src/transformGroups/cssExtended';
 describe('TransformGroup: css extended', () => {
   const defaultArray = [
     "attribute/cti",
-    "name/cti/kebab",
+    "name/kebab",
     "time/seconds",
-    "content/icon",
+    "html/icon",
     "size/rem",
-    "color/css"
+    "color/css",
+    "asset/url"
   ];
 
   const extensionArray = [

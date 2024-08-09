@@ -1,4 +1,4 @@
-import StyleDictionary from 'style-dictionary'
+import { Transform, TransformedToken } from 'style-dictionary/types'
 import { isCubicBezier } from '../filter/isCubicBezier'
 
 type TokenCubicBezier = [
@@ -8,10 +8,14 @@ type TokenCubicBezier = [
   y2: number
 ]
 
-export const cubicBezierCss: StyleDictionary.Transform = {
+export const cubicBezierCss: Transform = {
+  name: 'cubicBezier/css',
   type: `value`,
   transitive: true,
-  matcher: (token: StyleDictionary.TransformedToken) => isCubicBezier(token) && Array.isArray(token.value),
-  transformer: ({ value: [x1, y1, x2, y2] }: { value: TokenCubicBezier }) =>
-    `cubic-bezier(${x1}, ${y1}, ${x2}, ${y2})`
+  filter: (token: TransformedToken) => isCubicBezier(token) && Array.isArray(token.value),
+  transform: ({value}: Omit<TransformedToken, 'value'> & { value?: TokenCubicBezier}) => {
+    if(!value) return
+    const [x1, y1, x2, y2] = value
+    return `cubic-bezier(${x1}, ${y1}, ${x2}, ${y2})`
+  }
 }

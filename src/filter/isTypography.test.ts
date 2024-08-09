@@ -1,4 +1,4 @@
-import StyleDictionary from 'style-dictionary';
+import { TransformedToken } from 'style-dictionary/types';
 import { isTypography } from './isTypography';
 
 describe('Filter: isTypography', () => {
@@ -13,7 +13,7 @@ describe('Filter: isTypography', () => {
     type: 'typography',
   }, {
     value: 'string',
-  }] as StyleDictionary.TransformedToken[];
+  }] as TransformedToken[];
   it('filters typography tokens', () => {
     expect(items.filter(isTypography)).toStrictEqual([items[0], items[2]]);
   });

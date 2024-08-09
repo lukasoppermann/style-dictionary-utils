@@ -1,8 +1,7 @@
-import StyleDictionary from 'style-dictionary';
-import { Matcher } from 'style-dictionary/types/Matcher';
+import { TransformedToken } from 'style-dictionary/types';
 import { dimensionRemToPixel } from './dimension-rem-to-pixel';
 
-describe('Transformer: dimensionRemToPixel', () => {
+describe('transform: dimensionRemToPixel', () => {
   const items = [{
     value: '20px',
     $type: 'dimension',
@@ -14,14 +13,14 @@ describe('Transformer: dimensionRemToPixel', () => {
     $type: 'color',
   }, {
     value: '',
-  }] as StyleDictionary.TransformedToken[];
+  }] as TransformedToken[];
 
   it('matches `dimension` tokens with rem value', () => {
-    expect(items.filter(dimensionRemToPixel.matcher as Matcher)).toStrictEqual([items[1]]);
+    expect(items.filter(dimensionRemToPixel.filter)).toStrictEqual([items[1]]);
   });
 
   it('transforms `dimension` tokens', () => {
-    expect(items.filter(dimensionRemToPixel.matcher as Matcher).map(item => dimensionRemToPixel.transformer(item, {}))).toStrictEqual([
+    expect(items.filter(dimensionRemToPixel.filter).map(item => dimensionRemToPixel.transform(item, {}, {}))).toStrictEqual([
       "48px"
     ]);
   })
@@ -30,7 +29,7 @@ describe('Transformer: dimensionRemToPixel', () => {
     const platform = {
       basePxFontSize: 10
     }
-    expect(items.filter(dimensionRemToPixel.matcher as Matcher).map(item => dimensionRemToPixel.transformer(item, platform))).toStrictEqual([
+    expect(items.filter(dimensionRemToPixel.filter).map(item => dimensionRemToPixel.transform(item, platform, {}))).toStrictEqual([
       "30px"
     ]);
   });

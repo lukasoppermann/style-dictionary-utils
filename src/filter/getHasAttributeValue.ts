@@ -1,4 +1,4 @@
-import StyleDictionary from 'style-dictionary';
+import { TransformedToken } from 'style-dictionary/types';
 /**
  * @name getHasAttributeValue
  * @type filter
@@ -9,7 +9,7 @@ import StyleDictionary from 'style-dictionary';
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getHasAttributeValue = (attributes: string | string[], values: any | any[]) =>
-  (token: StyleDictionary.TransformedToken): boolean => {
+  (token: TransformedToken): boolean => {
   // turn inputs into arrays
     if (!Array.isArray(attributes)) attributes = [attributes];
     if (!Array.isArray(values)) values = [values];

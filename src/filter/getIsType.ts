@@ -1,4 +1,4 @@
-import StyleDictionary from 'style-dictionary';
+import { TransformedToken } from 'style-dictionary/types';
 /**
  * @name getIsType
  * @type filter
@@ -7,5 +7,5 @@ import StyleDictionary from 'style-dictionary';
  * @returns filter function
  */
 export const getIsType = (...args: string[]) =>
-  (token: StyleDictionary.TransformedToken): boolean =>
-    args.includes(token?.$type ?? token?.type);
+  (token: TransformedToken): boolean =>
+    args.includes(token?.$type ?? token?.type ?? '');

@@ -1,8 +1,8 @@
-import StyleDictionary from 'style-dictionary'
 import { colorToRgbaFloat } from './color-to-rgba-float'
 import { getMockToken } from '../test-utilities/getMockToken'
+import { TransformedToken } from 'style-dictionary/types'
 
-describe('Transformer: colorToRgbaFloat', () => {
+describe('transform: colorToRgbaFloat', () => {
   it('transforms `hex3`, `hex6`, and `hex8` tokens to rgb float value', () => {
     const input = [{ value: '#123' }, { value: '#343434' }, { value: '#34343466' }]
     const expectedOutput = [
@@ -25,7 +25,7 @@ describe('Transformer: colorToRgbaFloat', () => {
         a: 0.4,
       },
     ]
-    expect(input.map(item => colorToRgbaFloat.transformer(item as StyleDictionary.TransformedToken, {}))).toStrictEqual(expectedOutput)
+    expect(input.map(item => colorToRgbaFloat.transform(item as TransformedToken, {}, {}))).toStrictEqual(expectedOutput)
   })
 
   it('transforms `rgb` and `rgba` to rgb float value', () => {
@@ -44,7 +44,7 @@ describe('Transformer: colorToRgbaFloat', () => {
         a: 0.4,
       },
     ]
-    expect(input.map(item => colorToRgbaFloat.transformer(item as StyleDictionary.TransformedToken, {}))).toStrictEqual(expectedOutput)
+    expect(input.map(item => colorToRgbaFloat.transform(item as TransformedToken, {}, {}))).toStrictEqual(expectedOutput)
   })
 
   it('transforms `color` tokens including alpha value', () => {
@@ -54,7 +54,7 @@ describe('Transformer: colorToRgbaFloat', () => {
         getMockToken({ value: '#34343466', alpha: 0.9 }),
         getMockToken({ value: 'rgb(100,200,255)', alpha: 0.4 }),
         getMockToken({ value: 'rgba(100,200,255,0.8)', alpha: 0.4 }),
-      ].map(item => colorToRgbaFloat.transformer(item as StyleDictionary.TransformedToken, {})),
+      ].map(item => colorToRgbaFloat.transform(item as TransformedToken, {}, {})),
     ).toStrictEqual([
       {
         r: 0.20392156862745098,
@@ -116,7 +116,7 @@ describe('Transformer: colorToRgbaFloat', () => {
         a: 0.4,
       },
     ]
-    expect(input.map(item => colorToRgbaFloat.transformer(item as StyleDictionary.TransformedToken, {}))).toStrictEqual(expectedOutput)
+    expect(input.map(item => colorToRgbaFloat.transform(item as TransformedToken, {}, {}))).toStrictEqual(expectedOutput)
   })
 
   it('transforms `named colors` and `transparent` to rgb float value', () => {
@@ -135,6 +135,6 @@ describe('Transformer: colorToRgbaFloat', () => {
         a: 0,
       },
     ]
-    expect(input.map(item => colorToRgbaFloat.transformer(item as StyleDictionary.TransformedToken, {}))).toStrictEqual(expectedOutput)
+    expect(input.map(item => colorToRgbaFloat.transform(item as TransformedToken, {}, {}))).toStrictEqual(expectedOutput)
   })
 })

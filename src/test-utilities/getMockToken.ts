@@ -1,4 +1,4 @@
-import type StyleDictionary from 'style-dictionary'
+import { TransformedToken } from 'style-dictionary/types'
 
 const mockTokenDefaults = {
   name: 'tokenName',
@@ -18,8 +18,8 @@ const mockTokenDefaults = {
  * @returns StyleDictionary.TransformedToken - a merge of {@link mockTokenDefaults} and any valid properties provided in the valueOverrides param
  */
 export const getMockToken = (valueOverrides: {
-  [key: keyof StyleDictionary.TransformedToken]: unknown
-}): StyleDictionary.TransformedToken => ({
+  [key: keyof TransformedToken]: unknown
+}): TransformedToken => ({
   ...mockTokenDefaults,
   ...valueOverrides,
 })
