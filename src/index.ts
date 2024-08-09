@@ -4,6 +4,7 @@ import { isClamp } from './filter/isClamp'
 import { isColor } from './filter/isColor'
 import { isColorOrGradient } from './filter/isColorOrGradient'
 import { isCubicBezier } from './filter/isCubicBezier'
+import { isDeprecated } from './filter/isDeprecated'
 import { isDimension } from './filter/isDimension'
 import { isDuration } from './filter/isDuration'
 import { isFontFamily } from './filter/isFontFamily'
@@ -28,6 +29,7 @@ import { colorAlphaToRgba } from './transformer/color-alpha-to-rgba'
 import { colorToHex } from './transformer/color-to-hex'
 import { colorToRgba } from './transformer/color-to-rgba'
 import { colorToRgbaFloat } from './transformer/color-to-rgba-float'
+import { commentDeprecated } from './transformer/comment-deprecated'
 import { cubicBezierCss } from './transformer/cubic-bezier-css'
 import { dimensionPixelToRem } from './transformer/dimension-pixel-to-rem'
 import { dimensionRemToPixel } from './transformer/dimension-rem-to-pixel'
@@ -93,6 +95,10 @@ OrigialStyleDictionary.registerTransform({
 
 OrigialStyleDictionary.registerTransform({
   ...colorToRgbaFloat
+})
+
+OrigialStyleDictionary.registerTransform({
+  ...commentDeprecated
 })
 
 OrigialStyleDictionary.registerTransform({
@@ -218,6 +224,11 @@ OrigialStyleDictionary.registerFilter({
 OrigialStyleDictionary.registerFilter({
   name: 'isDuration',
   filter: isDuration
+})
+
+OrigialStyleDictionary.registerFilter({
+  name: 'isDeprecated',
+  filter: isDeprecated
 })
 
 OrigialStyleDictionary.registerFilter({
