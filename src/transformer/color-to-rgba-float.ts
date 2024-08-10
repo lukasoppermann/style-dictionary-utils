@@ -1,5 +1,5 @@
 import { toHex } from 'color2k'
-import { isColor } from '../filter/isColor'
+import { isColor } from '../filter/isColor.js'
 import { Transform, TransformedToken } from 'style-dictionary/types'
 
 const toRgbaFloat = (color: string, alpha?: number) => {

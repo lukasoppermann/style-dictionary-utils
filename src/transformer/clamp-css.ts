@@ -1,5 +1,5 @@
 import { Transform, TransformedToken } from 'style-dictionary/types'
-import { isClamp } from '../filter/isClamp'
+import { isClamp } from '../filter/isClamp.js'
 
 type TokenClamp = {
   min: string

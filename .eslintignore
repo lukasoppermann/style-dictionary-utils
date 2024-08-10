@@ -1,2 +1,3 @@
 *.d.ts
 src/build.test.js
+tests/build.test.ts

@@ -1,7 +1,7 @@
 import { format } from 'prettier'
 import { fileHeader } from 'style-dictionary/utils'
 import { FormatFn, FormatFnArguments } from 'style-dictionary/types'
-import { jsonToNestedValue } from '../utilities/jsonToNestedValue'
+import { jsonToNestedValue } from '../utilities/jsonToNestedValue.js'
 
 export const javascriptCommonJs: FormatFn = async ({ dictionary, file, options, platform = {} }: FormatFnArguments) => {
   const { prefix } = platform

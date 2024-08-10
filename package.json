@@ -15,8 +15,7 @@
     ".": "./dist/index.js"
   },
   "files": [
-    "dist/*",
-    "src/**/*.ts"
+    "dist/*"
   ],
   "scripts": {
     "test": "npm run build && npx vitest run && npm run lint",
@@ -45,14 +44,15 @@
     "json5": "^2.2.1"
   },
   "devDependencies": {
+    "@types/node": "^22.2.0",
     "eslint": "^8.57.0",
     "eslint-plugin-github": "^4.10.2",
     "prettier": "^3.3.3",
-    "style-dictionary": "^4.0.0",
-    "typescript": "^5.5.3",
-    "vitest": "^2.0.3"
+    "style-dictionary": "^4.0.1",
+    "typescript": "^5.5.2",
+    "vitest": "^2.0.4"
   },
   "peerDependencies": {
-    "style-dictionary": "^3.7.1"
+    "style-dictionary": "^4"
   }
 }

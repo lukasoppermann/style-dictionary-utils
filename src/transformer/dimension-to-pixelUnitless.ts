@@ -1,4 +1,4 @@
-import { isDimension } from '../filter/isDimension';
+import { isDimension } from '../filter/isDimension.js';
 import { PlatformConfig, Transform, TransformedToken } from 'style-dictionary/types';
 
 /**

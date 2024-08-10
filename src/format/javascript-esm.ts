@@ -1,5 +1,5 @@
 import { format } from 'prettier'
-import { jsonToNestedValue } from '../utilities/jsonToNestedValue'
+import { jsonToNestedValue } from '../utilities/jsonToNestedValue.js'
 import { fileHeader } from 'style-dictionary/utils'
 import { FormatFn, FormatFnArguments } from 'style-dictionary/types'
 

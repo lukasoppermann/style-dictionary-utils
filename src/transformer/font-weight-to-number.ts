@@ -1,6 +1,6 @@
 
 import { Transform, TransformedToken } from 'style-dictionary/types'
-import { isFontWeight } from '../filter/isFontWeight'
+import { isFontWeight } from '../filter/isFontWeight.js'
 /**
  * Acceptable font weights according to w3c standard
  * @link https://design-tokens.github.io/community-group/format/#font-weight

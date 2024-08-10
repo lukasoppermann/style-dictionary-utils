@@ -1,5 +1,5 @@
 import { Transform, TransformedToken } from 'style-dictionary/types'
-import { isCubicBezier } from '../filter/isCubicBezier'
+import { isCubicBezier } from '../filter/isCubicBezier.js'
 
 type TokenCubicBezier = [
   x1: number,

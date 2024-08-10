@@ -1,7 +1,7 @@
 import { format } from 'prettier'
 import { fileHeader } from 'style-dictionary/utils'
-import { jsonToNestedValue } from '../utilities/jsonToNestedValue'
-import { jsonToTypes } from '../utilities/jsonToTypes'
+import { jsonToNestedValue } from '../utilities/jsonToNestedValue.js'
+import { jsonToTypes } from '../utilities/jsonToTypes.js'
 import { FormatFn, FormatFnArguments } from 'style-dictionary/types'
 
 export const typescriptEsmDeclarations: FormatFn = async ({ dictionary, file, options, platform = {} }: FormatFnArguments) => {
