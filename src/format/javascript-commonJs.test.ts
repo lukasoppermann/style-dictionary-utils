@@ -1,4 +1,4 @@
-import { javascriptCommonJs } from './javascript-commonJs'
+import { javascriptCommonJs } from './javascript-commonJs.js'
 
 describe('Format: CommonJs', () => {
   const dictionary = {

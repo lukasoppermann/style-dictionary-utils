@@ -1,7 +1,7 @@
 import { toRgba } from 'color2k'
 import { Transform, TransformedToken } from 'style-dictionary/types'
-import { isColor } from '../filter/isColor'
-import { alpha } from '../utilities/alpha'
+import { isColor } from '../filter/isColor.js'
+import { alpha } from '../utilities/alpha.js'
 /**
  * colorAlphaToRgba
  * @description convert a token of type `color` to a rgba value

@@ -1,5 +1,5 @@
 import { Transform, TransformedToken } from 'style-dictionary/types'
-import { isShadow } from '../filter/isShadow'
+import { isShadow } from '../filter/isShadow.js'
 
 type TokenShadow = {
   color: string

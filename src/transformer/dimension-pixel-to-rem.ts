@@ -1,5 +1,5 @@
 import { PlatformConfig, Transform, TransformedToken } from 'style-dictionary/types'
-import { isDimension } from '../filter/isDimension';
+import { isDimension } from '../filter/isDimension.js';
 /**
  * dimensionPixelToRem
  * @description convert all dimensions that use pixel value to rem, uses `platform.options.basePxFontSize`

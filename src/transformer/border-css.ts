@@ -1,5 +1,5 @@
 import { Transform, TransformedToken } from 'style-dictionary/types'
-import { isBorder } from '../filter/isBorder'
+import { isBorder } from '../filter/isBorder.js'
 
 type StrokeStyleString = 'solid' |
 'dashed' |

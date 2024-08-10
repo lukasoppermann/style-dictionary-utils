@@ -1,5 +1,5 @@
 import { Transform, TransformedToken } from 'style-dictionary/types';
-import { isDeprecated } from '../filter/isDeprecated';
+import { isDeprecated } from '../filter/isDeprecated.js';
 
 /**
  * commentDeprecated

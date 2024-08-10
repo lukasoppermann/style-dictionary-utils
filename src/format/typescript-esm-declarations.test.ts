@@ -1,4 +1,4 @@
-import { typescriptEsmDeclarations } from './typescript-esm-declarations'
+import { typescriptEsmDeclarations } from './typescript-esm-declarations.js'
 
 describe('Format: ESM Declarations', () => {
   const dictionary = {

@@ -1,5 +1,5 @@
 import { Transform, TransformedToken } from 'style-dictionary/types'
-import { isGradient } from '../filter/isGradient'
+import { isGradient } from '../filter/isGradient.js'
 
 type TokenGradient = {
   color: number

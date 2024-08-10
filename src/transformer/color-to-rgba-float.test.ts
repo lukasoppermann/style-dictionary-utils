@@ -1,5 +1,5 @@
-import { colorToRgbaFloat } from './color-to-rgba-float'
-import { getMockToken } from '../test-utilities/getMockToken'
+import { colorToRgbaFloat } from './color-to-rgba-float.js'
+import { getMockToken } from '../test-utilities/getMockToken.js'
 import { TransformedToken } from 'style-dictionary/types'
 
 describe('transform: colorToRgbaFloat', () => {

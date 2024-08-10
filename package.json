@@ -15,8 +15,7 @@
     ".": "./dist/index.js"
   },
   "files": [
-    "dist/*",
-    "src/**/*.ts"
+    "dist/*"
   ],
   "scripts": {
     "test": "npm run build && npx vitest run && npm run lint",
@@ -53,6 +52,6 @@
     "vitest": "^2.0.3"
   },
   "peerDependencies": {
-    "style-dictionary": "^3.7.1"
+    "style-dictionary": "^4"
   }
 }

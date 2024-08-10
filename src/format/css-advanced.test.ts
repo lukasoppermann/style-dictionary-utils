@@ -1,4 +1,4 @@
-import { cssAdvanced } from './css-advanced'
+import { cssAdvanced } from './css-advanced.js'
 import { TransformedToken } from 'style-dictionary/types'
 
 describe('Format: CSS Advanced', () => {

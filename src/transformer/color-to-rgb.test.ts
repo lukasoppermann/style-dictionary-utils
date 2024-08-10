@@ -1,5 +1,5 @@
 import { TransformedToken } from 'style-dictionary/types';
-import { colorToRgba } from './color-to-rgba';
+import { colorToRgba } from './color-to-rgba.js';
 
 describe('transform: colorToHex', () => {
 

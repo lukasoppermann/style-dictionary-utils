@@ -1,5 +1,5 @@
 import { Transform, TransformedToken } from 'style-dictionary/types'
-import { isTypography } from '../filter/isTypography'
+import { isTypography } from '../filter/isTypography.js'
 type TokenTypography = {
   fontFamily: string,
   fontSize: number,

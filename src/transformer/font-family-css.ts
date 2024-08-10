@@ -1,5 +1,5 @@
 import { Transform, TransformedToken } from 'style-dictionary/types'
-import { isFontFamily } from '../filter/isFontFamily'
+import { isFontFamily } from '../filter/isFontFamily.js'
 
 const hasSpaceInName = (string: string) => /\s/g.test(string)
 /**
