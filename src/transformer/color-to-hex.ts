@@ -1,13 +1,14 @@
 import { toHex } from 'color2k'
-import StyleDictionary from 'style-dictionary'
-import { isColor } from '../filter/isColor'
+import { Transform, TransformedToken } from 'style-dictionary/types'
+import { isColor } from '../filter/isColor.js'
 /**
  * colorToHex
  * @description convert a token of type `color` to a hex value
  */
-export const colorToHex: StyleDictionary.Transform = {
+export const colorToHex: Transform = {
+  name: 'color/hex',
   type: `value`,
   transitive: true,
-  matcher: isColor,
-  transformer: (token: StyleDictionary.TransformedToken) => toHex(token.value)
+  filter: isColor,
+  transform: (token: TransformedToken) => toHex(token.value)
 }

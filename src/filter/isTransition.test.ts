@@ -1,4 +1,4 @@
-import StyleDictionary from 'style-dictionary';
+import { TransformedToken } from 'style-dictionary/types';
 import { isTransition } from './isTransition';
 
 describe('Filter: isTransition', () => {
@@ -13,7 +13,7 @@ describe('Filter: isTransition', () => {
     type: 'transition',
   }, {
     value: 'string',
-  }] as StyleDictionary.TransformedToken[];
+  }] as TransformedToken[];
   it('filters transition tokens', () => {
     expect(items.filter(isTransition)).toStrictEqual([items[0], items[2]]);
   });

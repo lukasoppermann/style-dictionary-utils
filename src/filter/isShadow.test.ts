@@ -1,4 +1,4 @@
-import StyleDictionary from 'style-dictionary';
+import { TransformedToken } from 'style-dictionary/types';
 import { isShadow } from './isShadow';
 
 describe('Filter: isShadow', () => {
@@ -13,7 +13,7 @@ describe('Filter: isShadow', () => {
     type: 'shadow',
   }, {
     value: 'string',
-  }] as StyleDictionary.TransformedToken[];
+  }] as TransformedToken[];
   it('filters shadow tokens', () => {
     expect(items.filter(isShadow)).toStrictEqual([items[0], items[2]]);
   });

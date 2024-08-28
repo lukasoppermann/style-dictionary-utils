@@ -1,6 +1,6 @@
-import {StyleDictionary as SD} from '../src/index';
+import {StyleDictionary as SD} from 'style-dictionary-utils';
 
-describe('index.ts', () => {
+describe('build.test.ts', () => {
 
   const StyleDictionary = new SD()
 
@@ -103,3 +103,4 @@ describe('index.ts', () => {
   })
 
 })
+

@@ -1,5 +1,5 @@
-import type StyleDictionary from 'style-dictionary'
 import {getMockToken} from './getMockToken'
+import { Dictionary, TransformedTokens } from 'style-dictionary/types'
 
 const mockDictionaryDefault = {
   tokens: {
@@ -12,7 +12,7 @@ const mockDictionaryDefault = {
   },
 }
 
-export const getMockDictionary = (tokens?: StyleDictionary.TransformedTokens): StyleDictionary.Dictionary => ({
+export const getMockDictionary = (tokens?: TransformedTokens): Dictionary => ({
   allTokens: Object.values((tokens || mockDictionaryDefault).tokens.subgroup),
   tokens: tokens || mockDictionaryDefault,
   allProperties: Object.values((tokens || mockDictionaryDefault).tokens.subgroup),

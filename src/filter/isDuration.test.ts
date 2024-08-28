@@ -1,4 +1,4 @@
-import StyleDictionary from 'style-dictionary';
+import { TransformedToken } from 'style-dictionary/types';
 import { isDuration } from './isDuration';
 
 describe('Filter: isDuration', () => {
@@ -13,7 +13,7 @@ describe('Filter: isDuration', () => {
     type: 'duration',
   }, {
     value: 'string',
-  }] as StyleDictionary.TransformedToken[];
+  }] as TransformedToken[];
   it('filters duration tokens', () => {
     expect(items.filter(isDuration)).toStrictEqual([items[0], items[2]]);
   });

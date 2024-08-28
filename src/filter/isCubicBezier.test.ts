@@ -1,4 +1,4 @@
-import StyleDictionary from 'style-dictionary';
+import { TransformedToken } from 'style-dictionary/types';
 import { isCubicBezier } from './isCubicBezier';
 
 describe('Filter: isCubicBezier', () => {
@@ -13,7 +13,7 @@ describe('Filter: isCubicBezier', () => {
     type: 'cubicBezier',
   }, {
     value: 'string',
-  }] as StyleDictionary.TransformedToken[];
+  }] as TransformedToken[];
   it('filters cubicBezier tokens', () => {
     expect(items.filter(isCubicBezier)).toStrictEqual([items[0], items[2]]);
   });

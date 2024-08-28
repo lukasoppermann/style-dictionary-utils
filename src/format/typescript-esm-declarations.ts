@@ -1,11 +1,10 @@
 import { format } from 'prettier'
-import StyleDictionary from 'style-dictionary'
-import { jsonToNestedValue } from '../utilities/jsonToNestedValue'
-import { jsonToTypes } from '../utilities/jsonToTypes'
+import { fileHeader } from 'style-dictionary/utils'
+import { jsonToNestedValue } from '../utilities/jsonToNestedValue.js'
+import { jsonToTypes } from '../utilities/jsonToTypes.js'
+import { FormatFn, FormatFnArguments } from 'style-dictionary/types'
 
-const { fileHeader } = StyleDictionary.formatHelpers
-
-export const typescriptEsmDeclarations: StyleDictionary.Formatter = ({ dictionary, file, options, platform = {} }) => {
+export const typescriptEsmDeclarations: FormatFn = async ({ dictionary, file, options, platform = {} }: FormatFnArguments) => {
   const { prefix } = platform
   const tokens = prefix ? { [prefix]: dictionary.tokens } : dictionary.tokens
 
@@ -15,7 +14,7 @@ export const typescriptEsmDeclarations: StyleDictionary.Formatter = ({ dictionar
   // convert to typescript type definition
   const values = jsonToTypes(jsonToNestedValue(tokens), '  ', rootName, true);
   
-  const output = fileHeader({ file }) + `${values}\n`
+  const output = await fileHeader({ file }) + `${values}\n`
   // return prettified
   return format(output, { parser: 'typescript', printWidth: 500, ...options?.prettier })
 }

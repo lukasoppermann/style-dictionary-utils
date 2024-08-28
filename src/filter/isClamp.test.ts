@@ -1,4 +1,4 @@
-import StyleDictionary from 'style-dictionary';
+import { TransformedToken } from 'style-dictionary/types';
 import { isClamp } from './isClamp';
 
 describe('Filter: isClamp', () => {
@@ -33,7 +33,7 @@ describe('Filter: isClamp', () => {
       max: '3rem'
     },
     type: 'dimension',
-  }] as StyleDictionary.TransformedToken[];
+  }] as TransformedToken[];
   it('filters clamp tokens', () => {
     expect(items.filter(isClamp)).toStrictEqual([items[4]]);
   });

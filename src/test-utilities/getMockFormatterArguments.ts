@@ -1,7 +1,7 @@
-import type { FormatterArguments } from 'style-dictionary/types/Format'
+import type { FormatFnArguments } from 'style-dictionary/types/Format'
 import { getMockDictionary } from './getMockDictionary'
 
-const defaultFormatterArguments: FormatterArguments = {
+const defaultFormatterArguments: FormatFnArguments = {
   dictionary: getMockDictionary(),
   file: {
     destination: 'tokens.ts',
@@ -13,7 +13,7 @@ const defaultFormatterArguments: FormatterArguments = {
   platform: {},
 }
 
-export const getMockFormatterArguments = (overrides?: Partial<FormatterArguments>): FormatterArguments => {
+export const getMockFormatterArguments = (overrides?: Partial<FormatFnArguments>): FormatFnArguments => {
   return {
     ...defaultFormatterArguments,
     ...(overrides || {}),

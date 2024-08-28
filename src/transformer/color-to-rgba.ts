@@ -1,13 +1,14 @@
 import { toRgba } from 'color2k'
-import StyleDictionary from 'style-dictionary'
-import { isColor } from '../filter/isColor'
+import { Transform, TransformedToken } from 'style-dictionary/types'
+import { isColor } from '../filter/isColor.js'
 /**
  * colorToRgba
  * @description convert a token of type `color` to a rgba value
  */
-export const colorToRgba: StyleDictionary.Transform = {
+export const colorToRgba: Transform = {
+  name: 'color/rgba',
   type: `value`,
   transitive: true,
-  matcher: isColor,
-  transformer: (token: StyleDictionary.TransformedToken) => toRgba(token.value)
+  filter: isColor,
+  transform: (token: TransformedToken) => toRgba(token.value)
 }

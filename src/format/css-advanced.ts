@@ -1,12 +1,10 @@
-import StyleDictionary, { TransformedToken } from 'style-dictionary'
-import type { FormatterArguments } from 'style-dictionary/types/Format'
+import type { FormatFn, FormatFnArguments, FormattingOptions, TransformedToken } from 'style-dictionary/types'
+import { fileHeader, formattedVariables } from 'style-dictionary/utils'
 import { format } from 'prettier'
-import type { LineFormatting } from 'style-dictionary/types/FormatHelpers'
-const { fileHeader, formattedVariables } = StyleDictionary.formatHelpers
 
-export const cssAdvanced: StyleDictionary.Formatter = ({ dictionary: originalDictionary, options = {
+export const cssAdvanced: FormatFn = async ({ dictionary: originalDictionary, options = {
   rules: []
-}, file, platform }: FormatterArguments): string => {
+}, file, platform }: FormatFnArguments) => {
   // get options
   const { outputReferences, descriptions } = options
   // selector
@@ -20,7 +18,7 @@ export const cssAdvanced: StyleDictionary.Formatter = ({ dictionary: originalDic
     matcher: () => true
   }]
   // set formatting
-  const formatting: LineFormatting = {
+  const formatting: FormattingOptions = {
     commentStyle: descriptions ? 'long' : 'none',
   }
   // clone dictionary
@@ -56,7 +54,7 @@ export const cssAdvanced: StyleDictionary.Formatter = ({ dictionary: originalDic
     }
   }
   // add file header
-  const output = [fileHeader({ file })]
+  const output = [await fileHeader({ file })]
   // add single theme css
   for (const { atRule, selector, matcher } of rules) {
     let preludes: string[] = !Array.isArray(atRule) ? [atRule] : atRule
@@ -84,3 +82,4 @@ export const cssAdvanced: StyleDictionary.Formatter = ({ dictionary: originalDic
   // return prettified
   return format(output.join('\n'), { parser: 'css', printWidth: 500 })
 }
+

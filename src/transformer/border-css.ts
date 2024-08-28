@@ -1,5 +1,5 @@
-import StyleDictionary from 'style-dictionary'
-import { isBorder } from '../filter/isBorder'
+import { Transform, TransformedToken } from 'style-dictionary/types'
+import { isBorder } from '../filter/isBorder.js'
 
 type StrokeStyleString = 'solid' |
 'dashed' |
@@ -19,12 +19,14 @@ type TokenBorder = {
 /**
  * @description convert a w3c `border` token to a value that can be used with the css `border` property
  */
-export const borderCss: StyleDictionary.Transform = {
+export const borderCss: Transform = {
+  name: 'border/css',
   type: `value`,
   transitive: true,
-  matcher: isBorder,
-  transformer: ({ value }: { value: TokenBorder }) => {
-    if(typeof value.style !== 'string') throw new Error("Only string stroke styles are supported for border tokens");
-    return `${value.width} ${value.style} ${value.color}`
+  filter: isBorder,
+  transform: (token: Omit<TransformedToken, 'value'> & { value?: TokenBorder}) => {
+    if (!token.value) return;
+    if(typeof token.value.style !== 'string') throw new Error("Only string stroke styles are supported for border tokens");
+    return `${token.value.width} ${token.value.style} ${token.value.color}`
   }
 }

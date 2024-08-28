@@ -1,6 +1,6 @@
-import { typescriptEsmDeclarations } from './typescript-esm-declarations'
+import { typescriptEsmDeclarations } from './typescript-esm-declarations.js'
 
-describe.only('Format: ESM Declarations', () => {
+describe('Format: ESM Declarations', () => {
   const dictionary = {
     tokens: {
       spacing: {
@@ -38,7 +38,7 @@ describe.only('Format: ESM Declarations', () => {
   }
 
 
-  it('Formats tokens with prefix and rootName', () => {
+  it('Formats tokens with prefix and rootName', async () => {
     const inFile = {
       destination: 'tokens.d.ts',
       options: {
@@ -74,10 +74,10 @@ describe.only('Format: ESM Declarations', () => {
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore: fake values to test formatter
-    expect(typescriptEsmDeclarations({ dictionary, file: inFile, options: undefined, platform })).toStrictEqual(prefixedOutput)
+    expect(await typescriptEsmDeclarations({ dictionary, file: inFile, options: undefined, platform })).toStrictEqual(prefixedOutput)
   })
 
-  it('Formats tokens without prefix', () => {
+  it('Formats tokens without prefix', async () => {
     const output = `export type DesignToken = {
   spacing: {
     small: number;
@@ -98,10 +98,10 @@ describe.only('Format: ESM Declarations', () => {
 `
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore: fake values to test formatter
-    expect(typescriptEsmDeclarations({ dictionary, file, options: undefined, undefined })).toStrictEqual(output)
+    expect(await typescriptEsmDeclarations({ dictionary, file, options: undefined, undefined })).toStrictEqual(output)
   })
 
-  it('Formats tokens accepting a custom prettier configuration', () => {
+  it('Formats tokens accepting a custom prettier configuration', async () => {
     const output = `export type DesignToken = {
   spacing: {
     small: number;
@@ -127,7 +127,7 @@ describe.only('Format: ESM Declarations', () => {
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore: fake values to test formatter
-    expect(typescriptEsmDeclarations({ dictionary, file, options: { prettier }, undefined })).toStrictEqual(output)
+    expect(await typescriptEsmDeclarations({ dictionary, file, options: { prettier }, undefined })).toStrictEqual(output)
   })
 
 })

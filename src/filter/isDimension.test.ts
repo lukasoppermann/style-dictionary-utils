@@ -1,4 +1,4 @@
-import StyleDictionary from 'style-dictionary';
+import { TransformedToken } from 'style-dictionary/types';
 import { isDimension } from './isDimension';
 
 describe('Filter: isDimension', () => {
@@ -13,7 +13,7 @@ describe('Filter: isDimension', () => {
     type: 'dimension',
   }, {
     value: 'a string',
-  }] as StyleDictionary.TransformedToken[];
+  }] as TransformedToken[];
   it('filters dimension tokens', () => {
     expect(items.filter(isDimension)).toStrictEqual([items[0], items[2]]);
   });
