@@ -11,6 +11,6 @@
   "license": "ISC",
   "dependencies": {
     "style-dictionary": "^4.0.1",
-    "style-dictionary-utils": "^3.1.0"
+    "style-dictionary-utils": "^3.1.1"
   }
 }

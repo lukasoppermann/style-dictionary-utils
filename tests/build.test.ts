@@ -1,7 +1,5 @@
 import {StyleDictionary as SD} from 'style-dictionary-utils';
 
-const StyleDictionary = new SD()
-
 describe('build.test.ts', () => {
 
   const StyleDictionary = new SD()

@@ -29,9 +29,11 @@ The easiest way to use `style-dictionary-utils` is to import the prepared `Style
 
 ```js
 // build.ts
-import StyleDictionary from 'style-dictionary-utils'
+import {StyleDictionary} from 'style-dictionary-utils'
 
-const myStyleDictionary = StyleDictionary.extend({
+const myStyleDictionary = new StyleDictionary()
+
+myStyleDictionary.extend({
   "platforms": {
     "ts": {
       "transforms": ['color/hexAlpha', 'shadow/css'],
@@ -58,7 +60,7 @@ The only difference is that you must use the `StyleDictionary` object that you i
 
 ```js
 // build.ts
-import StyleDictionary from 'style-dictionary-utils'
+import { StyleDictionary } from 'style-dictionary-utils'
 
 StyleDictionary.registerTransform({
   name: 'transform/pxToRem',
@@ -145,10 +147,11 @@ The parser will keep most propertys as is and only change `$value` to `value` an
 To register the parsers add the following code to your build file.
 
 ```js
-import StyleDictionary from 'style-dictionary-utils'
+import {StyleDictionary} from 'style-dictionary-utils'
 import { w3cTokenJsonParser } from 'style-dictionary-utils/dist/parser/w3c-token-json-parser'
 
-StyleDictionary.registerParser(w3cTokenJsonParser)
+const myStyleDictionary = new StyleDictionary()
+myStyleDictionary.registerParser(w3cTokenJsonParser)
 ```
 
 ### w3cTokenJson5Parser (not autoloaded)
@@ -159,10 +162,11 @@ This parser is exactly the same as the `w3cTokenJsonParser` with the only differ
 To register the parsers add the following code to your build file.
 
 ```js
-import StyleDictionary from 'style-dictionary-utils'
+import {StyleDictionary} from 'style-dictionary-utils'
 import { w3cTokenJson5Parser } from 'style-dictionary-utils/dist/parser/w3c-token-json5-parser'
 
-StyleDictionary.registerParser(w3cTokenJson5Parser)
+const myStyleDictionary = new StyleDictionary()
+myStyleDictionary.registerParser(w3cTokenJson5Parser)
 ```
 
 Make sure to install [`json5`](https://json5.org/) by running `npm i -D json5`.
@@ -197,7 +201,7 @@ export default {
 
 ##### Usage:
 ```js
-const myStyleDictionary = StyleDictionary.extend({
+myStyleDictionary.extend({
   "platforms": {
     "ts": {
       "transforms": //...,
@@ -223,7 +227,7 @@ exports.default = {
 ```
 ##### Usage:
 ```js
-const myStyleDictionary = StyleDictionary.extend({
+myStyleDictionary.extend({
   "platforms": {
     "js": {
       "transforms": //...,
@@ -265,7 +269,7 @@ body[theme="dark"] {
 
 ##### Usage:
 ```js
-const myStyleDictionary = StyleDictionary.extend({
+myStyleDictionary.extend({
   "platforms": {
     "css": {
       "transforms": //...,
@@ -294,7 +298,7 @@ You can use transforms by refering the name in the array value of the [`transfor
 If you want to use the same `transformers` multiple times you can create a [`transform group`](https://amzn.github.io/style-dictionary/#/api?id=registertransformgroup) for easy reference.
 
 ```js
-StyleDictionary.registerTransformGroup({
+myStyleDictionary.registerTransformGroup({
   name: 'webHex',
   transforms: [
     'color/hexAlpha',
@@ -311,7 +315,7 @@ It includes all transforms from the original [`css` transform group](https://amz
 You can use it like any other transform Group:
 
 ```js
-const myStyleDictionary = StyleDictionary.extend({
+myStyleDictionary.extend({
   "platforms": {
     "css": {
       "transformGroup": 'css/extended',
@@ -331,7 +335,7 @@ This is especially useful for flat `.js` or `.json` files.
 To use it simply add `name/pathToDotNotation` to the `transforms` array.
 
 ```js
-const myStyleDictionary = StyleDictionary.extend({
+myStyleDictionary.extend({
   "platforms": {
     "ts": {
       "transforms": ['name/pathToDotNotation'],
@@ -374,7 +378,7 @@ This `name` transformer replaces the token name with the entire path of the toke
 To use it simply add `name/pathToCamelCase` to the `transforms` array.
 
 ```js
-const myStyleDictionary = StyleDictionary.extend({
+myStyleDictionary.extend({
   "platforms": {
     "ts": {
       "transforms": ['name/pathToCamelCase'],
@@ -417,7 +421,7 @@ This `value` transformer replaces the value of a token with a `$type` or `type` 
 **Note:** If your initial color value has an alpha value (e.g. `hex8`) **AND** you add an `alpha` property, the `alpha` property will simply replace the previous alpha value.
 
 ```js
-const myStyleDictionary = StyleDictionary.extend({
+myStyleDictionary.extend({
   "platforms": {
     "ts": {
       "transforms": ['color/rgbAlpha'],
@@ -466,7 +470,7 @@ This `value` transformer replaces the value of a token with a `$type` or `type` 
 **Note:** If your initial color value has an alpha value (e.g. `rgba`) **AND** you add an `alpha` property, the `alpha` property will simply replace the previous alpha value.
 
 ```js
-const myStyleDictionary = StyleDictionary.extend({
+myStyleDictionary.extend({
   "platforms": {
     "ts": {
       "transforms": ['color/hexAlpha'],
@@ -514,7 +518,7 @@ const myStyleDictionary = StyleDictionary.extend({
 This `value` transformer replaces the value of a token with a `$type` or `type` of `color` with a `hex` string.
 
 ```js
-const myStyleDictionary = StyleDictionary.extend({
+myStyleDictionary.extend({
   "platforms": {
     "ts": {
       "transforms": ['color/hex'],
@@ -560,7 +564,7 @@ const myStyleDictionary = StyleDictionary.extend({
 This `value` transformer replaces the value of a token with a `$type` or `type` of `color` with an `rgba` string.
 
 ```js
-const myStyleDictionary = StyleDictionary.extend({
+myStyleDictionary.extend({
   "platforms": {
     "ts": {
       "transforms": ['color/rgba'],
@@ -607,7 +611,7 @@ This `value` transformer replaces the value of a token with a `$type` or `type` 
 This is helpful for tools and platforms and use float rgba values where the `r`, `g`, `b` and `a` values go from `0` to `1`. For example when preparing tokens to be imported into Figma.
 
 ```js
-const myStyleDictionary = StyleDictionary.extend({
+myStyleDictionary.extend({
   "platforms": {
     "json": {
       "transforms": ['color/rgbaFloat'],
@@ -658,7 +662,7 @@ const myStyleDictionary = StyleDictionary.extend({
 This `value` transformer replaces the value of a w3c shadow token with a `$type` or `type` of `shadow` with a `css` shadow string.
 
 ```js
-const myStyleDictionary = StyleDictionary.extend({
+myStyleDictionary.extend({
   "platforms": {
     "ts": {
       "transforms": ['shadow/css'],
@@ -705,7 +709,7 @@ const myStyleDictionary = StyleDictionary.extend({
 This `value` transformer replaces the value of a w3c typography token with a `$type` or `type` of `typography` with a `css` font string.
 
 ```js
-const myStyleDictionary = StyleDictionary.extend({
+myStyleDictionary.extend({
   "platforms": {
     "ts": {
       "transforms": ['font/css'],
@@ -752,7 +756,7 @@ const myStyleDictionary = StyleDictionary.extend({
 This `value` transformer replaces the value of a w3c fontFamily token with a `$type` or `type` of `fontFamily` with a `css` fontFamily string.
 
 ```js
-const myStyleDictionary = StyleDictionary.extend({
+myStyleDictionary.extend({
   "platforms": {
     "ts": {
       "transforms": ['fontFamily/css'],
@@ -793,7 +797,7 @@ const myStyleDictionary = StyleDictionary.extend({
 This `value` transformer replaces the value of a w3c fontWeight token with a `$type` or `type` of `fontWeight` with a `css` fontWeight number.
 
 ```js
-const myStyleDictionary = StyleDictionary.extend({
+myStyleDictionary.extend({
   "platforms": {
     "ts": {
       "transforms": ['fontWeight/number'],
@@ -833,7 +837,7 @@ const myStyleDictionary = StyleDictionary.extend({
 This `value` transformer replaces the value of a w3c gradient token with a `$type` or `type` of `gradient` with a `css` gradient string.
 
 ```js
-const myStyleDictionary = StyleDictionary.extend({
+myStyleDictionary.extend({
   "platforms": {
     "ts": {
       "transforms": ['gradient/css'],
@@ -884,7 +888,7 @@ const myStyleDictionary = StyleDictionary.extend({
 This `value` transformer replaces the value of a w3c cubicBezier token with a `$type` or `type` of `cubicBezier` with a `css` cubicBezier string.
 
 ```js
-const myStyleDictionary = StyleDictionary.extend({
+myStyleDictionary.extend({
   "platforms": {
     "ts": {
       "transforms": ['cubicBezier/css'],
@@ -930,7 +934,7 @@ const myStyleDictionary = StyleDictionary.extend({
 This `value` transformer replaces the value of a token with a `$type` or `type` of `dimension` that has a `px` value, with a `rem` value.
 
 ```js
-const myStyleDictionary = StyleDictionary.extend({
+myStyleDictionary.extend({
   "platforms": {
     "ts": {
       "transforms": ['dimension/pixelToRem'],
@@ -974,7 +978,7 @@ const myStyleDictionary = StyleDictionary.extend({
 This `value` transformer replaces the value of a token with a `$type` or `type` of `dimension` that has a `rem` value, with a `px` value.
 
 ```js
-const myStyleDictionary = StyleDictionary.extend({
+myStyleDictionary.extend({
   "platforms": {
     "ts": {
       "transforms": ['dimension/remToPixel'],
@@ -1019,7 +1023,7 @@ const myStyleDictionary = StyleDictionary.extend({
 This `value` transformer replaces the value of a token with a `$type` or `type` of `dimension` that has a `rem` or `px` value, with a unitless `pixel` based value. This is useful for example when preparing tokens to be imported into Figma.
 
 ```js
-const myStyleDictionary = StyleDictionary.extend({
+myStyleDictionary.extend({
   "platforms": {
     "json": {
       "transforms": ['dimension/pixelUnitless'],
@@ -1039,7 +1043,7 @@ const myStyleDictionary = StyleDictionary.extend({
 This `value` transformer replaces the value of a token with a `$type` or `type` of `clamp` that has a `$value` object with `min`, `ideal` and `max` property, with a css `clamp` function.
 
 ```js
-const myStyleDictionary = StyleDictionary.extend({
+myStyleDictionary.extend({
   "platforms": {
     "json": {
       "transforms": ['clamp/css'],
@@ -1088,7 +1092,7 @@ Filters are used to filter out unwanted tokens when [configuring output files](h
 Only allows tokens that come from a [`source`](https://amzn.github.io/style-dictionary/#/config?id=attributes) file to be included in the output. Tokens from an [`include`](https://amzn.github.io/style-dictionary/#/config?id=attributes) will be removed.
 
 ```js
-const myStyleDictionary = StyleDictionary.extend({
+myStyleDictionary.extend({
   "platforms": {
     "ts": {
       "transforms": //...,
@@ -1106,7 +1110,7 @@ const myStyleDictionary = StyleDictionary.extend({
 Only allows tokens with a `type` or `$type` property of `color`.
 
 ```js
-const myStyleDictionary = StyleDictionary.extend({
+myStyleDictionary.extend({
   "platforms": {
     "ts": {
       "transforms": //...,
@@ -1123,7 +1127,7 @@ const myStyleDictionary = StyleDictionary.extend({
 Only allows tokens with a `type` or `$type` property of `gradient`.
 
 ```js
-const myStyleDictionary = StyleDictionary.extend({
+myStyleDictionary.extend({
   "platforms": {
     "ts": {
       "transforms": //...,
@@ -1140,7 +1144,7 @@ const myStyleDictionary = StyleDictionary.extend({
 Only allows tokens with a `type` or `$type` property of `color` or `gradient`.
 
 ```js
-const myStyleDictionary = StyleDictionary.extend({
+myStyleDictionary.extend({
   "platforms": {
     "ts": {
       "transforms": //...,
@@ -1157,7 +1161,7 @@ const myStyleDictionary = StyleDictionary.extend({
 Only allows tokens with a `type` or `$type` property of `typography`.
 
 ```js
-const myStyleDictionary = StyleDictionary.extend({
+myStyleDictionary.extend({
   "platforms": {
     "ts": {
       "transforms": //...,
@@ -1174,7 +1178,7 @@ const myStyleDictionary = StyleDictionary.extend({
 Only allows tokens with a `type` or `$type` property of `typography`, `fontWeight` or `fontFamily`.
 
 ```js
-const myStyleDictionary = StyleDictionary.extend({
+myStyleDictionary.extend({
   "platforms": {
     "ts": {
       "transforms": //...,
@@ -1190,7 +1194,7 @@ const myStyleDictionary = StyleDictionary.extend({
 Only allows tokens with a `type` or `$type` property of `transition`.
 
 ```js
-const myStyleDictionary = StyleDictionary.extend({
+myStyleDictionary.extend({
   "platforms": {
     "ts": {
       "transforms": //...,
@@ -1207,7 +1211,7 @@ const myStyleDictionary = StyleDictionary.extend({
 Only allows tokens with a `type` or `$type` property of `strokeStyle`.
 
 ```js
-const myStyleDictionary = StyleDictionary.extend({
+myStyleDictionary.extend({
   "platforms": {
     "ts": {
       "transforms": //...,
@@ -1224,7 +1228,7 @@ const myStyleDictionary = StyleDictionary.extend({
 Only allows tokens with a `type` or `$type` property of `shadow`.
 
 ```js
-const myStyleDictionary = StyleDictionary.extend({
+myStyleDictionary.extend({
   "platforms": {
     "ts": {
       "transforms": //...,
@@ -1241,7 +1245,7 @@ const myStyleDictionary = StyleDictionary.extend({
 Only allows tokens with a `type` or `$type` property of `fontWeight`.
 
 ```js
-const myStyleDictionary = StyleDictionary.extend({
+myStyleDictionary.extend({
   "platforms": {
     "ts": {
       "transforms": //...,
@@ -1258,7 +1262,7 @@ const myStyleDictionary = StyleDictionary.extend({
 Only allows tokens with a `type` or `$type` property of `fontFamily`.
 
 ```js
-const myStyleDictionary = StyleDictionary.extend({
+myStyleDictionary.extend({
   "platforms": {
     "ts": {
       "transforms": //...,
@@ -1275,7 +1279,7 @@ const myStyleDictionary = StyleDictionary.extend({
 Only allows tokens with a `type` or `$type` property of `duration`.
 
 ```js
-const myStyleDictionary = StyleDictionary.extend({
+myStyleDictionary.extend({
   "platforms": {
     "ts": {
       "transforms": //...,
@@ -1292,7 +1296,7 @@ const myStyleDictionary = StyleDictionary.extend({
 Only allows tokens with a `type` or `$type` property of `dimension`.
 
 ```js
-const myStyleDictionary = StyleDictionary.extend({
+myStyleDictionary.extend({
   "platforms": {
     "ts": {
       "transforms": //...,
@@ -1309,7 +1313,7 @@ const myStyleDictionary = StyleDictionary.extend({
 Only allows tokens with a `type` or `$type` property of `cubicBezier`.
 
 ```js
-const myStyleDictionary = StyleDictionary.extend({
+myStyleDictionary.extend({
   "platforms": {
     "ts": {
       "transforms": //...,
@@ -1325,7 +1329,7 @@ const myStyleDictionary = StyleDictionary.extend({
 Only allows tokens with a `type` or `$type` property of `border`.
 
 ```js
-const myStyleDictionary = StyleDictionary.extend({
+myStyleDictionary.extend({
   "platforms": {
     "ts": {
       "transforms": //...,
@@ -1342,7 +1346,7 @@ const myStyleDictionary = StyleDictionary.extend({
 Only allows tokens with a `type` or `$type` property of `clamp` and an object as the `$value` with a `min`, `ideal` and `max` property.
 
 ```js
-const myStyleDictionary = StyleDictionary.extend({
+myStyleDictionary.extend({
   "platforms": {
     "ts": {
       "transforms": //...,
@@ -1388,7 +1392,7 @@ StyleDictionary.registerFilter({
 import StyleDictionary from 'style-dictionary-utils'
 import {getHasAttribute} from 'style-dictionary-utils/dist/filter/getHasAttribute'
 
-const myStyleDictionary = StyleDictionary.extend({
+myStyleDictionary.extend({
   "platforms": {
     "deprecatedJson": {
       "transforms": //...,
@@ -1437,7 +1441,7 @@ StyleDictionary.registerFilter({
 import StyleDictionary from 'style-dictionary-utils'
 import {getHasAttributeValue} from 'style-dictionary-utils/dist/filter/getHasAttributeValue'
 
-const myStyleDictionary = StyleDictionary.extend({
+myStyleDictionary.extend({
   "platforms": {
     "deprecatedJson": {
       "transforms": //...,
@@ -1471,7 +1475,7 @@ StyleDictionary.registerFilter({
 import StyleDictionary from 'style-dictionary-utils'
 import {getIsType} from 'style-dictionary-utils/dist/filter/getIsType'
 
-const myStyleDictionary = StyleDictionary.extend({
+myStyleDictionary.extend({
   "platforms": {
     "ts": {
       "transforms": //...,
