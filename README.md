@@ -4,7 +4,7 @@
 [![GitHub release (release name instead of tag name)](https://img.shields.io/github/v/release/lukasoppermann/style-dictionary-utils)](https://github.com/lukasoppermann/style-dictionary-utils/releases)
 
 
-`style-dictionary-utils` is a collection of `parsers`, `filters`, `transformers` and `formats` for [Style Dictionary](https://amzn.github.io/style-dictionary) that make working with [w3c design tokens](https://github.com/design-tokens/community-group) a lot easier.
+`style-dictionary-utils` is a collection of `parsers`, `filters`, `transformers` and `formats` for [Style Dictionary](https://styledictionary.com/) that make working with [w3c design tokens](https://github.com/design-tokens/community-group) a lot easier.
 
 ## Installation
 
