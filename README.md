@@ -4,7 +4,7 @@
 [![GitHub release (release name instead of tag name)](https://img.shields.io/github/v/release/lukasoppermann/style-dictionary-utils)](https://github.com/lukasoppermann/style-dictionary-utils/releases)
 
 
-`style-dictionary-utils` is a collection of `parsers`, `filters`, `transformers` and `formats` for [Style Dictionary](https://amzn.github.io/style-dictionary) that make working with [w3c design tokens](https://github.com/design-tokens/community-group) a lot easier.
+`style-dictionary-utils` is a collection of `parsers`, `filters`, `transformers` and `formats` for [Style Dictionary](https://styledictionary.com/) that make working with [w3c design tokens](https://github.com/design-tokens/community-group) a lot easier.
 
 ## Installation
 
@@ -84,6 +84,7 @@ StyleDictionary.registerTransform({
 - Transformers
   - [name/pathToDotNotation](#namepathtodotnotation)
   - [name/pathToCamelCase](#namepathtocamelcase)
+  - [name/pathToPascalCase](#namepathtopascalcase)
   - [color/rgbAlpha](#colorrgbalpha)
   - [color/hexAlpha](#colorhexalpha)
   - [color/hex](#colorhex)
@@ -409,6 +410,48 @@ myStyleDictionary.extend({
 ```js
 {
   "colorsBgDefault": {
+    // ...
+  }
+}
+```
+### name/pathToPascalCase
+
+This `name` transformer replaces the token name with the entire path of the token in camelCase notation.
+
+To use it simply add `name/pathToPascalCase` to the `transforms` array.
+
+```js
+myStyleDictionary.extend({
+  "platforms": {
+    "ts": {
+      "transforms": ['name/pathToPascalCase'],
+      "files": [{
+        // ...
+      }]
+    }
+  }
+});
+```
+
+##### Before transformation
+
+```js
+{
+  colors: {
+    bg: {
+      default: {
+        // ...
+      }
+    }
+  }
+}
+```
+
+##### After transformation
+
+```js
+{
+  "ColorsBgDefault": {
     // ...
   }
 }

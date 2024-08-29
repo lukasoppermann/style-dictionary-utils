@@ -1,0 +1,12 @@
+{
+  base: {
+    color: {
+      blue: {
+        "500": {
+          "$value": "#0000ff",
+          "$type": "color",
+        }
+      }
+    } 
+  }
+}
