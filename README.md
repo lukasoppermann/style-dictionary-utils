@@ -84,6 +84,7 @@ StyleDictionary.registerTransform({
 - Transformers
   - [name/pathToDotNotation](#namepathtodotnotation)
   - [name/pathToCamelCase](#namepathtocamelcase)
+  - [name/pathToPascalCase](#namepathtopascalcase)
   - [color/rgbAlpha](#colorrgbalpha)
   - [color/hexAlpha](#colorhexalpha)
   - [color/hex](#colorhex)
@@ -409,6 +410,48 @@ myStyleDictionary.extend({
 ```js
 {
   "colorsBgDefault": {
+    // ...
+  }
+}
+```
+### name/pathToPascalCase
+
+This `name` transformer replaces the token name with the entire path of the token in camelCase notation.
+
+To use it simply add `name/pathToPascalCase` to the `transforms` array.
+
+```js
+myStyleDictionary.extend({
+  "platforms": {
+    "ts": {
+      "transforms": ['name/pathToPascalCase'],
+      "files": [{
+        // ...
+      }]
+    }
+  }
+});
+```
+
+##### Before transformation
+
+```js
+{
+  colors: {
+    bg: {
+      default: {
+        // ...
+      }
+    }
+  }
+}
+```
+
+##### After transformation
+
+```js
+{
+  "ColorsBgDefault": {
     // ...
   }
 }
