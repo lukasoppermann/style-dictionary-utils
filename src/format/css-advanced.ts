@@ -23,10 +23,6 @@ export const cssAdvanced: FormatFn = async ({ dictionary: originalDictionary, op
   }
   // clone dictionary
   const dictionary = { ...originalDictionary }
-  // add prefix to tokens
-  if (platform.prefix) {
-    dictionary.allTokens = dictionary.allTokens.map(token => ({ ...token, name: platform.prefix + '-' + token.name, path: [platform.prefix, ...token.path] } as TransformedToken))
-  }
   // get queries from tokens
   for (const designToken of dictionary.allTokens) {
     const atRule = designToken.$extensions?.[queryExtProp]
@@ -70,7 +66,8 @@ export const cssAdvanced: FormatFn = async ({ dictionary: originalDictionary, op
     // early abort if no matches
     if (!filteredDictionary.allTokens.length) continue
     // add tokens into root
-    const css = formattedVariables({ format: 'css', dictionary: filteredDictionary, outputReferences, formatting })
+    console.log(filteredDictionary)
+    const css = formattedVariables({ format: 'css', dictionary: filteredDictionary, outputReferences, formatting, usesDtcg: true})
     // atRule css
     let cssWithSelector = css
     for (const prelude of preludes.reverse()) {

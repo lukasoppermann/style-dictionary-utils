@@ -19,7 +19,7 @@
   ],
   "scripts": {
     "test": "npm run build && npx vitest run && npm run lint",
-    "test:build": "node ./tests/build.mjs",
+    "test:build": "npm run build && node ./tests/build.mjs",
     "lint": "npx eslint . --ext .ts",
     "lint:fix": "npx eslint . --ext .ts --fix",
     "lint:report": "npx eslint --output-file eslint_report.json --format json src",

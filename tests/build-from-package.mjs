@@ -1,4 +1,4 @@
-import { StyleDictionary as SD } from "../dist/index.js";
+import { StyleDictionary as SD } from "style-dictionary-utils";
 
 const StyleDictionary = new SD();
 
