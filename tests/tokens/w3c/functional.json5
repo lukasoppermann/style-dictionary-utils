@@ -3,6 +3,7 @@
     link: {
       $value: "{base.color.blue.500}",
       $type: "color",
+      "$description": "The link color",
     }
   }
 }
