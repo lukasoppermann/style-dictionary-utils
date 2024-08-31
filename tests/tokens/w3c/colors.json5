@@ -5,6 +5,7 @@
         "500": {
           "$value": "#0000ff",
           "$type": "color",
+          "$description": "A blue color",
         }
       }
     } 

@@ -1,11 +1,11 @@
 import { StyleDictionary as SD } from "../dist/index.js";
 
 const StyleDictionary = new SD();
-const extendSd = await StyleDictionary.extend({
-  source: ["./tests/tokens/*.json5"],
-  platforms: {
+
+const addPlatforms = (outdir) => {
+  return {
     css: {
-      buildPath: "./tests/dist/css/",
+      buildPath: `${outdir}/css/`,
       transformGroup: "css",
       files: [
         {
@@ -19,7 +19,7 @@ const extendSd = await StyleDictionary.extend({
     },
     cssPrefixed: {
       prefix: "PREFIX",
-      buildPath: "./tests/dist/css/",
+      buildPath: `${outdir}/css/`,
       transformGroup: "css",
       files: [
         {
@@ -33,7 +33,7 @@ const extendSd = await StyleDictionary.extend({
     },
     cssAdvanced: {
       prefix: "PREFIX",
-      buildPath: "./tests/dist/css/",
+      buildPath: `${outdir}/css/`,
       transformGroup: "css",
       files: [
         {
@@ -47,7 +47,7 @@ const extendSd = await StyleDictionary.extend({
     },
     commonJs: {
       prefix: "PREFIX",
-      buildPath: "./tests/dist/js/",
+      buildPath: `${outdir}/js/`,
       transformGroup: "js",
       files: [
         {
@@ -61,7 +61,7 @@ const extendSd = await StyleDictionary.extend({
     },
     esm: {
       prefix: "PREFIX",
-      buildPath: "./tests/dist/js/",
+      buildPath: `${outdir}/js/`,
       transformGroup: "js",
       files: [
         {
@@ -75,7 +75,7 @@ const extendSd = await StyleDictionary.extend({
     },
     esmDeclaration: {
       prefix: "PREFIX",
-      buildPath: "./tests/dist/js/",
+      buildPath: `${outdir}/js/`,
       transformGroup: "js",
       files: [
         {
@@ -86,8 +86,17 @@ const extendSd = await StyleDictionary.extend({
           }
         },
       ],
-    },
-  },
+    }
+  }
+}
+
+let extendSd = await StyleDictionary.extend({
+  source: ["./tests/tokens/w3c/*.json5"],
+  platforms: addPlatforms('./tests/dist/w3c'),
+})
+extendSd = await StyleDictionary.extend({
+  source: ["./tests/tokens/non-w3c/*.json5"],
+  platforms: addPlatforms('./tests/dist/non-w3c'),
 })
 
 extendSd.cleanAllPlatforms();

@@ -6,7 +6,7 @@ export const cssAdvanced: FormatFn = async ({ dictionary: originalDictionary, op
   rules: []
 }, file }: FormatFnArguments) => {
   // get options
-  const { outputReferences, descriptions } = options
+  const { outputReferences, formatting, usesDtcg } = options
   // selector
   const defaultSelector = file?.options?.selector !== undefined ? file?.options?.selector : ':root'
   // query extension property
@@ -18,10 +18,11 @@ export const cssAdvanced: FormatFn = async ({ dictionary: originalDictionary, op
     matcher: () => true
   }]
   // set formatting
-  const formatting: FormattingOptions = {
-    commentStyle: descriptions ? 'long' : 'none',
+  const mergedFormatting: FormattingOptions = {
+    commentStyle: 'long',
+    ...formatting
   }
-  // clone dictionary
+  // clone dictioxnary
   const dictionary = { ...originalDictionary }
   // get queries from tokens
   for (const designToken of dictionary.allTokens) {
@@ -66,7 +67,7 @@ export const cssAdvanced: FormatFn = async ({ dictionary: originalDictionary, op
     // early abort if no matches
     if (!filteredDictionary.allTokens.length) continue
     // add tokens into root
-    const css = formattedVariables({ format: 'css', dictionary: filteredDictionary, outputReferences, formatting, usesDtcg: true})
+    const css = formattedVariables({ format: 'css', dictionary: filteredDictionary, outputReferences, formatting: mergedFormatting, usesDtcg })
     // atRule css
     let cssWithSelector = css
     for (const prelude of preludes.reverse()) {
