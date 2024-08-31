@@ -4,7 +4,7 @@ import { format } from 'prettier'
 
 export const cssAdvanced: FormatFn = async ({ dictionary: originalDictionary, options = {
   rules: []
-}, file, platform }: FormatFnArguments) => {
+}, file }: FormatFnArguments) => {
   // get options
   const { outputReferences, descriptions } = options
   // selector
@@ -66,7 +66,6 @@ export const cssAdvanced: FormatFn = async ({ dictionary: originalDictionary, op
     // early abort if no matches
     if (!filteredDictionary.allTokens.length) continue
     // add tokens into root
-    console.log(filteredDictionary)
     const css = formattedVariables({ format: 'css', dictionary: filteredDictionary, outputReferences, formatting, usesDtcg: true})
     // atRule css
     let cssWithSelector = css

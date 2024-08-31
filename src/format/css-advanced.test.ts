@@ -9,7 +9,7 @@ describe('Format: CSS Advanced', () => {
       path: ['color', 'background', 'primary'],
       original: {
         name: "color-background-primary",
-        value: '#FF0000',
+        $value: '#FF0000',
         attributes: {
           category: "",
         }
@@ -17,7 +17,7 @@ describe('Format: CSS Advanced', () => {
       filePath: "./src/tokens/color.dark.json",
       isSource: true,
       $type: 'color',
-      value: '#FF0000',
+      $value: '#FF0000',
       attributes: {
         category: "",
       },
@@ -29,7 +29,7 @@ describe('Format: CSS Advanced', () => {
       path: ['color', 'background', 'secondary'],
       original: {
         name: "color-background-secondary",
-        value: '#0000ff',
+        $value: '#0000ff',
         attributes: {
           category: "",
         }
@@ -37,7 +37,7 @@ describe('Format: CSS Advanced', () => {
       filePath: "./src/tokens/color.light.json",
       isSource: true,
       $type: 'color',
-      value: '#0000ff',
+      $value: '#0000ff',
       attributes: {
         category: "",
       },
@@ -46,7 +46,7 @@ describe('Format: CSS Advanced', () => {
       path: ['color', 'background', 'green'],
       original: {
         name: "color-background-green",
-        value: '#00ff00',
+        $value: '#00ff00',
         attributes: {
           category: "",
         }
@@ -54,7 +54,7 @@ describe('Format: CSS Advanced', () => {
       filePath: "./src/tokens/color.base.json",
       isSource: true,
       $type: 'color',
-      value: '#00ff00',
+      $value: '#00ff00',
       attributes: {
         category: "",
       }
@@ -87,17 +87,17 @@ describe('Format: CSS Advanced', () => {
   it('Formats tokens with queries per file path', async () => {
     const output = `@media (prefers-color-scheme: dark) {
   :root {
-    --customPrefix-color-background-primary: #ff0000;
+    --color-background-primary: #ff0000;
   }
 }
 @media (prefers-color-scheme: light) {
   :root {
-    --customPrefix-color-background-secondary: #0000ff;
+    --color-background-secondary: #0000ff;
   }
 }
 @media screen {
   :root {
-    --customPrefix-color-background-green: #00ff00;
+    --color-background-green: #00ff00;
   }
 }
 `
@@ -121,9 +121,9 @@ describe('Format: CSS Advanced', () => {
 
     const output = `@media (prefers-color-scheme: dark) {
   :root {
-    --customPrefix-color-background-primary: #ff0000;
-    --customPrefix-color-background-secondary: #0000ff;
-    --customPrefix-color-background-green: #00ff00;
+    --color-background-primary: #ff0000;
+    --color-background-secondary: #0000ff;
+    --color-background-green: #00ff00;
   }
 }
 `
@@ -148,9 +148,9 @@ describe('Format: CSS Advanced', () => {
     const output = `@media (prefers-color-scheme: dark) {
   @supports (display: grid) {
     :root {
-      --customPrefix-color-background-primary: #ff0000;
-      --customPrefix-color-background-secondary: #0000ff;
-      --customPrefix-color-background-green: #00ff00;
+      --color-background-primary: #ff0000;
+      --color-background-secondary: #0000ff;
+      --color-background-green: #00ff00;
     }
   }
 }
@@ -174,9 +174,9 @@ describe('Format: CSS Advanced', () => {
 
     const output = `@media (prefers-color-scheme: light) {
   :root {
-    --customPrefix-color-background-primary: #ff0000;
-    --customPrefix-color-background-secondary: #0000ff;
-    --customPrefix-color-background-green: #00ff00;
+    --color-background-primary: #ff0000;
+    --color-background-secondary: #0000ff;
+    --color-background-green: #00ff00;
   }
 }
 `
@@ -202,13 +202,13 @@ describe('Format: CSS Advanced', () => {
       }
     }
     const output = `:root {
-  --customPrefix-color-background-primary: #ff0000;
-  --customPrefix-color-background-secondary: #0000ff;
-  --customPrefix-color-background-green: #00ff00;
+  --color-background-primary: #ff0000;
+  --color-background-secondary: #0000ff;
+  --color-background-green: #00ff00;
 }
 @media (min-width: 868px) {
   :root {
-    --customPrefix-color-background-secondary: #0000ff;
+    --color-background-secondary: #0000ff;
   }
 }
 `
@@ -228,13 +228,13 @@ describe('Format: CSS Advanced', () => {
       }
     }
     const output = `:root {
-  --customPrefix-color-background-primary: #ff0000;
-  --customPrefix-color-background-secondary: #0000ff;
-  --customPrefix-color-background-green: #00ff00;
+  --color-background-primary: #ff0000;
+  --color-background-secondary: #0000ff;
+  --color-background-green: #00ff00;
 }
 @media (min-width: 768px) {
   :root {
-    --customPrefix-color-background-primary: #ff0000;
+    --color-background-primary: #ff0000;
   }
 }
 `
@@ -254,9 +254,9 @@ describe('Format: CSS Advanced', () => {
     }
 
     const output = `:root {
-  --customPrefix-color-background-primary: #ff0000;
-  --customPrefix-color-background-secondary: #0000ff;
-  --customPrefix-color-background-green: #00ff00;
+  --color-background-primary: #ff0000;
+  --color-background-secondary: #0000ff;
+  --color-background-green: #00ff00;
 }
 `
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -286,12 +286,12 @@ describe('Format: CSS Advanced', () => {
     }
 
     const output = `[data-theme="dark"] {
-  --customPrefix-color-background-primary: #ff0000;
+  --color-background-primary: #ff0000;
 }
 @media (min-width: 768px) {
   [data-theme="dark"] {
-    --customPrefix-color-background-secondary: #0000ff;
-    --customPrefix-color-background-green: #00ff00;
+    --color-background-secondary: #0000ff;
+    --color-background-green: #00ff00;
   }
 }
 `
@@ -322,12 +322,12 @@ describe('Format: CSS Advanced', () => {
 
     const output = `@media (prefers-color-scheme: light) {
   :root {
-    --customPrefix-color-background-secondary: #0000ff;
+    --color-background-secondary: #0000ff;
   }
 }
 @media screen {
   :root {
-    --customPrefix-color-background-green: #00ff00;
+    --color-background-green: #00ff00;
   }
 }
 `
@@ -348,9 +348,9 @@ describe('Format: CSS Advanced', () => {
     }
 
     const output = `body[theme="dark"] {
-  --customPrefix-color-background-primary: #ff0000;
-  --customPrefix-color-background-secondary: #0000ff;
-  --customPrefix-color-background-green: #00ff00;
+  --color-background-primary: #ff0000;
+  --color-background-secondary: #0000ff;
+  --color-background-green: #00ff00;
 }
 `
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -369,9 +369,9 @@ describe('Format: CSS Advanced', () => {
     }
 
     const output = `:root {
-  --customPrefix-color-background-primary: #ff0000;
-  --customPrefix-color-background-secondary: #0000ff;
-  --customPrefix-color-background-green: #00ff00;
+  --color-background-primary: #ff0000;
+  --color-background-secondary: #0000ff;
+  --color-background-green: #00ff00;
 }
 `
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -401,9 +401,9 @@ describe('Format: CSS Advanced', () => {
       }
     }
 
-    const output = `--customPrefix-color-background-primary: #ff0000;
---customPrefix-color-background-secondary: #0000ff;
---customPrefix-color-background-green: #00ff00;
+    const output = `--color-background-primary: #ff0000;
+--color-background-secondary: #0000ff;
+--color-background-green: #00ff00;
 `
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore: fake values to test formatter
@@ -430,8 +430,8 @@ describe('Format: CSS Advanced', () => {
     }
 
     const output = `:root {
-  --customPrefix-color-background-secondary: #0000ff;
-  --customPrefix-color-background-green: #00ff00;
+  --color-background-secondary: #0000ff;
+  --color-background-green: #00ff00;
 }
 `
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
