@@ -41,8 +41,7 @@
   },
   "homepage": "https://github.com/lukasoppermann/style-dictionary-utils#readme",
   "dependencies": {
-    "color2k": "^2.0.3",
-    "json5": "^2.2.1"
+    "color2k": "^2.0.3"
   },
   "devDependencies": {
     "@types/node": "^22.2.0",

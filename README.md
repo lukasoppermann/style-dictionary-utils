@@ -4,7 +4,7 @@
 [![GitHub release (release name instead of tag name)](https://img.shields.io/github/v/release/lukasoppermann/style-dictionary-utils)](https://github.com/lukasoppermann/style-dictionary-utils/releases)
 
 
-`style-dictionary-utils` is a collection of `parsers`, `filters`, `transformers` and `formats` for [Style Dictionary](https://styledictionary.com/) that make working with [w3c design tokens](https://github.com/design-tokens/community-group) a lot easier.
+`style-dictionary-utils` is a collection of `filters`, `transformers` and `formats` for [Style Dictionary](https://styledictionary.com/) that make working with [w3c design tokens](https://github.com/design-tokens/community-group) a lot easier.
 
 ## Installation
 
@@ -12,12 +12,6 @@ Install the `style-dictionary-utils` as well as `style-dictionary`.
 
 ```bash
 npm i -D style-dictionary-utils style-dictionary
-```
-
-If you are using `.json5` files to define your design tokens install [`json5`](https://json5.org/) as well.
-
-```bash
-npm i -D json5
 ```
 
 ## How to use style dictionary version 3?
@@ -51,8 +45,6 @@ myStyleDictionary.buildAllPlatforms();
 
 Now all the included utilities<sup>*</sup> are available to you via the keys mentioned in the docs below.
 
-<sup>*</sup> You only need to register the [`w3cTokenJson5Parser`](#w3ctokenjson5parser-not-autoloaded) if you want to use `json5`.
-
 ## Extending style dictionary
 
 You can still extend style dictionary with your own transformers and formats like before.
@@ -74,9 +66,6 @@ StyleDictionary.registerTransform({
 
 ## Included utilities
 
-- Parsers
-  - [w3c token json parser](#w3ctokenjsonparser)
-  - [w3c token json5 parser](#w3ctokenjson5parser-not-autoloaded)
 - Formats
   - [javascript/esm](#javascriptesm)
   - [javascript/commonJs](#javascriptcommonJs)
@@ -121,70 +110,6 @@ StyleDictionary.registerTransform({
   - [getHasAttribute](#gethasattribute)
   - [getHasAttributeValue](#gethasattributevalue)
   - [getIsType](#getisyype)
-## 📠 Parsers
-
-### w3cTokenJsonParser
-This parser parses `.json` with [w3c design tokens](https://github.com/design-tokens/community-group).
-
-This means the following files can be used with this parser.
-
-```json
-{
-  "token": {
-    "value": "#223344",
-    "type": "color",
-    "description": "token description"
-  },
-  "w3cToken": {
-    "$value": "#223344",
-    "$type": "color",
-    "$description": "token description"
-  }
-}
-```
-
-The parser will keep most propertys as is and only change `$value` to `value` and `$description` or `description` to `comment`. This required for [Style Dictionary](https://amzn.github.io/style-dictionary).
-
-To register the parsers add the following code to your build file.
-
-```js
-import {StyleDictionary} from 'style-dictionary-utils'
-import { w3cTokenJsonParser } from 'style-dictionary-utils/dist/parser/w3c-token-json-parser'
-
-const myStyleDictionary = new StyleDictionary()
-myStyleDictionary.registerParser(w3cTokenJsonParser)
-```
-
-### w3cTokenJson5Parser (not autoloaded)
-If you are using `.json5` or `.jsonc` files to define your design tokens you need to use the `w3cTokenJson5Parser`. This is NOT enabled by default as it requires an additonal package, [`json5`](https://json5.org/), to work.
-
-This parser is exactly the same as the `w3cTokenJsonParser` with the only difference that it can parse `.json5` or `.jsonc`.
-
-To register the parsers add the following code to your build file.
-
-```js
-import {StyleDictionary} from 'style-dictionary-utils'
-import { w3cTokenJson5Parser } from 'style-dictionary-utils/dist/parser/w3c-token-json5-parser'
-
-const myStyleDictionary = new StyleDictionary()
-myStyleDictionary.registerParser(w3cTokenJson5Parser)
-```
-
-Make sure to install [`json5`](https://json5.org/) by running `npm i -D json5`.
-
-If you’re using [Prettier](https://prettier.io/), be aware that the default configuration removes [quote props](https://prettier.io/docs/en/options.html#quote-props), which are needed in `$type` and `$value` props in order to parse the tokens.
-
-Here’s an example of a prettier config that overrides the default:
-
-```yaml
-semi: false
-singleQuote: true
-overrides:
-  - files: '*.json[c|5]'
-    options:
-      quoteProps: preserve
-      singleQuote: false
-```
 
 ## 📑 Formats
 
