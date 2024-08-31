@@ -27,7 +27,8 @@
     "prebuild": "npm run clean:dist",
     "build": "tsc",
     "preversion": "npm run build && npm run test",
-    "postversion": "git push --follow-tags"
+    "postversion": "git push --follow-tags",
+    "postpublish": "npm i -D style-dictionary-utils@latest"
   },
   "keywords": [
     "design token",
@@ -49,6 +50,7 @@
     "eslint-plugin-github": "^4.10.2",
     "prettier": "^3.3.3",
     "style-dictionary": "^4.0.1",
+    "style-dictionary-utils": "^3.3.2",
     "typescript": "^5.5.2",
     "vitest": "^2.0.4"
   },

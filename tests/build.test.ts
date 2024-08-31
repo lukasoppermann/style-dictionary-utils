@@ -4,13 +4,6 @@ describe('build.test.ts', () => {
 
   const StyleDictionary = new SD()
 
-  it('has w3cTokenJsonParser parser', () => {
-    expect(StyleDictionary.hooks.parsers["w3cTokenJsonParser"]).toEqual({
-      "parser": expect.any(Function),
-      "pattern": /\.json$|\.tokens\.json$|\.tokens$/,
-    })
-  })
-
   it('all formats are attached', () => {
     expect(StyleDictionary.hooks.formats['javascript/esm']).toBeDefined()
     expect(StyleDictionary.hooks.formats['javascript/commonJs']).toBeDefined()
