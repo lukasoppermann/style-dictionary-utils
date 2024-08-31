@@ -103,7 +103,7 @@ describe('Format: CSS Advanced', () => {
 `
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore: fake values to test formatter
-    expect(await cssAdvanced({ dictionary, file, options: undefined, platform })).toStrictEqual(output)
+    expect(await cssAdvanced({ dictionary, file, options: {usesDtcg: true}, platform })).toStrictEqual(output)
   })
 
   it('Formats tokens with only one media query', async () => {
@@ -129,7 +129,7 @@ describe('Format: CSS Advanced', () => {
 `
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore: fake values to test formatter
-    expect(await cssAdvanced({ dictionary, file: fileOptions, options: undefined, platform })).toStrictEqual(output)
+    expect(await cssAdvanced({ dictionary, file: fileOptions, options: {usesDtcg: true}, platform })).toStrictEqual(output)
   })
 
   it('Formats tokens with one rule with nested atRule', async () => {
@@ -157,7 +157,7 @@ describe('Format: CSS Advanced', () => {
 `
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore: fake values to test formatter
-    expect(await cssAdvanced({ dictionary, file: fileOptions, options: undefined, platform })).toStrictEqual(output)
+    expect(await cssAdvanced({ dictionary, file: fileOptions, options: {usesDtcg: true}, platform })).toStrictEqual(output)
   })
 
   it('Formats tokens with only one media query without matcher', async () => {
@@ -182,7 +182,7 @@ describe('Format: CSS Advanced', () => {
 `
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore: fake values to test formatter
-    expect(await cssAdvanced({ dictionary, file: fileOptions, options: undefined, platform })).toStrictEqual(output)
+    expect(await cssAdvanced({ dictionary, file: fileOptions, options: {usesDtcg: true}, platform })).toStrictEqual(output)
   })
 
   it('Formats tokens with media query defined in token', async () => {
@@ -214,7 +214,7 @@ describe('Format: CSS Advanced', () => {
 `
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore: fake values to test formatter
-    expect(await cssAdvanced({ dictionary: customDict, file: fileOptions, options: undefined, platform })).toStrictEqual(output)
+    expect(await cssAdvanced({ dictionary: customDict, file: fileOptions, options: {usesDtcg: true}, platform })).toStrictEqual(output)
   })
 
   it('Formats tokens with custom media query defined in token and custom queryExtensionProperty', async () => {
@@ -240,7 +240,7 @@ describe('Format: CSS Advanced', () => {
 `
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore: fake values to test formatter
-    expect(await cssAdvanced({ dictionary, file: fileOptions, options: undefined, platform })).toStrictEqual(output)
+    expect(await cssAdvanced({ dictionary, file: fileOptions, options: {usesDtcg: true}, platform })).toStrictEqual(output)
   })
 
   it('Formats tokens with no queries defined', async () => {
@@ -261,7 +261,7 @@ describe('Format: CSS Advanced', () => {
 `
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore: fake values to test formatter
-    expect(await cssAdvanced({ dictionary, file: fileOptions, options: undefined, platform })).toStrictEqual(output)
+    expect(await cssAdvanced({ dictionary, file: fileOptions, options: {usesDtcg: true}, platform })).toStrictEqual(output)
   })
 
   it('Formats tokens with no atRule but selector', async () => {
@@ -297,7 +297,7 @@ describe('Format: CSS Advanced', () => {
 `
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore: fake values to test formatter
-    expect(await cssAdvanced({ dictionary, file: fileOptions, options: undefined, platform })).toStrictEqual(output)
+    expect(await cssAdvanced({ dictionary, file: fileOptions, options: {usesDtcg: true}, platform })).toStrictEqual(output)
   })
 
   it('Ignore empty groups', async () => {
@@ -333,7 +333,7 @@ describe('Format: CSS Advanced', () => {
 `
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore: fake values to test formatter
-    expect(await cssAdvanced({ dictionary, file: fileOptions, options: undefined, platform })).toStrictEqual(output)
+    expect(await cssAdvanced({ dictionary, file: fileOptions, options: {usesDtcg: true}, platform })).toStrictEqual(output)
   })
 
   it('Formats tokens with custom selector', async () => {
@@ -355,7 +355,7 @@ describe('Format: CSS Advanced', () => {
 `
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore: fake values to test formatter
-    expect(await cssAdvanced({ dictionary, file: fileOptions, options: undefined, platform })).toStrictEqual(output)
+    expect(await cssAdvanced({ dictionary, file: fileOptions, options: {usesDtcg: true}, platform })).toStrictEqual(output)
   })
 
   it('Formats tokens with default selector', async () => {
@@ -376,7 +376,7 @@ describe('Format: CSS Advanced', () => {
 `
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore: fake values to test formatter
-    expect(await cssAdvanced({ dictionary, file: fileOptions, options: undefined, platform })).toStrictEqual(output)
+    expect(await cssAdvanced({ dictionary, file: fileOptions, options: {usesDtcg: true}, platform })).toStrictEqual(output)
   })
 
   it('Formats tokens without selector', async () => {
@@ -407,10 +407,10 @@ describe('Format: CSS Advanced', () => {
 `
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore: fake values to test formatter
-    expect(await cssAdvanced({ dictionary, file: fileOptions, options: undefined, platform })).toStrictEqual(output)
+    expect(await cssAdvanced({ dictionary, file: fileOptions, options: {usesDtcg: true}, platform })).toStrictEqual(output)
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore: fake values to test formatter
-    expect(await cssAdvanced({ dictionary, file: fileOptionsTwo, options: undefined, platform })).toStrictEqual(output)
+    expect(await cssAdvanced({ dictionary, file: fileOptionsTwo, options: {usesDtcg: true}, platform })).toStrictEqual(output)
   })
 
   it('Formats tokens with invalid selector', async () => {
@@ -436,6 +436,6 @@ describe('Format: CSS Advanced', () => {
 `
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore: fake values to test formatter
-    expect(await cssAdvanced({ dictionary, file: fileOptions, options: undefined, platform })).toStrictEqual(output)
+    expect(await cssAdvanced({ dictionary, file: fileOptions, options: {usesDtcg: true}, platform })).toStrictEqual(output)
   })
 })
