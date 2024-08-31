@@ -20,7 +20,6 @@ import { cssAdvanced } from './format/css-advanced.js'
 import { javascriptCommonJs } from './format/javascript-commonJs.js'
 import { javascriptEsm } from './format/javascript-esm.js'
 import { typescriptEsmDeclarations } from './format/typescript-esm-declarations.js'
-import { w3cTokenJsonParser } from './parser/w3c-token-json-parser.js'
 import { cssExtended } from './transformGroups/cssExtended.js'
 import { borderCss } from './transformer/border-css.js'
 import { clampCss } from './transformer/clamp-css.js'
@@ -41,12 +40,6 @@ import { gradientCss } from './transformer/gradient-css.js'
 import { namePathToDotNotation } from './transformer/name-path-to-dot-notation.js'
 import { namePathToCamelCase } from './transformer/name-path-to-camel-case.js'
 import { shadowCss } from './transformer/shadow-css.js'
-
-/**
- * Parsers
- *
- */
-OrigialStyleDictionary.registerParser(w3cTokenJsonParser)
 
 /**
  * Formats
