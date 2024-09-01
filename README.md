@@ -27,7 +27,8 @@ import {StyleDictionary} from 'style-dictionary-utils'
 
 const myStyleDictionary = new StyleDictionary()
 
-myStyleDictionary.extend({
+// when using style dictionary 4 you whave to await the extend method
+const extendedSd = await myStyleDictionary.extend({
   "platforms": {
     "ts": {
       "transforms": ['color/hexAlpha', 'shadow/css'],
@@ -40,7 +41,7 @@ myStyleDictionary.extend({
   }
 });
 
-myStyleDictionary.buildAllPlatforms();
+extendedSd.buildAllPlatforms();
 ```
 
 Now all the included utilities<sup>*</sup> are available to you via the keys mentioned in the docs below.
@@ -67,9 +68,10 @@ StyleDictionary.registerTransform({
 ## Included utilities
 
 - Formats
-  - [javascript/esm](#javascriptesm)
-  - [javascript/commonJs](#javascriptcommonJs)
   - [css/advanced](#cssadvanced)
+  - [javascript/esm](#javascriptesm)
+  - [javascript/esm-declarations](#javascriptesmdeclarations)
+  - [javascript/commonJs](#javascriptcommonJs)
 - Transformers
   - [name/pathToDotNotation](#namepathtodotnotation)
   - [name/pathToCamelCase](#namepathtocamelcase)
@@ -112,59 +114,6 @@ StyleDictionary.registerTransform({
   - [getIsType](#getisyype)
 
 ## 📑 Formats
-
-### javascript/esm
-
-The `javascript/esm` format exports a token dictionary as an `es6 export` statement.
-
-```js
-export default {
-  colors: {
-    primary: '#0D70E6'
-  }
-}
-```
-
-##### Usage:
-```js
-myStyleDictionary.extend({
-  "platforms": {
-    "ts": {
-      "transforms": //...,
-      "files": [{
-        // ...
-        "format": "javascript/esm",
-      }]
-    }
-  }
-});
-```
-
-### javascript/commonJs
-
-The `javascript/commonJs` format exports a token dictionary as an `commonJs module`.
-
-```js
-exports.default = {
-  colors: {
-    primary: '#0D70E6'
-  }
-}
-```
-##### Usage:
-```js
-myStyleDictionary.extend({
-  "platforms": {
-    "js": {
-      "transforms": //...,
-      "files": [{
-        // ...
-        "format": "javascript/commonJs",
-      }]
-    }
-  }
-});
-```
 
 ### css/advanced
 
@@ -211,6 +160,88 @@ myStyleDictionary.extend({
             matcher: (token: StyleDictionary.TransformedToken) => token.filePath.includes('tablet'), // tokens that match this filter will be added inside the media query
           }]
         }
+      }]
+    }
+  }
+});
+```
+
+### javascript/esm
+
+The `javascript/esm` format exports a token dictionary as an `es6 export` statement.
+
+```js
+export default {
+  colors: {
+    primary: '#0D70E6'
+  }
+}
+```
+
+##### Usage:
+```js
+myStyleDictionary.extend({
+  "platforms": {
+    "ts": {
+      "transforms": //...,
+      "files": [{
+        // ...
+        "format": "javascript/esm",
+      }]
+    }
+  }
+});
+```
+
+### javascript/esm-declarations
+
+The `javascript/esm-declarations` format exports a token dictionary as a `typescript` declaration file.
+
+```js
+export default {
+  colors: {
+    primary: string
+  }
+}
+```
+
+##### Usage:
+```js
+myStyleDictionary.extend({
+  "platforms": {
+    "ts": {
+      "transforms": //...,
+      "files": [{
+        // ...
+        "format": "javascript/esm-declarations",
+      }]
+    }
+  }
+});
+```
+
+### javascript/commonJs
+
+The `javascript/commonJs` format exports a token dictionary as an `commonJs module`.
+
+```js
+exports.default = {
+  colors: {
+    primary: '#0D70E6'
+  }
+}
+```
+
+##### Usage:
+
+```js
+myStyleDictionary.extend({
+  "platforms": {
+    "js": {
+      "transforms": //...,
+      "files": [{
+        // ...
+        "format": "javascript/commonJs",
       }]
     }
   }
