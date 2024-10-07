@@ -59,7 +59,7 @@ StyleDictionary.registerTransform({
   name: 'transform/pxToRem',
   type: `value`,
   transitive: true,
-  transformer: () => // ...
+  transform: () => // ...
 })
 ```
 
