@@ -1,6 +1,6 @@
-
-import { Transform, TransformedToken } from 'style-dictionary/types'
-import { isFontWeight } from '../filter/isFontWeight.js'
+import { Transform, TransformedToken } from "style-dictionary/types";
+import { isFontWeight } from "../filter/isFontWeight.js";
+import { getValue } from "../utilities/getValue.js";
 /**
  * Acceptable font weights according to w3c standard
  * @link https://design-tokens.github.io/community-group/format/#font-weight
@@ -31,25 +31,27 @@ const fontWeights: { [key: string]: number } = {
   "extra-black": 950,
   "ultra-black": 950,
   extrablack: 950,
-  ultrablack: 950
-}
+  ultrablack: 950,
+};
 /**
  * fontWeightToNumber
  * @description convert a fontWeight string like `black` to the corresponding number, like `900`
  */
 export const fontWeightToNumber: Transform = {
-  name: 'fontWeight/number',
+  name: "fontWeight/number",
   type: `value`,
   transitive: true,
-  filter: (token: TransformedToken) => isFontWeight(token) && typeof token.value === 'string',
+  filter: (token: TransformedToken) =>
+    isFontWeight(token) && typeof getValue(token) === "string",
   transform: (token: TransformedToken) => {
+    const tokenValue = getValue<string>(token);
     // check if value exists in matrix
-    const fromMatrix = fontWeights[token.value.toLowerCase()]
-    if (fromMatrix !== undefined) return fromMatrix
+    const fromMatrix = fontWeights[tokenValue.toLowerCase()];
+    if (fromMatrix !== undefined) return fromMatrix;
     // test if value is quoted int
-    const valueAsInt = parseInt(token.value.toLowerCase())
-    if (Number.isInteger(valueAsInt)) return valueAsInt
+    const valueAsInt = parseInt(tokenValue.toLowerCase());
+    if (Number.isInteger(valueAsInt)) return valueAsInt;
     //
-    return token.value
-  }
-}
+    return tokenValue;
+  },
+};
