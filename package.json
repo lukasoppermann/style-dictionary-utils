@@ -23,6 +23,8 @@
     "lint": "npx eslint . --ext .ts",
     "lint:fix": "npx eslint . --ext .ts --fix",
     "lint:report": "npx eslint --output-file eslint_report.json --format json src",
+    "format": "prettier --check '**/*.{js,jsx,ts,tsx,md,mdx,css}'",
+    "format:fix": "prettier --write '**/*.{js,jsx,ts,tsx,md,mdx,css}'",
     "clean:dist": "rm -rf dist/",
     "prebuild": "npm run clean:dist",
     "build": "tsc",
@@ -45,9 +47,10 @@
     "color2k": "^2.0.3"
   },
   "devDependencies": {
+    "@github/prettier-config": "^0.0.6",
     "@types/node": "^22.2.0",
     "eslint": "^8.57.0",
-    "eslint-plugin-github": "^4.10.2",
+    "eslint-plugin-github": "^5.0.2",
     "prettier": "^3.3.3",
     "style-dictionary": "^4.0.1",
     "style-dictionary-utils": "^4.0.0",

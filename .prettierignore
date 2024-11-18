@@ -1,0 +1,4 @@
+dist/
+# next line needed for <Note> reference
+coverage/
+
