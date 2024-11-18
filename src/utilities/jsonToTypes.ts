@@ -7,26 +7,21 @@
  * @param isRoot is the root type
  * @returns typescript type definition
  */
-export const jsonToTypes = (
-  json: object,
-  indent = "  ",
-  rootName = "DesignToken",
-  isRoot = true
-) => {
+export const jsonToTypes = (json: object, indent = '  ', rootName = 'DesignToken', isRoot = true) => {
   // is non-object value
-  if (!json || typeof json !== "object") return json;
+  if (!json || typeof json !== 'object') return json
 
-  let result = isRoot ? `export type ${rootName} = {\n` : "{\n";
+  let result = isRoot ? `export type ${rootName} = {\n` : '{\n'
 
   Object.entries(json).forEach(([key, value]) => {
-    result += `${indent}'${key}': `;
-    if (typeof value === "object" && value !== null) {
-      result += jsonToTypes(value, `${indent}  `, rootName, false);
+    result += `${indent}'${key}': `
+    if (typeof value === 'object' && value !== null) {
+      result += jsonToTypes(value, `${indent}  `, rootName, false)
     } else {
-      result += `${typeof value};\n`;
+      result += `${typeof value};\n`
     }
-  });
+  })
 
-  result += `${indent.slice(0, -2)}};\n`;
-  return result;
-};
+  result += `${indent.slice(0, -2)}};\n`
+  return result
+}

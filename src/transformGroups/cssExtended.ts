@@ -1,4 +1,4 @@
-import styleDictionary from "style-dictionary";
+import styleDictionary from 'style-dictionary'
 
 export const cssExtended = {
   name: 'css/extended',
@@ -10,6 +10,6 @@ export const cssExtended = {
     'fontFamily/css',
     'fontWeight/number',
     'cubicBezier/css',
-    'border/css'
-  ]
+    'border/css',
+  ],
 }

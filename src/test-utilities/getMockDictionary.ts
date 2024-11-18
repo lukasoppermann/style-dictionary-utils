@@ -1,5 +1,5 @@
 import {getMockToken} from './getMockToken'
-import { Dictionary, TransformedTokens } from 'style-dictionary/types'
+import {Dictionary, TransformedTokens} from 'style-dictionary/types'
 
 const mockDictionaryDefault = {
   tokens: {

@@ -1,12 +1,12 @@
-import { isDimension } from '../filter/isDimension.js';
-import { PlatformConfig, Transform, TransformedToken } from 'style-dictionary/types';
+import {isDimension} from '../filter/isDimension.js'
+import {PlatformConfig, Transform, TransformedToken} from 'style-dictionary/types'
 
 /**
  * @description base font size from options or 16
  * @param options
  * @returns number
  */
-const getBasePxFontSize = (options?: PlatformConfig): number => options?.basePxFontSize ? options.basePxFontSize : 16
+const getBasePxFontSize = (options?: PlatformConfig): number => (options?.basePxFontSize ? options.basePxFontSize : 16)
 
 /**
  * @description checks if token value has a specific unit

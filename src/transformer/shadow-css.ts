@@ -1,5 +1,5 @@
-import { Transform, TransformedToken } from 'style-dictionary/types'
-import { isShadow } from '../filter/isShadow.js'
+import {Transform, TransformedToken} from 'style-dictionary/types'
+import {isShadow} from '../filter/isShadow.js'
 
 type TokenShadow = {
   color: string
@@ -16,23 +16,23 @@ const formatShadow = ({
   blur = '0',
   spread = '0',
   color,
-  inset = false
-}: TokenShadow ): string => `${offsetX} ${offsetY} ${blur} ${spread} ${color} ${inset ? 'inset' : ''}`.trim();
+  inset = false,
+}: TokenShadow): string => `${offsetX} ${offsetY} ${blur} ${spread} ${color} ${inset ? 'inset' : ''}`.trim()
 
 export const shadowCss: Transform = {
   name: 'shadow/css',
   type: `value`,
   transitive: true,
   filter: isShadow,
-  transform: ({value}: Omit<TransformedToken, 'value'> & { value?: string | TokenShadow}) => {
+  transform: ({value}: Omit<TransformedToken, 'value'> & {value?: string | TokenShadow}) => {
     if (Array.isArray(value)) {
-      return value.map(formatShadow).join(", ");
+      return value.map(formatShadow).join(', ')
     }
 
-    if (typeof value === "object") {
-      return formatShadow(value);
+    if (typeof value === 'object') {
+      return formatShadow(value)
     }
 
-    return value;
+    return value
   },
 }

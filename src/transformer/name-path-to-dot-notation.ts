@@ -1,14 +1,14 @@
-import { PlatformConfig, Transform, TransformedToken } from 'style-dictionary/types'
+import {PlatformConfig, Transform, TransformedToken} from 'style-dictionary/types'
 
 const capitalize = ([firstLetter, ...restOfWord]: string): string => {
-  return firstLetter.toUpperCase() + restOfWord.join("")
+  return firstLetter.toUpperCase() + restOfWord.join('')
 }
 
 const camelCase = (string: string): string => {
   return string
     .split(/[\s-_\+]+/g)
-    .map((part: string, index: number) => index === 0 ? part : capitalize(part))
-    .join("")
+    .map((part: string, index: number) => (index === 0 ? part : capitalize(part)))
+    .join('')
 }
 /**
  * namePathToDotNotation
@@ -21,6 +21,7 @@ export const namePathToDotNotation: Transform = {
   transform: (token: TransformedToken, platform?: PlatformConfig): string => {
     return [platform?.prefix, ...token.path]
       .filter((part: unknown): part is string => typeof part === 'string')
-      .map(part => camelCase(part)).join('.')
-  }
+      .map(part => camelCase(part))
+      .join('.')
+  },
 }

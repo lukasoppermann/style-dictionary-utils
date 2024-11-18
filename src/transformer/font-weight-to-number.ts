@@ -1,15 +1,14 @@
-
-import { Transform, TransformedToken } from 'style-dictionary/types'
-import { isFontWeight } from '../filter/isFontWeight.js'
+import {Transform, TransformedToken} from 'style-dictionary/types'
+import {isFontWeight} from '../filter/isFontWeight.js'
 /**
  * Acceptable font weights according to w3c standard
  * @link https://design-tokens.github.io/community-group/format/#font-weight
  */
-const fontWeights: { [key: string]: number } = {
+const fontWeights: {[key: string]: number} = {
   thin: 100,
   hairline: 100,
-  "extra-light": 200,
-  "ultra-light": 200,
+  'extra-light': 200,
+  'ultra-light': 200,
   extralight: 200,
   ultralight: 200,
   light: 300,
@@ -17,21 +16,21 @@ const fontWeights: { [key: string]: number } = {
   regular: 400,
   book: 400,
   medium: 500,
-  "semi-bold": 600,
-  "demi-bold": 600,
+  'semi-bold': 600,
+  'demi-bold': 600,
   semibold: 600,
   demibold: 600,
   bold: 700,
-  "extra-bold": 800,
-  "ultra-bold": 800,
+  'extra-bold': 800,
+  'ultra-bold': 800,
   extrabold: 800,
   ultrabold: 800,
   black: 900,
   heavy: 900,
-  "extra-black": 950,
-  "ultra-black": 950,
+  'extra-black': 950,
+  'ultra-black': 950,
   extrablack: 950,
-  ultrablack: 950
+  ultrablack: 950,
 }
 /**
  * fontWeightToNumber
@@ -51,5 +50,5 @@ export const fontWeightToNumber: Transform = {
     if (Number.isInteger(valueAsInt)) return valueAsInt
     //
     return token.value
-  }
+  },
 }

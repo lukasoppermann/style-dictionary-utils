@@ -1,6 +1,6 @@
-import { toHex } from 'color2k'
-import { isColor } from '../filter/isColor.js'
-import { Transform, TransformedToken } from 'style-dictionary/types'
+import {toHex} from 'color2k'
+import {isColor} from '../filter/isColor.js'
+import {Transform, TransformedToken} from 'style-dictionary/types'
 
 const toRgbaFloat = (color: string, alpha?: number) => {
   // get hex value from color string

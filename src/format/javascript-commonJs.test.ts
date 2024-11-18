@@ -1,4 +1,4 @@
-import { javascriptCommonJs } from './javascript-commonJs.js'
+import {javascriptCommonJs} from './javascript-commonJs.js'
 
 describe('Format: CommonJs', () => {
   const dictionary = {
@@ -6,21 +6,21 @@ describe('Format: CommonJs', () => {
       colors: {
         red: {
           $type: 'color',
-          value: '#FF0000'
-        }
-      }
-    }
+          value: '#FF0000',
+        },
+      },
+    },
   }
 
   const platform = {
-    prefix: 'test'
+    prefix: 'test',
   }
 
   const file = {
     destination: 'tokens.ts',
     options: {
-      showFileHeader: false
-    }
+      showFileHeader: false,
+    },
   }
 
   it('Formats tokens adding prefix', async () => {
@@ -34,7 +34,7 @@ describe('Format: CommonJs', () => {
 `
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore: fake values to test formatter
-    expect(await javascriptCommonJs({ dictionary, file, options: undefined, platform })).toStrictEqual(output)
+    expect(await javascriptCommonJs({dictionary, file, options: undefined, platform})).toStrictEqual(output)
   })
 
   it('Formats tokens without prefix', async () => {
@@ -46,7 +46,7 @@ describe('Format: CommonJs', () => {
 `
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore: fake values to test formatter
-    expect(await javascriptCommonJs({ dictionary, file, options: undefined, undefined })).toStrictEqual(output)
+    expect(await javascriptCommonJs({dictionary, file, options: undefined, undefined})).toStrictEqual(output)
   })
 
   it('Formats tokens accepting a custom prettier configuration', async () => {
@@ -57,12 +57,11 @@ describe('Format: CommonJs', () => {
 };
 `
     const prettier = {
-      singleQuote: true
+      singleQuote: true,
     }
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore: fake values to test formatter
-    expect(await javascriptCommonJs({ dictionary, file, options: { prettier }, undefined })).toStrictEqual(output)
+    expect(await javascriptCommonJs({dictionary, file, options: {prettier}, undefined})).toStrictEqual(output)
   })
-
 })

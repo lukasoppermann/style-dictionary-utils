@@ -1,13 +1,12 @@
-import {StyleDictionary as SD} from '../src/index';
+import {StyleDictionary as SD} from '../src/index'
 
 describe('index.ts', () => {
-
   const StyleDictionary = new SD()
 
   it('all formats are attached', () => {
     expect(StyleDictionary.hooks.formats['javascript/esm']).toBeDefined()
     expect(StyleDictionary.hooks.formats['javascript/commonJs']).toBeDefined()
-    expect(StyleDictionary.hooks.formats["typescript/esm-declarations"]).toBeDefined();
+    expect(StyleDictionary.hooks.formats['typescript/esm-declarations']).toBeDefined()
   })
 
   it('all transformers are attached', () => {
@@ -17,7 +16,7 @@ describe('index.ts', () => {
     expect(StyleDictionary.hooks.transforms['color/rgbaFloat']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['color/hexAlpha']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['comment/deprecated']).toBeDefined()
-    expect(StyleDictionary.hooks.transforms["clamp/css"]).toBeDefined();
+    expect(StyleDictionary.hooks.transforms['clamp/css']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['name/pathToDotNotation']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['name/pathToCamelCase']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['shadow/css']).toBeDefined()
@@ -28,19 +27,19 @@ describe('index.ts', () => {
     expect(StyleDictionary.hooks.transforms['cubicBezier/css']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['dimension/pixelToRem']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['dimension/remToPixel']).toBeDefined()
-    expect(StyleDictionary.hooks.transforms["dimension/pixelUnitless"]).toBeDefined();
+    expect(StyleDictionary.hooks.transforms['dimension/pixelUnitless']).toBeDefined()
   })
 
   it('all transformGroups are attached', () => {
     expect(StyleDictionary.hooks.transformGroups['css/extended']).toBeDefined()
   })
 
-  it('all filters are attached',() => {
+  it('all filters are attached', () => {
     expect(StyleDictionary.hooks.filters['isBorder']).toBeDefined()
     expect(StyleDictionary.hooks.filters['isColor']).toBeDefined()
     expect(StyleDictionary.hooks.filters['isColorOrGradient']).toBeDefined()
     expect(StyleDictionary.hooks.filters['isCubicBezier']).toBeDefined()
-    expect(StyleDictionary.hooks.filters["isClamp"]).toBeDefined();
+    expect(StyleDictionary.hooks.filters['isClamp']).toBeDefined()
     expect(StyleDictionary.hooks.filters['isDeprecated']).toBeDefined()
     expect(StyleDictionary.hooks.filters['isDimension']).toBeDefined()
     expect(StyleDictionary.hooks.filters['isDuration']).toBeDefined()
@@ -58,7 +57,7 @@ describe('index.ts', () => {
   it('can be extended with a format', () => {
     StyleDictionary.registerFormat({
       name: 'format/test',
-      format: () => 'test'
+      format: () => 'test',
     })
     expect(StyleDictionary.hooks.formats['format/test']).toEqual(expect.any(Function))
   })
@@ -68,15 +67,20 @@ describe('index.ts', () => {
       name: 'transform/test',
       type: `value`,
       transitive: true,
-      transform: () => 'test'
+      transform: () => 'test',
     })
-    expect(StyleDictionary.hooks.transforms['transform/test']).toEqual({ "filter": undefined, "transform": expect.any(Function), "transitive": true, "type": "value" })
+    expect(StyleDictionary.hooks.transforms['transform/test']).toEqual({
+      filter: undefined,
+      transform: expect.any(Function),
+      transitive: true,
+      type: 'value',
+    })
   })
 
   it('can be extended with a filter', () => {
     StyleDictionary.registerFilter({
       name: 'filter/test',
-      filter: () => true
+      filter: () => true,
     })
     expect(StyleDictionary.hooks.filters['filter/test']).toEqual(expect.any(Function))
   })
@@ -86,13 +90,12 @@ describe('index.ts', () => {
       name: 'parser/test',
       pattern: /\.json$/,
       // @ts-expect-error: not a valid token
-      parser: () => ['test']
+      parser: () => ['test'],
     })
 
     expect(StyleDictionary.hooks.parsers['parser/test']).toEqual({
-      "parser": expect.any(Function),
-      "pattern": /\.json$/,
+      parser: expect.any(Function),
+      pattern: /\.json$/,
     })
   })
-
 })

@@ -1,54 +1,53 @@
-import { typescriptEsmDeclarations } from './typescript-esm-declarations.js'
+import {typescriptEsmDeclarations} from './typescript-esm-declarations.js'
 
 describe('Format: ESM Declarations', () => {
   const dictionary = {
     tokens: {
       spacing: {
         small: {
-          $type: "dimension",
+          $type: 'dimension',
           value: 4,
         },
       },
       colors: {
         red: {
           $type: 'color',
-          value: '#FF0000'
-        }
+          value: '#FF0000',
+        },
       },
       shadows: {
         small: {
           $type: 'shadow',
           value: {
-            "color": "#00000066",
-            "offsetX": "1px",
-            "offsetY": "0px",
-            "blur": "2px",
-            "spread": "0px"
-          }
-        }
-      }
-    }
+            color: '#00000066',
+            offsetX: '1px',
+            offsetY: '0px',
+            blur: '2px',
+            spread: '0px',
+          },
+        },
+      },
+    },
   }
 
   const file = {
     destination: 'tokens.d.ts',
     options: {
       showFileHeader: false,
-    }
+    },
   }
-
 
   it('Formats tokens with prefix and rootName', async () => {
     const inFile = {
       destination: 'tokens.d.ts',
       options: {
         showFileHeader: false,
-        rootName: 'Tokens'
-      }
+        rootName: 'Tokens',
+      },
     }
 
     const platform = {
-      prefix: 'test'
+      prefix: 'test',
     }
 
     const prefixedOutput = `export type Tokens = {
@@ -74,7 +73,9 @@ describe('Format: ESM Declarations', () => {
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore: fake values to test formatter
-    expect(await typescriptEsmDeclarations({ dictionary, file: inFile, options: undefined, platform })).toStrictEqual(prefixedOutput)
+    expect(await typescriptEsmDeclarations({dictionary, file: inFile, options: undefined, platform})).toStrictEqual(
+      prefixedOutput,
+    )
   })
 
   it('Formats tokens without prefix', async () => {
@@ -98,7 +99,7 @@ describe('Format: ESM Declarations', () => {
 `
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore: fake values to test formatter
-    expect(await typescriptEsmDeclarations({ dictionary, file, options: undefined, undefined })).toStrictEqual(output)
+    expect(await typescriptEsmDeclarations({dictionary, file, options: undefined, undefined})).toStrictEqual(output)
   })
 
   it('Formats tokens accepting a custom prettier configuration', async () => {
@@ -122,12 +123,11 @@ describe('Format: ESM Declarations', () => {
 `
 
     const prettier = {
-      singleQuote: true
+      singleQuote: true,
     }
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore: fake values to test formatter
-    expect(await typescriptEsmDeclarations({ dictionary, file, options: { prettier }, undefined })).toStrictEqual(output)
+    expect(await typescriptEsmDeclarations({dictionary, file, options: {prettier}, undefined})).toStrictEqual(output)
   })
-
 })

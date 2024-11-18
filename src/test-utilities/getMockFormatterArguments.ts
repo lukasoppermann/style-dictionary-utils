@@ -1,5 +1,5 @@
-import type { FormatFnArguments } from 'style-dictionary/types/Format'
-import { getMockDictionary } from './getMockDictionary'
+import type {FormatFnArguments} from 'style-dictionary/types/Format'
+import {getMockDictionary} from './getMockDictionary'
 
 const defaultFormatterArguments: FormatFnArguments = {
   dictionary: getMockDictionary(),

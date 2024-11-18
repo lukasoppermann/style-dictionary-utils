@@ -1,4 +1,4 @@
-import { TransformedToken } from 'style-dictionary/types';
+import {TransformedToken} from 'style-dictionary/types'
 /**
  * @name getIsType
  * @type filter
@@ -6,6 +6,7 @@ import { TransformedToken } from 'style-dictionary/types';
  * @param args one more multiple type `strings` like `"color"` or `"color", "dimension"`
  * @returns filter function
  */
-export const getIsType = (...args: string[]) =>
+export const getIsType =
+  (...args: string[]) =>
   (token: TransformedToken): boolean =>
-    args.includes(token?.$type ?? token?.type ?? '');
+    args.includes(token?.$type ?? token?.type ?? '')

@@ -1,45 +1,45 @@
 import OrigialStyleDictionary from 'style-dictionary'
-import { isBorder } from './filter/isBorder.js'
-import { isClamp } from './filter/isClamp.js'
-import { isColor } from './filter/isColor.js'
-import { isColorOrGradient } from './filter/isColorOrGradient.js'
-import { isCubicBezier } from './filter/isCubicBezier.js'
-import { isDeprecated } from './filter/isDeprecated.js'
-import { isDimension } from './filter/isDimension.js'
-import { isDuration } from './filter/isDuration.js'
-import { isFontFamily } from './filter/isFontFamily.js'
-import { isFontWeight } from './filter/isFontWeight.js'
-import { isGradient } from './filter/isGradient.js'
-import { isShadow } from './filter/isShadow.js'
-import { isSource } from './filter/isSource.js'
-import { isStrokeStyle } from './filter/isStrokeStyle.js'
-import { isTransition } from './filter/isTransition.js'
-import { isTypographic } from './filter/isTypographic.js'
-import { isTypography } from './filter/isTypography.js'
-import { cssAdvanced } from './format/css-advanced.js'
-import { javascriptCommonJs } from './format/javascript-commonJs.js'
-import { javascriptEsm } from './format/javascript-esm.js'
-import { typescriptEsmDeclarations } from './format/typescript-esm-declarations.js'
-import { cssExtended } from './transformGroups/cssExtended.js'
-import { borderCss } from './transformer/border-css.js'
-import { clampCss } from './transformer/clamp-css.js'
-import { colorAlphaToHex } from './transformer/color-alpha-to-hex.js'
-import { colorAlphaToRgba } from './transformer/color-alpha-to-rgba.js'
-import { colorToHex } from './transformer/color-to-hex.js'
-import { colorToRgba } from './transformer/color-to-rgba.js'
-import { colorToRgbaFloat } from './transformer/color-to-rgba-float.js'
-import { commentDeprecated } from './transformer/comment-deprecated.js'
-import { cubicBezierCss } from './transformer/cubic-bezier-css.js'
-import { dimensionPixelToRem } from './transformer/dimension-pixel-to-rem.js'
-import { dimensionRemToPixel } from './transformer/dimension-rem-to-pixel.js'
-import { dimensionToPixelUnitless } from './transformer/dimension-to-pixelUnitless.js'
-import { fontCss } from './transformer/font-css.js'
-import { fontFamilyCss } from './transformer/font-family-css.js'
-import { fontWeightToNumber } from './transformer/font-weight-to-number.js'
-import { gradientCss } from './transformer/gradient-css.js'
-import { namePathToDotNotation } from './transformer/name-path-to-dot-notation.js'
-import { namePathToCamelCase } from './transformer/name-path-to-camel-case.js'
-import { shadowCss } from './transformer/shadow-css.js'
+import {isBorder} from './filter/isBorder.js'
+import {isClamp} from './filter/isClamp.js'
+import {isColor} from './filter/isColor.js'
+import {isColorOrGradient} from './filter/isColorOrGradient.js'
+import {isCubicBezier} from './filter/isCubicBezier.js'
+import {isDeprecated} from './filter/isDeprecated.js'
+import {isDimension} from './filter/isDimension.js'
+import {isDuration} from './filter/isDuration.js'
+import {isFontFamily} from './filter/isFontFamily.js'
+import {isFontWeight} from './filter/isFontWeight.js'
+import {isGradient} from './filter/isGradient.js'
+import {isShadow} from './filter/isShadow.js'
+import {isSource} from './filter/isSource.js'
+import {isStrokeStyle} from './filter/isStrokeStyle.js'
+import {isTransition} from './filter/isTransition.js'
+import {isTypographic} from './filter/isTypographic.js'
+import {isTypography} from './filter/isTypography.js'
+import {cssAdvanced} from './format/css-advanced.js'
+import {javascriptCommonJs} from './format/javascript-commonJs.js'
+import {javascriptEsm} from './format/javascript-esm.js'
+import {typescriptEsmDeclarations} from './format/typescript-esm-declarations.js'
+import {cssExtended} from './transformGroups/cssExtended.js'
+import {borderCss} from './transformer/border-css.js'
+import {clampCss} from './transformer/clamp-css.js'
+import {colorAlphaToHex} from './transformer/color-alpha-to-hex.js'
+import {colorAlphaToRgba} from './transformer/color-alpha-to-rgba.js'
+import {colorToHex} from './transformer/color-to-hex.js'
+import {colorToRgba} from './transformer/color-to-rgba.js'
+import {colorToRgbaFloat} from './transformer/color-to-rgba-float.js'
+import {commentDeprecated} from './transformer/comment-deprecated.js'
+import {cubicBezierCss} from './transformer/cubic-bezier-css.js'
+import {dimensionPixelToRem} from './transformer/dimension-pixel-to-rem.js'
+import {dimensionRemToPixel} from './transformer/dimension-rem-to-pixel.js'
+import {dimensionToPixelUnitless} from './transformer/dimension-to-pixelUnitless.js'
+import {fontCss} from './transformer/font-css.js'
+import {fontFamilyCss} from './transformer/font-family-css.js'
+import {fontWeightToNumber} from './transformer/font-weight-to-number.js'
+import {gradientCss} from './transformer/gradient-css.js'
+import {namePathToDotNotation} from './transformer/name-path-to-dot-notation.js'
+import {namePathToCamelCase} from './transformer/name-path-to-camel-case.js'
+import {shadowCss} from './transformer/shadow-css.js'
 
 /**
  * Formats
@@ -48,22 +48,22 @@ import { shadowCss } from './transformer/shadow-css.js'
 
 OrigialStyleDictionary.registerFormat({
   name: 'javascript/esm',
-  format: javascriptEsm
+  format: javascriptEsm,
 })
 
 OrigialStyleDictionary.registerFormat({
   name: 'javascript/commonJs',
-  format: javascriptCommonJs
+  format: javascriptCommonJs,
 })
 
 OrigialStyleDictionary.registerFormat({
   name: 'typescript/esm-declarations',
-  format: typescriptEsmDeclarations
+  format: typescriptEsmDeclarations,
 })
 
 OrigialStyleDictionary.registerFormat({
   name: 'css/advanced',
-  format: cssAdvanced
+  format: cssAdvanced,
 })
 
 /**
@@ -71,79 +71,79 @@ OrigialStyleDictionary.registerFormat({
  *
  */
 OrigialStyleDictionary.registerTransform({
-  ...colorAlphaToRgba
+  ...colorAlphaToRgba,
 })
 
 OrigialStyleDictionary.registerTransform({
-  ...colorAlphaToHex
+  ...colorAlphaToHex,
 })
 
 OrigialStyleDictionary.registerTransform({
-  ...colorToHex
+  ...colorToHex,
 })
 
 OrigialStyleDictionary.registerTransform({
-  ...colorToRgba
+  ...colorToRgba,
 })
 
 OrigialStyleDictionary.registerTransform({
-  ...colorToRgbaFloat
+  ...colorToRgbaFloat,
 })
 
 OrigialStyleDictionary.registerTransform({
-  ...commentDeprecated
+  ...commentDeprecated,
 })
 
 OrigialStyleDictionary.registerTransform({
-  ...namePathToDotNotation
+  ...namePathToDotNotation,
 })
 
 OrigialStyleDictionary.registerTransform({
-  ...namePathToCamelCase
+  ...namePathToCamelCase,
 })
 
 OrigialStyleDictionary.registerTransform({
-  ...shadowCss
+  ...shadowCss,
 })
 
 OrigialStyleDictionary.registerTransform({
-  ...gradientCss
+  ...gradientCss,
 })
 
 OrigialStyleDictionary.registerTransform({
-  ...clampCss
+  ...clampCss,
 })
 
 OrigialStyleDictionary.registerTransform({
-  ...fontCss
+  ...fontCss,
 })
 
 OrigialStyleDictionary.registerTransform({
-  ...fontFamilyCss
+  ...fontFamilyCss,
 })
 
 OrigialStyleDictionary.registerTransform({
-  ...fontWeightToNumber
+  ...fontWeightToNumber,
 })
 
 OrigialStyleDictionary.registerTransform({
-  ...cubicBezierCss
+  ...cubicBezierCss,
 })
 
 OrigialStyleDictionary.registerTransform({
-  ...dimensionPixelToRem
+  ...dimensionPixelToRem,
 })
 
 OrigialStyleDictionary.registerTransform({
-  ...dimensionRemToPixel
+  ...dimensionRemToPixel,
 })
 
 OrigialStyleDictionary.registerTransform({
-  ...dimensionToPixelUnitless
+  ...dimensionToPixelUnitless,
 })
 
 OrigialStyleDictionary.registerTransform({
-  ...borderCss
+  ...borderCss,
 })
 /**
  * Transform groups
@@ -156,90 +156,88 @@ OrigialStyleDictionary.registerTransformGroup(cssExtended)
  */
 OrigialStyleDictionary.registerFilter({
   name: 'isSource',
-  filter: isSource
+  filter: isSource,
 })
 
 OrigialStyleDictionary.registerFilter({
   name: 'isColor',
-  filter: isColor
+  filter: isColor,
 })
 
 OrigialStyleDictionary.registerFilter({
   name: 'isClamp',
-  filter: isClamp
+  filter: isClamp,
 })
 
 OrigialStyleDictionary.registerFilter({
   name: 'isGradient',
-  filter: isGradient
+  filter: isGradient,
 })
 
 OrigialStyleDictionary.registerFilter({
   name: 'isColorOrGradient',
-  filter: isColorOrGradient
+  filter: isColorOrGradient,
 })
 
 OrigialStyleDictionary.registerFilter({
   name: 'isTypography',
-  filter: isTypography
+  filter: isTypography,
 })
 
 OrigialStyleDictionary.registerFilter({
   name: 'isTypographic',
-  filter: isTypographic
+  filter: isTypographic,
 })
 
 OrigialStyleDictionary.registerFilter({
   name: 'isTransition',
-  filter: isTransition
+  filter: isTransition,
 })
 
 OrigialStyleDictionary.registerFilter({
   name: 'isStrokeStyle',
-  filter: isStrokeStyle
+  filter: isStrokeStyle,
 })
 
 OrigialStyleDictionary.registerFilter({
   name: 'isShadow',
-  filter: isShadow
+  filter: isShadow,
 })
 
 OrigialStyleDictionary.registerFilter({
   name: 'isFontWeight',
-  filter: isFontWeight
+  filter: isFontWeight,
 })
 
 OrigialStyleDictionary.registerFilter({
   name: 'isFontFamily',
-  filter: isFontFamily
+  filter: isFontFamily,
 })
 
 OrigialStyleDictionary.registerFilter({
   name: 'isDuration',
-  filter: isDuration
+  filter: isDuration,
 })
 
 OrigialStyleDictionary.registerFilter({
   name: 'isDeprecated',
-  filter: isDeprecated
+  filter: isDeprecated,
 })
 
 OrigialStyleDictionary.registerFilter({
   name: 'isDimension',
-  filter: isDimension
+  filter: isDimension,
 })
 
 OrigialStyleDictionary.registerFilter({
   name: 'isCubicBezier',
-  filter: isCubicBezier
+  filter: isCubicBezier,
 })
 
 OrigialStyleDictionary.registerFilter({
   name: 'isBorder',
-  filter: isBorder
+  filter: isBorder,
 })
-
-
 
 /**
  * @name {@link StyleDictionary}
@@ -249,4 +247,4 @@ OrigialStyleDictionary.registerFilter({
 // export default OrigialStyleDictionary as OrigialStyleDictionary.Core
 
 // OrigialStyleDictionary.default = OrigialStyleDictionary;
-export const StyleDictionary = OrigialStyleDictionary;
+export const StyleDictionary = OrigialStyleDictionary

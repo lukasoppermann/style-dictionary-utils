@@ -1,10 +1,10 @@
-import { colorToRgbaFloat } from './color-to-rgba-float.js'
-import { getMockToken } from '../test-utilities/getMockToken.js'
-import { TransformedToken } from 'style-dictionary/types'
+import {colorToRgbaFloat} from './color-to-rgba-float.js'
+import {getMockToken} from '../test-utilities/getMockToken.js'
+import {TransformedToken} from 'style-dictionary/types'
 
 describe('transform: colorToRgbaFloat', () => {
   it('transforms `hex3`, `hex6`, and `hex8` tokens to rgb float value', () => {
-    const input = [{ value: '#123' }, { value: '#343434' }, { value: '#34343466' }]
+    const input = [{value: '#123'}, {value: '#343434'}, {value: '#34343466'}]
     const expectedOutput = [
       {
         r: 0.06666666666666667,
@@ -25,11 +25,13 @@ describe('transform: colorToRgbaFloat', () => {
         a: 0.4,
       },
     ]
-    expect(input.map(item => colorToRgbaFloat.transform(item as TransformedToken, {}, {}))).toStrictEqual(expectedOutput)
+    expect(input.map(item => colorToRgbaFloat.transform(item as TransformedToken, {}, {}))).toStrictEqual(
+      expectedOutput,
+    )
   })
 
   it('transforms `rgb` and `rgba` to rgb float value', () => {
-    const input = [{ value: 'rgb(100,200,255)' }, { value: 'rgba(100,200,255, .4)' }]
+    const input = [{value: 'rgb(100,200,255)'}, {value: 'rgba(100,200,255, .4)'}]
     const expectedOutput = [
       {
         r: 0.39215686274509803,
@@ -44,16 +46,18 @@ describe('transform: colorToRgbaFloat', () => {
         a: 0.4,
       },
     ]
-    expect(input.map(item => colorToRgbaFloat.transform(item as TransformedToken, {}, {}))).toStrictEqual(expectedOutput)
+    expect(input.map(item => colorToRgbaFloat.transform(item as TransformedToken, {}, {}))).toStrictEqual(
+      expectedOutput,
+    )
   })
 
   it('transforms `color` tokens including alpha value', () => {
     expect(
       [
-        getMockToken({ value: '#343434', alpha: 0.4 }),
-        getMockToken({ value: '#34343466', alpha: 0.9 }),
-        getMockToken({ value: 'rgb(100,200,255)', alpha: 0.4 }),
-        getMockToken({ value: 'rgba(100,200,255,0.8)', alpha: 0.4 }),
+        getMockToken({value: '#343434', alpha: 0.4}),
+        getMockToken({value: '#34343466', alpha: 0.9}),
+        getMockToken({value: 'rgb(100,200,255)', alpha: 0.4}),
+        getMockToken({value: 'rgba(100,200,255,0.8)', alpha: 0.4}),
       ].map(item => colorToRgbaFloat.transform(item as TransformedToken, {}, {})),
     ).toStrictEqual([
       {
@@ -116,11 +120,13 @@ describe('transform: colorToRgbaFloat', () => {
         a: 0.4,
       },
     ]
-    expect(input.map(item => colorToRgbaFloat.transform(item as TransformedToken, {}, {}))).toStrictEqual(expectedOutput)
+    expect(input.map(item => colorToRgbaFloat.transform(item as TransformedToken, {}, {}))).toStrictEqual(
+      expectedOutput,
+    )
   })
 
   it('transforms `named colors` and `transparent` to rgb float value', () => {
-    const input = [{ value: 'purple' }, { value: 'transparent' }]
+    const input = [{value: 'purple'}, {value: 'transparent'}]
     const expectedOutput = [
       {
         r: 0.5019607843137255,
@@ -135,6 +141,8 @@ describe('transform: colorToRgbaFloat', () => {
         a: 0,
       },
     ]
-    expect(input.map(item => colorToRgbaFloat.transform(item as TransformedToken, {}, {}))).toStrictEqual(expectedOutput)
+    expect(input.map(item => colorToRgbaFloat.transform(item as TransformedToken, {}, {}))).toStrictEqual(
+      expectedOutput,
+    )
   })
 })

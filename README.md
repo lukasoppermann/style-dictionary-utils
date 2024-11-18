@@ -3,7 +3,6 @@
 [![npm](https://img.shields.io/npm/v/style-dictionary-utils?color=red)](https://www.npmjs.com/package/style-dictionary-utils)
 [![GitHub release (release name instead of tag name)](https://img.shields.io/github/v/release/lukasoppermann/style-dictionary-utils)](https://github.com/lukasoppermann/style-dictionary-utils/releases)
 
-
 `style-dictionary-utils` is a collection of `filters`, `transformers` and `formats` for [Style Dictionary](https://styledictionary.com/) that make working with [w3c design tokens](https://github.com/design-tokens/community-group) a lot easier.
 
 ## Installation
@@ -15,6 +14,7 @@ npm i -D style-dictionary-utils style-dictionary
 ```
 
 ## How to use style dictionary version 3?
+
 If you are not ready to upgrade to style dictinary version 3 you can continue using `style-dictionary-utils` by locking to `v2` currently [`v2.4.1`](https://github.com/lukasoppermann/style-dictionary-utils/tree/v2.4.1) version.
 
 ## Getting started
@@ -29,22 +29,24 @@ const myStyleDictionary = new StyleDictionary()
 
 // when using style dictionary 4 you whave to await the extend method
 const extendedSd = await myStyleDictionary.extend({
-  "platforms": {
-    "ts": {
-      "transforms": ['color/hexAlpha', 'shadow/css'],
-      "files": [{
-        "filter": "isSource",
-        "destination": "tokens.ts",
-        "format": "javascript/esm",
-      }]
-    }
-  }
-});
+  platforms: {
+    ts: {
+      transforms: ['color/hexAlpha', 'shadow/css'],
+      files: [
+        {
+          filter: 'isSource',
+          destination: 'tokens.ts',
+          format: 'javascript/esm',
+        },
+      ],
+    },
+  },
+})
 
-extendedSd.buildAllPlatforms();
+extendedSd.buildAllPlatforms()
 ```
 
-Now all the included utilities<sup>*</sup> are available to you via the keys mentioned in the docs below.
+Now all the included utilities<sup>\*</sup> are available to you via the keys mentioned in the docs below.
 
 ## Extending style dictionary
 
@@ -123,26 +125,27 @@ You can change the selector by defining it in `file.options.selector`.
 
 You can define rules on a file level using `file.options.rules`. If one or more rules are defined, only tokens within any of the rules will be output. You can define as many rule objects within `file.options.rules` as you want. Tokens can be part of one or multiple rules.
 
-A rule object may have any or all of the three properties `atRule`, `selector` and  `matcher`.
+A rule object may have any or all of the three properties `atRule`, `selector` and `matcher`.
 
 - `selector` is a string that is wrapped around your css. If the `selector` is undefined, the default selector or one define at `file.options.selector` will be used. If you don't want a selector, set it to `false`.
 - `atRule` can be a string or array of strings, that are wrapped around the css and `selector` with the first being the outer layer.
 - `matcher` is a filter function that returns true for tokens that should be included in the query. If you want to match all tokens, just return true from the matcher.
 
 ```css
-body[theme="dark"] {
+body[theme='dark'] {
   --color-background-primary: #ff0000;
   --color-background-secondary: #0000ff;
 }
 @media (min-width: 768px) {
-  body[theme="dark"] {
+  body[theme='dark'] {
     --color-button-primary: #c1c1c1;
-    --color-button-secondary: #007D79;
+    --color-button-secondary: #007d79;
   }
 }
 ```
 
 ##### Usage:
+
 ```js
 myStyleDictionary.extend({
   "platforms": {
@@ -173,12 +176,13 @@ The `javascript/esm` format exports a token dictionary as an `es6 export` statem
 ```js
 export default {
   colors: {
-    primary: '#0D70E6'
-  }
+    primary: '#0D70E6',
+  },
 }
 ```
 
 ##### Usage:
+
 ```js
 myStyleDictionary.extend({
   "platforms": {
@@ -200,12 +204,13 @@ The `typescript/esm-declarations` format exports a token dictionary as a `typesc
 ```js
 export default {
   colors: {
-    primary: string
-  }
+    primary: string,
+  },
 }
 ```
 
 ##### Usage:
+
 ```js
 myStyleDictionary.extend({
   "platforms": {
@@ -227,8 +232,8 @@ The `javascript/commonJs` format exports a token dictionary as an `commonJs modu
 ```js
 exports.default = {
   colors: {
-    primary: '#0D70E6'
-  }
+    primary: '#0D70E6',
+  },
 }
 ```
 
@@ -249,23 +254,23 @@ myStyleDictionary.extend({
 ```
 
 ## 🤖 Transformers
+
 Transforms change the `value` or `name` of a token.
 You can use transforms by refering the name in the array value of the [`transforms` ](https://amzn.github.io/style-dictionary/#/transforms)property of a [`platform`](https://amzn.github.io/style-dictionary/#/config?id=platform).
+
 ### Transform group
+
 If you want to use the same `transformers` multiple times you can create a [`transform group`](https://amzn.github.io/style-dictionary/#/api?id=registertransformgroup) for easy reference.
 
 ```js
 myStyleDictionary.registerTransformGroup({
   name: 'webHex',
-  transforms: [
-    'color/hexAlpha',
-    'dimension/pixelToRem',
-    'font/css'
-  ]
-});
+  transforms: ['color/hexAlpha', 'dimension/pixelToRem', 'font/css'],
+})
 ```
 
 #### `css/extended` transform group
+
 This packages ships a predefined transform group, called `css/extended`.
 It includes all transforms from the original [`css` transform group](https://amzn.github.io/style-dictionary/#/transform_groups?id=css) as well as the following transforms: `color/rgbAlpha`, `shadow/css`, `font/css`, `fontFamily/css`, `fontWeight/number`, `name/pathToDotNotation`, `cubicBezier/css`, `border/css`.
 
@@ -273,15 +278,17 @@ You can use it like any other transform Group:
 
 ```js
 myStyleDictionary.extend({
-  "platforms": {
-    "css": {
-      "transformGroup": 'css/extended',
-      "files": [{
-        // ...
-      }]
-    }
-  }
-});
+  platforms: {
+    css: {
+      transformGroup: 'css/extended',
+      files: [
+        {
+          // ...
+        },
+      ],
+    },
+  },
+})
 ```
 
 ### name/pathToDotNotation
@@ -293,15 +300,17 @@ To use it simply add `name/pathToDotNotation` to the `transforms` array.
 
 ```js
 myStyleDictionary.extend({
-  "platforms": {
-    "ts": {
-      "transforms": ['name/pathToDotNotation'],
-      "files": [{
-        // ...
-      }]
-    }
-  }
-});
+  platforms: {
+    ts: {
+      transforms: ['name/pathToDotNotation'],
+      files: [
+        {
+          // ...
+        },
+      ],
+    },
+  },
+})
 ```
 
 ##### Before transformation
@@ -336,15 +345,17 @@ To use it simply add `name/pathToCamelCase` to the `transforms` array.
 
 ```js
 myStyleDictionary.extend({
-  "platforms": {
-    "ts": {
-      "transforms": ['name/pathToCamelCase'],
-      "files": [{
-        // ...
-      }]
-    }
-  }
-});
+  platforms: {
+    ts: {
+      transforms: ['name/pathToCamelCase'],
+      files: [
+        {
+          // ...
+        },
+      ],
+    },
+  },
+})
 ```
 
 ##### Before transformation
@@ -370,6 +381,7 @@ myStyleDictionary.extend({
   }
 }
 ```
+
 ### name/pathToPascalCase
 
 This `name` transformer replaces the token name with the entire path of the token in camelCase notation.
@@ -378,15 +390,17 @@ To use it simply add `name/pathToPascalCase` to the `transforms` array.
 
 ```js
 myStyleDictionary.extend({
-  "platforms": {
-    "ts": {
-      "transforms": ['name/pathToPascalCase'],
-      "files": [{
-        // ...
-      }]
-    }
-  }
-});
+  platforms: {
+    ts: {
+      transforms: ['name/pathToPascalCase'],
+      files: [
+        {
+          // ...
+        },
+      ],
+    },
+  },
+})
 ```
 
 ##### Before transformation
@@ -421,16 +435,19 @@ This `value` transformer replaces the value of a token with a `$type` or `type` 
 
 ```js
 myStyleDictionary.extend({
-  "platforms": {
-    "ts": {
-      "transforms": ['color/rgbAlpha'],
-      "files": [{
-        // ...
-      }]
-    }
-  }
-});
+  platforms: {
+    ts: {
+      transforms: ['color/rgbAlpha'],
+      files: [
+        {
+          // ...
+        },
+      ],
+    },
+  },
+})
 ```
+
 ##### Before transformation
 
 ```js
@@ -464,22 +481,26 @@ myStyleDictionary.extend({
 ```
 
 ### color/hexAlpha
+
 This `value` transformer replaces the value of a token with a `$type` or `type` of `color` with a `hex` string. If the token has an `alpha` value, it will be used as the `alpha` of the `hex8` string.
 
 **Note:** If your initial color value has an alpha value (e.g. `rgba`) **AND** you add an `alpha` property, the `alpha` property will simply replace the previous alpha value.
 
 ```js
 myStyleDictionary.extend({
-  "platforms": {
-    "ts": {
-      "transforms": ['color/hexAlpha'],
-      "files": [{
-        // ...
-      }]
-    }
-  }
-});
+  platforms: {
+    ts: {
+      transforms: ['color/hexAlpha'],
+      files: [
+        {
+          // ...
+        },
+      ],
+    },
+  },
+})
 ```
+
 ##### Before transformation
 
 ```js
@@ -518,16 +539,19 @@ This `value` transformer replaces the value of a token with a `$type` or `type` 
 
 ```js
 myStyleDictionary.extend({
-  "platforms": {
-    "ts": {
-      "transforms": ['color/hex'],
-      "files": [{
-        // ...
-      }]
-    }
-  }
-});
+  platforms: {
+    ts: {
+      transforms: ['color/hex'],
+      files: [
+        {
+          // ...
+        },
+      ],
+    },
+  },
+})
 ```
+
 ##### Before transformation
 
 ```js
@@ -564,16 +588,19 @@ This `value` transformer replaces the value of a token with a `$type` or `type` 
 
 ```js
 myStyleDictionary.extend({
-  "platforms": {
-    "ts": {
-      "transforms": ['color/rgba'],
-      "files": [{
-        // ...
-      }]
-    }
-  }
-});
+  platforms: {
+    ts: {
+      transforms: ['color/rgba'],
+      files: [
+        {
+          // ...
+        },
+      ],
+    },
+  },
+})
 ```
+
 ##### Before transformation
 
 ```js
@@ -611,16 +638,19 @@ This is helpful for tools and platforms and use float rgba values where the `r`,
 
 ```js
 myStyleDictionary.extend({
-  "platforms": {
-    "json": {
-      "transforms": ['color/rgbaFloat'],
-      "files": [{
-        // ...
-      }]
-    }
-  }
-});
+  platforms: {
+    json: {
+      transforms: ['color/rgbaFloat'],
+      files: [
+        {
+          // ...
+        },
+      ],
+    },
+  },
+})
 ```
+
 ##### Before transformation
 
 ```js
@@ -662,16 +692,19 @@ This `value` transformer replaces the value of a w3c shadow token with a `$type`
 
 ```js
 myStyleDictionary.extend({
-  "platforms": {
-    "ts": {
-      "transforms": ['shadow/css'],
-      "files": [{
-        // ...
-      }]
-    }
-  }
-});
+  platforms: {
+    ts: {
+      transforms: ['shadow/css'],
+      files: [
+        {
+          // ...
+        },
+      ],
+    },
+  },
+})
 ```
+
 ##### Before transformation
 
 ```js
@@ -705,20 +738,24 @@ myStyleDictionary.extend({
 ```
 
 ### font/css
+
 This `value` transformer replaces the value of a w3c typography token with a `$type` or `type` of `typography` with a `css` font string.
 
 ```js
 myStyleDictionary.extend({
-  "platforms": {
-    "ts": {
-      "transforms": ['font/css'],
-      "files": [{
-        // ...
-      }]
-    }
-  }
-});
+  platforms: {
+    ts: {
+      transforms: ['font/css'],
+      files: [
+        {
+          // ...
+        },
+      ],
+    },
+  },
+})
 ```
+
 ##### Before transformation
 
 ```js
@@ -752,20 +789,24 @@ myStyleDictionary.extend({
 ```
 
 ### fontFamily/css
+
 This `value` transformer replaces the value of a w3c fontFamily token with a `$type` or `type` of `fontFamily` with a `css` fontFamily string.
 
 ```js
 myStyleDictionary.extend({
-  "platforms": {
-    "ts": {
-      "transforms": ['fontFamily/css'],
-      "files": [{
-        // ...
-      }]
-    }
-  }
-});
+  platforms: {
+    ts: {
+      transforms: ['fontFamily/css'],
+      files: [
+        {
+          // ...
+        },
+      ],
+    },
+  },
+})
 ```
+
 ##### Before transformation
 
 ```js
@@ -793,20 +834,24 @@ myStyleDictionary.extend({
 ```
 
 ### fontWeight/number
+
 This `value` transformer replaces the value of a w3c fontWeight token with a `$type` or `type` of `fontWeight` with a `css` fontWeight number.
 
 ```js
 myStyleDictionary.extend({
-  "platforms": {
-    "ts": {
-      "transforms": ['fontWeight/number'],
-      "files": [{
-        // ...
-      }]
-    }
-  }
-});
+  platforms: {
+    ts: {
+      transforms: ['fontWeight/number'],
+      files: [
+        {
+          // ...
+        },
+      ],
+    },
+  },
+})
 ```
+
 ##### Before transformation
 
 ```js
@@ -832,21 +877,26 @@ myStyleDictionary.extend({
   }
 }
 ```
+
 ### gradient/css
+
 This `value` transformer replaces the value of a w3c gradient token with a `$type` or `type` of `gradient` with a `css` gradient string.
 
 ```js
 myStyleDictionary.extend({
-  "platforms": {
-    "ts": {
-      "transforms": ['gradient/css'],
-      "files": [{
-        // ...
-      }]
-    }
-  }
-});
+  platforms: {
+    ts: {
+      transforms: ['gradient/css'],
+      files: [
+        {
+          // ...
+        },
+      ],
+    },
+  },
+})
 ```
+
 ##### Before transformation
 
 ```js
@@ -882,22 +932,26 @@ myStyleDictionary.extend({
   }
 }
 ```
+
 ### cubicBezier/css
 
 This `value` transformer replaces the value of a w3c cubicBezier token with a `$type` or `type` of `cubicBezier` with a `css` cubicBezier string.
 
 ```js
 myStyleDictionary.extend({
-  "platforms": {
-    "ts": {
-      "transforms": ['cubicBezier/css'],
-      "files": [{
-        // ...
-      }]
-    }
-  }
-});
+  platforms: {
+    ts: {
+      transforms: ['cubicBezier/css'],
+      files: [
+        {
+          // ...
+        },
+      ],
+    },
+  },
+})
 ```
+
 ##### Before transformation
 
 ```js
@@ -930,23 +984,27 @@ myStyleDictionary.extend({
 ```
 
 ### dimension/pixelToRem
+
 This `value` transformer replaces the value of a token with a `$type` or `type` of `dimension` that has a `px` value, with a `rem` value.
 
 ```js
 myStyleDictionary.extend({
-  "platforms": {
-    "ts": {
-      "transforms": ['dimension/pixelToRem'],
-      "files": [{
-        // ...
-      }],
+  platforms: {
+    ts: {
+      transforms: ['dimension/pixelToRem'],
+      files: [
+        {
+          // ...
+        },
+      ],
       options: {
-        basePxFontSize: 16
-      }
-    }
-  }
-});
+        basePxFontSize: 16,
+      },
+    },
+  },
+})
 ```
+
 ##### Before transformation
 
 ```js
@@ -972,25 +1030,29 @@ myStyleDictionary.extend({
   }
 }
 ```
+
 ### dimension/remToPixel
 
 This `value` transformer replaces the value of a token with a `$type` or `type` of `dimension` that has a `rem` value, with a `px` value.
 
 ```js
 myStyleDictionary.extend({
-  "platforms": {
-    "ts": {
-      "transforms": ['dimension/remToPixel'],
-      "files": [{
-        // ...
-      }],
+  platforms: {
+    ts: {
+      transforms: ['dimension/remToPixel'],
+      files: [
+        {
+          // ...
+        },
+      ],
       options: {
-        basePxFontSize: 16
-      }
-    }
-  }
-});
+        basePxFontSize: 16,
+      },
+    },
+  },
+})
 ```
+
 ##### Before transformation
 
 ```js
@@ -1023,18 +1085,20 @@ This `value` transformer replaces the value of a token with a `$type` or `type` 
 
 ```js
 myStyleDictionary.extend({
-  "platforms": {
-    "json": {
-      "transforms": ['dimension/pixelUnitless'],
-      "files": [{
-        // ...
-      }],
+  platforms: {
+    json: {
+      transforms: ['dimension/pixelUnitless'],
+      files: [
+        {
+          // ...
+        },
+      ],
       options: {
-        basePxFontSize: 16
-      }
-    }
-  }
-});
+        basePxFontSize: 16,
+      },
+    },
+  },
+})
 ```
 
 ### clamp/css
@@ -1043,16 +1107,19 @@ This `value` transformer replaces the value of a token with a `$type` or `type` 
 
 ```js
 myStyleDictionary.extend({
-  "platforms": {
-    "json": {
-      "transforms": ['clamp/css'],
-      "files": [{
-        // ...
-      }],
-    }
-  }
-});
+  platforms: {
+    json: {
+      transforms: ['clamp/css'],
+      files: [
+        {
+          // ...
+        },
+      ],
+    },
+  },
+})
 ```
+
 ##### Before transformation
 
 ```js
@@ -1086,6 +1153,7 @@ myStyleDictionary.extend({
 ## 🚦 Filters
 
 Filters are used to filter out unwanted tokens when [configuring output files](https://amzn.github.io/style-dictionary/#/config?id=file)
+
 ### isSource
 
 Only allows tokens that come from a [`source`](https://amzn.github.io/style-dictionary/#/config?id=attributes) file to be included in the output. Tokens from an [`include`](https://amzn.github.io/style-dictionary/#/config?id=attributes) will be removed.
@@ -1123,6 +1191,7 @@ myStyleDictionary.extend({
 ```
 
 ### isGradient
+
 Only allows tokens with a `type` or `$type` property of `gradient`.
 
 ```js
@@ -1140,6 +1209,7 @@ myStyleDictionary.extend({
 ```
 
 ### isColorOrGradient
+
 Only allows tokens with a `type` or `$type` property of `color` or `gradient`.
 
 ```js
@@ -1157,6 +1227,7 @@ myStyleDictionary.extend({
 ```
 
 ### isTypography
+
 Only allows tokens with a `type` or `$type` property of `typography`.
 
 ```js
@@ -1174,6 +1245,7 @@ myStyleDictionary.extend({
 ```
 
 ### isTypographic
+
 Only allows tokens with a `type` or `$type` property of `typography`, `fontWeight` or `fontFamily`.
 
 ```js
@@ -1189,7 +1261,9 @@ myStyleDictionary.extend({
   }
 });
 ```
+
 ### isTransition
+
 Only allows tokens with a `type` or `$type` property of `transition`.
 
 ```js
@@ -1207,6 +1281,7 @@ myStyleDictionary.extend({
 ```
 
 ### isStrokeStyle
+
 Only allows tokens with a `type` or `$type` property of `strokeStyle`.
 
 ```js
@@ -1224,6 +1299,7 @@ myStyleDictionary.extend({
 ```
 
 ### isShadow
+
 Only allows tokens with a `type` or `$type` property of `shadow`.
 
 ```js
@@ -1241,6 +1317,7 @@ myStyleDictionary.extend({
 ```
 
 ### isFontWeight
+
 Only allows tokens with a `type` or `$type` property of `fontWeight`.
 
 ```js
@@ -1258,6 +1335,7 @@ myStyleDictionary.extend({
 ```
 
 ### isFontFamily
+
 Only allows tokens with a `type` or `$type` property of `fontFamily`.
 
 ```js
@@ -1275,6 +1353,7 @@ myStyleDictionary.extend({
 ```
 
 ### isDuration
+
 Only allows tokens with a `type` or `$type` property of `duration`.
 
 ```js
@@ -1292,6 +1371,7 @@ myStyleDictionary.extend({
 ```
 
 ### isDimension
+
 Only allows tokens with a `type` or `$type` property of `dimension`.
 
 ```js
@@ -1309,6 +1389,7 @@ myStyleDictionary.extend({
 ```
 
 ### isCubicBezier
+
 Only allows tokens with a `type` or `$type` property of `cubicBezier`.
 
 ```js
@@ -1324,7 +1405,9 @@ myStyleDictionary.extend({
   }
 });
 ```
+
 ### isBorder
+
 Only allows tokens with a `type` or `$type` property of `border`.
 
 ```js
@@ -1342,6 +1425,7 @@ myStyleDictionary.extend({
 ```
 
 ### isClamp
+
 Only allows tokens with a `type` or `$type` property of `clamp` and an object as the `$value` with a `min`, `ideal` and `max` property.
 
 ```js
@@ -1361,6 +1445,7 @@ myStyleDictionary.extend({
 ## 🚦 Special Filter
 
 ### getHasAttribute
+
 The `getHasAttribute` function returns a `filter` function that filters by one or multiple properties.
 You can provide one or multiple arguments that are used to check of the token has at least one of those properties.
 
@@ -1383,10 +1468,12 @@ import {getHasAttribute} from 'style-dictionary-utils/dist/filter/getHasAttribut
 
 StyleDictionary.registerFilter({
   name: 'shouldAvoid',
-  matcher: getHasAttribute('deprecated','removed')
+  matcher: getHasAttribute('deprecated', 'removed'),
 })
 ```
+
 ##### Use directly in platform
+
 ```js
 import StyleDictionary from 'style-dictionary-utils'
 import {getHasAttribute} from 'style-dictionary-utils/dist/filter/getHasAttribute'
@@ -1405,6 +1492,7 @@ myStyleDictionary.extend({
 ```
 
 ### getHasAttributeValue
+
 The `getHasAttributeValue` function returns a `filter` function that filters by one or multiple properties that have a specific value.
 You can provide a `string` or `array` of `string`s for the first argument, to define which properties should be checked.
 Similarily you can provide one value or an `array` of values for the second argument, to define which values to check against. **Note:** If you provide an array of values every property can have either of those values.
@@ -1432,10 +1520,12 @@ import {getHasAttributeValue} from 'style-dictionary-utils/dist/filter/getHasAtt
 
 StyleDictionary.registerFilter({
   name: 'isDeprecated',
-  matcher: getHasAttributeValue('deprecated',true)
+  matcher: getHasAttributeValue('deprecated', true),
 })
 ```
+
 ##### Use directly in platform
+
 ```js
 import StyleDictionary from 'style-dictionary-utils'
 import {getHasAttributeValue} from 'style-dictionary-utils/dist/filter/getHasAttributeValue'
@@ -1453,8 +1543,8 @@ myStyleDictionary.extend({
 });
 ```
 
-
 ### getIsType
+
 The `getIsType` function returns a `filter` function that filters by one or multiple types.
 You can provide one or multiple arguments that are used as `types` to filter against the `type` or `$type` property.
 
@@ -1466,10 +1556,12 @@ import {getIsType} from 'style-dictionary-utils/dist/filter/getIsType'
 
 StyleDictionary.registerFilter({
   name: 'isAnimation',
-  matcher: getIsType('duration','transition', 'cubicBezier')
+  matcher: getIsType('duration', 'transition', 'cubicBezier'),
 })
 ```
+
 ##### Use directly in platform
+
 ```js
 import StyleDictionary from 'style-dictionary-utils'
 import {getIsType} from 'style-dictionary-utils/dist/filter/getIsType'

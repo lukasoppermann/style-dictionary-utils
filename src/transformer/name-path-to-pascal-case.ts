@@ -1,4 +1,4 @@
-import { PlatformConfig, Transform, TransformedToken } from 'style-dictionary/types'
+import {PlatformConfig, Transform, TransformedToken} from 'style-dictionary/types'
 
 /**
  * @description converts the [TransformedToken's](https://github.com/amzn/style-dictionary/blob/main/types/TransformedToken.d.ts) `.path` array to a PascalCase string, preserves casing of parts

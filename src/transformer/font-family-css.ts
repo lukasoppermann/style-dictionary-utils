@@ -1,5 +1,5 @@
-import { Transform, TransformedToken } from 'style-dictionary/types'
-import { isFontFamily } from '../filter/isFontFamily.js'
+import {Transform, TransformedToken} from 'style-dictionary/types'
+import {isFontFamily} from '../filter/isFontFamily.js'
 
 const hasSpaceInName = (string: string) => /\s/g.test(string)
 /**
@@ -11,5 +11,6 @@ export const fontFamilyCss: Transform = {
   type: `value`,
   transitive: true,
   filter: (token: TransformedToken) => isFontFamily(token) && Array.isArray(token.value),
-  transform: (token: TransformedToken) => token.value.map((string: string) => hasSpaceInName(string) ? `'${string}'` : string).join(", ")
+  transform: (token: TransformedToken) =>
+    token.value.map((string: string) => (hasSpaceInName(string) ? `'${string}'` : string)).join(', '),
 }
