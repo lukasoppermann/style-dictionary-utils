@@ -70,7 +70,7 @@ StyleDictionary.registerTransform({
 - Formats
   - [css/advanced](#cssadvanced)
   - [javascript/esm](#javascriptesm)
-  - [javascript/esm-declarations](#javascriptesmdeclarations)
+  - [typescript/esm-declarations](#typescriptesm-declarations)
   - [javascript/commonJs](#javascriptcommonJs)
 - Transformers
   - [name/pathToDotNotation](#namepathtodotnotation)
@@ -193,9 +193,9 @@ myStyleDictionary.extend({
 });
 ```
 
-### javascript/esm-declarations
+### typescript/esm-declarations
 
-The `javascript/esm-declarations` format exports a token dictionary as a `typescript` declaration file.
+The `typescript/esm-declarations` format exports a token dictionary as a `typescript` declaration file.
 
 ```js
 export default {
@@ -213,7 +213,7 @@ myStyleDictionary.extend({
       "transforms": //...,
       "files": [{
         // ...
-        "format": "javascript/esm-declarations",
+        "format": "typescript/esm-declarations",
       }]
     }
   }
