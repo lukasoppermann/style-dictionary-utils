@@ -1,13 +1,13 @@
 {
+  "extends": ["plugin:github/typescript"],
   "env": {
     "browser": true,
-    "es2021": true
+    "es2021": true,
   },
   "plugins": ["github"],
-  "extends": ["plugin:github/typescript"],
   "overrides": [],
   "parserOptions": {
-    "project": "./eslint.tsconfig.json"
+    "project": "./eslint.tsconfig.json",
   },
   "rules": {
     // "import/no-default-export": "error",
@@ -15,22 +15,24 @@
     // "implicit-arrow-linebreak": "off",
     // "arrow-body-style": "off",
     // "no-restricted-syntax": "off"
-    "@typescript-eslint/ban-ts-comment": [ "error",
+    "@typescript-eslint/ban-ts-comment": [
+      "error",
       {
         "ts-expect-error": "allow-with-description",
         "ts-ignore": true,
         "ts-nocheck": true,
         "ts-check": false,
-        "minimumDescriptionLength": 3
-      }
+        "minimumDescriptionLength": 3,
+      },
     ],
-    "@typescript-eslint/no-unused-vars": ["error", 
-      { 
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
         "vars": "all",
         "args": "after-used",
         "ignoreRestSiblings": false,
-        "argsIgnorePattern": "^_"
-      }
-    ]
-  }
+        "argsIgnorePattern": "^_",
+      },
+    ],
+  },
 }
