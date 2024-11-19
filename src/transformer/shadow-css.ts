@@ -1,5 +1,6 @@
 import {Transform, TransformedToken} from 'style-dictionary/types'
 import {isShadow} from '../filter/isShadow.js'
+import {getValue} from '../utilities/getValue.js'
 
 type TokenShadow = {
   color: string
@@ -24,15 +25,16 @@ export const shadowCss: Transform = {
   type: `value`,
   transitive: true,
   filter: isShadow,
-  transform: ({value}: Omit<TransformedToken, 'value'> & {value?: string | TokenShadow}) => {
-    if (Array.isArray(value)) {
-      return value.map(formatShadow).join(', ')
+  transform: (token: TransformedToken) => {
+    const tokenValue = getValue<TokenShadow>(token)
+    if (Array.isArray(tokenValue)) {
+      return tokenValue.map(formatShadow).join(', ')
     }
 
-    if (typeof value === 'object') {
-      return formatShadow(value)
+    if (typeof tokenValue === 'object') {
+      return formatShadow(tokenValue)
     }
 
-    return value
+    return tokenValue
   },
 }

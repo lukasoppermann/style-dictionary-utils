@@ -8,7 +8,7 @@ describe('transform: cubicBezierCss', () => {
       $type: 'color',
     },
     {
-      value: ['0', '0', '0.5', '1'],
+      $value: ['0', '0', '0.5', '1'],
       $type: 'cubicBezier',
     },
     {

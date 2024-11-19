@@ -1,5 +1,6 @@
 import {Transform, TransformedToken} from 'style-dictionary/types'
 import {isTypography} from '../filter/isTypography.js'
+import {getValue} from '../utilities/getValue.js'
 type TokenTypography = {
   fontFamily: string
   fontSize: number
@@ -15,11 +16,17 @@ export const fontCss: Transform = {
   type: `value`,
   transitive: true,
   filter: isTypography,
-  transform: ({value}: Omit<TransformedToken, 'value'> & {value?: TokenTypography}) => {
-    if (!value) return
+  transform: (token: TransformedToken) => {
+    const tokenValue = getValue<TokenTypography>(token)
+    if (!tokenValue) return
     // font: font-style font-variant font-weight font-size/line-height font-family;
-    return `${value.fontStyle || ''} ${value.fontWeight || ''} ${value.fontSize}${value.lineHeight ? '/' + value.lineHeight : ''} ${value.fontFamily}`
-      .trim()
-      .replace(/\s\s+/g, ' ')
+    return [
+      tokenValue.fontStyle,
+      tokenValue.fontWeight,
+      `${tokenValue.fontSize}${tokenValue.lineHeight ? '/' + tokenValue.lineHeight : ''}`,
+      tokenValue.fontFamily,
+    ]
+      .filter(Boolean)
+      .join(' ')
   },
 }

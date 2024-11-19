@@ -16,17 +16,26 @@ describe('transform: clampCss', () => {
       $type: 'clamp',
     },
     {
+      $value: {
+        min: '.5rem',
+        ideal: '5vw',
+        max: '2.5rem',
+      },
+      $type: 'clamp',
+    },
+    {
       value: '',
     },
   ] as TransformedToken[]
 
   it('matches `clamp` tokens', () => {
-    expect(items.filter(clampCss.filter)).toStrictEqual([items[1]])
+    expect(items.filter(clampCss.filter)).toStrictEqual([items[1], items[2]])
   })
 
   it('transforms `clamp` tokens', () => {
     expect(items.filter(clampCss.filter).map(item => clampCss.transform(item, {}, {}))).toStrictEqual([
       'clamp(1.5rem, 5vw, 2.5rem)',
+      'clamp(.5rem, 5vw, 2.5rem)',
     ])
   })
 

@@ -8,7 +8,7 @@ describe('transform: fontFamily', () => {
       $type: 'fontFamily',
     },
     {
-      value: ['helvetica', 'sans-serif', 'Helvetica Neue'],
+      $value: ['helvetica', 'sans-serif', 'Helvetica Neue'],
       $type: 'fontFamily',
     },
     {
@@ -21,11 +21,12 @@ describe('transform: fontFamily', () => {
   ] as TransformedToken[]
 
   it('matches `fontFamily` tokens with an array as a value', () => {
-    expect(items.filter(fontFamilyCss.filter)).toStrictEqual([items[1]])
+    expect(items.filter(fontFamilyCss.filter)).toStrictEqual([items[0], items[1]])
   })
 
   it('transforms `fontFamily` array tokens', () => {
     expect(items.filter(fontFamilyCss.filter).map(item => fontFamilyCss.transform(item, {}, {}))).toStrictEqual([
+      'Helvetica',
       "helvetica, sans-serif, 'Helvetica Neue'",
     ])
   })

@@ -1,6 +1,7 @@
 import {toHex} from 'color2k'
 import {isColor} from '../filter/isColor.js'
 import {Transform, TransformedToken} from 'style-dictionary/types'
+import {getValue} from '../utilities/getValue.js'
 
 const toRgbaFloat = (color: string, alpha?: number) => {
   // get hex value from color string
@@ -44,9 +45,10 @@ export const colorToRgbaFloat: Transform = {
   transitive: true,
   filter: isColor,
   transform: (token: TransformedToken) => {
+    const tokenValue = getValue<string>(token)
     // skip if value is already rgb float
-    if (isRgbaFloat(token.value)) return token.value
+    if (isRgbaFloat(tokenValue)) return tokenValue
     // convert hex or rgb values to rgba float
-    return toRgbaFloat(token.value, token.alpha)
+    return toRgbaFloat(tokenValue, token.alpha)
   },
 }

@@ -12,6 +12,10 @@ describe('transform: dimensionToPixelUnitless', () => {
       $type: 'dimension',
     },
     {
+      $value: '15px',
+      $type: 'dimension',
+    },
+    {
       value: '20px',
       $type: 'dimension',
     },
@@ -31,7 +35,7 @@ describe('transform: dimensionToPixelUnitless', () => {
   it('transforms `dimension` tokens', () => {
     expect(
       items.filter(dimensionToPixelUnitless.filter).map(item => dimensionToPixelUnitless.transform(item, {}, {})),
-    ).toStrictEqual([0, 0, 20, 48])
+    ).toStrictEqual([0, 0, 15, 20, 48])
   })
 
   it('transforms `dimension` tokens with custom baseFont', () => {
@@ -40,6 +44,6 @@ describe('transform: dimensionToPixelUnitless', () => {
     }
     expect(
       items.filter(dimensionToPixelUnitless.filter).map(item => dimensionToPixelUnitless.transform(item, platform, {})),
-    ).toStrictEqual([0, 0, 20, 30])
+    ).toStrictEqual([0, 0, 15, 20, 30])
   })
 })
