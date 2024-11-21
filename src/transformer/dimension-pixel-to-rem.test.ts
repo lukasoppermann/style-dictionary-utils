@@ -8,6 +8,10 @@ describe('transform: dimensionPixelToRem', () => {
       $type: 'dimension',
     },
     {
+      $value: '30px',
+      $type: 'dimension',
+    },
+    {
       value: '3rem',
       $type: 'dimension',
     },
@@ -21,13 +25,13 @@ describe('transform: dimensionPixelToRem', () => {
   ] as TransformedToken[]
 
   it('matches `dimension` tokens with pixel value', () => {
-    expect(items.filter(dimensionPixelToRem.filter)).toStrictEqual([items[0]])
+    expect(items.filter(dimensionPixelToRem.filter)).toStrictEqual([items[0], items[1]])
   })
 
   it('transforms `dimension` tokens', () => {
     expect(
       items.filter(dimensionPixelToRem.filter).map(item => dimensionPixelToRem.transform(item, {}, {})),
-    ).toStrictEqual(['1.25rem'])
+    ).toStrictEqual(['1.25rem', '1.875rem'])
   })
 
   it('transforms `dimension` tokens with custom baseFont', () => {
@@ -36,6 +40,6 @@ describe('transform: dimensionPixelToRem', () => {
     }
     expect(
       items.filter(dimensionPixelToRem.filter).map(item => dimensionPixelToRem.transform(item, platform, {})),
-    ).toStrictEqual(['2rem'])
+    ).toStrictEqual(['2rem', '3rem'])
   })
 })

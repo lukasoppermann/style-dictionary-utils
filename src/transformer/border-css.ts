@@ -1,5 +1,6 @@
 import {Transform, TransformedToken} from 'style-dictionary/types'
 import {isBorder} from '../filter/isBorder.js'
+import {getValue} from '../utilities/getValue.js'
 
 type StrokeStyleString = 'solid' | 'dashed' | 'dotted' | 'double' | 'groove' | 'ridge' | 'outset' | 'inset'
 
@@ -18,9 +19,10 @@ export const borderCss: Transform = {
   transitive: true,
   filter: isBorder,
   transform: (token: Omit<TransformedToken, 'value'> & {value?: TokenBorder}) => {
-    if (!token.value) return
-    if (typeof token.value.style !== 'string')
+    const tokenValue = getValue<Omit<TransformedToken, 'value'> & {value?: TokenBorder}>(token)
+    if (!tokenValue) return
+    if (typeof tokenValue.style !== 'string')
       throw new Error('Only string stroke styles are supported for border tokens')
-    return `${token.value.width} ${token.value.style} ${token.value.color}`
+    return `${tokenValue.width} ${tokenValue.style} ${tokenValue.color}`
   },
 }

@@ -1,5 +1,6 @@
 import {Transform, TransformedToken} from 'style-dictionary/types'
 import {isFontWeight} from '../filter/isFontWeight.js'
+import {getValue} from '../utilities/getValue.js'
 /**
  * Acceptable font weights according to w3c standard
  * @link https://design-tokens.github.io/community-group/format/#font-weight
@@ -40,15 +41,18 @@ export const fontWeightToNumber: Transform = {
   name: 'fontWeight/number',
   type: `value`,
   transitive: true,
-  filter: (token: TransformedToken) => isFontWeight(token) && typeof token.value === 'string',
+  filter: (token: TransformedToken) => isFontWeight(token),
   transform: (token: TransformedToken) => {
+    const tokenValue = getValue<string>(token)
+    // check if value is not a string
+    if (typeof tokenValue !== 'string') return tokenValue
     // check if value exists in matrix
-    const fromMatrix = fontWeights[token.value.toLowerCase()]
+    const fromMatrix = fontWeights[tokenValue.toLowerCase()]
     if (fromMatrix !== undefined) return fromMatrix
     // test if value is quoted int
-    const valueAsInt = parseInt(token.value.toLowerCase())
+    const valueAsInt = parseInt(tokenValue.toLowerCase())
     if (Number.isInteger(valueAsInt)) return valueAsInt
     //
-    return token.value
+    return tokenValue
   },
 }

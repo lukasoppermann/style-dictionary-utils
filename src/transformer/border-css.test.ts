@@ -12,7 +12,7 @@ describe('transform: border', () => {
       $type: 'border',
     },
     {
-      value: {
+      $value: {
         color: '#33445566',
         width: '5px',
         style: 'solid',

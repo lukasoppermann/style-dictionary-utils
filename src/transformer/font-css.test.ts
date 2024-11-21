@@ -14,6 +14,16 @@ describe('transform: fontFamily', () => {
       $type: 'typography',
     },
     {
+      $value: {
+        fontWeight: 600,
+        fontSize: '12px',
+        lineHeight: '26px',
+        fontFamily: 'Helvetica',
+        fontStyle: 'italic',
+      },
+      $type: 'typography',
+    },
+    {
       value: {
         fontSize: '16px',
         fontFamily: 'Helvetica',
@@ -30,12 +40,13 @@ describe('transform: fontFamily', () => {
   ] as TransformedToken[]
 
   it('matches `fontFamily` tokens with an array as a value', () => {
-    expect(items.filter(fontCss.filter)).toStrictEqual([items[0], items[1]])
+    expect(items.filter(fontCss.filter)).toStrictEqual([items[0], items[1], items[2]])
   })
 
   it('transforms `fontFamily` array tokens', () => {
     expect(items.filter(fontCss.filter).map(item => fontCss.transform(item, {}, {}))).toStrictEqual([
       'italic 500 16px/22px Helvetica',
+      'italic 600 12px/26px Helvetica',
       '16px Helvetica',
     ])
   })

@@ -17,7 +17,14 @@ const mockTokenDefaults = {
  * @param valueOverrides partial StyleDictionary.TransformedToken
  * @returns StyleDictionary.TransformedToken - a merge of {@link mockTokenDefaults} and any valid properties provided in the valueOverrides param
  */
-export const getMockToken = (valueOverrides: {[key: keyof TransformedToken]: unknown}): TransformedToken => ({
-  ...mockTokenDefaults,
-  ...valueOverrides,
-})
+export const getMockToken = (valueOverrides: {[key: keyof TransformedToken]: unknown}): TransformedToken => {
+  if (valueOverrides?.$value !== undefined) {
+    // @ts-expect-error: due to test
+    delete mockTokenDefaults.value
+  }
+
+  return {
+    ...mockTokenDefaults,
+    ...valueOverrides,
+  }
+}

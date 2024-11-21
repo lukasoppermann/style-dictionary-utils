@@ -1,5 +1,6 @@
 import {Transform, TransformedToken} from 'style-dictionary/types'
 import {isClamp} from '../filter/isClamp.js'
+import {getValue} from '../utilities/getValue.js'
 
 type TokenClamp = {
   min: string
@@ -12,8 +13,9 @@ export const clampCss: Transform = {
   type: `value`,
   transitive: true,
   filter: isClamp,
-  transform: ({value}: Omit<TransformedToken, 'value'> & {value?: TokenClamp}) => {
-    if (!value) return
-    return `clamp(${value.min}, ${value.ideal}, ${value.max})`
+  transform: (token: Omit<TransformedToken, 'value'> & {value?: TokenClamp}) => {
+    const tokenValue = getValue<Omit<TransformedToken, 'value'> & {value?: TokenClamp}>(token)
+    if (!tokenValue) return
+    return `clamp(${tokenValue.min}, ${tokenValue.ideal}, ${tokenValue.max})`
   },
 }

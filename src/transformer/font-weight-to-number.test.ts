@@ -8,11 +8,11 @@ describe('transform: fontWeight', () => {
       $type: 'fontWeight',
     },
     {
-      value: 'light',
+      $value: 'bold',
       $type: 'fontWeight',
     },
     {
-      value: '300',
+      value: '400',
       $type: 'fontWeight',
     },
     {
@@ -24,13 +24,13 @@ describe('transform: fontWeight', () => {
     },
   ] as TransformedToken[]
 
-  it('matches `fontWeight` tokens with a string value', () => {
-    expect(items.filter(fontWeightToNumber.filter)).toStrictEqual([items[1], items[2]])
+  it('matches `fontWeight` tokens', () => {
+    expect(items.filter(fontWeightToNumber.filter)).toStrictEqual([items[0], items[1], items[2]])
   })
 
   it('transforms `fontWeight` string to number', () => {
     expect(
       items.filter(fontWeightToNumber.filter).map(item => fontWeightToNumber.transform(item, {}, {})),
-    ).toStrictEqual([300, 300])
+    ).toStrictEqual([300, 700, 400])
   })
 })

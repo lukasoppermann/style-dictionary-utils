@@ -18,17 +18,28 @@ describe('transform: shadowCss', () => {
       $type: 'shadow',
     },
     {
+      $value: {
+        color: '#00000077',
+        offsetX: '2px',
+        offsetY: '4px',
+        blur: '2px',
+        spread: '1px',
+      },
+      $type: 'shadow',
+    },
+    {
       value: '',
     },
   ] as TransformedToken[]
 
   it('matches `shadow` tokens', () => {
-    expect(items.filter(shadowCss.filter)).toStrictEqual([items[1]])
+    expect(items.filter(shadowCss.filter)).toStrictEqual([items[1], items[2]])
   })
 
   it('transforms `shadow` tokens', () => {
     expect(items.filter(shadowCss.filter).map(item => shadowCss.transform(item, {}, {}))).toStrictEqual([
       '0px 0px 0px 3px #00000066',
+      '2px 4px 2px 1px #00000077',
     ])
   })
 

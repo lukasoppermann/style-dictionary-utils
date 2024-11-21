@@ -21,17 +21,35 @@ describe('transform: gradientCss', () => {
       $type: 'gradient',
     },
     {
+      $value: [
+        {
+          color: '#ff2200',
+          position: 0,
+        },
+        {
+          color: '#ffff44',
+          position: 0.666,
+        },
+        {
+          color: '#ff0066',
+          position: 1,
+        },
+      ],
+      $type: 'gradient',
+    },
+    {
       value: '',
     },
   ] as TransformedToken[]
 
   it('matches `gradient` tokens', () => {
-    expect(items.filter(gradientCss.filter)).toStrictEqual([items[1]])
+    expect(items.filter(gradientCss.filter)).toStrictEqual([items[1], items[2]])
   })
 
   it('transforms `gradient` tokens', () => {
     expect(items.filter(gradientCss.filter).map(item => gradientCss.transform(item, {}, {}))).toStrictEqual([
       '#ffff00 66%, #ff0000 100%',
+      '#ff2200, #ffff44 66%, #ff0066 100%',
     ])
   })
 

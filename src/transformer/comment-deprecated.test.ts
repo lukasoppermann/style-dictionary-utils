@@ -12,6 +12,10 @@ describe('transform: commentDeprecated', () => {
       deprecated: 'a valid string e.g. to inform about a replacement',
     },
     {
+      value: 'true string',
+      $deprecated: 'a valid string e.g. to inform about a replacement',
+    },
+    {
       value: 'false boolean',
       deprecated: false,
     },
@@ -25,7 +29,7 @@ describe('transform: commentDeprecated', () => {
   ] as TransformedToken[]
 
   it('matches tokens with valid `deprecated` property', () => {
-    expect(items.filter(commentDeprecated.filter)).toStrictEqual([items[0], items[1]])
+    expect(items.filter(commentDeprecated.filter)).toStrictEqual([items[0], items[1], items[2]])
   })
 
   it('adds deprecated comment to tokens', () => {
@@ -39,6 +43,11 @@ describe('transform: commentDeprecated', () => {
         {
           $description: 'DEPRECATED: a valid string e.g. to inform about a replacement',
           deprecated: 'a valid string e.g. to inform about a replacement',
+          value: 'true string',
+        },
+        {
+          $description: 'DEPRECATED: a valid string e.g. to inform about a replacement',
+          $deprecated: 'a valid string e.g. to inform about a replacement',
           value: 'true string',
         },
       ],
