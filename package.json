@@ -1,6 +1,6 @@
 {
   "name": "style-dictionary-utils",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "type": "module",
   "publishConfig": {
     "registry": "https://registry.npmjs.org",
