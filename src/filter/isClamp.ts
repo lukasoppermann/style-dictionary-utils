@@ -1,5 +1,5 @@
 import {TransformedToken} from 'style-dictionary/types'
-import {getValue} from '../utilities/getValue'
+import {getValue} from '../utilities/getValue.js'
 /**
  * @name isClamp
  * @type filter
