@@ -10,7 +10,7 @@ export const cssAdvanced: FormatFn = async ({
   file,
 }: FormatFnArguments) => {
   // get options
-  const {outputReferences, formatting, usesDtcg} = options
+  const {outputReferences, outputReferenceFallbacks, formatting, usesDtcg} = options
   // selector
   const defaultSelector = file?.options?.selector !== undefined ? file?.options?.selector : ':root'
   // query extension property
@@ -76,6 +76,7 @@ export const cssAdvanced: FormatFn = async ({
       format: 'css',
       dictionary: filteredDictionary,
       outputReferences,
+      outputReferenceFallbacks,
       formatting: mergedFormatting,
       usesDtcg,
     })
