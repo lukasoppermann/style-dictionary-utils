@@ -29,7 +29,7 @@
     "prebuild": "npm run clean:dist",
     "build": "tsc",
     "preversion": "npm run build && npm run test",
-    "postversion": "git push --follow-tags",
+    "postversion": "git push --follow-tags && npm publish",
     "postpublish": "npm i -D style-dictionary-utils@latest"
   },
   "keywords": [
