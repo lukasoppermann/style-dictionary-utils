@@ -73,7 +73,7 @@ StyleDictionary.registerTransform({
   - [css/advanced](#cssadvanced)
   - [javascript/esm](#javascriptesm)
   - [typescript/esm-declarations](#typescriptesm-declarations)
-  - [javascript/commonJs](#javascriptcommonJs)
+  - [javascript/commonJs](#javascriptcommonjs)
 - Transformers
   - [name/pathToDotNotation](#namepathtodotnotation)
   - [name/pathToCamelCase](#namepathtocamelcase)
@@ -144,7 +144,7 @@ body[theme='dark'] {
 }
 ```
 
-##### Usage:
+##### Usage
 
 ```js
 myStyleDictionary.extend({
@@ -181,7 +181,7 @@ export default {
 }
 ```
 
-##### Usage:
+##### Usage
 
 ```js
 myStyleDictionary.extend({
@@ -209,7 +209,7 @@ export default {
 }
 ```
 
-##### Usage:
+##### Usage
 
 ```js
 myStyleDictionary.extend({
@@ -237,7 +237,7 @@ exports.default = {
 }
 ```
 
-##### Usage:
+##### Usage
 
 ```js
 myStyleDictionary.extend({
@@ -256,7 +256,7 @@ myStyleDictionary.extend({
 ## 🤖 Transformers
 
 Transforms change the `value` or `name` of a token.
-You can use transforms by refering the name in the array value of the [`transforms` ](https://amzn.github.io/style-dictionary/#/transforms)property of a [`platform`](https://amzn.github.io/style-dictionary/#/config?id=platform).
+You can use transforms by refering the name in the array value of the [`transforms`](https://amzn.github.io/style-dictionary/#/transforms)property of a [`platform`](https://amzn.github.io/style-dictionary/#/config?id=platform).
 
 ### Transform group
 
@@ -1464,7 +1464,7 @@ You can provide one or multiple arguments that are used to check of the token ha
 
 ```js
 import StyleDictionary from 'style-dictionary-utils'
-import {getHasAttribute} from 'style-dictionary-utils/dist/filter/getHasAttribute'
+import {getHasAttribute} from 'style-dictionary-utils/filter/getHasAttribute.js'
 
 StyleDictionary.registerFilter({
   name: 'shouldAvoid',
@@ -1476,7 +1476,7 @@ StyleDictionary.registerFilter({
 
 ```js
 import StyleDictionary from 'style-dictionary-utils'
-import {getHasAttribute} from 'style-dictionary-utils/dist/filter/getHasAttribute'
+import {getHasAttribute} from 'style-dictionary-utils/filter/getHasAttribute.js'
 
 myStyleDictionary.extend({
   "platforms": {
@@ -1516,7 +1516,7 @@ getHasAttributeValue(attributes: string[], values: any[])
 
 ```js
 import StyleDictionary from 'style-dictionary-utils'
-import {getHasAttributeValue} from 'style-dictionary-utils/dist/filter/getHasAttributeValue'
+import {getHasAttributeValue} from 'style-dictionary-utils/filter/getHasAttributeValue.js'
 
 StyleDictionary.registerFilter({
   name: 'isDeprecated',
@@ -1528,7 +1528,7 @@ StyleDictionary.registerFilter({
 
 ```js
 import StyleDictionary from 'style-dictionary-utils'
-import {getHasAttributeValue} from 'style-dictionary-utils/dist/filter/getHasAttributeValue'
+import {getHasAttributeValue} from 'style-dictionary-utils/filter/getHasAttributeValue.js'
 
 myStyleDictionary.extend({
   "platforms": {
@@ -1552,7 +1552,7 @@ You can provide one or multiple arguments that are used as `types` to filter aga
 
 ```js
 import StyleDictionary from 'style-dictionary-utils'
-import {getIsType} from 'style-dictionary-utils/dist/filter/getIsType'
+import {getIsType} from 'style-dictionary-utils/filter/getIsType.js'
 
 StyleDictionary.registerFilter({
   name: 'isAnimation',
@@ -1564,7 +1564,7 @@ StyleDictionary.registerFilter({
 
 ```js
 import StyleDictionary from 'style-dictionary-utils'
-import {getIsType} from 'style-dictionary-utils/dist/filter/getIsType'
+import {getIsType} from 'style-dictionary-utils/filter/getIsType.js'
 
 myStyleDictionary.extend({
   "platforms": {

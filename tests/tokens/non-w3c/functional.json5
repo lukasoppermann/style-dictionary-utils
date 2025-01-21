@@ -5,5 +5,16 @@
       type: "color",
       "description": "The link color",
     }
+  },
+  border: {
+    default: {
+      value: {
+        color: "{base.color.blue.500}",
+        style: "solid",
+        width: "1px",
+      },
+      type: "border",
+      "description": "The default border color",
+    }
   }
 }

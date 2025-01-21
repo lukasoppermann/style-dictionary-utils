@@ -1,9 +1,10 @@
 import { StyleDictionary as SD } from "style-dictionary-utils";
+import {getIsType} from 'style-dictionary-utils/filter/getIsType.js';
 
 const StyleDictionary = new SD();
 
 const extendSd = await StyleDictionary.extend({
-  source: ["./tests/tokens/*.json5"],
+  source: ["./tests/tokens/**/*.json5"],
   platforms: {
     css: {
       buildPath: "./tests/dist/css/",
@@ -12,6 +13,7 @@ const extendSd = await StyleDictionary.extend({
         {
           format: "css/variables",
           destination: "variables.css",
+          filter: getIsType("color"),
           options: {
             outputReferences: true,
           }
