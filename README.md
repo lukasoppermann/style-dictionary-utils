@@ -65,7 +65,7 @@ StyleDictionary.registerTransform({
 })
 ```
 
-[Look at the tests](./__tests__/index.test.ts) to get an idea how it works.
+[Look at the tests](./tests/build.mjs) to get an idea how it works.
 
 ## Included utilities
 
