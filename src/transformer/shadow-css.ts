@@ -8,7 +8,7 @@ type TokenShadow = {
   offsetY: string
   blur: string
   spread: string
-  inset: boolean
+  inset?: boolean
 }
 
 const formatShadow = ({
