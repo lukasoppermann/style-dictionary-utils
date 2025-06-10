@@ -12,7 +12,7 @@ export const commentDeprecated: Transform = {
   filter: isDeprecated,
   transform: (token: TransformedToken) => {
     const deprecated = token.deprecated || token.$deprecated
-    token.$description = `DEPRECATED${typeof deprecated === 'string' && deprecated !== 'true' ? `: ${deprecated}` : ''}`
+    token.$description = `DEPRECATED${typeof deprecated === 'string' ? `: ${deprecated}` : ''}`
     return token
   },
 }

@@ -12,7 +12,7 @@ describe('transform: commentDeprecated', () => {
       deprecated: 'a valid string e.g. to inform about a replacement',
     },
     {
-      value: 'true string',
+      value: '$deprecated string',
       $deprecated: 'a valid string e.g. to inform about a replacement',
     },
     {
@@ -20,19 +20,32 @@ describe('transform: commentDeprecated', () => {
       deprecated: false,
     },
     {
-      value: 'false string',
+      value: 'false string - now deprecated per new spec',
       deprecated: 'false',
+    },
+    {
+      value: '$deprecated false boolean',
+      $deprecated: false,
+    },
+    {
+      value: '$deprecated true boolean',
+      $deprecated: true,
+    },
+    {
+      value: 'string "true" as explanation',
+      deprecated: 'true',
     },
     {
       value: 'nothing',
     },
   ] as TransformedToken[]
 
-  it('matches tokens with valid `deprecated` property', () => {
-    expect(items.filter(commentDeprecated.filter)).toStrictEqual([items[0], items[1], items[2]])
+  it('matches tokens with valid `deprecated` property according to new spec', () => {
+    // According to new spec: true boolean, any string, $deprecated true, $deprecated string are all deprecated
+    expect(items.filter(commentDeprecated.filter)).toStrictEqual([items[0], items[1], items[2], items[4], items[6], items[7]])
   })
 
-  it('adds deprecated comment to tokens', () => {
+  it('adds deprecated comment to tokens according to new spec', () => {
     expect(items.filter(commentDeprecated.filter).map(item => commentDeprecated.transform(item, {}, {}))).toStrictEqual(
       [
         {
@@ -48,7 +61,22 @@ describe('transform: commentDeprecated', () => {
         {
           $description: 'DEPRECATED: a valid string e.g. to inform about a replacement',
           $deprecated: 'a valid string e.g. to inform about a replacement',
-          value: 'true string',
+          value: '$deprecated string',
+        },
+        {
+          $description: 'DEPRECATED: false',
+          deprecated: 'false',
+          value: 'false string - now deprecated per new spec',
+        },
+        {
+          $description: 'DEPRECATED',
+          $deprecated: true,
+          value: '$deprecated true boolean',
+        },
+        {
+          $description: 'DEPRECATED: true',
+          deprecated: 'true',
+          value: 'string "true" as explanation',
         },
       ],
     )
