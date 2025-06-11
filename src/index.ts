@@ -33,6 +33,8 @@ import {cubicBezierCss} from './transformer/cubic-bezier-css.js'
 import {dimensionPixelToRem} from './transformer/dimension-pixel-to-rem.js'
 import {dimensionRemToPixel} from './transformer/dimension-rem-to-pixel.js'
 import {dimensionToPixelUnitless} from './transformer/dimension-to-pixelUnitless.js'
+import {durationMsToS} from './transformer/duration-ms-to-s.js'
+import {durationSToMs} from './transformer/duration-s-to-ms.js'
 import {fontCss} from './transformer/font-css.js'
 import {fontFamilyCss} from './transformer/font-family-css.js'
 import {fontWeightToNumber} from './transformer/font-weight-to-number.js'
@@ -140,6 +142,14 @@ OrigialStyleDictionary.registerTransform({
 
 OrigialStyleDictionary.registerTransform({
   ...dimensionToPixelUnitless,
+})
+
+OrigialStyleDictionary.registerTransform({
+  ...durationMsToS,
+})
+
+OrigialStyleDictionary.registerTransform({
+  ...durationSToMs,
 })
 
 OrigialStyleDictionary.registerTransform({
