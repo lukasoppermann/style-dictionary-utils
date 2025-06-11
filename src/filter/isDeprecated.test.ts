@@ -4,22 +4,6 @@ import {isDeprecated} from './isDeprecated'
 describe('Filter: isDeprecated', () => {
   const items = [
     {
-      value: 'true boolean',
-      deprecated: true,
-    },
-    {
-      value: 'true string',
-      deprecated: 'a valid string e.g. to inform about a replacement',
-    },
-    {
-      value: 'false boolean',
-      deprecated: false,
-    },
-    {
-      value: 'invalid deprecated without $ according to new spec',
-      deprecated: 'false',
-    },
-    {
       value: '$deprecated false boolean',
       $deprecated: false,
     },
@@ -32,18 +16,24 @@ describe('Filter: isDeprecated', () => {
       $deprecated: true,
     },
     {
+      value: 'old deprecated property - should be ignored',
+      deprecated: true,
+    },
+    {
+      value: 'old deprecated string - should be ignored',
+      deprecated: 'a valid string e.g. to inform about a replacement',
+    },
+    {
       value: 'nothing',
     },
   ] as TransformedToken[]
 
-  it('filters deprecated tokens according to new $deprecated spec', () => {
-    // According to new spec:
-    // - deprecated: true -> deprecated
-    // - deprecated: string -> deprecated (any string is deprecated with explanation)
-    // - deprecated: false -> NOT deprecated
+  it('filters deprecated tokens according to new $deprecated spec only', () => {
+    // Only $deprecated property should be supported:
     // - $deprecated: true -> deprecated
     // - $deprecated: string -> deprecated
     // - $deprecated: false -> NOT deprecated
-    expect(items.filter(isDeprecated)).toStrictEqual([items[0], items[1], items[3], items[5], items[6]])
+    // - deprecated: anything -> NOT deprecated (ignored)
+    expect(items.filter(isDeprecated)).toStrictEqual([items[1], items[2]])
   })
 })

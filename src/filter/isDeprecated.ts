@@ -5,6 +5,6 @@ import {TransformedToken} from 'style-dictionary/types'
  * @description only returns tokens with $deprecated = true or $deprecated = string
  */
 export const isDeprecated = (token: TransformedToken): boolean => {
-  const deprecated = token.deprecated || token.$deprecated
+  const deprecated = token.$deprecated
   return deprecated === true || typeof deprecated === 'string'
 }
