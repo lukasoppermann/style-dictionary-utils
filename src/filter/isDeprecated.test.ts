@@ -16,7 +16,7 @@ describe('Filter: isDeprecated', () => {
       deprecated: false,
     },
     {
-      value: 'false string - now deprecated according to new spec',
+      value: 'invalid deprecated without $ according to new spec',
       deprecated: 'false',
     },
     {
