@@ -1,6 +1,6 @@
 import {PlatformConfig, Transform, TransformedToken} from 'style-dictionary/types'
 import {isDimension} from '../filter/isDimension.js'
-import {getDimensionDurationValueAndUnit, formatDimensionDurationString} from '../utilities/dimensionUtils.js'
+import {getValue} from '../utilities/getValue.js'
 /**
  * dimensionRemToPixel
  * @description convert all dimensions that use rem value to pixels, uses `platform.options.basePxFontSize`
@@ -11,23 +11,22 @@ export const dimensionRemToPixel: Transform = {
   type: `value`,
   transitive: true,
   filter: (token: TransformedToken) => {
-    if (!isDimension(token)) return false
-    
-    const {unit} = getDimensionDurationValueAndUnit(token)
-    return unit === 'rem'
+    const tokenValue = getValue<string>(token)
+    return isDimension(token) && tokenValue.substring(tokenValue.length - 3) === 'rem'
   },
   transform: (token: TransformedToken, platform: PlatformConfig | undefined) => {
-    const {value, unit} = getDimensionDurationValueAndUnit(token)
+    const tokenValue = getValue<string>(token)
     const baseFont = platform?.basePxFontSize || 16
+    const floatVal = parseFloat(tokenValue)
 
-    if (isNaN(value)) {
-      throw `Invalid Number: '${token.name}: ${value}${unit}' is not a valid number, cannot transform to rem \n`
+    if (isNaN(floatVal)) {
+      throw `Invalid Number: '${token.name}: ${tokenValue}' is not a valid number, cannot transform to rem \n`
     }
 
-    if (value === 0) {
+    if (floatVal === 0) {
       return '0'
     }
 
-    return formatDimensionDurationString(baseFont * value, 'px')
+    return `${baseFont * floatVal}px`
   },
 }
