@@ -11,8 +11,7 @@ export const commentDeprecated: Transform = {
   transitive: true,
   filter: isDeprecated,
   transform: (token: TransformedToken) => {
-    const deprecated = token.deprecated || token.$deprecated
-    token.$description = `DEPRECATED${typeof deprecated === 'string' && deprecated !== 'true' ? `: ${deprecated}` : ''}`
+    token.$description = `DEPRECATED${typeof token.$deprecated === 'string' ? `: ${token.$deprecated}` : ''}`
     return token
   },
 }
