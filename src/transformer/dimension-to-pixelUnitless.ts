@@ -1,6 +1,6 @@
 import {isDimension} from '../filter/isDimension.js'
 import {PlatformConfig, Transform, TransformedToken} from 'style-dictionary/types'
-import {getValue} from '../utilities/getValue.js'
+import {getDimensionValue} from '../utilities/getDimensionValue.js'
 
 /**
  * @description base font size from options or 16
@@ -35,13 +35,13 @@ export const dimensionToPixelUnitless: Transform = {
   transitive: true,
   filter: isDimension,
   transform: (token: TransformedToken, options?: PlatformConfig) => {
-    const tokenValue = getValue<string>(token)
+    const dimensionValue = getDimensionValue(token)
     const baseFont = getBasePxFontSize(options)
-    const floatVal = parseFloat(tokenValue)
+    const floatVal = parseFloat(dimensionValue)
 
     if (isNaN(floatVal)) {
       throw new Error(
-        `Invalid dimension token: '${token.name}: ${tokenValue}' is not valid and cannot be transform to 'float' \n`,
+        `Invalid dimension token: '${token.name}: ${dimensionValue}' is not valid and cannot be transform to 'float' \n`,
       )
     }
 
@@ -49,14 +49,14 @@ export const dimensionToPixelUnitless: Transform = {
       return 0
     }
 
-    if (hasUnit(tokenValue, 'rem')) {
+    if (hasUnit(dimensionValue, 'rem')) {
       return floatVal * baseFont
     }
 
-    if (hasUnit(tokenValue, 'px')) {
+    if (hasUnit(dimensionValue, 'px')) {
       return floatVal
     }
 
-    return tokenValue
+    return dimensionValue
   },
 }

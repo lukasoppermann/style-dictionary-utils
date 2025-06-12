@@ -24,6 +24,34 @@ describe('transform: dimensionPixelToRem', () => {
     },
   ] as TransformedToken[]
 
+  const newFormatItems = [
+    {
+      $value: {
+        value: '20px',
+      },
+      $type: 'dimension',
+    },
+    {
+      $value: {
+        value: '30px',
+      },
+      $type: 'dimension',
+    },
+    {
+      $value: {
+        value: '3rem',
+      },
+      $type: 'dimension',
+    },
+    {
+      $value: '',
+      $type: 'color',
+    },
+    {
+      $value: '',
+    },
+  ] as TransformedToken[]
+
   it('matches `dimension` tokens with pixel value', () => {
     expect(items.filter(dimensionPixelToRem.filter)).toStrictEqual([items[0], items[1]])
   })
@@ -40,6 +68,25 @@ describe('transform: dimensionPixelToRem', () => {
     }
     expect(
       items.filter(dimensionPixelToRem.filter).map(item => dimensionPixelToRem.transform(item, platform, {})),
+    ).toStrictEqual(['2rem', '3rem'])
+  })
+
+  it('matches `dimension` tokens with pixel value in new structured format', () => {
+    expect(newFormatItems.filter(dimensionPixelToRem.filter)).toStrictEqual([newFormatItems[0], newFormatItems[1]])
+  })
+
+  it('transforms `dimension` tokens in new structured format', () => {
+    expect(
+      newFormatItems.filter(dimensionPixelToRem.filter).map(item => dimensionPixelToRem.transform(item, {}, {})),
+    ).toStrictEqual(['1.25rem', '1.875rem'])
+  })
+
+  it('transforms `dimension` tokens with custom baseFont in new structured format', () => {
+    const platform = {
+      basePxFontSize: 10,
+    }
+    expect(
+      newFormatItems.filter(dimensionPixelToRem.filter).map(item => dimensionPixelToRem.transform(item, platform, {})),
     ).toStrictEqual(['2rem', '3rem'])
   })
 })
