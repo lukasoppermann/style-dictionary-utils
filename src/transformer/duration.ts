@@ -10,9 +10,7 @@ export const durationToCss: Transform = {
   name: 'duration/toCss',
   type: `value`,
   transitive: true,
-  filter: (token: TransformedToken) => {
-    return isDuration(token)
-  },
+  filter: isDuration,
   transform: (token: TransformedToken) => {
     const {value, unit} = getDurationValueAndUnit(token)
     
