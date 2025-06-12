@@ -31,3 +31,33 @@ export const durationMsToS: Transform = {
     return formatDurationString(seconds, 's')
   },
 }
+
+/**
+ * durationSToMs  
+ * @description convert duration tokens from seconds to milliseconds
+ */
+export const durationSToMs: Transform = {
+  name: 'duration/sToMs',
+  type: `value`,
+  transitive: true,
+  filter: (token: TransformedToken) => {
+    if (!isDuration(token)) return false
+    
+    const {unit} = getDurationValueAndUnit(token)
+    return unit === 's'
+  },
+  transform: (token: TransformedToken) => {
+    const {value, unit} = getDurationValueAndUnit(token)
+    
+    if (unit !== 's') {
+      throw new Error(`Invalid unit for duration/sToMs: '${token.name}' has unit '${unit}', expected 's'`)
+    }
+    
+    if (value === 0) {
+      return '0ms'
+    }
+    
+    const milliseconds = value * 1000
+    return formatDurationString(milliseconds, 'ms')
+  },
+}
