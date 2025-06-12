@@ -987,6 +987,8 @@ myStyleDictionary.extend({
 
 This `value` transformer replaces the value of a token with a `$type` or `type` of `dimension` that has a `px` value, with a `rem` value.
 
+Supports both string format (`"32px"`) and structured format (`{ value: "32px" }`).
+
 ```js
 myStyleDictionary.extend({
   platforms: {
@@ -1013,6 +1015,12 @@ myStyleDictionary.extend({
     small: {
       value: "32px",
       $type: "dimension"
+    },
+    medium: {
+      $value: {
+        value: "64px"
+      },
+      $type: "dimension"
     }
   }
 }
@@ -1026,6 +1034,10 @@ myStyleDictionary.extend({
     small: {
       value: "2rem",
       $type: "dimension"
+    },
+    medium: {
+      $value: "4rem",
+      $type: "dimension"
     }
   }
 }
@@ -1034,6 +1046,8 @@ myStyleDictionary.extend({
 ### dimension/remToPixel
 
 This `value` transformer replaces the value of a token with a `$type` or `type` of `dimension` that has a `rem` value, with a `px` value.
+
+Supports both string format (`"2rem"`) and structured format (`{ value: "2rem" }`).
 
 ```js
 myStyleDictionary.extend({
@@ -1061,6 +1075,12 @@ myStyleDictionary.extend({
     small: {
       value: "2rem",
       $type: "dimension"
+    },
+    medium: {
+      $value: {
+        value: "4rem"
+      },
+      $type: "dimension"
     }
   }
 }
@@ -1074,6 +1094,10 @@ myStyleDictionary.extend({
     small: {
       value: "32px",
       $type: "dimension"
+    },
+    medium: {
+      $value: "64px",
+      $type: "dimension"
     }
   }
 }
@@ -1082,6 +1106,8 @@ myStyleDictionary.extend({
 ### dimension/pixelUnitless
 
 This `value` transformer replaces the value of a token with a `$type` or `type` of `dimension` that has a `rem` or `px` value, with a unitless `pixel` based value. This is useful for example when preparing tokens to be imported into Figma.
+
+Supports both string format (`"2rem"`, `"32px"`) and structured format (`{ value: "2rem" }`, `{ value: "32px" }`).
 
 ```js
 myStyleDictionary.extend({
