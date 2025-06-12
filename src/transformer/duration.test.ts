@@ -1,18 +1,18 @@
 import {describe, expect, it, vi} from 'vitest'
 import {TransformedToken} from 'style-dictionary/types'
-import {durationMsToS, durationSToMs} from './duration.js'
+import {durationToCss} from './duration.js'
 
 // Mock console.error to capture deprecation warnings
 const mockConsoleError = vi.spyOn(console, 'error').mockImplementation(() => {})
 
-describe('transformer: duration unit conversion', () => {
+describe('transformer: duration to CSS', () => {
   beforeEach(() => {
     mockConsoleError.mockClear()
   })
 
-  describe('durationMsToS', () => {
+  describe('durationToCss', () => {
     describe('filter', () => {
-      it('should match duration tokens with ms unit (new object format)', () => {
+      it('should match duration tokens (new object format with ms)', () => {
         const token: TransformedToken = {
           name: 'animation.fast',
           $value: {value: 300, unit: 'ms'},
@@ -20,10 +20,21 @@ describe('transformer: duration unit conversion', () => {
           path: ['animation', 'fast'],
           original: {$value: {value: 300, unit: 'ms'}, $type: 'duration'},
         }
-        expect(durationMsToS.filter(token)).toBe(true)
+        expect(durationToCss.filter(token)).toBe(true)
       })
 
-      it('should match duration tokens with ms unit (old string format)', () => {
+      it('should match duration tokens (new object format with s)', () => {
+        const token: TransformedToken = {
+          name: 'animation.medium',
+          $value: {value: 2, unit: 's'},
+          $type: 'duration',
+          path: ['animation', 'medium'],
+          original: {$value: {value: 2, unit: 's'}, $type: 'duration'},
+        }
+        expect(durationToCss.filter(token)).toBe(true)
+      })
+
+      it('should match duration tokens (old string format with ms)', () => {
         const token: TransformedToken = {
           name: 'animation.slow',
           $value: '500ms',
@@ -31,18 +42,18 @@ describe('transformer: duration unit conversion', () => {
           path: ['animation', 'slow'],
           original: {$value: '500ms', $type: 'duration'},
         }
-        expect(durationMsToS.filter(token)).toBe(true)
+        expect(durationToCss.filter(token)).toBe(true)
       })
 
-      it('should not match duration tokens with other units', () => {
+      it('should match duration tokens (old string format with s)', () => {
         const token: TransformedToken = {
-          name: 'animation.medium',
-          $value: {value: 2, unit: 's'},
+          name: 'animation.long',
+          $value: '3s',
           $type: 'duration',
-          path: ['animation', 'medium'],
-          original: {$value: {value: 2, unit: 's'}, $type: 'duration'},
+          path: ['animation', 'long'],
+          original: {$value: '3s', $type: 'duration'},
         }
-        expect(durationMsToS.filter(token)).toBe(false)
+        expect(durationToCss.filter(token)).toBe(true)
       })
 
       it('should not match non-duration tokens', () => {
@@ -53,12 +64,12 @@ describe('transformer: duration unit conversion', () => {
           path: ['spacing', 'large'],
           original: {$value: '32px', $type: 'dimension'},
         }
-        expect(durationMsToS.filter(token)).toBe(false)
+        expect(durationToCss.filter(token)).toBe(false)
       })
     })
 
     describe('transform', () => {
-      it('should convert ms to s (new object format)', () => {
+      it('should preserve ms unit (new object format)', () => {
         const token: TransformedToken = {
           name: 'animation.fast',
           $value: {value: 300, unit: 'ms'},
@@ -66,11 +77,23 @@ describe('transformer: duration unit conversion', () => {
           path: ['animation', 'fast'],
           original: {$value: {value: 300, unit: 'ms'}, $type: 'duration'},
         }
-        expect(durationMsToS.transform(token, {})).toBe('0.3s')
+        expect(durationToCss.transform(token, {})).toBe('300ms')
         expect(mockConsoleError).not.toHaveBeenCalled()
       })
 
-      it('should convert ms to s (old string format with deprecation warning)', () => {
+      it('should preserve s unit (new object format)', () => {
+        const token: TransformedToken = {
+          name: 'animation.medium',
+          $value: {value: 2, unit: 's'},
+          $type: 'duration',
+          path: ['animation', 'medium'],
+          original: {$value: {value: 2, unit: 's'}, $type: 'duration'},
+        }
+        expect(durationToCss.transform(token, {})).toBe('2s')
+        expect(mockConsoleError).not.toHaveBeenCalled()
+      })
+
+      it('should preserve ms unit (old string format with deprecation warning)', () => {
         const token: TransformedToken = {
           name: 'animation.slow',
           $value: '1000ms',
@@ -78,132 +101,44 @@ describe('transformer: duration unit conversion', () => {
           path: ['animation', 'slow'],
           original: {$value: '1000ms', $type: 'duration'},
         }
-        expect(durationMsToS.transform(token, {})).toBe('1s')
+        expect(durationToCss.transform(token, {})).toBe('1000ms')
         expect(mockConsoleError).toHaveBeenCalledWith(
           expect.stringContaining('DEPRECATED: Token "animation.slow" uses the old string format')
         )
       })
 
-      it('should handle zero values', () => {
+      it('should preserve s unit (old string format with deprecation warning)', () => {
         const token: TransformedToken = {
+          name: 'animation.long',
+          $value: '3s',
+          $type: 'duration',
+          path: ['animation', 'long'],
+          original: {$value: '3s', $type: 'duration'},
+        }
+        expect(durationToCss.transform(token, {})).toBe('3s')
+        expect(mockConsoleError).toHaveBeenCalledWith(
+          expect.stringContaining('DEPRECATED: Token "animation.long" uses the old string format')
+        )
+      })
+
+      it('should handle zero values consistently', () => {
+        const tokenMs: TransformedToken = {
           name: 'animation.none',
           $value: {value: 0, unit: 'ms'},
           $type: 'duration',
           path: ['animation', 'none'],
           original: {$value: {value: 0, unit: 'ms'}, $type: 'duration'},
         }
-        expect(durationMsToS.transform(token, {})).toBe('0s')
-      })
+        expect(durationToCss.transform(tokenMs, {})).toBe('0s')
 
-      it('should handle decimal values', () => {
-        const token: TransformedToken = {
-          name: 'animation.quick',
-          $value: {value: 150, unit: 'ms'},
-          $type: 'duration',
-          path: ['animation', 'quick'],
-          original: {$value: {value: 150, unit: 'ms'}, $type: 'duration'},
-        }
-        expect(durationMsToS.transform(token, {})).toBe('0.15s')
-      })
-
-      it('should throw error for invalid unit', () => {
-        const token: TransformedToken = {
-          name: 'animation.invalid',
-          $value: {value: 2, unit: 's'},
-          $type: 'duration',
-          path: ['animation', 'invalid'],
-          original: {$value: {value: 2, unit: 's'}, $type: 'duration'},
-        }
-        expect(() => durationMsToS.transform(token, {})).toThrow(
-          "Invalid unit for duration/msToS: 'animation.invalid' has unit 's', expected 'ms'"
-        )
-      })
-    })
-  })
-
-  describe('durationSToMs', () => {
-    describe('filter', () => {
-      it('should match duration tokens with s unit (new object format)', () => {
-        const token: TransformedToken = {
-          name: 'animation.medium',
-          $value: {value: 2, unit: 's'},
-          $type: 'duration',
-          path: ['animation', 'medium'],
-          original: {$value: {value: 2, unit: 's'}, $type: 'duration'},
-        }
-        expect(durationSToMs.filter(token)).toBe(true)
-      })
-
-      it('should match duration tokens with s unit (old string format)', () => {
-        const token: TransformedToken = {
-          name: 'animation.slow',
-          $value: '3s',
-          $type: 'duration',
-          path: ['animation', 'slow'],
-          original: {$value: '3s', $type: 'duration'},
-        }
-        expect(durationSToMs.filter(token)).toBe(true)
-      })
-
-      it('should not match duration tokens with other units', () => {
-        const token: TransformedToken = {
-          name: 'animation.fast',
-          $value: {value: 300, unit: 'ms'},
-          $type: 'duration',
-          path: ['animation', 'fast'],
-          original: {$value: {value: 300, unit: 'ms'}, $type: 'duration'},
-        }
-        expect(durationSToMs.filter(token)).toBe(false)
-      })
-
-      it('should not match non-duration tokens', () => {
-        const token: TransformedToken = {
-          name: 'spacing.large',
-          $value: '32px',
-          $type: 'dimension',
-          path: ['spacing', 'large'],
-          original: {$value: '32px', $type: 'dimension'},
-        }
-        expect(durationSToMs.filter(token)).toBe(false)
-      })
-    })
-
-    describe('transform', () => {
-      it('should convert s to ms (new object format)', () => {
-        const token: TransformedToken = {
-          name: 'animation.medium',
-          $value: {value: 2, unit: 's'},
-          $type: 'duration',
-          path: ['animation', 'medium'],
-          original: {$value: {value: 2, unit: 's'}, $type: 'duration'},
-        }
-        expect(durationSToMs.transform(token, {})).toBe('2000ms')
-        expect(mockConsoleError).not.toHaveBeenCalled()
-      })
-
-      it('should convert s to ms (old string format with deprecation warning)', () => {
-        const token: TransformedToken = {
-          name: 'animation.slow',
-          $value: '1s',
-          $type: 'duration',
-          path: ['animation', 'slow'],
-          original: {$value: '1s', $type: 'duration'},
-        }
-        expect(durationSToMs.transform(token, {})).toBe('1000ms')
-        expect(mockConsoleError).toHaveBeenCalledWith(
-          expect.stringContaining('DEPRECATED: Token "animation.slow" uses the old string format')
-        )
-      })
-
-      it('should handle zero values', () => {
-        const token: TransformedToken = {
-          name: 'animation.none',
+        const tokenS: TransformedToken = {
+          name: 'animation.none2',
           $value: {value: 0, unit: 's'},
           $type: 'duration',
-          path: ['animation', 'none'],
+          path: ['animation', 'none2'],
           original: {$value: {value: 0, unit: 's'}, $type: 'duration'},
         }
-        expect(durationSToMs.transform(token, {})).toBe('0ms')
+        expect(durationToCss.transform(tokenS, {})).toBe('0s')
       })
 
       it('should handle decimal values', () => {
@@ -214,19 +149,19 @@ describe('transformer: duration unit conversion', () => {
           path: ['animation', 'quick'],
           original: {$value: {value: 0.5, unit: 's'}, $type: 'duration'},
         }
-        expect(durationSToMs.transform(token, {})).toBe('500ms')
+        expect(durationToCss.transform(token, {})).toBe('0.5s')
       })
 
       it('should throw error for invalid unit', () => {
         const token: TransformedToken = {
           name: 'animation.invalid',
-          $value: {value: 300, unit: 'ms'},
+          $value: {value: 2, unit: 'px'},
           $type: 'duration',
           path: ['animation', 'invalid'],
-          original: {$value: {value: 300, unit: 'ms'}, $type: 'duration'},
+          original: {$value: {value: 2, unit: 'px'}, $type: 'duration'},
         }
-        expect(() => durationSToMs.transform(token, {})).toThrow(
-          "Invalid unit for duration/sToMs: 'animation.invalid' has unit 'ms', expected 's'"
+        expect(() => durationToCss.transform(token, {})).toThrow(
+          "Invalid unit for duration/toCss: 'animation.invalid' has unit 'px', expected 'ms' or 's'"
         )
       })
     })
