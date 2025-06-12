@@ -20,7 +20,7 @@ describe('Utility: getDimensionValue', () => {
     expect(getDimensionValue(token)).toBe('20px')
   })
 
-  it('extracts value from structured format with value property', () => {
+  it('extracts value from old structured format with value property', () => {
     const token = {
       $value: {
         value: '3rem',
@@ -31,7 +31,7 @@ describe('Utility: getDimensionValue', () => {
     expect(getDimensionValue(token)).toBe('3rem')
   })
 
-  it('extracts value from structured format with value property (using value property)', () => {
+  it('extracts value from old structured format with value property (using value property)', () => {
     const token = {
       value: {
         value: '15px',
@@ -40,6 +40,54 @@ describe('Utility: getDimensionValue', () => {
     } as TransformedToken
 
     expect(getDimensionValue(token)).toBe('15px')
+  })
+
+  it('extracts value from new structured format with value and unit properties', () => {
+    const token = {
+      $value: {
+        value: 2,
+        unit: 'rem',
+      },
+      $type: 'dimension',
+    } as TransformedToken
+
+    expect(getDimensionValue(token)).toBe('2rem')
+  })
+
+  it('extracts value from new structured format with value and unit properties (using value property)', () => {
+    const token = {
+      value: {
+        value: 16,
+        unit: 'px',
+      },
+      $type: 'dimension',
+    } as TransformedToken
+
+    expect(getDimensionValue(token)).toBe('16px')
+  })
+
+  it('extracts value from new structured format with floating point value', () => {
+    const token = {
+      $value: {
+        value: 1.5,
+        unit: 'rem',
+      },
+      $type: 'dimension',
+    } as TransformedToken
+
+    expect(getDimensionValue(token)).toBe('1.5rem')
+  })
+
+  it('extracts value from new structured format with zero value', () => {
+    const token = {
+      $value: {
+        value: 0,
+        unit: 'px',
+      },
+      $type: 'dimension',
+    } as TransformedToken
+
+    expect(getDimensionValue(token)).toBe('0px')
   })
 
   it('converts non-string values to string', () => {

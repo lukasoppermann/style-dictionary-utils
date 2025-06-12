@@ -987,7 +987,10 @@ myStyleDictionary.extend({
 
 This `value` transformer replaces the value of a token with a `$type` or `type` of `dimension` that has a `px` value, with a `rem` value.
 
-Supports both string format (`"32px"`) and structured format (`{ value: "32px" }`).
+Supports multiple formats:
+- String format: `"32px"`
+- Old structured format: `{ value: "32px" }`
+- New structured format (DTCG spec): `{ value: 32, unit: "px" }`
 
 ```js
 myStyleDictionary.extend({
@@ -1021,6 +1024,13 @@ myStyleDictionary.extend({
         value: "64px"
       },
       $type: "dimension"
+    },
+    large: {
+      $value: {
+        value: 96,
+        unit: "px"
+      },
+      $type: "dimension"
     }
   }
 }
@@ -1038,6 +1048,10 @@ myStyleDictionary.extend({
     medium: {
       $value: "4rem",
       $type: "dimension"
+    },
+    large: {
+      $value: "6rem",
+      $type: "dimension"
     }
   }
 }
@@ -1047,7 +1061,10 @@ myStyleDictionary.extend({
 
 This `value` transformer replaces the value of a token with a `$type` or `type` of `dimension` that has a `rem` value, with a `px` value.
 
-Supports both string format (`"2rem"`) and structured format (`{ value: "2rem" }`).
+Supports multiple formats:
+- String format: `"2rem"`
+- Old structured format: `{ value: "2rem" }`
+- New structured format (DTCG spec): `{ value: 2, unit: "rem" }`
 
 ```js
 myStyleDictionary.extend({
@@ -1081,6 +1098,13 @@ myStyleDictionary.extend({
         value: "4rem"
       },
       $type: "dimension"
+    },
+    large: {
+      $value: {
+        value: 6,
+        unit: "rem"
+      },
+      $type: "dimension"
     }
   }
 }
@@ -1098,6 +1122,10 @@ myStyleDictionary.extend({
     medium: {
       $value: "64px",
       $type: "dimension"
+    },
+    large: {
+      $value: "96px",
+      $type: "dimension"
     }
   }
 }
@@ -1107,7 +1135,10 @@ myStyleDictionary.extend({
 
 This `value` transformer replaces the value of a token with a `$type` or `type` of `dimension` that has a `rem` or `px` value, with a unitless `pixel` based value. This is useful for example when preparing tokens to be imported into Figma.
 
-Supports both string format (`"2rem"`, `"32px"`) and structured format (`{ value: "2rem" }`, `{ value: "32px" }`).
+Supports multiple formats:
+- String format: `"2rem"`, `"32px"`
+- Old structured format: `{ value: "2rem" }`, `{ value: "32px" }`
+- New structured format (DTCG spec): `{ value: 2, unit: "rem" }`, `{ value: 32, unit: "px" }`
 
 ```js
 myStyleDictionary.extend({

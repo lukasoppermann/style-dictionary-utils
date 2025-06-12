@@ -32,7 +32,7 @@ describe('transform: dimensionToPixelUnitless', () => {
     },
   ] as TransformedToken[]
 
-  const newFormatItems = [
+  const oldStructuredFormatItems = [
     {
       $value: {
         value: '0px',
@@ -72,6 +72,51 @@ describe('transform: dimensionToPixelUnitless', () => {
     },
   ] as TransformedToken[]
 
+  const newStructuredFormatItems = [
+    {
+      $value: {
+        value: 0,
+        unit: 'px',
+      },
+      $type: 'dimension',
+    },
+    {
+      $value: {
+        value: 0,
+        unit: 'px',
+      },
+      $type: 'dimension',
+    },
+    {
+      $value: {
+        value: 15,
+        unit: 'px',
+      },
+      $type: 'dimension',
+    },
+    {
+      $value: {
+        value: 20,
+        unit: 'px',
+      },
+      $type: 'dimension',
+    },
+    {
+      $value: {
+        value: 3,
+        unit: 'rem',
+      },
+      $type: 'dimension',
+    },
+    {
+      $value: '',
+      $type: 'color',
+    },
+    {
+      $value: '',
+    },
+  ] as TransformedToken[]
+
   it('transforms `dimension` tokens', () => {
     expect(
       items.filter(dimensionToPixelUnitless.filter).map(item => dimensionToPixelUnitless.transform(item, {}, {})),
@@ -87,9 +132,24 @@ describe('transform: dimensionToPixelUnitless', () => {
     ).toStrictEqual([0, 0, 15, 20, 30])
   })
 
+  it('transforms `dimension` tokens in old structured format', () => {
+    expect(
+      oldStructuredFormatItems.filter(dimensionToPixelUnitless.filter).map(item => dimensionToPixelUnitless.transform(item, {}, {})),
+    ).toStrictEqual([0, 0, 15, 20, 48])
+  })
+
+  it('transforms `dimension` tokens with custom baseFont in old structured format', () => {
+    const platform = {
+      basePxFontSize: 10,
+    }
+    expect(
+      oldStructuredFormatItems.filter(dimensionToPixelUnitless.filter).map(item => dimensionToPixelUnitless.transform(item, platform, {})),
+    ).toStrictEqual([0, 0, 15, 20, 30])
+  })
+
   it('transforms `dimension` tokens in new structured format', () => {
     expect(
-      newFormatItems.filter(dimensionToPixelUnitless.filter).map(item => dimensionToPixelUnitless.transform(item, {}, {})),
+      newStructuredFormatItems.filter(dimensionToPixelUnitless.filter).map(item => dimensionToPixelUnitless.transform(item, {}, {})),
     ).toStrictEqual([0, 0, 15, 20, 48])
   })
 
@@ -98,7 +158,7 @@ describe('transform: dimensionToPixelUnitless', () => {
       basePxFontSize: 10,
     }
     expect(
-      newFormatItems.filter(dimensionToPixelUnitless.filter).map(item => dimensionToPixelUnitless.transform(item, platform, {})),
+      newStructuredFormatItems.filter(dimensionToPixelUnitless.filter).map(item => dimensionToPixelUnitless.transform(item, platform, {})),
     ).toStrictEqual([0, 0, 15, 20, 30])
   })
 })
