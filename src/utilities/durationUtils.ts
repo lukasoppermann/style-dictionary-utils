@@ -112,15 +112,6 @@ export const getDurationValueAndUnit = (token: TransformedToken): DurationValue 
   return parseDurationString(tokenValue)
 }
 
-/**
- * Formats a duration value back to a string (for output)
- * @param value - numeric value
- * @param unit - unit string
- * @returns formatted string like "300ms"
- */
-export const formatDurationString = (value: number, unit: string): string => {
-  return `${value}${unit}`
-}
 
 /**
  * Logs a deprecation warning for using the old string format

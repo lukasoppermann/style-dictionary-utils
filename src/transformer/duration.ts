@@ -1,6 +1,6 @@
 import {Transform, TransformedToken} from 'style-dictionary/types'
 import {isDuration} from '../filter/isDuration.js'
-import {getDurationValueAndUnit, formatDurationString} from '../utilities/durationUtils.js'
+import {getDurationValueAndUnit} from '../utilities/durationUtils.js'
 
 /**
  * durationToCss
@@ -25,6 +25,6 @@ export const durationToCss: Transform = {
     }
     
     // Return the value with its original unit preserved
-    return formatDurationString(value, unit)
+    return `${value}${unit}`
   },
 }

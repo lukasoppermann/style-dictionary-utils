@@ -7,7 +7,6 @@ import {
   getDurationValue,
   getDurationUnit,
   getDurationValueAndUnit,
-  formatDurationString,
   logDurationDeprecationWarning,
 } from './durationUtils'
 
@@ -168,18 +167,6 @@ describe('durationUtils', () => {
       expect(mockConsoleError).toHaveBeenCalledWith(
         expect.stringContaining('DEPRECATED: Token "animation.slow" uses the old string format')
       )
-    })
-  })
-
-  describe('formatDurationString', () => {
-    it('should format value and unit to string', () => {
-      expect(formatDurationString(300, 'ms')).toBe('300ms')
-      expect(formatDurationString(2, 's')).toBe('2s')
-      expect(formatDurationString(0, '')).toBe('0')
-    })
-
-    it('should handle decimal values', () => {
-      expect(formatDurationString(1.5, 's')).toBe('1.5s')
     })
   })
 
