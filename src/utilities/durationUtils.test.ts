@@ -4,7 +4,6 @@ import {
   DurationValue,
   isDurationValueObject,
   parseDurationString,
-  getDurationUnit,
   getDurationValueAndUnit,
   logDurationDeprecationWarning,
 } from './durationUtils'
@@ -60,45 +59,6 @@ describe('durationUtils', () => {
 
     it('should throw error for invalid numeric value', () => {
       expect(() => parseDurationString('abcms')).toThrow('Invalid duration string')
-    })
-  })
-
-  describe('getDurationUnit', () => {
-    it('should return unit from object format', () => {
-      const token: TransformedToken = {
-        name: 'animation.fast',
-        $value: {value: 150, unit: 'ms'},
-        $type: 'duration',
-        path: ['animation', 'fast'],
-        original: {$value: {value: 150, unit: 'ms'}, $type: 'duration'},
-      }
-      expect(getDurationUnit(token)).toBe('ms')
-      expect(mockConsoleError).not.toHaveBeenCalled()
-    })
-
-    it('should return unit from string format with deprecation warning', () => {
-      const token: TransformedToken = {
-        name: 'animation.slow',
-        $value: '2s',
-        $type: 'duration',
-        path: ['animation', 'slow'],
-        original: {$value: '2s', $type: 'duration'},
-      }
-      expect(getDurationUnit(token)).toBe('s')
-      expect(mockConsoleError).toHaveBeenCalledWith(
-        expect.stringContaining('DEPRECATED: Token "animation.slow" uses the old string format')
-      )
-    })
-
-    it('should handle unitless values', () => {
-      const token: TransformedToken = {
-        name: 'animation.none',
-        $value: '0',
-        $type: 'duration',
-        path: ['animation', 'none'],
-        original: {$value: '0', $type: 'duration'},
-      }
-      expect(getDurationUnit(token)).toBe('')
     })
   })
 

@@ -54,26 +54,6 @@ export const parseDurationString = (stringValue: string): DurationValue => {
 }
 
 /**
- * Gets the unit from a duration token (supports both formats)
- * @param token - the token to extract unit from
- * @returns unit string
- */
-export const getDurationUnit = (token: TransformedToken): string => {
-  const tokenValue = getValue<DurationTokenValue>(token)
-  
-  if (isDurationValueObject(tokenValue)) {
-    return tokenValue.unit
-  }
-  
-  // Log deprecation warning for old string format
-  logDurationDeprecationWarning(token)
-  
-  // Parse old string format
-  const parsed = parseDurationString(tokenValue)
-  return parsed.unit
-}
-
-/**
  * Gets both value and unit from a duration token (supports both formats)
  * @param token - the token to extract data from
  * @returns object with value and unit
