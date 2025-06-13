@@ -6,6 +6,18 @@
       "description": "The link color",
     }
   },
+  dimension: {
+    "px": {
+      value: "8px",
+      type: "dimension",
+      "description": "The default padding",
+    },
+    "rem": {
+      value: "0.5rem",
+      type: "dimension",
+      "description": "The default padding in rem",
+    }
+  },
   border: {
     default: {
       value: {
