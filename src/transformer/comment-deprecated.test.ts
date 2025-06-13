@@ -4,51 +4,47 @@ import {commentDeprecated} from './comment-deprecated'
 describe('transform: commentDeprecated', () => {
   const items = [
     {
-      value: 'true boolean',
-      deprecated: true,
-    },
-    {
-      value: 'true string',
-      deprecated: 'a valid string e.g. to inform about a replacement',
-    },
-    {
-      value: 'true string',
+      value: '$deprecated string',
       $deprecated: 'a valid string e.g. to inform about a replacement',
     },
     {
-      value: 'false boolean',
-      deprecated: false,
+      value: '$deprecated false boolean',
+      $deprecated: false,
     },
     {
-      value: 'false string',
-      deprecated: 'false',
+      value: '$deprecated true boolean',
+      $deprecated: true,
+    },
+    {
+      value: 'old deprecated true - should be ignored',
+      deprecated: true,
+    },
+    {
+      value: 'old deprecated string - should be ignored',
+      deprecated: 'a valid string e.g. to inform about a replacement',
     },
     {
       value: 'nothing',
     },
   ] as TransformedToken[]
 
-  it('matches tokens with valid `deprecated` property', () => {
-    expect(items.filter(commentDeprecated.filter)).toStrictEqual([items[0], items[1], items[2]])
+  it('matches tokens with valid `$deprecated` property only', () => {
+    // Only $deprecated property should be supported
+    expect(items.filter(commentDeprecated.filter)).toStrictEqual([items[0], items[2]])
   })
 
-  it('adds deprecated comment to tokens', () => {
+  it('adds deprecated comment to tokens with $deprecated property only', () => {
     expect(items.filter(commentDeprecated.filter).map(item => commentDeprecated.transform(item, {}, {}))).toStrictEqual(
       [
         {
-          $description: 'DEPRECATED',
-          deprecated: true,
-          value: 'true boolean',
-        },
-        {
-          $description: 'DEPRECATED: a valid string e.g. to inform about a replacement',
-          deprecated: 'a valid string e.g. to inform about a replacement',
-          value: 'true string',
-        },
-        {
           $description: 'DEPRECATED: a valid string e.g. to inform about a replacement',
           $deprecated: 'a valid string e.g. to inform about a replacement',
-          value: 'true string',
+          value: '$deprecated string',
+        },
+        {
+          $description: 'DEPRECATED',
+          $deprecated: true,
+          value: '$deprecated true boolean',
         },
       ],
     )
