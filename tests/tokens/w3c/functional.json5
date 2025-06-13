@@ -1,9 +1,38 @@
 {
   fgColor: {
     link: {
-      $value: "{base.color.blue.500}",
-      $type: "color",
-      "$description": "The link color",
-    }
-  }
+      $value: '{base.color.blue.500}',
+      $type: 'color',
+      $description: 'The link color',
+    },
+  },
+  dimension: {
+    px: {
+      $value: {
+        value: '8',
+        unit: 'px',
+      },
+      $type: 'dimension',
+      description: 'Pixel dimension value',
+    },
+    rem: {
+      $value: {
+        value: 0.5,
+        unit: 'rem',
+      },
+      $type: 'dimension',
+      description: 'REM dimension value',
+    },
+  },
+  border: {
+    default: {
+      value: {
+        color: '{base.color.blue.500}',
+        style: 'solid',
+        width: '1px',
+      },
+      $type: 'border',
+      description: 'The default border color',
+    },
+  },
 }
