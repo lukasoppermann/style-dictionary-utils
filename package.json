@@ -12,8 +12,18 @@
   },
   "description": "Utilities to use in your style dictionary config",
   "exports": {
-    ".": "./dist/index.js",
-    "./filter/*": "./dist/filter/*"
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./filter/*.js": {
+      "import": "./dist/filter/*.js",
+      "types": "./dist/filter/*.d.ts"
+    },
+    "./dist/filter/*.js": {
+      "import": "./dist/filter/*.js",
+      "types": "./dist/filter/*.d.ts"
+    }
   },
   "files": [
     "dist/*"
