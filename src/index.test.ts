@@ -28,6 +28,7 @@ describe('index.ts', () => {
     expect(StyleDictionary.hooks.transforms['dimension/pixelToRem']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['dimension/remToPixel']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['dimension/pixelUnitless']).toBeDefined()
+    expect(StyleDictionary.hooks.transforms['duration/toCss']).toBeDefined()
   })
 
   it('all transformGroups are attached', () => {
