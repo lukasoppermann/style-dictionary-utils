@@ -53,4 +53,17 @@
       description: 'The default border color',
     },
   },
+  number: {
+    small: {
+      $value: 1.25,
+      $type: 'number',
+      description: 'A small float number value',
+    },
+    large: {
+      $value: 1000,
+      $type: 'number',
+      description: 'A large integer number value',
+    },
+  },
+
 }

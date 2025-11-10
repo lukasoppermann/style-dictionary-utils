@@ -41,6 +41,8 @@ import {gradientCss} from './transformer/gradient-css.js'
 import {namePathToDotNotation} from './transformer/name-path-to-dot-notation.js'
 import {namePathToCamelCase} from './transformer/name-path-to-camel-case.js'
 import {shadowCss} from './transformer/shadow-css.js'
+import {isNumber} from './filter/isNumber.js'
+import {number} from './transformer/number.js'
 
 /**
  * Formats
@@ -150,6 +152,10 @@ OrigialStyleDictionary.registerTransform({
 OrigialStyleDictionary.registerTransform({
   ...borderCss,
 })
+
+OrigialStyleDictionary.registerTransform({
+  ...number,
+})
 /**
  * Transform groups
  *
@@ -242,6 +248,11 @@ OrigialStyleDictionary.registerFilter({
 OrigialStyleDictionary.registerFilter({
   name: 'isBorder',
   filter: isBorder,
+})
+
+OrigialStyleDictionary.registerFilter({
+  name: 'isNumber',
+  filter: isNumber,
 })
 
 /**
