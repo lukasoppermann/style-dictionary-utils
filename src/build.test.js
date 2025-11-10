@@ -26,6 +26,7 @@ describe('index.js', () => {
     expect(StyleDictionary.hooks.transforms['dimension/pixelToRem']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['dimension/remToPixel']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['dimension/pixelUnitless']).toBeDefined()
+    expect(StyleDictionary.hooks.transforms['number']).toBeDefined()
   })
 
   it('all transformGroups are attached', () => {
@@ -49,6 +50,6 @@ describe('index.js', () => {
     expect(StyleDictionary.hooks.filters['isStrokeStyle']).toBeDefined()
     expect(StyleDictionary.hooks.filters['isTransition']).toBeDefined()
     expect(StyleDictionary.hooks.filters['isTypographic']).toBeDefined()
-    expect(StyleDictionary.hooks.filters['isTypography']).toBeDefined()
+    expect(StyleDictionary.hooks.filters['isNumber']).toBeDefined()
   })
 })

@@ -29,6 +29,7 @@ describe('index.ts', () => {
     expect(StyleDictionary.hooks.transforms['dimension/remToPixel']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['dimension/pixelUnitless']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['duration/toCss']).toBeDefined()
+    expect(StyleDictionary.hooks.transforms['number']).toBeDefined()
   })
 
   it('all transformGroups are attached', () => {
@@ -53,6 +54,7 @@ describe('index.ts', () => {
     expect(StyleDictionary.hooks.filters['isTransition']).toBeDefined()
     expect(StyleDictionary.hooks.filters['isTypographic']).toBeDefined()
     expect(StyleDictionary.hooks.filters['isTypography']).toBeDefined()
+    expect(StyleDictionary.hooks.filters['isNumber']).toBeDefined()
   })
 
   it('can be extended with a format', () => {

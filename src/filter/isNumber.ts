@@ -1,0 +1,8 @@
+import {TransformedToken} from 'style-dictionary/types'
+/**
+ * @name isNumber
+ * @type filter
+ * @description only returns tokens of type `number`
+ */
+export const isNumber = (token: TransformedToken): boolean =>
+  token?.$type === 'number' || token?.type === 'number'
