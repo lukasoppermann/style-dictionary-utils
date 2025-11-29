@@ -43,6 +43,7 @@ import {namePathToCamelCase} from './transformer/name-path-to-camel-case.js'
 import {shadowCss} from './transformer/shadow-css.js'
 import {isNumber} from './filter/isNumber.js'
 import {number} from './transformer/number.js'
+import {colorToCss} from './transformer/color-to-css.js'
 
 /**
  * Formats
@@ -73,6 +74,10 @@ OrigialStyleDictionary.registerFormat({
  * Transformers
  *
  */
+OrigialStyleDictionary.registerTransform({
+  ...colorToCss,
+})
+
 OrigialStyleDictionary.registerTransform({
   ...colorAlphaToRgba,
 })
