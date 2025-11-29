@@ -55,7 +55,7 @@
     "eslint": "^8.57.0",
     "eslint-plugin-github": "^5.0.2",
     "prettier": "^3.3.3",
-    "style-dictionary": "^5.1.1",
+    "style-dictionary": "^4",
     "style-dictionary-utils": "^4.0.5",
     "typescript": "^5.5.2",
     "vitest": "^3.2.3"
