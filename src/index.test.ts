@@ -10,6 +10,7 @@ describe('index.ts', () => {
   })
 
   it('all transformers are attached', () => {
+    expect(StyleDictionary.hooks.transforms['color/css']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['color/hex']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['color/rgba']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['color/rgbAlpha']).toBeDefined()
