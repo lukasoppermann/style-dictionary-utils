@@ -321,4 +321,44 @@ describe('transform: colorToCss', () => {
       ].map(item => colorToCss.transform(item as TransformedToken, {})),
     ).toStrictEqual(['#ff56e7', '#ff56e7cc'])
   })
+  
+  it('transforms xyz-d65 `color` tokens', () => {
+    expect(
+      [
+        {
+          $value: {
+            colorSpace: 'xyz-d65',
+            components: [0.5929, 0.2848, 0.9699],
+          },
+        },
+        {
+          $value: {
+            colorSpace: 'xyz-d65',
+            components: [0.5929, 0.2848, 0.9699],
+            alpha: 0.8,
+          },
+        },
+      ].map(item => colorToCss.transform(item as TransformedToken, {})),
+    ).toStrictEqual(['#f0f', '#f0fc'])
+  })
+
+  it('transforms xyz-d50 `color` tokens', () => {
+    expect(
+      [
+        {
+          $value: {
+            colorSpace: 'xyz-d50',
+            components: [0.5791, 0.2831, 0.728],
+          },
+        },
+        {
+          $value: {
+            colorSpace: 'xyz-d50',
+            components: [0.5791, 0.2831, 0.728],
+            alpha: 0.8,
+          },
+        },
+      ].map(item => colorToCss.transform(item as TransformedToken, {})),
+    ).toStrictEqual(['#f0f', '#f0fc'])
+  })
 })
