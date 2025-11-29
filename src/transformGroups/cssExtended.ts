@@ -5,7 +5,7 @@ export const cssExtended = {
   transforms: [
     ...styleDictionary.hooks.transformGroups['css'],
     'color/rgbAlpha',
-    'shadow/css',
+    'deprecated-shadow/css',
     'font/css',
     'fontFamily/css',
     'fontWeight/number',

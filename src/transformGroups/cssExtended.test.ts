@@ -13,7 +13,7 @@ describe('TransformGroup: css extended', () => {
 
   const extensionArray = [
     'color/rgbAlpha',
-    'shadow/css',
+    'deprecated-shadow/css',
     'font/css',
     'fontFamily/css',
     'fontWeight/number',

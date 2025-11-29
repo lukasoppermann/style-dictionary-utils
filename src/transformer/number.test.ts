@@ -43,16 +43,17 @@ describe('transform: number', () => {
   ] as TransformedToken[]
 
   it('transforms `number` tokens', () => {
+    // @ts-expect-error: because of testing with invalid data
     expect(items.filter(number.filter).map(item => number.transform(item, {}, {}))).toEqual([0, 20, 20.5])
   })
 
   it('throws on invalid `number` tokens', () => {
+    // @ts-expect-error: because of testing with invalid data
     const filtered = invalidItems.filter(number.filter)
-    
+
     filtered.map(item => {
       expect(() => number.transform(item, {}, {})).toThrow()
     })
-
   })
 
   it('throw on invalid `number` with token name tokens', () => {

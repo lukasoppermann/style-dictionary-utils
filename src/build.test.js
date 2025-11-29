@@ -19,6 +19,7 @@ describe('index.js', () => {
     expect(StyleDictionary.hooks.transforms['name/pathToDotNotation']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['name/pathToCamelCase']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['shadow/css']).toBeDefined()
+    expect(StyleDictionary.hooks.transforms['depreatedShadow/css']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['font/css']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['fontFamily/css']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['fontWeight/number']).toBeDefined()
