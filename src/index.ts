@@ -44,6 +44,7 @@ import {shadowCss} from './transformer/shadow-css.js'
 import {isNumber} from './filter/isNumber.js'
 import {number} from './transformer/number.js'
 import {colorToCss} from './transformer/color-to-css.js'
+import {deprecatedGradientCss} from './transformer/deprecated-gradient-css.js'
 
 /**
  * Formats
@@ -116,6 +117,10 @@ OrigialStyleDictionary.registerTransform({
 
 OrigialStyleDictionary.registerTransform({
   ...gradientCss,
+})
+
+OrigialStyleDictionary.registerTransform({
+  ...deprecatedGradientCss,
 })
 
 OrigialStyleDictionary.registerTransform({
