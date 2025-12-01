@@ -35,7 +35,7 @@ jobs:
         run: npx vitest run
 
       - name: Run format
-        run: nprun format
+        run: npm run format
 
   Test-build:
     name: Test build output
