@@ -34,6 +34,8 @@ export const parseDurationString = (stringValue: string): TokenValueDuration => 
     if (isNaN(value)) {
       throw new Error(`Invalid numeric value in duration string: "${stringValue}"`)
     }
+
+    // @ts-expect-error - empty string unit for unitless values
     return {value, unit: ''}
   }
 
@@ -49,7 +51,7 @@ export const parseDurationString = (stringValue: string): TokenValueDuration => 
   if (isNaN(value)) {
     throw new Error(`Invalid numeric value in duration string: "${stringValue}"`)
   }
-
+  // @ts-expect-error - empty string unit for unitless values
   return {value, unit}
 }
 
@@ -72,7 +74,6 @@ export const getDurationValueAndUnit = (token: TransformedToken): TokenValueDura
   return parseDurationString(tokenValue)
 }
 
-
 /**
  * Logs a deprecation warning for using the old string format
  * @param token - the token using the old format
@@ -81,7 +82,7 @@ export const logDurationDeprecationWarning = (token: TransformedToken): void => 
   const tokenValue = getValue<DurationTokenValue>(token)
   console.error(
     `DEPRECATED: Token "${token.name}" uses the old string format "${tokenValue}" for duration tokens. ` +
-    `Please update to the new object format: {"value": number, "unit": "string"}. ` +
-    `This format will be removed in a future major release.`
+      `Please update to the new object format: {"value": number, "unit": "string"}. ` +
+      `This format will be removed in a future major release.`,
   )
 }

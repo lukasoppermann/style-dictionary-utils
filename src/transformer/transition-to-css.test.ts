@@ -48,8 +48,48 @@ describe('transform: transitionCss', () => {
       },
       $type: 'transition',
     } as TransformedToken
-    expect(transitionCss.transform(item, {}, {})).toStrictEqual(
-      '1s 0s cubic-bezier(0.25,0.1,0.25,1.2)',
+    expect(transitionCss.transform(item, {}, {})).toStrictEqual('1s 0s cubic-bezier(0.25,0.1,0.25,1.2)')
+  })
+
+  it('transforms invalid duration in `transition` tokens', () => {
+    const item = {
+      name: 'my.transition',
+      value: {
+        duration: {
+          value: 1,
+          unit: 'sec',
+        },
+        delay: {
+          value: 0,
+          unit: 's',
+        },
+        timingFunction: [0.25, 0.1, 0.25, 1.2],
+      },
+      $type: 'transition',
+    } as TransformedToken
+    expect(() => transitionCss.transform(item, {}, {})).toThrowError(
+      `Invalid unit when transforming duration: 'my.transition duration' has unit 'sec', expected 'ms' or 's'`,
+    )
+  })
+
+  it('transforms invalid delay in `transition` tokens', () => {
+    const item = {
+      name: 'my.transition',
+      value: {
+        duration: {
+          value: 1,
+          unit: 's',
+        },
+        delay: {
+          value: 0,
+          unit: 'min',
+        },
+        timingFunction: [0.25, 0.1, 0.25, 1.2],
+      },
+      $type: 'transition',
+    } as TransformedToken
+    expect(() => transitionCss.transform(item, {}, {})).toThrowError(
+      `Invalid unit when transforming duration: 'my.transition delay' has unit 'min', expected 'ms' or 's'`,
     )
   })
 })

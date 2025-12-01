@@ -103,12 +103,17 @@ describe('transform: dimensionRemToPixel', () => {
   })
 
   it('matches `dimension` tokens with rem value in old structured format', () => {
-    expect(oldStructuredFormatItems.filter(dimensionRemToPixel.filter)).toStrictEqual([oldStructuredFormatItems[1], oldStructuredFormatItems[2]])
+    expect(oldStructuredFormatItems.filter(dimensionRemToPixel.filter)).toStrictEqual([
+      oldStructuredFormatItems[1],
+      oldStructuredFormatItems[2],
+    ])
   })
 
   it('transforms `dimension` tokens in old structured format', () => {
     expect(
-      oldStructuredFormatItems.filter(dimensionRemToPixel.filter).map(item => dimensionRemToPixel.transform(item, {}, {})),
+      oldStructuredFormatItems
+        .filter(dimensionRemToPixel.filter)
+        .map(item => dimensionRemToPixel.transform(item, {}, {})),
     ).toStrictEqual(['48px', '32px'])
   })
 
@@ -117,17 +122,24 @@ describe('transform: dimensionRemToPixel', () => {
       basePxFontSize: 10,
     }
     expect(
-      oldStructuredFormatItems.filter(dimensionRemToPixel.filter).map(item => dimensionRemToPixel.transform(item, platform, {})),
+      oldStructuredFormatItems
+        .filter(dimensionRemToPixel.filter)
+        .map(item => dimensionRemToPixel.transform(item, platform, {})),
     ).toStrictEqual(['30px', '20px'])
   })
 
   it('matches `dimension` tokens with rem value in new structured format', () => {
-    expect(newStructuredFormatItems.filter(dimensionRemToPixel.filter)).toStrictEqual([newStructuredFormatItems[1], newStructuredFormatItems[2]])
+    expect(newStructuredFormatItems.filter(dimensionRemToPixel.filter)).toStrictEqual([
+      newStructuredFormatItems[1],
+      newStructuredFormatItems[2],
+    ])
   })
 
   it('transforms `dimension` tokens in new structured format', () => {
     expect(
-      newStructuredFormatItems.filter(dimensionRemToPixel.filter).map(item => dimensionRemToPixel.transform(item, {}, {})),
+      newStructuredFormatItems
+        .filter(dimensionRemToPixel.filter)
+        .map(item => dimensionRemToPixel.transform(item, {}, {})),
     ).toStrictEqual(['48px', '32px'])
   })
 
@@ -136,7 +148,9 @@ describe('transform: dimensionRemToPixel', () => {
       basePxFontSize: 10,
     }
     expect(
-      newStructuredFormatItems.filter(dimensionRemToPixel.filter).map(item => dimensionRemToPixel.transform(item, platform, {})),
+      newStructuredFormatItems
+        .filter(dimensionRemToPixel.filter)
+        .map(item => dimensionRemToPixel.transform(item, platform, {})),
     ).toStrictEqual(['30px', '20px'])
   })
 })

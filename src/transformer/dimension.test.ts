@@ -34,9 +34,11 @@ describe('transform: dimension', () => {
   ] as TransformedToken[]
 
   it('transforms `dimension` tokens', () => {
-    expect(
-      items.filter(dimension.filter).map(item => dimension.transform(item, {}, {})),
-    ).toStrictEqual(['0', '20px', '3rem'])
+    expect(items.filter(dimension.filter).map(item => dimension.transform(item, {}, {}))).toStrictEqual([
+      '0',
+      '20px',
+      '3rem',
+    ])
   })
 
   it('transforms `dimension` tokens with custom baseFont', () => {
@@ -44,18 +46,22 @@ describe('transform: dimension', () => {
       basePxFontSize: 10,
       outputUnit: 'rem',
     }
-    expect(
-      items.filter(dimension.filter).map(item => dimension.transform(item, platform, {})),
-    ).toStrictEqual(['0', '2rem', '3rem'])
+    expect(items.filter(dimension.filter).map(item => dimension.transform(item, platform, {}))).toStrictEqual([
+      '0',
+      '2rem',
+      '3rem',
+    ])
   })
 
-    it('transforms `dimension` tokens with custom baseFont', () => {
+  it('transforms `dimension` tokens with custom baseFont', () => {
     const platform = {
       outputUnit: 'px',
     }
-    expect(
-      items.filter(dimension.filter).map(item => dimension.transform(item, platform, {})),
-    ).toStrictEqual(['0', '20px', '48px'])
+    expect(items.filter(dimension.filter).map(item => dimension.transform(item, platform, {}))).toStrictEqual([
+      '0',
+      '20px',
+      '48px',
+    ])
   })
 
   it('transforms `dimension` without unit', () => {
@@ -64,9 +70,10 @@ describe('transform: dimension', () => {
       outputUnit: 'px',
       appendUnit: false,
     }
-    expect(
-      items.filter(dimension.filter).map(item => dimension.transform(item, platform, {})),
-    ).toStrictEqual(['0', '20', '30'])
+    expect(items.filter(dimension.filter).map(item => dimension.transform(item, platform, {}))).toStrictEqual([
+      '0',
+      '20',
+      '30',
+    ])
   })
-  
 })

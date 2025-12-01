@@ -1,6 +1,6 @@
 import {Transform, TransformedToken} from 'style-dictionary/types'
 import {isNumber} from '../filter/isNumber.js'
-import { getValue } from '../utilities/getValue.js'
+import {getValue} from '../utilities/getValue.js'
 
 /**
  * number

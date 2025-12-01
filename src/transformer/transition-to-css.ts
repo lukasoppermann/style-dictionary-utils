@@ -1,9 +1,9 @@
 import {Transform, TransformedToken} from 'style-dictionary/types'
 import {isTransition} from '../filter/isTransition.js'
 import {getValue} from '../utilities/getValue.js'
-import { TokenValueCubicBezier } from './cubic-bezier-css.js'
-import { TokenValueDuration } from '../utilities/durationUtils.js'
-import { transformDuration } from './durationToCss.js'
+import {TokenValueCubicBezier} from './cubic-bezier-css.js'
+import {TokenValueDuration} from '../utilities/durationUtils.js'
+import {transformDuration} from './durationToCss.js'
 
 type TokenValueTransition = {
   duration: TokenValueDuration
@@ -22,6 +22,6 @@ export const transitionCss: Transform = {
   filter: isTransition,
   transform: (token: TransformedToken) => {
     const {duration, delay, timingFunction} = getValue<TokenValueTransition>(token)
-    return `${transformDuration(duration)} ${transformDuration(delay)} cubic-bezier(${timingFunction.join(',')})`.trim()
+    return `${transformDuration(duration, `${token.name} duration`)} ${transformDuration(delay, `${token.name} delay`)} cubic-bezier(${timingFunction.join(',')})`.trim()
   },
 }

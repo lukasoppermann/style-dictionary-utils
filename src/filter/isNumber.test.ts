@@ -20,9 +20,7 @@ describe('Filter: isNumber', () => {
     },
   ] as TransformedToken[]
 
-
   it('filters number tokens', () => {
     expect(items.filter(isNumber)).toStrictEqual([items[0], items[2]])
   })
-
 })
