@@ -27,6 +27,7 @@ describe('index.ts', () => {
     expect(StyleDictionary.hooks.transforms['fontWeight/number']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['gradient/css']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['cubicBezier/css']).toBeDefined()
+    expect(StyleDictionary.hooks.transforms['strokeStyle/css']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['dimension/pixelToRem']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['dimension/remToPixel']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['dimension/pixelUnitless']).toBeDefined()
