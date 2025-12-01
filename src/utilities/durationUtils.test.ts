@@ -85,7 +85,7 @@ describe('durationUtils', () => {
       }
       expect(getDurationValueAndUnit(token)).toEqual({value: 500, unit: 'ms'})
       expect(mockConsoleError).toHaveBeenCalledWith(
-        expect.stringContaining('DEPRECATED: Token "animation.slow" uses the old string format')
+        expect.stringContaining('DEPRECATED: Token "animation.slow" uses the old string format'),
       )
     })
   })
@@ -99,13 +99,13 @@ describe('durationUtils', () => {
         path: ['animation', 'test'],
         original: {$value: '300ms', $type: 'duration'},
       }
-      
+
       logDurationDeprecationWarning(token)
-      
+
       expect(mockConsoleError).toHaveBeenCalledWith(
         'DEPRECATED: Token "animation.test" uses the old string format "300ms" for duration tokens. ' +
-        'Please update to the new object format: {"value": number, "unit": "string"}. ' +
-        'This format will be removed in a future major release.'
+          'Please update to the new object format: {"value": number, "unit": "string"}. ' +
+          'This format will be removed in a future major release.',
       )
     })
 
@@ -117,12 +117,10 @@ describe('durationUtils', () => {
         path: ['animation', 'test'],
         original: {value: '300ms', type: 'duration'},
       }
-      
+
       logDurationDeprecationWarning(token)
-      
-      expect(mockConsoleError).toHaveBeenCalledWith(
-        expect.stringContaining('for duration tokens')
-      )
+
+      expect(mockConsoleError).toHaveBeenCalledWith(expect.stringContaining('for duration tokens'))
     })
   })
 })

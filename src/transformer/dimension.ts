@@ -1,13 +1,16 @@
 import {PlatformConfig, Transform, TransformedToken} from 'style-dictionary/types'
 import {isDimension} from '../filter/isDimension.js'
-import { getValue } from '../utilities/getValue.js'
+import {getValue} from '../utilities/getValue.js'
 
 export type DimensionTokenValue = {
   value: number
   unit: string
 }
 
-export const transformDimensionValue = (dimensionTokenValue: DimensionTokenValue, platform: PlatformConfig | undefined): string => {
+export const transformDimensionValue = (
+  dimensionTokenValue: DimensionTokenValue,
+  platform: PlatformConfig | undefined,
+): string => {
   const {value, unit} = dimensionTokenValue
   const appendUnit = platform?.appendUnit === false ? false : true
   const outputUnit = platform?.outputUnit || unit || 'px'
@@ -25,19 +28,19 @@ export const transformDimensionValue = (dimensionTokenValue: DimensionTokenValue
     return '0'
   }
 
-  if(unit !== outputUnit) {
-    if(unit === 'px' && outputUnit === 'rem') {
+  if (unit !== outputUnit) {
+    if (unit === 'px' && outputUnit === 'rem') {
       const baseFont = platform?.basePxFontSize || 16
-      return `${value / baseFont}${ appendUnit ? outputUnit : '' }`
+      return `${value / baseFont}${appendUnit ? outputUnit : ''}`
     }
-    
-    if(unit === 'rem' && outputUnit === 'px') {
+
+    if (unit === 'rem' && outputUnit === 'px') {
       const baseFont = platform?.basePxFontSize || 16
-      return `${baseFont * value}${ appendUnit ? outputUnit : '' }`
+      return `${baseFont * value}${appendUnit ? outputUnit : ''}`
     }
   }
 
-  return `${value}${ appendUnit ? outputUnit : '' }`
+  return `${value}${appendUnit ? outputUnit : ''}`
 }
 
 /**
