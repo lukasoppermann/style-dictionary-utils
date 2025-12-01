@@ -3,9 +3,8 @@ import {isNumber} from '../filter/isNumber.js'
 import { getValue } from '../utilities/getValue.js'
 
 /**
- * dimensionRemToPixel
- * @description convert all dimensions that use rem value to pixels, uses `platform.options.basePxFontSize`
- * as the base font, or `16` if not provided
+ * number
+ * @description convert a number token to a simple number value, using the provided value as-is
  */
 export const number: Transform = {
   name: 'number',
