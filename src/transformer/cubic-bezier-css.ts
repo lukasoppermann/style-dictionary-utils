@@ -2,7 +2,7 @@ import {Transform, TransformedToken} from 'style-dictionary/types'
 import {isCubicBezier} from '../filter/isCubicBezier.js'
 import {getValue} from '../utilities/getValue.js'
 
-type TokenCubicBezier = [x1: number, y1: number, x2: number, y2: number]
+export type TokenValueCubicBezier = [x1: number, y1: number, x2: number, y2: number]
 
 export const cubicBezierCss: Transform = {
   name: 'cubicBezier/css',
@@ -13,7 +13,7 @@ export const cubicBezierCss: Transform = {
     return isCubicBezier(token) && Array.isArray(tokenValue)
   },
   transform: (token: TransformedToken) => {
-    const tokenValue = getValue<TokenCubicBezier[]>(token)
+    const tokenValue = getValue<TokenValueCubicBezier[]>(token)
     const [x1, y1, x2, y2] = tokenValue
     return `cubic-bezier(${x1}, ${y1}, ${x2}, ${y2})`
   },

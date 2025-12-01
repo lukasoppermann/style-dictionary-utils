@@ -134,7 +134,9 @@ describe('transform: dimensionToPixelUnitless', () => {
 
   it('transforms `dimension` tokens in old structured format', () => {
     expect(
-      oldStructuredFormatItems.filter(dimensionToPixelUnitless.filter).map(item => dimensionToPixelUnitless.transform(item, {}, {})),
+      oldStructuredFormatItems
+        .filter(dimensionToPixelUnitless.filter)
+        .map(item => dimensionToPixelUnitless.transform(item, {}, {})),
     ).toStrictEqual([0, 0, 15, 20, 48])
   })
 
@@ -143,13 +145,17 @@ describe('transform: dimensionToPixelUnitless', () => {
       basePxFontSize: 10,
     }
     expect(
-      oldStructuredFormatItems.filter(dimensionToPixelUnitless.filter).map(item => dimensionToPixelUnitless.transform(item, platform, {})),
+      oldStructuredFormatItems
+        .filter(dimensionToPixelUnitless.filter)
+        .map(item => dimensionToPixelUnitless.transform(item, platform, {})),
     ).toStrictEqual([0, 0, 15, 20, 30])
   })
 
   it('transforms `dimension` tokens in new structured format', () => {
     expect(
-      newStructuredFormatItems.filter(dimensionToPixelUnitless.filter).map(item => dimensionToPixelUnitless.transform(item, {}, {})),
+      newStructuredFormatItems
+        .filter(dimensionToPixelUnitless.filter)
+        .map(item => dimensionToPixelUnitless.transform(item, {}, {})),
     ).toStrictEqual([0, 0, 15, 20, 48])
   })
 
@@ -158,7 +164,9 @@ describe('transform: dimensionToPixelUnitless', () => {
       basePxFontSize: 10,
     }
     expect(
-      newStructuredFormatItems.filter(dimensionToPixelUnitless.filter).map(item => dimensionToPixelUnitless.transform(item, platform, {})),
+      newStructuredFormatItems
+        .filter(dimensionToPixelUnitless.filter)
+        .map(item => dimensionToPixelUnitless.transform(item, platform, {})),
     ).toStrictEqual([0, 0, 15, 20, 30])
   })
 })

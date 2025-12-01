@@ -133,7 +133,7 @@ describe('transform: shadowCss', () => {
     } as TransformedToken
 
     expect(shadowCss.transform(w3cLayeredShadow, {}, {})).toStrictEqual(
-      '0px 24px 22px 0px #00000005, 0px 42.9px 44px 0px #0000000a, 0px 64px 64px 0px #0000000f'
+      '0px 24px 22px 0px #00000005, 0px 42.9px 44px 0px #0000000a, 0px 64px 64px 0px #0000000f',
     )
   })
 

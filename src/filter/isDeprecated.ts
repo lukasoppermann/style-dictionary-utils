@@ -1,6 +1,6 @@
 import {TransformedToken} from 'style-dictionary/types'
 /**
- * @name isDeprecated  
+ * @name isDeprecated
  * @type filter
  * @description only returns tokens with $deprecated = true or $deprecated = string
  */
