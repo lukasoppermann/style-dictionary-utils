@@ -31,11 +31,18 @@ import {javascriptEsm} from './format/javascript-esm.js'
 import {namePathToCamelCase} from './transformer/name-path-to-camel-case.js'
 import {namePathToDotNotation} from './transformer/name-path-to-dot-notation.js'
 import {number} from './transformer/number.js'
+<<<<<<< HEAD
 import {shadowCss} from './transformer/shadow-css.js'
 import {strokeStyleCss} from './transformer/strokeStyle-css.js'
 import {transitionCss} from './transformer/transition-css.js'
 import {typescriptEsmDeclarations} from './format/typescript-esm-declarations.js'
 import OrigialStyleDictionary from 'style-dictionary'
+=======
+import {colorToCss} from './transformer/color-to-css.js'
+import {transitionCss} from './transformer/transition-to-css.js'
+import {letterspacingCss} from './transformer/letterspacing-to-css.js'
+import {typographyCss} from './transformer/typography-to-css.js'
+>>>>>>> f57c773 (add typography and letterspacing transformer)
 
 /**
  * Formats

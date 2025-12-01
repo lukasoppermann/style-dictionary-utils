@@ -25,7 +25,7 @@ describe('transform: typographyCss', () => {
 
   it('transforms `typography` tokens', () => {
     expect(items.filter(typographyCss.filter).map(item => typographyCss.transform(item, {}, {}))).toStrictEqual([
-      "400 16px/1.5 Arial, sans-serif",
+      '400 16px/1.5 Arial, sans-serif',
     ])
   })
 
@@ -41,8 +41,6 @@ describe('transform: typographyCss', () => {
       $type: 'typography',
     } as TransformedToken
 
-    expect(typographyCss.transform(item, {}, {})).toStrictEqual(
-      "700 16px/1.5 Arial, sans-serif",
-    )
+    expect(typographyCss.transform(item, {}, {})).toStrictEqual('700 16px/1.5 Arial, sans-serif')
   })
 })

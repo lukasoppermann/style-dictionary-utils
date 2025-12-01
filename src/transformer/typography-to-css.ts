@@ -1,16 +1,20 @@
 import {Transform, TransformedToken} from 'style-dictionary/types'
 import {getValue} from '../utilities/getValue.js'
-import { isTypography } from '../filter/isTypography.js'
-import { DimensionTokenValue, transformDimensionValue } from './dimension.js'
-import { TokenValueNumericFontWeight, TokenValueStringFontWeight, transformFontWeightValue } from './font-weight-to-number.js'
-import { PlatformConfig } from 'style-dictionary'
-import { transformFontFamilyValue } from './font-family-css.js'
+import {isTypography} from '../filter/isTypography.js'
+import {DimensionTokenValue, transformDimensionValue} from './dimension.js'
+import {
+  TokenValueNumericFontWeight,
+  TokenValueStringFontWeight,
+  transformFontWeightValue,
+} from './font-weight-to-number.js'
+import {PlatformConfig} from 'style-dictionary'
+import {transformFontFamilyValue} from './font-family-css.js'
 
-type TokenValueTypography = {
-  fontFamily: string | string[],
-  fontSize: DimensionTokenValue,
-  fontWeight: TokenValueStringFontWeight | TokenValueNumericFontWeight,
-  letterSpacing: DimensionTokenValue,
+export type TokenValueTypography = {
+  fontFamily: string | string[]
+  fontSize: DimensionTokenValue
+  fontWeight: TokenValueStringFontWeight | TokenValueNumericFontWeight
+  letterSpacing: DimensionTokenValue
   lineHeight: number
 }
 
