@@ -1,6 +1,6 @@
 import {Transform, TransformedToken} from 'style-dictionary/types'
-import {isStrokeStyle} from '../filter/isStrokeStyle'
-import {getValue} from '../utilities/getValue'
+import {isStrokeStyle} from '../filter/isStrokeStyle.js'
+import {getValue} from '../utilities/getValue.js'
 
 const StrokeStyleValues = ['solid', 'dashed', 'dotted', 'double', 'groove', 'ridge', 'outset', 'inset'] as const
 
