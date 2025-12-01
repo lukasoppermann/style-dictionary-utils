@@ -9,7 +9,7 @@
   "license": "ISC",
   "dependencies": {
     "style-dictionary": "^5.1.1",
-    "style-dictionary-utils": "^4.1.0"
+    "style-dictionary-utils": "file:../style-dictionary-utils-4.1.1.tgz"
   },
   "devDependencies": {
     "prettier": "^3.4.2"

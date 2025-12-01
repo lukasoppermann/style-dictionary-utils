@@ -21,7 +21,7 @@
   "scripts": {
     "test": "npm run build && npx vitest run && npm run lint",
     "test:build": "npm run build && node ./tests/build.mjs",
-    "test:package": "node ./tests/build-from-package.mjs",
+    "test:package": "filename=$(npm pack) && echo \"\n\n:: Installing ${filename} ::\" && npm --prefix ./tests i $filename && node ./tests/build-from-package.mjs && rm $filename",
     "lint": "npx eslint . --ext .ts",
     "lint:fix": "npx eslint . --ext .ts --fix",
     "lint:report": "npx eslint --output-file eslint_report.json --format json src",
