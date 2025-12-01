@@ -93,7 +93,7 @@ StyleDictionary.registerTransform({
   - [dimension/remToPixel](#dimensionremtopixel)
   - [dimension/pixelUnitless](#dimensionpixelunitless)
   - [clamp/css](#clampcss)
-  - number *(docs missing)*
+  - number _(docs missing)_
 - Filters
   - [isSource](#issource)
   - [isColor](#iscolor)
@@ -111,7 +111,7 @@ StyleDictionary.registerTransform({
   - [isCubicBezier](#iscubicbezier)
   - [isBorder](#isborder)
   - [isClamp](#isclamp)
-  - isNumber *(docs missing)*
+  - isNumber _(docs missing)_
 - Special Filter
   - [getHasAttribute](#gethasattribute)
   - [getHasAttributeValue](#gethasattributevalue)

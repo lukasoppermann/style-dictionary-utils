@@ -57,11 +57,16 @@ describe('transform: number', () => {
   })
 
   it('throw on invalid `number` with token name tokens', () => {
-    expect(() => number.transform({
-      name: "px-value-token",
-      value: '2px',
-      $type: 'number',
-    } as TransformedToken, {}, {})).toThrow("Invalid Number: 'px-value-token: 2px' is not a valid number \n")
+    expect(() =>
+      number.transform(
+        {
+          name: 'px-value-token',
+          value: '2px',
+          $type: 'number',
+        } as TransformedToken,
+        {},
+        {},
+      ),
+    ).toThrow("Invalid Number: 'px-value-token: 2px' is not a valid number \n")
   })
-
 })

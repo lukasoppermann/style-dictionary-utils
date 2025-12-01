@@ -42,9 +42,11 @@ import {namePathToCamelCase} from './transformer/name-path-to-camel-case.js'
 import {namePathToDotNotation} from './transformer/name-path-to-dot-notation.js'
 import {number} from './transformer/number.js'
 import {colorToCss} from './transformer/color-to-css.js'
+import {transitionCss} from './transformer/transition-to-css.js'
 import {shadowCss} from './transformer/shadow-css.js'
 import {typescriptEsmDeclarations} from './format/typescript-esm-declarations.js'
 import OrigialStyleDictionary from 'style-dictionary'
+
 
 /**
  * Formats
@@ -117,6 +119,10 @@ OrigialStyleDictionary.registerTransform({
 
 OrigialStyleDictionary.registerTransform({
   ...deprecatedShadowCss,
+})
+
+OrigialStyleDictionary.registerTransform({
+  ...transitionCss,
 })
 
 OrigialStyleDictionary.registerTransform({

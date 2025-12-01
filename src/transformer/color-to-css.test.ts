@@ -321,7 +321,7 @@ describe('transform: colorToCss', () => {
       ].map(item => colorToCss.transform(item as TransformedToken, {})),
     ).toStrictEqual(['#ff56e7', '#ff56e7cc'])
   })
-  
+
   it('transforms xyz-d65 `color` tokens', () => {
     expect(
       [
