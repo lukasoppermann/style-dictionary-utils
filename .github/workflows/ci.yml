@@ -83,3 +83,17 @@ jobs:
           echo "Comparing CSS files between current package branch and main..."
           diff -r /tmp/main-output tests/dist || true
           echo "Diff complete. If no output above, files are identical."
+
+      - name: Upload current branch output
+        uses: actions/upload-artifact@v4
+        with:
+          name: current-branch-output
+          path: tests/dist
+          retention-days: 7
+
+      - name: Upload main branch output
+        uses: actions/upload-artifact@v4
+        with:
+          name: main-branch-output
+          path: /tmp/main-output
+          retention-days: 7
