@@ -1,4 +1,4 @@
-import {cssExtended} from '../../src/transformGroups/cssExtended'
+import {cssExtended} from './css-extended'
 
 describe('TransformGroup: css extended', () => {
   const defaultArray = [
