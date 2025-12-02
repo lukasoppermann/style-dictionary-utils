@@ -11,7 +11,7 @@ export const fontFamilyCss: Transform = {
   name: 'fontFamily/css',
   type: `value`,
   transitive: true,
-  filter: (token: TransformedToken) => isFontFamily(token),
+  filter: (token: TransformedToken) => isFontFamily.filter(token),
   transform: (token: TransformedToken) => {
     const tokenValue = getValue<string[]>(token)
     // if the value is not an array, return it as is

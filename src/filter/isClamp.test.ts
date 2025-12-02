@@ -78,10 +78,10 @@ describe('Filter: isClamp', () => {
     },
   ] as TransformedToken[]
   it('filters clamp tokens', () => {
-    expect(items.filter(isClamp)).toStrictEqual([items[4]])
+    expect(items.filter(isClamp.filter)).toStrictEqual([items[4]])
   })
 
   it('filters clamp tokens in W3C format', () => {
-    expect(w3cItems.filter(isClamp)).toStrictEqual([w3cItems[4]])
+    expect(w3cItems.filter(isClamp.filter)).toStrictEqual([w3cItems[4]])
   })
 })

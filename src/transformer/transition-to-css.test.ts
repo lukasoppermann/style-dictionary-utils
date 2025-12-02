@@ -1,5 +1,5 @@
 import {TransformedToken} from 'style-dictionary'
-import {transitionCss} from './transition-to-css'
+import {transitionToCss} from './transition-to-css'
 
 describe('transform: transitionCss', () => {
   const items = [

@@ -11,7 +11,7 @@ export const colorAlphaToRgba: Transform = {
   name: 'color/rgbAlpha',
   type: `value`,
   transitive: true,
-  filter: isColor,
+  filter: isColor.filter,
   transform: (token: TransformedToken) => {
     const tokenValue = getValue<string>(token)
     if (token.alpha !== undefined) return alpha(tokenValue, token.alpha)

@@ -20,6 +20,6 @@ describe('Filter: isFontWeight', () => {
     },
   ] as TransformedToken[]
   it('filters fontWeight tokens', () => {
-    expect(items.filter(isFontWeight)).toStrictEqual([items[0], items[2]])
+    expect(items.filter(isFontWeight.filter)).toStrictEqual([items[0], items[2]])
   })
 })

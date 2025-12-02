@@ -13,7 +13,7 @@ export const gradientCss: Transform = {
   name: 'gradient/css',
   type: `value`,
   transitive: true,
-  filter: isGradient,
+  filter: isGradient.filter,
   transform: (token: TransformedToken) => {
     const tokenValue = getValue<TokenGradient[]>(token)
     // combine stops to string

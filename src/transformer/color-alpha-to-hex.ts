@@ -11,7 +11,7 @@ export const colorAlphaToHex: Transform = {
   name: 'color/hexAlpha',
   type: `value`,
   transitive: true,
-  filter: isColor,
+  filter: isColor.filter,
   transform: (token: TransformedToken) => {
     const tokenValue = getValue<string>(token)
     if (token.alpha) return toHex(alpha(tokenValue, token.alpha))

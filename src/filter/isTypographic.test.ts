@@ -24,6 +24,6 @@ describe('Filter: isTypographic', () => {
     },
   ] as TransformedToken[]
   it('filters typographic types like fontFamily or typography tokens', () => {
-    expect(items.filter(isTypographic)).toStrictEqual([items[0], items[2], items[3]])
+    expect(items.filter(isTypographic.filter)).toStrictEqual([items[0], items[2], items[3]])
   })
 })

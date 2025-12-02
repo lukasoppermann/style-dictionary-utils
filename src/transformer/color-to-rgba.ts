@@ -7,9 +7,9 @@ import {getValue} from '../utilities/getValue.js'
  * @description convert a token of type `color` to a rgba value
  */
 export const colorToRgba: Transform = {
-  name: 'color/rgba',
+  name: 'color/rgb',
   type: `value`,
   transitive: true,
-  filter: isColor,
+  filter: isColor.filter,
   transform: (token: TransformedToken) => toRgba(getValue<string>(token)),
 }

@@ -15,7 +15,7 @@ export const fontCss: Transform = {
   name: 'font/css',
   type: `value`,
   transitive: true,
-  filter: isTypography,
+  filter: isTypography.filter,
   transform: (token: TransformedToken) => {
     const tokenValue = getValue<TokenTypography>(token)
     if (!tokenValue) return

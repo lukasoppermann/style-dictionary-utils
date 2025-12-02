@@ -10,7 +10,7 @@ export const cubicBezierCss: Transform = {
   transitive: true,
   filter: (token: TransformedToken) => {
     const tokenValue = getValue(token)
-    return isCubicBezier(token) && Array.isArray(tokenValue)
+    return isCubicBezier.filter(token) && Array.isArray(tokenValue)
   },
   transform: (token: TransformedToken) => {
     const tokenValue = getValue<TokenValueCubicBezier[]>(token)

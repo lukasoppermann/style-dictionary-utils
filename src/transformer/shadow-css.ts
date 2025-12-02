@@ -23,7 +23,7 @@ export const shadowCss: Transform = {
   name: 'shadow/css',
   type: `value`,
   transitive: true,
-  filter: isShadow,
+  filter: isShadow.filter,
   transform: (token: TransformedToken, platform: PlatformConfig | undefined) => {
     const tokenValue = getValue<TokenShadow>(token)
     if (Array.isArray(tokenValue)) {

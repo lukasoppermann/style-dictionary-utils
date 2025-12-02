@@ -43,7 +43,7 @@ import {namePathToDotNotation} from './transformer/name-path-to-dot-notation.js'
 import {number} from './transformer/number.js'
 import {shadowCss} from './transformer/shadow-css.js'
 import {strokeStyleCss} from './transformer/strokeStyle-to-css.js'
-import {transitionCss} from './transformer/transition-to-css.js'
+import {transitionToCss} from './transformer/transition-to-css.js'
 import {typescriptEsmDeclarations} from './format/typescript-esm-declarations.js'
 import OrigialStyleDictionary from 'style-dictionary'
 
@@ -84,7 +84,7 @@ OrigialStyleDictionary.registerTransform(namePathToDotNotation)
 OrigialStyleDictionary.registerTransform(number)
 OrigialStyleDictionary.registerTransform(shadowCss)
 OrigialStyleDictionary.registerTransform(strokeStyleCss)
-OrigialStyleDictionary.registerTransform(transitionCss)
+OrigialStyleDictionary.registerTransform(transitionToCss)
 /**
  * Transform groups
  *
@@ -94,95 +94,41 @@ OrigialStyleDictionary.registerTransformGroup(cssExtended)
  * Filters
  *
  */
-OrigialStyleDictionary.registerFilter({
-  name: 'isSource',
-  filter: isSource,
-})
+OrigialStyleDictionary.registerFilter(isSource)
 
-OrigialStyleDictionary.registerFilter({
-  name: 'isColor',
-  filter: isColor,
-})
+OrigialStyleDictionary.registerFilter(isColor)
 
-OrigialStyleDictionary.registerFilter({
-  name: 'isClamp',
-  filter: isClamp,
-})
+OrigialStyleDictionary.registerFilter(isClamp)
 
-OrigialStyleDictionary.registerFilter({
-  name: 'isGradient',
-  filter: isGradient,
-})
+OrigialStyleDictionary.registerFilter(isGradient)
 
-OrigialStyleDictionary.registerFilter({
-  name: 'isColorOrGradient',
-  filter: isColorOrGradient,
-})
+OrigialStyleDictionary.registerFilter(isColorOrGradient)
 
-OrigialStyleDictionary.registerFilter({
-  name: 'isTypography',
-  filter: isTypography,
-})
+OrigialStyleDictionary.registerFilter(isTypography)
 
-OrigialStyleDictionary.registerFilter({
-  name: 'isTypographic',
-  filter: isTypographic,
-})
+OrigialStyleDictionary.registerFilter(isTypographic)
 
-OrigialStyleDictionary.registerFilter({
-  name: 'isTransition',
-  filter: isTransition,
-})
+OrigialStyleDictionary.registerFilter(isTransition)
 
-OrigialStyleDictionary.registerFilter({
-  name: 'isStrokeStyle',
-  filter: isStrokeStyle,
-})
+OrigialStyleDictionary.registerFilter(isStrokeStyle)
 
-OrigialStyleDictionary.registerFilter({
-  name: 'isShadow',
-  filter: isShadow,
-})
+OrigialStyleDictionary.registerFilter(isShadow)
 
-OrigialStyleDictionary.registerFilter({
-  name: 'isFontWeight',
-  filter: isFontWeight,
-})
+OrigialStyleDictionary.registerFilter(isFontWeight)
 
-OrigialStyleDictionary.registerFilter({
-  name: 'isFontFamily',
-  filter: isFontFamily,
-})
+OrigialStyleDictionary.registerFilter(isFontFamily)
 
-OrigialStyleDictionary.registerFilter({
-  name: 'isDuration',
-  filter: isDuration,
-})
+OrigialStyleDictionary.registerFilter(isDuration)
 
-OrigialStyleDictionary.registerFilter({
-  name: 'isDeprecated',
-  filter: isDeprecated,
-})
+OrigialStyleDictionary.registerFilter(isDeprecated)
 
-OrigialStyleDictionary.registerFilter({
-  name: 'isDimension',
-  filter: isDimension,
-})
+OrigialStyleDictionary.registerFilter(isDimension)
 
-OrigialStyleDictionary.registerFilter({
-  name: 'isCubicBezier',
-  filter: isCubicBezier,
-})
+OrigialStyleDictionary.registerFilter(isCubicBezier)
 
-OrigialStyleDictionary.registerFilter({
-  name: 'isBorder',
-  filter: isBorder,
-})
+OrigialStyleDictionary.registerFilter(isBorder)
 
-OrigialStyleDictionary.registerFilter({
-  name: 'isNumber',
-  filter: isNumber,
-})
+OrigialStyleDictionary.registerFilter(isNumber)
 
 /**
  * @name {@link StyleDictionary}

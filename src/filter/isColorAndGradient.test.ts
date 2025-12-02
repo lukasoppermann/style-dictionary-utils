@@ -20,6 +20,6 @@ describe('Filter: isColorAndGradient', () => {
     },
   ] as TransformedToken[]
   it('filters color and gradient tokens', () => {
-    expect(items.filter(isColorOrGradient)).toStrictEqual([items[0], items[2]])
+    expect(items.filter(isColorOrGradient.filter)).toStrictEqual([items[0], items[2]])
   })
 })

@@ -22,7 +22,7 @@ export const strokeStyleCss: Transform = {
   name: 'strokeStyle/css',
   type: `value`,
   transitive: true,
-  filter: (token: TransformedToken) => isStrokeStyle(token),
+  filter: (token: TransformedToken) => isStrokeStyle.filter(token),
   transform: (token: TransformedToken) => {
     const tokenValue = getValue<TokenValueStrokeStyle>(token)
     return transformStrokeStyleValue(tokenValue)

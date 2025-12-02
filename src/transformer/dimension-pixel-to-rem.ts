@@ -13,7 +13,7 @@ export const dimensionPixelToRem: Transform = {
   transitive: true,
   filter: (token: TransformedToken) => {
     const dimensionValue = getDimensionValue(token)
-    return isDimension(token) && dimensionValue.substring(dimensionValue.length - 2) === 'px'
+    return isDimension.filter(token) && dimensionValue.substring(dimensionValue.length - 2) === 'px'
   },
   transform: (token: TransformedToken, platform: PlatformConfig | undefined) => {
     const dimensionValue = getDimensionValue(token)

@@ -11,7 +11,7 @@ export const number: Transform = {
   type: `value`,
   transitive: true,
   filter: (token: TransformedToken) => {
-    return isNumber(token)
+    return isNumber.filter(token)
   },
   transform: (token: TransformedToken) => {
     const numberValue = getValue(token)

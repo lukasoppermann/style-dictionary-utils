@@ -17,7 +17,7 @@ export const borderCss: Transform = {
   name: 'border/css',
   type: `value`,
   transitive: true,
-  filter: isBorder,
+  filter: isBorder.filter,
   transform: (token: Omit<TransformedToken, 'value'> & {value?: TokenBorder}) => {
     const tokenValue = getValue<Omit<TransformedToken, 'value'> & {value?: TokenBorder}>(token)
     if (!tokenValue) return

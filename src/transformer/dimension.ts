@@ -52,7 +52,7 @@ export const dimension: Transform = {
   name: 'dimension',
   type: `value`,
   transitive: true,
-  filter: (token: TransformedToken) => isDimension(token),
+  filter: (token: TransformedToken) => isDimension.filter(token),
   transform: (token: TransformedToken, platform: PlatformConfig | undefined) => {
     const dimensionTokenvalue = getValue<DimensionTokenValue>(token)
 

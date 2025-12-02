@@ -18,7 +18,7 @@ export const colorToCss: Transform = {
   name: 'color/css',
   type: `value`,
   transitive: true,
-  filter: isColor,
+  filter: isColor.filter,
   transform: (token: TransformedToken, platform: PlatformConfig | undefined) =>
     transformColor(getValue<ColorTokenValue>(token), platform?.colorOutputFormat || 'hex'),
 }

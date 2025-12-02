@@ -41,7 +41,7 @@ export const fontWeightToNumber: Transform = {
   name: 'fontWeight/number',
   type: `value`,
   transitive: true,
-  filter: (token: TransformedToken) => isFontWeight(token),
+  filter: (token: TransformedToken) => isFontWeight.filter(token),
   transform: (token: TransformedToken) => {
     const tokenValue = getValue<string>(token)
     // check if value is not a string

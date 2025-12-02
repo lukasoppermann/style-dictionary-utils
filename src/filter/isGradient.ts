@@ -4,5 +4,8 @@ import {TransformedToken} from 'style-dictionary/types'
  * @type filter
  * @description only returns tokens of type `gradient`
  */
-export const isGradient = (token: TransformedToken): boolean =>
-  token?.$type === 'gradient' || token?.type === 'gradient'
+export const isGradient = {
+  name: 'isGradient',
+  filter: (token: TransformedToken): boolean =>
+    token?.$type === 'gradient' || token?.type === 'gradient',
+}

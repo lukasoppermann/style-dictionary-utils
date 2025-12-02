@@ -20,6 +20,6 @@ describe('Filter: isFontFamily', () => {
     },
   ] as TransformedToken[]
   it('filters fontFamily tokens', () => {
-    expect(items.filter(isFontFamily)).toStrictEqual([items[0], items[2]])
+    expect(items.filter(isFontFamily.filter)).toStrictEqual([items[0], items[2]])
   })
 })

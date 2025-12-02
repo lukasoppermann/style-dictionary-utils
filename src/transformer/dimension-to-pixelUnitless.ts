@@ -33,7 +33,7 @@ export const dimensionToPixelUnitless: Transform = {
   name: 'dimension/pixelUnitless',
   type: `value`,
   transitive: true,
-  filter: isDimension,
+  filter: isDimension.filter,
   transform: (token: TransformedToken, options?: PlatformConfig) => {
     const dimensionValue = getDimensionValue(token)
     const baseFont = getBasePxFontSize(options)

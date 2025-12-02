@@ -47,10 +47,10 @@ describe('Filter: isDimension', () => {
   ] as TransformedToken[]
 
   it('filters dimension tokens', () => {
-    expect(items.filter(isDimension)).toStrictEqual([items[0], items[2]])
+    expect(items.filter(isDimension.filter)).toStrictEqual([items[0], items[2]])
   })
 
   it('filters dimension tokens with new structured format', () => {
-    expect(newFormatItems.filter(isDimension)).toStrictEqual([newFormatItems[0], newFormatItems[1], newFormatItems[3]])
+    expect(newFormatItems.filter(isDimension.filter)).toStrictEqual([newFormatItems[0], newFormatItems[1], newFormatItems[3]])
   })
 })

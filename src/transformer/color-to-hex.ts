@@ -10,6 +10,6 @@ export const colorToHex: Transform = {
   name: 'color/hex',
   type: `value`,
   transitive: true,
-  filter: isColor,
+  filter: isColor.filter,
   transform: (token: TransformedToken) => toHex(getValue<string>(token)),
 }
