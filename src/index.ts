@@ -9,7 +9,6 @@ import {commentDeprecated} from './transformer/comment-deprecated.js'
 import {cssAdvanced} from './format/css-advanced.js'
 import {cssExtended} from './transformGroups/cssExtended.js'
 import {cubicBezierCss} from './transformer/cubic-bezier-css.js'
-import {deprecatedShadowCss} from './transformer/deprecated-shadow-css.js'
 import {dimensionPixelToRem} from './transformer/dimension-pixel-to-rem.js'
 import {dimensionRemToPixel} from './transformer/dimension-rem-to-pixel.js'
 import {dimensionToPixelUnitless} from './transformer/dimension-to-pixelUnitless.js'
@@ -115,10 +114,6 @@ OrigialStyleDictionary.registerTransform({
 
 OrigialStyleDictionary.registerTransform({
   ...shadowCss,
-})
-
-OrigialStyleDictionary.registerTransform({
-  ...deprecatedShadowCss,
 })
 
 OrigialStyleDictionary.registerTransform({
