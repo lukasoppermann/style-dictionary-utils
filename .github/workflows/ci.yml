@@ -43,6 +43,8 @@ jobs:
     needs: Lint-and-test
     steps:
       - uses: actions/checkout@master
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: 20
@@ -51,6 +53,33 @@ jobs:
         run: npm ci
       - name: Test build output
         run: npm run test:build
+
+      - name: Build CSS files from current branch
+        run: |
+          npm run build
+          mkdir -p /tmp/current-output
+          cp -r tests/output/* /tmp/current-output/ || true
+
+      - name: Checkout main branch
+        run: |
+          git fetch origin main
+          git checkout main
+
+      - name: Install and build CSS files from main branch
+        run: |
+          npm ci
+          npm run build
+          mkdir -p /tmp/main-output
+          cp -r tests/output/* /tmp/main-output/ || true
+
+      - name: Checkout back to current branch
+        run: git checkout -
+
+      - name: Compare CSS output files
+        run: |
+          echo "Comparing CSS files between current branch and main..."
+          diff -r /tmp/main-output /tmp/current-output || true
+          echo "Diff complete. If no output above, files are identical."
 
       - name: Test package output
         run: npm run test:package
