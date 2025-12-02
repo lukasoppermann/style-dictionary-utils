@@ -40,7 +40,7 @@ const isRgbaFloat = (value: unknown) => {
  * @transformer returns a `rgb` float object
  */
 export const colorToRgbaFloat: Transform = {
-  name: 'color/rgbFloat',
+  name: 'color/rgbaFloat',
   type: `value`,
   transitive: true,
   filter: isColor.filter,
