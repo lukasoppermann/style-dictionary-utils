@@ -72,7 +72,7 @@ jobs:
       - name: Compare build CSS output files
         run: |
           echo "Comparing CSS files between current build branch and main..."
-          diff -r /tmp/main-output /tests/dist || true
+          diff -r /tmp/main-output tests/dist || true
           echo "Diff complete. If no output above, files are identical."
 
       - name: Test package output
@@ -81,5 +81,5 @@ jobs:
       - name: Compare package CSS output files
         run: |
           echo "Comparing CSS files between current package branch and main..."
-          diff -r /tmp/main-output /tests/dist || true
+          diff -r /tmp/main-output tests/dist || true
           echo "Diff complete. If no output above, files are identical."
