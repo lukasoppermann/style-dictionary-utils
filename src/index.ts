@@ -41,6 +41,7 @@ import {namePathToCamelCase} from './transformer/name-path-to-camel-case.js'
 import {namePathToDotNotation} from './transformer/name-path-to-dot-notation.js'
 import {number} from './transformer/number.js'
 import {colorToCss} from './transformer/color-to-css.js'
+import {deprecatedGradientCss} from './transformer/deprecated-gradient-css.js'
 import {transitionCss} from './transformer/transition-to-css.js'
 import {shadowCss} from './transformer/shadow-css.js'
 import {strokeStyleCss} from './transformer/strokeStyle-to-css.js'
@@ -122,6 +123,10 @@ OrigialStyleDictionary.registerTransform({
 
 OrigialStyleDictionary.registerTransform({
   ...gradientCss,
+})
+
+OrigialStyleDictionary.registerTransform({
+  ...deprecatedGradientCss,
 })
 
 OrigialStyleDictionary.registerTransform({
