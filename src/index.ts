@@ -52,125 +52,39 @@ import OrigialStyleDictionary from 'style-dictionary'
  *
  */
 
-OrigialStyleDictionary.registerFormat({
-  name: 'css/advanced',
-  format: cssAdvanced,
-})
-
-OrigialStyleDictionary.registerFormat({
-  name: 'javascript/esm',
-  format: javascriptEsm,
-})
-
-OrigialStyleDictionary.registerFormat({
-  name: 'javascript/commonJs',
-  format: javascriptCommonJs,
-})
-
-OrigialStyleDictionary.registerFormat({
-  name: 'typescript/esm-declarations',
-  format: typescriptEsmDeclarations,
-})
+OrigialStyleDictionary.registerFormat(cssAdvanced)
+OrigialStyleDictionary.registerFormat(javascriptEsm)
+OrigialStyleDictionary.registerFormat(javascriptCommonJs)
+OrigialStyleDictionary.registerFormat(typescriptEsmDeclarations)
 
 /**
  * Transformers
  *
  */
-OrigialStyleDictionary.registerTransform({
-  ...colorToCss,
-})
-
-OrigialStyleDictionary.registerTransform({
-  ...colorAlphaToRgba,
-})
-
-OrigialStyleDictionary.registerTransform({
-  ...colorAlphaToHex,
-})
-
-OrigialStyleDictionary.registerTransform({
-  ...colorToHex,
-})
-
-OrigialStyleDictionary.registerTransform({
-  ...colorToRgba,
-})
-
-OrigialStyleDictionary.registerTransform({
-  ...colorToRgbaFloat,
-})
-
-OrigialStyleDictionary.registerTransform({
-  ...commentDeprecated,
-})
-
-OrigialStyleDictionary.registerTransform({
-  ...namePathToDotNotation,
-})
-
-OrigialStyleDictionary.registerTransform({
-  ...namePathToCamelCase,
-})
-
-OrigialStyleDictionary.registerTransform({
-  ...shadowCss,
-})
-
-OrigialStyleDictionary.registerTransform({
-  ...transitionCss,
-})
-
-OrigialStyleDictionary.registerTransform({
-  ...gradientCss,
-})
-
-OrigialStyleDictionary.registerTransform({
-  ...clampCss,
-})
-
-OrigialStyleDictionary.registerTransform({
-  ...fontCss,
-})
-
-OrigialStyleDictionary.registerTransform({
-  ...fontFamilyCss,
-})
-
-OrigialStyleDictionary.registerTransform({
-  ...fontWeightToNumber,
-})
-
-OrigialStyleDictionary.registerTransform({
-  ...cubicBezierCss,
-})
-
-OrigialStyleDictionary.registerTransform({
-  ...dimensionPixelToRem,
-})
-
-OrigialStyleDictionary.registerTransform({
-  ...dimensionRemToPixel,
-})
-
-OrigialStyleDictionary.registerTransform({
-  ...dimensionToPixelUnitless,
-})
-
-OrigialStyleDictionary.registerTransform({
-  ...durationToCss,
-})
-
-OrigialStyleDictionary.registerTransform({
-  ...borderCss,
-})
-
-OrigialStyleDictionary.registerTransform({
-  ...number,
-})
-
-OrigialStyleDictionary.registerTransform({
-  ...strokeStyleCss,
-})
+OrigialStyleDictionary.registerTransform(borderCss)
+OrigialStyleDictionary.registerTransform(clampCss)
+OrigialStyleDictionary.registerTransform(colorAlphaToHex)
+OrigialStyleDictionary.registerTransform(colorAlphaToRgba)
+OrigialStyleDictionary.registerTransform(colorToCss)
+OrigialStyleDictionary.registerTransform(colorToHex)
+OrigialStyleDictionary.registerTransform(colorToRgba)
+OrigialStyleDictionary.registerTransform(colorToRgbaFloat)
+OrigialStyleDictionary.registerTransform(commentDeprecated)
+OrigialStyleDictionary.registerTransform(cubicBezierCss)
+OrigialStyleDictionary.registerTransform(dimensionPixelToRem)
+OrigialStyleDictionary.registerTransform(dimensionRemToPixel)
+OrigialStyleDictionary.registerTransform(dimensionToPixelUnitless)
+OrigialStyleDictionary.registerTransform(durationToCss)
+OrigialStyleDictionary.registerTransform(fontCss)
+OrigialStyleDictionary.registerTransform(fontFamilyCss)
+OrigialStyleDictionary.registerTransform(fontWeightToNumber)
+OrigialStyleDictionary.registerTransform(gradientCss)
+OrigialStyleDictionary.registerTransform(namePathToCamelCase)
+OrigialStyleDictionary.registerTransform(namePathToDotNotation)
+OrigialStyleDictionary.registerTransform(number)
+OrigialStyleDictionary.registerTransform(shadowCss)
+OrigialStyleDictionary.registerTransform(strokeStyleCss)
+OrigialStyleDictionary.registerTransform(transitionCss)
 /**
  * Transform groups
  *

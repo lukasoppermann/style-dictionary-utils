@@ -2,9 +2,9 @@ import {format} from 'prettier'
 import {fileHeader} from 'style-dictionary/utils'
 import {jsonToNestedValue} from '../utilities/jsonToNestedValue.js'
 import {jsonToTypes} from '../utilities/jsonToTypes.js'
-import {FormatFn, FormatFnArguments} from 'style-dictionary/types'
+import {Format, FormatFn, FormatFnArguments} from 'style-dictionary/types'
 
-export const typescriptEsmDeclarations: FormatFn = async ({
+const typescriptEsmDeclarationsFormat: FormatFn = async ({
   dictionary,
   file,
   options,
@@ -22,4 +22,9 @@ export const typescriptEsmDeclarations: FormatFn = async ({
   const output = (await fileHeader({file})) + `${values}\n`
   // return prettified
   return format(output, {parser: 'typescript', printWidth: 500, ...options?.prettier})
+}
+
+export const typescriptEsmDeclarations: Format = {
+  name: 'typescript/esm-declarations',
+  format: typescriptEsmDeclarationsFormat,
 }
