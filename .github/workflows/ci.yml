@@ -51,8 +51,6 @@ jobs:
           cache: 'npm'
       - name: install
         run: npm ci
-      - name: Test build output
-        run: npm run test:build
 
       - name: Checkout main branch
         run: |
@@ -68,6 +66,16 @@ jobs:
 
       - name: Checkout back to current branch
         run: git checkout -
+
+      - name: Test build output
+        run: npm run test:build
+
+      - name: Upload current branch output
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-output
+          path: tests/dist
+          retention-days: 2
 
       - name: Compare build CSS output files
         run: |
@@ -87,13 +95,13 @@ jobs:
       - name: Upload current branch output
         uses: actions/upload-artifact@v4
         with:
-          name: current-branch-output
+          name: package-output
           path: tests/dist
-          retention-days: 7
+          retention-days: 2
 
       - name: Upload main branch output
         uses: actions/upload-artifact@v4
         with:
           name: main-branch-output
           path: /tmp/main-output
-          retention-days: 7
+          retention-days: 2
