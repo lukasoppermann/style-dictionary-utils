@@ -376,10 +376,10 @@ describe('Format: CSS Advanced', () => {
 }
 `
     expect(
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore: fake values to test formatter
-  await cssAdvanced.format({dictionary, file: fileOptions, options: {usesDtcg: true}, platform}),
-).toStrictEqual(output)
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore: fake values to test formatter
+      await cssAdvanced.format({dictionary, file: fileOptions, options: {usesDtcg: true}, platform}),
+    ).toStrictEqual(output)
   })
 
   it('Formats tokens with default selector', async () => {
