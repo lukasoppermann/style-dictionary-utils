@@ -2,6 +2,7 @@ import {borderCss} from './transformer/border-css.js'
 import {clampCss} from './transformer/clamp-css.js'
 import {colorAlphaToHex} from './transformer/color-alpha-to-hex.js'
 import {colorAlphaToRgba} from './transformer/color-alpha-to-rgba.js'
+import {colorToCss} from './transformer/color-to-css.js'
 import {colorToHex} from './transformer/color-to-hex.js'
 import {colorToRgba} from './transformer/color-to-rgba.js'
 import {colorToRgbaFloat} from './transformer/color-to-rgba-float.js'
@@ -40,11 +41,9 @@ import {javascriptEsm} from './format/javascript-esm.js'
 import {namePathToCamelCase} from './transformer/name-path-to-camel-case.js'
 import {namePathToDotNotation} from './transformer/name-path-to-dot-notation.js'
 import {number} from './transformer/number.js'
-import {colorToCss} from './transformer/color-to-css.js'
-import {deprecatedGradientCss} from './transformer/deprecated-gradient-css.js'
-import {transitionCss} from './transformer/transition-to-css.js'
 import {shadowCss} from './transformer/shadow-css.js'
 import {strokeStyleCss} from './transformer/strokeStyle-to-css.js'
+import {transitionCss} from './transformer/transition-to-css.js'
 import {typescriptEsmDeclarations} from './format/typescript-esm-declarations.js'
 import OrigialStyleDictionary from 'style-dictionary'
 
@@ -52,6 +51,11 @@ import OrigialStyleDictionary from 'style-dictionary'
  * Formats
  *
  */
+
+OrigialStyleDictionary.registerFormat({
+  name: 'css/advanced',
+  format: cssAdvanced,
+})
 
 OrigialStyleDictionary.registerFormat({
   name: 'javascript/esm',
@@ -66,11 +70,6 @@ OrigialStyleDictionary.registerFormat({
 OrigialStyleDictionary.registerFormat({
   name: 'typescript/esm-declarations',
   format: typescriptEsmDeclarations,
-})
-
-OrigialStyleDictionary.registerFormat({
-  name: 'css/advanced',
-  format: cssAdvanced,
 })
 
 /**
@@ -123,10 +122,6 @@ OrigialStyleDictionary.registerTransform({
 
 OrigialStyleDictionary.registerTransform({
   ...gradientCss,
-})
-
-OrigialStyleDictionary.registerTransform({
-  ...deprecatedGradientCss,
 })
 
 OrigialStyleDictionary.registerTransform({

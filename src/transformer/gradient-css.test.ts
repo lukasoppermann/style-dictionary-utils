@@ -79,5 +79,4 @@ describe('transform: gradientCss', () => {
       '45deg, #f03 66%, #f0c 100%',
     ])
   })
-
 })

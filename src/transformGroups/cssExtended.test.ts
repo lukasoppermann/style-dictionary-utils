@@ -12,13 +12,14 @@ describe('TransformGroup: css extended', () => {
   ]
 
   const extensionArray = [
+    'border/css',
     'color/rgbAlpha',
-    'shadow/css',
+    'cubicBezier/css',
     'font/css',
     'fontFamily/css',
     'fontWeight/number',
-    'cubicBezier/css',
-    'border/css',
+    'gradient/css',
+    'shadow/css',
   ]
 
   it('has all old transforms from `css` group', () => {
