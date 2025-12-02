@@ -62,9 +62,9 @@ jobs:
       - name: Install and build CSS files from main branch
         run: |
           npm ci
-          npm run build
+          npm run test:build
           mkdir -p /tmp/main-output
-          cp -r /tests/dist/* /tmp/main-output/ || true
+          cp -r tests/dist/* /tmp/main-output/ || true
 
       - name: Checkout back to current branch
         run: git checkout -
