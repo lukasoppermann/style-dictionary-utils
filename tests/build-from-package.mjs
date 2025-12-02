@@ -37,7 +37,11 @@ const extendSd = await StyleDictionary.extend({
     cssAdvanced: {
       prefix: "PREFIX",
       buildPath: "./tests/dist/css/",
-      transformGroup: "css",
+      transforms: [
+        "name/kebab",
+        "color/rgbAlpha",
+        "border/css"
+      ],
       files: [
         {
           format: "css/advanced",
