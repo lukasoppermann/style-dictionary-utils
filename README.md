@@ -31,7 +31,7 @@ const myStyleDictionary = new StyleDictionary()
 const extendedSd = await myStyleDictionary.extend({
   platforms: {
     ts: {
-      transforms: ['color/hexAlpha', 'shadow/css'],
+      transforms: ['color/hexAlpha', 'deprecated-shadow/css'],
       files: [
         {
           filter: 'isSource',
@@ -83,7 +83,7 @@ StyleDictionary.registerTransform({
   - [color/hex](#colorhex)
   - [color/rgba](#colorrgba)
   - [color/rgbaFloat](#colorrgbafloat)
-  - [shadow/css](#shadowcss)
+  - [deprecated-shadow/css](#deprecated-shadowcss)
   - [font/css](#fontcss)
   - [fontFamily/css](#fontfamilycss)
   - [fontWeight/number](#fontweightnumber)
@@ -274,7 +274,7 @@ myStyleDictionary.registerTransformGroup({
 #### `css/extended` transform group
 
 This packages ships a predefined transform group, called `css/extended`.
-It includes all transforms from the original [`css` transform group](https://amzn.github.io/style-dictionary/#/transform_groups?id=css) as well as the following transforms: `color/rgbAlpha`, `shadow/css`, `font/css`, `fontFamily/css`, `fontWeight/number`, `name/pathToDotNotation`, `cubicBezier/css`, `border/css`.
+It includes all transforms from the original [`css` transform group](https://amzn.github.io/style-dictionary/#/transform_groups?id=css) as well as the following transforms: `color/rgbAlpha`, `deprecated-shadow/css`, `font/css`, `fontFamily/css`, `fontWeight/number`, `name/pathToDotNotation`, `cubicBezier/css`, `border/css`.
 
 You can use it like any other transform Group:
 
@@ -688,7 +688,7 @@ myStyleDictionary.extend({
 }
 ```
 
-### shadow/css
+### deprecated-shadow/css
 
 This `value` transformer replaces the value of a w3c shadow token with a `$type` or `type` of `shadow` with a `css` shadow string.
 
@@ -696,7 +696,7 @@ This `value` transformer replaces the value of a w3c shadow token with a `$type`
 myStyleDictionary.extend({
   platforms: {
     ts: {
-      transforms: ['shadow/css'],
+      transforms: ['deprecated-shadow/css'],
       files: [
         {
           // ...
