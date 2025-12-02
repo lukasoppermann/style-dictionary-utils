@@ -44,9 +44,9 @@ import {number} from './transformer/number.js'
 import {colorToCss} from './transformer/color-to-css.js'
 import {transitionCss} from './transformer/transition-to-css.js'
 import {shadowCss} from './transformer/shadow-css.js'
+import {strokeStyleCss} from './transformer/strokeStyle-to-css.js'
 import {typescriptEsmDeclarations} from './format/typescript-esm-declarations.js'
 import OrigialStyleDictionary from 'style-dictionary'
-
 
 /**
  * Formats
@@ -171,6 +171,10 @@ OrigialStyleDictionary.registerTransform({
 
 OrigialStyleDictionary.registerTransform({
   ...number,
+})
+
+OrigialStyleDictionary.registerTransform({
+  ...strokeStyleCss,
 })
 /**
  * Transform groups
