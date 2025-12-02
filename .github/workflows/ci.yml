@@ -54,12 +54,6 @@ jobs:
       - name: Test build output
         run: npm run test:build
 
-      - name: Build CSS files from current branch
-        run: |
-          npm run build
-          mkdir -p /tmp/current-output
-          cp -r tests/output/* /tmp/current-output/ || true
-
       - name: Checkout main branch
         run: |
           git fetch origin main
@@ -70,16 +64,22 @@ jobs:
           npm ci
           npm run build
           mkdir -p /tmp/main-output
-          cp -r tests/output/* /tmp/main-output/ || true
+          cp -r /tests/dist/* /tmp/main-output/ || true
 
       - name: Checkout back to current branch
         run: git checkout -
 
-      - name: Compare CSS output files
+      - name: Compare build CSS output files
         run: |
-          echo "Comparing CSS files between current branch and main..."
-          diff -r /tmp/main-output /tmp/current-output || true
+          echo "Comparing CSS files between current build branch and main..."
+          diff -r /tmp/main-output /tests/dist || true
           echo "Diff complete. If no output above, files are identical."
 
       - name: Test package output
         run: npm run test:package
+
+      - name: Compare package CSS output files
+        run: |
+          echo "Comparing CSS files between current package branch and main..."
+          diff -r /tmp/main-output /tests/dist || true
+          echo "Diff complete. If no output above, files are identical."
