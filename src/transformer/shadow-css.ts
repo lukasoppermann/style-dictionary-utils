@@ -1,5 +1,5 @@
 import {PlatformConfig, Transform, TransformedToken} from 'style-dictionary/types'
-import {isShadow} from '../filter/isShadow.js'
+import {isShadowFilter} from '../filter/isShadow.js'
 import {getValue} from '../utilities/getValue.js'
 import {transformDimensionValue, DimensionTokenValue} from './dimension.js'
 import {transformColor} from '../utilities/transformColor.js'
@@ -19,11 +19,12 @@ const formatShadow = (
   platform: PlatformConfig | undefined,
 ): string =>
   `${inset ? 'inset' : ''} ${transformDimensionValue(offsetX, platform)} ${transformDimensionValue(offsetY, platform)} ${transformDimensionValue(blur, platform)} ${transformDimensionValue(spread, platform)} ${transformColor(color)}`.trim()
+
 export const shadowCss: Transform = {
   name: 'shadow/css',
   type: `value`,
   transitive: true,
-  filter: isShadow,
+  filter: isShadowFilter,
   transform: (token: TransformedToken, platform: PlatformConfig | undefined) => {
     const tokenValue = getValue<TokenShadow>(token)
     if (Array.isArray(tokenValue)) {

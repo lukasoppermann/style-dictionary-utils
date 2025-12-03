@@ -19,7 +19,7 @@ describe('Filter: isGradient', () => {
       value: 'string',
     },
   ] as TransformedToken[]
-  it('filters gradiet tokens', () => {
-    expect(items.filter(isGradient)).toStrictEqual([items[0], items[2]])
+  it('filters gradient tokens', () => {
+    expect(items.filter(isGradient.filter)).toStrictEqual([items[0], items[2]])
   })
 })

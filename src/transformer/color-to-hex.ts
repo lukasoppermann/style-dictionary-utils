@@ -1,6 +1,6 @@
 import {toHex} from 'color2k'
 import {Transform, TransformedToken} from 'style-dictionary/types'
-import {isColor} from '../filter/isColor.js'
+import {isColorFilter} from '../filter/isColor.js'
 import {getValue} from '../utilities/getValue.js'
 /**
  * colorToHex
@@ -10,6 +10,6 @@ export const colorToHex: Transform = {
   name: 'color/hex',
   type: `value`,
   transitive: true,
-  filter: isColor,
+  filter: isColorFilter,
   transform: (token: TransformedToken) => toHex(getValue<string>(token)),
 }

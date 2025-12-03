@@ -20,6 +20,6 @@ describe('Filter: isTypography', () => {
     },
   ] as TransformedToken[]
   it('filters typography tokens', () => {
-    expect(items.filter(isTypography)).toStrictEqual([items[0], items[2]])
+    expect(items.filter(isTypography.filter)).toStrictEqual([items[0], items[2]])
   })
 })

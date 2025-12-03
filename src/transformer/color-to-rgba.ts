@@ -1,6 +1,6 @@
 import {toRgba} from 'color2k'
 import {Transform, TransformedToken} from 'style-dictionary/types'
-import {isColor} from '../filter/isColor.js'
+import {isColorFilter} from '../filter/isColor.js'
 import {getValue} from '../utilities/getValue.js'
 /**
  * colorToRgba
@@ -10,6 +10,6 @@ export const colorToRgba: Transform = {
   name: 'color/rgba',
   type: `value`,
   transitive: true,
-  filter: isColor,
+  filter: isColorFilter,
   transform: (token: TransformedToken) => toRgba(getValue<string>(token)),
 }

@@ -1,5 +1,5 @@
 import {Transform, TransformedToken} from 'style-dictionary/types'
-import {isNumber} from '../filter/isNumber.js'
+import {isNumberFilter} from '../filter/isNumber.js'
 import {getValue} from '../utilities/getValue.js'
 
 /**
@@ -11,7 +11,7 @@ export const number: Transform = {
   type: `value`,
   transitive: true,
   filter: (token: TransformedToken) => {
-    return isNumber(token)
+    return isNumberFilter(token)
   },
   transform: (token: TransformedToken) => {
     const numberValue = getValue(token)

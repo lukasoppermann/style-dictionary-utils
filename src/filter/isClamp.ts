@@ -5,7 +5,7 @@ import {getValue} from '../utilities/getValue.js'
  * @type filter
  * @description only returns tokens of type `shadow`
  */
-export const isClamp = (token: TransformedToken): boolean => {
+export const isClampFilter = (token: TransformedToken): boolean => {
   const tokenValue = getValue(token)
   return (
     (token?.$type === 'clamp' || token?.type === 'clamp') &&
@@ -15,4 +15,9 @@ export const isClamp = (token: TransformedToken): boolean => {
     'ideal' in tokenValue &&
     'max' in tokenValue
   )
+}
+
+export const isClamp = {
+  name: 'isClamp',
+  filter: isClampFilter,
 }

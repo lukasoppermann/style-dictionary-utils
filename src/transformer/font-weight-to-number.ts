@@ -1,5 +1,5 @@
 import {Transform, TransformedToken} from 'style-dictionary/types'
-import {isFontWeight} from '../filter/isFontWeight.js'
+import {isFontWeightFilter} from '../filter/isFontWeight.js'
 import {getValue} from '../utilities/getValue.js'
 /**
  * Acceptable font weights according to w3c standard
@@ -41,7 +41,7 @@ export const fontWeightToNumber: Transform = {
   name: 'fontWeight/number',
   type: `value`,
   transitive: true,
-  filter: (token: TransformedToken) => isFontWeight(token),
+  filter: (token: TransformedToken) => isFontWeightFilter(token),
   transform: (token: TransformedToken) => {
     const tokenValue = getValue<string>(token)
     // check if value is not a string

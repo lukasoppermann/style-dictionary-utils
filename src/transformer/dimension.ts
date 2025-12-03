@@ -1,5 +1,5 @@
 import {PlatformConfig, Transform, TransformedToken} from 'style-dictionary/types'
-import {isDimension} from '../filter/isDimension.js'
+import {isDimensionFilter} from '../filter/isDimension.js'
 import {getValue} from '../utilities/getValue.js'
 
 export type DimensionTokenValue = {
@@ -52,7 +52,7 @@ export const dimension: Transform = {
   name: 'dimension',
   type: `value`,
   transitive: true,
-  filter: (token: TransformedToken) => isDimension(token),
+  filter: (token: TransformedToken) => isDimensionFilter(token),
   transform: (token: TransformedToken, platform: PlatformConfig | undefined) => {
     const dimensionTokenvalue = getValue<DimensionTokenValue>(token)
 

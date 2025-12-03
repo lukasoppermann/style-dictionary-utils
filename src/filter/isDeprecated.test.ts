@@ -34,6 +34,6 @@ describe('Filter: isDeprecated', () => {
     // - $deprecated: string -> deprecated
     // - $deprecated: false -> NOT deprecated
     // - deprecated: anything -> NOT deprecated (ignored)
-    expect(items.filter(isDeprecated)).toStrictEqual([items[1], items[2]])
+    expect(items.filter(isDeprecated.filter)).toStrictEqual([items[1], items[2]])
   })
 })

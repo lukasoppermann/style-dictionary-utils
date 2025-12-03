@@ -1,5 +1,5 @@
 import {TransformedToken} from 'style-dictionary'
-import {transitionCss} from './transition-to-css'
+import {transitionToCss} from './transition-to-css'
 
 describe('transform: transitionCss', () => {
   const items = [
@@ -24,11 +24,11 @@ describe('transform: transitionCss', () => {
   ] as TransformedToken[]
 
   it('matches `transition` tokens', () => {
-    expect(items.filter(transitionCss.filter)).toStrictEqual([items[1]])
+    expect(items.filter(transitionToCss.filter)).toStrictEqual([items[1]])
   })
 
   it('transforms `transition` tokens', () => {
-    expect(items.filter(transitionCss.filter).map(item => transitionCss.transform(item, {}, {}))).toStrictEqual([
+    expect(items.filter(transitionToCss.filter).map(item => transitionToCss.transform(item, {}, {}))).toStrictEqual([
       '200ms 0s cubic-bezier(0.25,0.1,0.25,1)',
     ])
   })
@@ -48,7 +48,7 @@ describe('transform: transitionCss', () => {
       },
       $type: 'transition',
     } as TransformedToken
-    expect(transitionCss.transform(item, {}, {})).toStrictEqual('1s 0s cubic-bezier(0.25,0.1,0.25,1.2)')
+    expect(transitionToCss.transform(item, {}, {})).toStrictEqual('1s 0s cubic-bezier(0.25,0.1,0.25,1.2)')
   })
 
   it('transforms invalid duration in `transition` tokens', () => {
@@ -67,7 +67,7 @@ describe('transform: transitionCss', () => {
       },
       $type: 'transition',
     } as TransformedToken
-    expect(() => transitionCss.transform(item, {}, {})).toThrowError(
+    expect(() => transitionToCss.transform(item, {}, {})).toThrowError(
       `Invalid unit when transforming duration: 'my.transition duration' has unit 'sec', expected 'ms' or 's'`,
     )
   })
@@ -88,7 +88,7 @@ describe('transform: transitionCss', () => {
       },
       $type: 'transition',
     } as TransformedToken
-    expect(() => transitionCss.transform(item, {}, {})).toThrowError(
+    expect(() => transitionToCss.transform(item, {}, {})).toThrowError(
       `Invalid unit when transforming duration: 'my.transition delay' has unit 'min', expected 'ms' or 's'`,
     )
   })

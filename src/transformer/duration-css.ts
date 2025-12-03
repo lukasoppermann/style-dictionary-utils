@@ -1,5 +1,5 @@
 import {Transform, TransformedToken} from 'style-dictionary/types'
-import {isDuration} from '../filter/isDuration.js'
+import {isDurationFilter} from '../filter/isDuration.js'
 import {getDurationValueAndUnit, TokenValueDuration} from '../utilities/durationUtils.js'
 
 export const transformDuration = (tokenValue: TokenValueDuration, name?: string): string => {
@@ -25,10 +25,10 @@ export const transformDuration = (tokenValue: TokenValueDuration, name?: string)
  * durationToCss
  * @description convert duration tokens to CSS-compatible format, preserving original units
  */
-export const durationToCss: Transform = {
-  name: 'duration/toCss',
+export const durationCss: Transform = {
+  name: 'duration/css',
   type: `value`,
   transitive: true,
-  filter: isDuration,
+  filter: isDurationFilter,
   transform: (token: TransformedToken) => transformDuration(getDurationValueAndUnit(token), token.name),
 }
