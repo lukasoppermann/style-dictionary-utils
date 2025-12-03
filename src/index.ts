@@ -5,9 +5,7 @@ import {commentDeprecated} from './transformer/comment-deprecated.js'
 import {cssAdvanced} from './format/css-advanced.js'
 import {cssExtended} from './transformGroups/css-extended.js'
 import {cubicBezierCss} from './transformer/cubic-bezier-css.js'
-import {dimensionPixelToRem} from './transformer/dimension-pixel-to-rem.js'
-import {dimensionRemToPixel} from './transformer/dimension-rem-to-pixel.js'
-import {dimensionToPixelUnitless} from './transformer/dimension-to-pixelUnitless.js'
+import {dimensionCss} from './transformer/dimension-css.js'
 import {durationCss} from './transformer/duration-css.js'
 import {fontCss} from './transformer/font-css.js'
 import {fontFamilyCss} from './transformer/font-family-css.js'
@@ -59,9 +57,7 @@ OrigialStyleDictionary.registerTransform(clampCss)
 OrigialStyleDictionary.registerTransform(colorToCss)
 OrigialStyleDictionary.registerTransform(commentDeprecated)
 OrigialStyleDictionary.registerTransform(cubicBezierCss)
-OrigialStyleDictionary.registerTransform(dimensionPixelToRem)
-OrigialStyleDictionary.registerTransform(dimensionRemToPixel)
-OrigialStyleDictionary.registerTransform(dimensionToPixelUnitless)
+OrigialStyleDictionary.registerTransform(dimensionCss)
 OrigialStyleDictionary.registerTransform(durationCss)
 OrigialStyleDictionary.registerTransform(fontCss)
 OrigialStyleDictionary.registerTransform(fontFamilyCss)

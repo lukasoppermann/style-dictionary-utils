@@ -48,7 +48,7 @@ export const transformDimensionValue = (
  * @description convert all dimensions that use pixel value to rem, uses `platform.options.basePxFontSize`
  * as the base font, or `16` if not provided
  */
-export const dimension: Transform = {
+export const dimensionCss: Transform = {
   name: 'dimension',
   type: `value`,
   transitive: true,
