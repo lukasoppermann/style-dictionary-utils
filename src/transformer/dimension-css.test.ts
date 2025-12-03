@@ -1,7 +1,7 @@
 import {TransformedToken} from 'style-dictionary/types'
-import {dimension} from './dimension'
+import {dimensionCss} from './dimension-css.js'
 
-describe('transform: dimension', () => {
+describe('transform: dimensionCss', () => {
   const items = [
     {
       $value: {
@@ -33,44 +33,44 @@ describe('transform: dimension', () => {
     },
   ] as TransformedToken[]
 
-  it('transforms `dimension` tokens', () => {
-    expect(items.filter(dimension.filter).map(item => dimension.transform(item, {}, {}))).toStrictEqual([
+  it('transforms `dimensionCss` tokens', () => {
+    expect(items.filter(dimensionCss.filter).map(item => dimensionCss.transform(item, {}, {}))).toStrictEqual([
       '0',
       '20px',
       '3rem',
     ])
   })
 
-  it('transforms `dimension` tokens with custom baseFont', () => {
+  it('transforms `dimensionCss` tokens with custom baseFont', () => {
     const platform = {
       basePxFontSize: 10,
       outputUnit: 'rem',
     }
-    expect(items.filter(dimension.filter).map(item => dimension.transform(item, platform, {}))).toStrictEqual([
+    expect(items.filter(dimensionCss.filter).map(item => dimensionCss.transform(item, platform, {}))).toStrictEqual([
       '0',
       '2rem',
       '3rem',
     ])
   })
 
-  it('transforms `dimension` tokens with custom baseFont', () => {
+  it('transforms `dimensionCss` tokens with custom baseFont', () => {
     const platform = {
       outputUnit: 'px',
     }
-    expect(items.filter(dimension.filter).map(item => dimension.transform(item, platform, {}))).toStrictEqual([
+    expect(items.filter(dimensionCss.filter).map(item => dimensionCss.transform(item, platform, {}))).toStrictEqual([
       '0',
       '20px',
       '48px',
     ])
   })
 
-  it('transforms `dimension` without unit', () => {
+  it('transforms `dimensionCss` without unit', () => {
     const platform = {
       basePxFontSize: 10,
       outputUnit: 'px',
       appendUnit: false,
     }
-    expect(items.filter(dimension.filter).map(item => dimension.transform(item, platform, {}))).toStrictEqual([
+    expect(items.filter(dimensionCss.filter).map(item => dimensionCss.transform(item, platform, {}))).toStrictEqual([
       '0',
       '20',
       '30',

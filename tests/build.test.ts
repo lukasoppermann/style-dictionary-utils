@@ -10,11 +10,7 @@ describe('build.test.ts', () => {
   })
 
   it('all transformers are attached', () => {
-    expect(StyleDictionary.hooks.transforms['color/hex']).toBeDefined()
-    expect(StyleDictionary.hooks.transforms['color/rgba']).toBeDefined()
-    expect(StyleDictionary.hooks.transforms['color/rgbAlpha']).toBeDefined()
-    expect(StyleDictionary.hooks.transforms['color/rgbaFloat']).toBeDefined()
-    expect(StyleDictionary.hooks.transforms['color/hexAlpha']).toBeDefined()
+    expect(StyleDictionary.hooks.transforms['color/css']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['comment/deprecated']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['clamp/css']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['name/pathToDotNotation']).toBeDefined()
@@ -37,7 +33,6 @@ describe('build.test.ts', () => {
   it('all filters are attached', () => {
     expect(StyleDictionary.hooks.filters['isBorder']).toBeDefined()
     expect(StyleDictionary.hooks.filters['isColor']).toBeDefined()
-    expect(StyleDictionary.hooks.filters['isColorOrGradient']).toBeDefined()
     expect(StyleDictionary.hooks.filters['isCubicBezier']).toBeDefined()
     expect(StyleDictionary.hooks.filters['isClamp']).toBeDefined()
     expect(StyleDictionary.hooks.filters['isDeprecated']).toBeDefined()
@@ -50,7 +45,6 @@ describe('build.test.ts', () => {
     expect(StyleDictionary.hooks.filters['isSource']).toBeDefined()
     expect(StyleDictionary.hooks.filters['isStrokeStyle']).toBeDefined()
     expect(StyleDictionary.hooks.filters['isTransition']).toBeDefined()
-    expect(StyleDictionary.hooks.filters['isTypographic']).toBeDefined()
     expect(StyleDictionary.hooks.filters['isTypography']).toBeDefined()
   })
 
