@@ -4,7 +4,8 @@ import {TransformedToken} from 'style-dictionary/types'
  * @type filter
  * @description only returns tokens of type `shadow`
  */
-export const isShadowFilter = (token: TransformedToken): boolean => token?.$type === 'shadow' || token?.type === 'shadow'
+export const isShadowFilter = (token: TransformedToken): boolean =>
+  token?.$type === 'shadow' || token?.type === 'shadow'
 
 export const isShadow = {
   name: 'isShadow',

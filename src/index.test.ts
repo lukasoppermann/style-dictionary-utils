@@ -42,7 +42,6 @@ describe('index.ts', () => {
   it('all filters are attached', () => {
     expect(StyleDictionary.hooks.filters['isBorder']).toBeDefined()
     expect(StyleDictionary.hooks.filters['isColor']).toBeDefined()
-    expect(StyleDictionary.hooks.filters['isColorOrGradient']).toBeDefined()
     expect(StyleDictionary.hooks.filters['isCubicBezier']).toBeDefined()
     expect(StyleDictionary.hooks.filters['isClamp']).toBeDefined()
     expect(StyleDictionary.hooks.filters['isDeprecated']).toBeDefined()

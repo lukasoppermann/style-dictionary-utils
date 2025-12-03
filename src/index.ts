@@ -21,7 +21,6 @@ import {gradientCss} from './transformer/gradient-css.js'
 import {isBorder} from './filter/isBorder.js'
 import {isClamp} from './filter/isClamp.js'
 import {isColor} from './filter/isColor.js'
-import {isColorOrGradient} from './filter/isColorOrGradient.js'
 import {isCubicBezier} from './filter/isCubicBezier.js'
 import {isDeprecated} from './filter/isDeprecated.js'
 import {isDimension} from './filter/isDimension.js'
@@ -97,7 +96,6 @@ OrigialStyleDictionary.registerTransformGroup(cssExtended)
 OrigialStyleDictionary.registerFilter(isBorder)
 OrigialStyleDictionary.registerFilter(isClamp)
 OrigialStyleDictionary.registerFilter(isColor)
-OrigialStyleDictionary.registerFilter(isColorOrGradient)
 OrigialStyleDictionary.registerFilter(isCubicBezier)
 OrigialStyleDictionary.registerFilter(isDeprecated)
 OrigialStyleDictionary.registerFilter(isDimension)
