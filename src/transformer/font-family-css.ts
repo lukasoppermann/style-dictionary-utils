@@ -1,5 +1,5 @@
 import {Transform, TransformedToken} from 'style-dictionary/types'
-import {isFontFamily} from '../filter/isFontFamily.js'
+import {isFontFamilyFilter} from '../filter/isFontFamily.js'
 import {getValue} from '../utilities/getValue.js'
 
 const hasSpaceInName = (string: string) => /\s/g.test(string)
@@ -11,7 +11,7 @@ export const fontFamilyCss: Transform = {
   name: 'fontFamily/css',
   type: `value`,
   transitive: true,
-  filter: (token: TransformedToken) => isFontFamily.filter(token),
+  filter: (token: TransformedToken) => isFontFamilyFilter(token),
   transform: (token: TransformedToken) => {
     const tokenValue = getValue<string[]>(token)
     // if the value is not an array, return it as is

@@ -1,4 +1,4 @@
-import {isDimension} from '../filter/isDimension.js'
+import {isDimensionFilter} from '../filter/isDimension.js'
 import {PlatformConfig, Transform, TransformedToken} from 'style-dictionary/types'
 import {getDimensionValue} from '../utilities/getDimensionValue.js'
 
@@ -33,7 +33,7 @@ export const dimensionToPixelUnitless: Transform = {
   name: 'dimension/pixelUnitless',
   type: `value`,
   transitive: true,
-  filter: isDimension.filter,
+  filter: isDimensionFilter,
   transform: (token: TransformedToken, options?: PlatformConfig) => {
     const dimensionValue = getDimensionValue(token)
     const baseFont = getBasePxFontSize(options)

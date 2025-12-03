@@ -1,5 +1,5 @@
 import {Transform, TransformedToken} from 'style-dictionary/types'
-import {isBorder} from '../filter/isBorder.js'
+import {isBorderFilter} from '../filter/isBorder.js'
 import {getValue} from '../utilities/getValue.js'
 
 type StrokeStyleString = 'solid' | 'dashed' | 'dotted' | 'double' | 'groove' | 'ridge' | 'outset' | 'inset'
@@ -17,7 +17,7 @@ export const borderCss: Transform = {
   name: 'border/css',
   type: `value`,
   transitive: true,
-  filter: isBorder.filter,
+  filter: isBorderFilter,
   transform: (token: Omit<TransformedToken, 'value'> & {value?: TokenBorder}) => {
     const tokenValue = getValue<Omit<TransformedToken, 'value'> & {value?: TokenBorder}>(token)
     if (!tokenValue) return

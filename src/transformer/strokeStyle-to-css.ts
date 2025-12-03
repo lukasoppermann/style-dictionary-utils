@@ -1,5 +1,5 @@
 import {Transform, TransformedToken} from 'style-dictionary/types'
-import {isStrokeStyle} from '../filter/isStrokeStyle.js'
+import {isStrokeStyleFilter} from '../filter/isStrokeStyle.js'
 import {getValue} from '../utilities/getValue.js'
 
 const StrokeStyleValues = ['solid', 'dashed', 'dotted', 'double', 'groove', 'ridge', 'outset', 'inset'] as const
@@ -22,7 +22,7 @@ export const strokeStyleCss: Transform = {
   name: 'strokeStyle/css',
   type: `value`,
   transitive: true,
-  filter: (token: TransformedToken) => isStrokeStyle.filter(token),
+  filter: (token: TransformedToken) => isStrokeStyleFilter(token),
   transform: (token: TransformedToken) => {
     const tokenValue = getValue<TokenValueStrokeStyle>(token)
     return transformStrokeStyleValue(tokenValue)

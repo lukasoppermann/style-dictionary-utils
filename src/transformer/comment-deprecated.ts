@@ -1,5 +1,5 @@
 import {Transform, TransformedToken} from 'style-dictionary/types'
-import {isDeprecated} from '../filter/isDeprecated.js'
+import {isDeprecatedFilter} from '../filter/isDeprecated.js'
 
 /**
  * commentDeprecated
@@ -9,7 +9,7 @@ export const commentDeprecated: Transform = {
   name: 'comment/deprecated',
   type: `attribute`,
   transitive: true,
-  filter: isDeprecated.filter,
+  filter: isDeprecatedFilter,
   transform: (token: TransformedToken) => {
     token.$description = `DEPRECATED${typeof token.$deprecated === 'string' ? `: ${token.$deprecated}` : ''}`
     return token

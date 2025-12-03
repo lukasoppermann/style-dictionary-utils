@@ -1,5 +1,5 @@
 import {PlatformConfig, Transform, TransformedToken} from 'style-dictionary/types'
-import {isDimension} from '../filter/isDimension.js'
+import {isDimensionFilter} from '../filter/isDimension.js'
 import {getDimensionValue} from '../utilities/getDimensionValue.js'
 
 /**
@@ -13,7 +13,7 @@ export const dimensionRemToPixel: Transform = {
   transitive: true,
   filter: (token: TransformedToken) => {
     const dimensionValue = getDimensionValue(token)
-    return isDimension.filter(token) && dimensionValue.substring(dimensionValue.length - 3) === 'rem'
+    return isDimensionFilter(token) && dimensionValue.substring(dimensionValue.length - 3) === 'rem'
   },
   transform: (token: TransformedToken, platform: PlatformConfig | undefined) => {
     const dimensionValue = getDimensionValue(token)

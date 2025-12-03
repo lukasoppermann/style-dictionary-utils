@@ -5,7 +5,9 @@ import {TransformedToken} from 'style-dictionary/types'
  * @description only returns tokens that are coming from a `source` file and
  * not from an `included` file
  */
+export const isSourceFilter = (token: TransformedToken): boolean => token?.isSource === true
+
 export const isSource = {
   name: 'isSource',
-  filter: (token: TransformedToken): boolean => token?.isSource === true,
+  filter: isSourceFilter,
 }

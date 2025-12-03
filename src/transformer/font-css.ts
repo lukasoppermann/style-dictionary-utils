@@ -1,5 +1,5 @@
 import {Transform, TransformedToken} from 'style-dictionary/types'
-import {isTypography} from '../filter/isTypography.js'
+import {isTypographyFilter} from '../filter/isTypography.js'
 import {getValue} from '../utilities/getValue.js'
 type TokenTypography = {
   fontFamily: string
@@ -15,7 +15,7 @@ export const fontCss: Transform = {
   name: 'font/css',
   type: `value`,
   transitive: true,
-  filter: isTypography.filter,
+  filter: isTypographyFilter,
   transform: (token: TransformedToken) => {
     const tokenValue = getValue<TokenTypography>(token)
     if (!tokenValue) return

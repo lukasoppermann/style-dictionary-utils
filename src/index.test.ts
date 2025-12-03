@@ -22,7 +22,7 @@ describe('index.ts', () => {
     expect(StyleDictionary.hooks.transforms['dimension/pixelToRem']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['dimension/pixelUnitless']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['dimension/remToPixel']).toBeDefined()
-    expect(StyleDictionary.hooks.transforms['duration/toCss']).toBeDefined()
+    expect(StyleDictionary.hooks.transforms['duration/css']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['font/css']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['fontFamily/css']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['fontWeight/number']).toBeDefined()

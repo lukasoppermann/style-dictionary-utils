@@ -1,5 +1,5 @@
 import {Transform, TransformedToken} from 'style-dictionary/types'
-import {isGradient} from '../filter/isGradient.js'
+import {isGradientFilter} from '../filter/isGradient.js'
 import {getValue} from '../utilities/getValue.js'
 import {transformColor} from '../utilities/transformColor.js'
 import {ColorTokenValue} from './color-to-css.js'
@@ -13,7 +13,7 @@ export const gradientCss: Transform = {
   name: 'gradient/css',
   type: `value`,
   transitive: true,
-  filter: isGradient.filter,
+  filter: isGradientFilter,
   transform: (token: TransformedToken) => {
     const tokenValue = getValue<TokenGradient[]>(token)
     // combine stops to string

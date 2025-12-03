@@ -4,8 +4,10 @@ import {TransformedToken} from 'style-dictionary/types'
  * @type filter
  * @description only returns tokens of type `fontFamily`
  */
+export const isFontFamilyFilter = (token: TransformedToken): boolean =>
+  token?.$type === 'fontFamily' || token?.type === 'fontFamily'
+
 export const isFontFamily = {
   name: 'isFontFamily',
-  filter: (token: TransformedToken): boolean =>
-    token?.$type === 'fontFamily' || token?.type === 'fontFamily',
+  filter: isFontFamilyFilter,
 }

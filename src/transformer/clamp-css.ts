@@ -1,5 +1,5 @@
 import {Transform, TransformedToken} from 'style-dictionary/types'
-import {isClamp} from '../filter/isClamp.js'
+import {isClampFilter} from '../filter/isClamp.js'
 import {getValue} from '../utilities/getValue.js'
 
 type TokenClamp = {
@@ -12,7 +12,7 @@ export const clampCss: Transform = {
   name: 'clamp/css',
   type: `value`,
   transitive: true,
-  filter: isClamp.filter,
+  filter: isClampFilter,
   transform: (token: Omit<TransformedToken, 'value'> & {value?: TokenClamp}) => {
     const tokenValue = getValue<Omit<TransformedToken, 'value'> & {value?: TokenClamp}>(token)
     if (!tokenValue) return
