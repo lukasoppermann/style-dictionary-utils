@@ -2,8 +2,7 @@ import {PlatformConfig, Transform, TransformedToken} from 'style-dictionary/type
 import {isShadowFilter} from '../filter/isShadow.js'
 import {getValue} from '../utilities/getValue.js'
 import {transformDimensionValue, DimensionTokenValue} from './dimension-css.js'
-import {transformColor} from '../utilities/transformColor.js'
-import {ColorTokenValue} from './color-to-css.js'
+import {ColorTokenValue, transformColor} from './color-to-css.js'
 
 type TokenShadow = {
   color: ColorTokenValue

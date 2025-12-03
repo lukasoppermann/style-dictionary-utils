@@ -1,8 +1,7 @@
 import {Transform, TransformedToken} from 'style-dictionary/types'
 import {isGradientFilter} from '../filter/isGradient.js'
 import {getValue} from '../utilities/getValue.js'
-import {transformColor} from '../utilities/transformColor.js'
-import {ColorTokenValue} from './color-to-css.js'
+import {ColorTokenValue, transformColor} from './color-to-css.js'
 
 type TokenGradient = {
   color: ColorTokenValue

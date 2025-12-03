@@ -49,7 +49,7 @@ export const transformDimensionValue = (
  * as the base font, or `16` if not provided
  */
 export const dimensionCss: Transform = {
-  name: 'dimension',
+  name: 'dimension/css',
   type: `value`,
   transitive: true,
   filter: (token: TransformedToken) => isDimensionFilter(token),
