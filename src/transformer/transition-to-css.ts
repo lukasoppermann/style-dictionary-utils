@@ -3,7 +3,7 @@ import {isTransitionFilter} from '../filter/isTransition.js'
 import {getValue} from '../utilities/getValue.js'
 import {TokenValueCubicBezier} from './cubic-bezier-css.js'
 import {TokenValueDuration} from '../utilities/durationUtils.js'
-import {transformDuration} from './durationToCss.js'
+import {transformDuration} from './duration-css.js'
 
 type TokenValueTransition = {
   duration: TokenValueDuration

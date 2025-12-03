@@ -25,7 +25,7 @@ export const transformDuration = (tokenValue: TokenValueDuration, name?: string)
  * durationToCss
  * @description convert duration tokens to CSS-compatible format, preserving original units
  */
-export const durationToCss: Transform = {
+export const durationCss: Transform = {
   name: 'duration/css',
   type: `value`,
   transitive: true,

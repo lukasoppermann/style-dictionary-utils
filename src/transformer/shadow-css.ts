@@ -19,6 +19,7 @@ const formatShadow = (
   platform: PlatformConfig | undefined,
 ): string =>
   `${inset ? 'inset' : ''} ${transformDimensionValue(offsetX, platform)} ${transformDimensionValue(offsetY, platform)} ${transformDimensionValue(blur, platform)} ${transformDimensionValue(spread, platform)} ${transformColor(color)}`.trim()
+
 export const shadowCss: Transform = {
   name: 'shadow/css',
   type: `value`,
