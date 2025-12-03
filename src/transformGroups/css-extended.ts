@@ -5,7 +5,7 @@ export const cssExtended = {
   transforms: [
     ...styleDictionary.hooks.transformGroups['css'],
     'border/css',
-    'color/rgbAlpha',
+    'color/css',
     'cubicBezier/css',
     'font/css',
     'fontFamily/css',

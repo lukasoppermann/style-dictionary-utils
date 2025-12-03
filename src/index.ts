@@ -1,11 +1,6 @@
 import {borderCss} from './transformer/border-css.js'
 import {clampCss} from './transformer/clamp-css.js'
-import {colorAlphaToHex} from './transformer/color-alpha-to-hex.js'
-import {colorAlphaToRgba} from './transformer/color-alpha-to-rgba.js'
 import {colorToCss} from './transformer/color-to-css.js'
-import {colorToHex} from './transformer/color-to-hex.js'
-import {colorToRgba} from './transformer/color-to-rgba.js'
-import {colorToRgbaFloat} from './transformer/color-to-rgba-float.js'
 import {commentDeprecated} from './transformer/comment-deprecated.js'
 import {cssAdvanced} from './format/css-advanced.js'
 import {cssExtended} from './transformGroups/css-extended.js'
@@ -61,12 +56,7 @@ OrigialStyleDictionary.registerFormat(typescriptEsmDeclarations)
  */
 OrigialStyleDictionary.registerTransform(borderCss)
 OrigialStyleDictionary.registerTransform(clampCss)
-OrigialStyleDictionary.registerTransform(colorAlphaToHex)
-OrigialStyleDictionary.registerTransform(colorAlphaToRgba)
 OrigialStyleDictionary.registerTransform(colorToCss)
-OrigialStyleDictionary.registerTransform(colorToHex)
-OrigialStyleDictionary.registerTransform(colorToRgba)
-OrigialStyleDictionary.registerTransform(colorToRgbaFloat)
 OrigialStyleDictionary.registerTransform(commentDeprecated)
 OrigialStyleDictionary.registerTransform(cubicBezierCss)
 OrigialStyleDictionary.registerTransform(dimensionPixelToRem)

@@ -31,7 +31,7 @@ const myStyleDictionary = new StyleDictionary()
 const extendedSd = await myStyleDictionary.extend({
   platforms: {
     ts: {
-      transforms: ['color/hexAlpha', 'deprecated-shadow/css'],
+      transforms: ['color/css', 'shadow/css'],
       files: [
         {
           filter: 'isSource',
@@ -78,22 +78,16 @@ StyleDictionary.registerTransform({
   - [name/pathToDotNotation](#namepathtodotnotation)
   - [name/pathToCamelCase](#namepathtocamelcase)
   - [name/pathToPascalCase](#namepathtopascalcase)
-  - [color/rgbAlpha](#colorrgbalpha)
-  - [color/hexAlpha](#colorhexalpha)
-  - [color/hex](#colorhex)
-  - [color/rgba](#colorrgba)
-  - [color/rgbaFloat](#colorrgbafloat)
-  - [deprecated-shadow/css](#deprecated-shadowcss)
+  - [color/css](#colorcss)
   - [font/css](#fontcss)
   - [fontFamily/css](#fontfamilycss)
   - [fontWeight/number](#fontweightnumber)
   - [gradient/css](#gradientcss)
   - [cubicBezier/css](#cubicbeziercss)
-  - [dimension/pixelToRem](#dimensionpixeltorem)
-  - [dimension/remToPixel](#dimensionremtopixel)
-  - [dimension/pixelUnitless](#dimensionpixelunitless)
+  - [dimension/css](#dimension)
   - [clamp/css](#clampcss)
-  - number _(docs missing)_
+  - [shadow/css](#shadowcss)
+  - [number](#number)
 - Filters
   - [isSource](#issource)
   - [isColor](#iscolor)
@@ -109,7 +103,7 @@ StyleDictionary.registerTransform({
   - [isCubicBezier](#iscubicbezier)
   - [isBorder](#isborder)
   - [isClamp](#isclamp)
-  - isNumber _(docs missing)_
+  - [isNumber](#isnumber)
 - Special Filter
   - [getHasAttribute](#gethasattribute)
   - [getHasAttributeValue](#gethasattributevalue)
@@ -265,14 +259,14 @@ If you want to use the same `transformers` multiple times you can create a [`tra
 ```js
 myStyleDictionary.registerTransformGroup({
   name: 'webHex',
-  transforms: ['color/hexAlpha', 'dimension/pixelToRem', 'font/css'],
+  transforms: ['color/css', 'dimension/css', 'font/css'],
 })
 ```
 
 #### `css/extended` transform group
 
 This packages ships a predefined transform group, called `css/extended`.
-It includes all transforms from the original [`css` transform group](https://amzn.github.io/style-dictionary/#/transform_groups?id=css) as well as the following transforms: `color/rgbAlpha`, `deprecated-shadow/css`, `font/css`, `fontFamily/css`, `fontWeight/number`, `name/pathToDotNotation`, `cubicBezier/css`, `border/css`.
+It includes all transforms from the original [`css` transform group](https://amzn.github.io/style-dictionary/#/transform_groups?id=css) as well as the following transforms: `color/css`, `shadow/css`, `font/css`, `fontFamily/css`, `fontWeight/number`, `name/pathToDotNotation`, `cubicBezier/css`, `border/css`.
 
 You can use it like any other transform Group:
 
@@ -289,6 +283,169 @@ myStyleDictionary.extend({
     },
   },
 })
+```
+
+### color/css
+
+This `value` transformer converts a w3c color token with a `$type` of `color` to a CSS color value. By default, it outputs colors in `hex` format, but you can control the output format using the `colorOutputFormat` platform option.
+
+**Supported output formats:** `hex`, `rgb`, `rgba`, `hsl`, `hsla`, `rgbFloat`
+
+```js
+myStyleDictionary.extend({
+  platforms: {
+    css: {
+      transforms: ['color/css'],
+      colorOutputFormat: 'hsl', // optional: defaults to 'hex'
+      files: [
+        {
+          // ...
+        },
+      ],
+    },
+  },
+})
+```
+
+##### Before transformation
+
+```js
+{
+  color: {
+    primary: {
+      value: {
+        colorSpace: "srgb",
+        components: [0.051, 0.439, 0.902],
+        alpha: 1
+      },
+      $type: "color"
+    }
+  }
+}
+```
+
+##### After transformation (hex format)
+
+```js
+{
+  color: {
+    primary: {
+      value: "#0d70e6",
+      $type: "color"
+    }
+  }
+}
+```
+
+### shadow/css
+
+This `value` transformer converts a w3c shadow token with a `$type` of `shadow` to a CSS shadow value. It supports both single shadows and multiple shadows (box-shadow).
+
+```js
+myStyleDictionary.extend({
+  platforms: {
+    css: {
+      transforms: ['shadow/css'],
+      files: [
+        {
+          // ...
+        },
+      ],
+    },
+  },
+})
+```
+
+##### Before transformation
+
+```js
+{
+  shadow: {
+    card: {
+      value: {
+        offsetX: {value: 0, unit: "px"},
+        offsetY: {value: 4, unit: "px"},
+        blur: {value: 8, unit: "px"},
+        spread: {value: 0, unit: "px"},
+        color: {
+          colorSpace: "srgb",
+          components: [0, 0, 0],
+          alpha: 0.1
+        }
+      },
+      $type: "shadow"
+    }
+  }
+}
+```
+
+##### After transformation
+
+```js
+{
+  shadow: {
+    card: {
+      value: "0px 4px 8px 0px #0000001a",
+      $type: "shadow"
+    }
+  }
+}
+```
+
+### dimension/css
+
+This `value` transformer converts a w3c dimension token with a `$type` of `dimension` to a CSS dimension value. It can convert between `px` and `rem` units based on platform options.
+
+**Platform options:**
+
+- `outputUnit`: Target unit (`px` or `rem`, defaults to token's original unit)
+- `basePxFontSize`: Base font size for px/rem conversion (defaults to `16`)
+- `appendUnit`: Whether to append the unit to the output (defaults to `true`)
+
+```js
+myStyleDictionary.extend({
+  platforms: {
+    css: {
+      transforms: ['dimension/css'],
+      basePxFontSize: 16, // optional: base font size for rem conversion
+      outputUnit: 'rem', // optional: 'px' or 'rem'
+      files: [
+        {
+          // ...
+        },
+      ],
+    },
+  },
+})
+```
+
+##### Before transformation
+
+```js
+{
+  spacing: {
+    medium: {
+      value: {
+        value: 16,
+        unit: "px"
+      },
+      $type: "dimension"
+    }
+  }
+}
+```
+
+##### After transformation (with outputUnit: 'rem')
+
+```js
+{
+  spacing: {
+    medium: {
+      value: "1rem",
+      $type: "dimension"
+    }
+  }
+}
 ```
 
 ### name/pathToDotNotation
@@ -423,316 +580,6 @@ myStyleDictionary.extend({
 {
   "ColorsBgDefault": {
     // ...
-  }
-}
-```
-
-### color/rgbAlpha
-
-This `value` transformer replaces the value of a token with a `$type` or `type` of `color` with an `rgba` string. If the token has an `alpha` value, it will be used as the `alpha` of the `rgba` string.
-
-**Note:** If your initial color value has an alpha value (e.g. `hex8`) **AND** you add an `alpha` property, the `alpha` property will simply replace the previous alpha value.
-
-```js
-myStyleDictionary.extend({
-  platforms: {
-    ts: {
-      transforms: ['color/rgbAlpha'],
-      files: [
-        {
-          // ...
-        },
-      ],
-    },
-  },
-})
-```
-
-##### Before transformation
-
-```js
-{
-  colors: {
-    blue: {
-      500: {
-        value: "#0D70E6",
-        $type: "color",
-        alpha: 0.4
-      }
-    }
-  }
-}
-```
-
-##### After transformation
-
-```js
-{
-  colors: {
-    blue: {
-      500: {
-        value: "rgba(13, 112, 230, 0.4)",
-        $type: "color",
-        alpha: 0.4
-      }
-    }
-  }
-}
-```
-
-### color/hexAlpha
-
-This `value` transformer replaces the value of a token with a `$type` or `type` of `color` with a `hex` string. If the token has an `alpha` value, it will be used as the `alpha` of the `hex8` string.
-
-**Note:** If your initial color value has an alpha value (e.g. `rgba`) **AND** you add an `alpha` property, the `alpha` property will simply replace the previous alpha value.
-
-```js
-myStyleDictionary.extend({
-  platforms: {
-    ts: {
-      transforms: ['color/hexAlpha'],
-      files: [
-        {
-          // ...
-        },
-      ],
-    },
-  },
-})
-```
-
-##### Before transformation
-
-```js
-{
-  colors: {
-    blue: {
-      500: {
-        value: "rgba(13, 112, 230, 0.4)",
-        $type: "color",
-        alpha: 0.2
-      }
-    }
-  }
-}
-```
-
-##### After transformation
-
-```js
-{
-  colors: {
-    blue: {
-      500: {
-        value: "#0D70E633", // prev alpha value is replaced with 0.2 from alpha property
-        $type: "color",
-        alpha: 0.2
-      }
-    }
-  }
-}
-```
-
-### color/hex
-
-This `value` transformer replaces the value of a token with a `$type` or `type` of `color` with a `hex` string.
-
-```js
-myStyleDictionary.extend({
-  platforms: {
-    ts: {
-      transforms: ['color/hex'],
-      files: [
-        {
-          // ...
-        },
-      ],
-    },
-  },
-})
-```
-
-##### Before transformation
-
-```js
-{
-  colors: {
-    blue: {
-      500: {
-        value: "rgba(13, 112, 230, 0.4)",
-        $type: "color"
-      }
-    }
-  }
-}
-```
-
-##### After transformation
-
-```js
-{
-  colors: {
-    blue: {
-      500: {
-        value: "#0D70E666",
-        $type: "color"
-      }
-    }
-  }
-}
-```
-
-### color/rgba
-
-This `value` transformer replaces the value of a token with a `$type` or `type` of `color` with an `rgba` string.
-
-```js
-myStyleDictionary.extend({
-  platforms: {
-    ts: {
-      transforms: ['color/rgba'],
-      files: [
-        {
-          // ...
-        },
-      ],
-    },
-  },
-})
-```
-
-##### Before transformation
-
-```js
-{
-  colors: {
-    blue: {
-      500: {
-        value: "#0D70E666",
-        $type: "color"
-      }
-    }
-  }
-}
-```
-
-##### After transformation
-
-```js
-{
-  colors: {
-    blue: {
-      500: {
-        value: "rgba(13, 112, 230, 0.4)",
-        $type: "color"
-      }
-    }
-  }
-}
-```
-
-### color/rgbaFloat
-
-This `value` transformer replaces the value of a token with a `$type` or `type` of `color` with an `rgba float` object.
-This is helpful for tools and platforms and use float rgba values where the `r`, `g`, `b` and `a` values go from `0` to `1`. For example when preparing tokens to be imported into Figma.
-
-```js
-myStyleDictionary.extend({
-  platforms: {
-    json: {
-      transforms: ['color/rgbaFloat'],
-      files: [
-        {
-          // ...
-        },
-      ],
-    },
-  },
-})
-```
-
-##### Before transformation
-
-```js
-{
-  colors: {
-    blue: {
-      500: {
-        value: "#0D70E666",
-        $type: "color"
-      }
-    }
-  }
-}
-```
-
-##### After transformation
-
-```js
-{
-  colors: {
-    blue: {
-      500: {
-        value: {
-          r: 0.051,
-          g: 0.439,
-          b: 0.902,
-          a: 0.4
-        },
-        $type: "color"
-      }
-    }
-  }
-}
-```
-
-### deprecated-shadow/css
-
-This `value` transformer replaces the value of a w3c shadow token with a `$type` or `type` of `shadow` with a `css` shadow string.
-
-```js
-myStyleDictionary.extend({
-  platforms: {
-    ts: {
-      transforms: ['deprecated-shadow/css'],
-      files: [
-        {
-          // ...
-        },
-      ],
-    },
-  },
-})
-```
-
-##### Before transformation
-
-```js
-{
-  shadow: {
-    small: {
-      value: {
-        "color": "#00000066",
-        "offsetX": "0px",
-        "offsetY": "1px",
-        "blur": "2px",
-        "spread": "0px"
-      },
-      $type: "shadow"
-    }
-  }
-}
-```
-
-##### After transformation
-
-```js
-{
-  shadow: {
-    small: {
-      value: "0px 1px 2px 0px #00000066",
-      $type: "shadow"
-    }
   }
 }
 ```
@@ -983,184 +830,6 @@ myStyleDictionary.extend({
 }
 ```
 
-### dimension/pixelToRem
-
-This `value` transformer replaces the value of a token with a `$type` or `type` of `dimension` that has a `px` value, with a `rem` value.
-
-Supports multiple formats:
-
-- String format: `"32px"`
-- Old structured format: `{ value: "32px" }`
-- New structured format (DTCG spec): `{ value: 32, unit: "px" }`
-
-```js
-myStyleDictionary.extend({
-  platforms: {
-    ts: {
-      transforms: ['dimension/pixelToRem'],
-      files: [
-        {
-          // ...
-        },
-      ],
-      options: {
-        basePxFontSize: 16,
-      },
-    },
-  },
-})
-```
-
-##### Before transformation
-
-```js
-{
-  size: {
-    small: {
-      value: "32px",
-      $type: "dimension"
-    },
-    medium: {
-      $value: {
-        value: "64px"
-      },
-      $type: "dimension"
-    },
-    large: {
-      $value: {
-        value: 96,
-        unit: "px"
-      },
-      $type: "dimension"
-    }
-  }
-}
-```
-
-##### After transformation
-
-```js
-{
-  size: {
-    small: {
-      value: "2rem",
-      $type: "dimension"
-    },
-    medium: {
-      $value: "4rem",
-      $type: "dimension"
-    },
-    large: {
-      $value: "6rem",
-      $type: "dimension"
-    }
-  }
-}
-```
-
-### dimension/remToPixel
-
-This `value` transformer replaces the value of a token with a `$type` or `type` of `dimension` that has a `rem` value, with a `px` value.
-
-Supports multiple formats:
-
-- String format: `"2rem"`
-- Old structured format: `{ value: "2rem" }`
-- New structured format (DTCG spec): `{ value: 2, unit: "rem" }`
-
-```js
-myStyleDictionary.extend({
-  platforms: {
-    ts: {
-      transforms: ['dimension/remToPixel'],
-      files: [
-        {
-          // ...
-        },
-      ],
-      options: {
-        basePxFontSize: 16,
-      },
-    },
-  },
-})
-```
-
-##### Before transformation
-
-```js
-{
-  size: {
-    small: {
-      value: "2rem",
-      $type: "dimension"
-    },
-    medium: {
-      $value: {
-        value: "4rem"
-      },
-      $type: "dimension"
-    },
-    large: {
-      $value: {
-        value: 6,
-        unit: "rem"
-      },
-      $type: "dimension"
-    }
-  }
-}
-```
-
-##### After transformation
-
-```js
-{
-  size: {
-    small: {
-      value: "32px",
-      $type: "dimension"
-    },
-    medium: {
-      $value: "64px",
-      $type: "dimension"
-    },
-    large: {
-      $value: "96px",
-      $type: "dimension"
-    }
-  }
-}
-```
-
-### dimension/pixelUnitless
-
-This `value` transformer replaces the value of a token with a `$type` or `type` of `dimension` that has a `rem` or `px` value, with a unitless `pixel` based value. This is useful for example when preparing tokens to be imported into Figma.
-
-Supports multiple formats:
-
-- String format: `"2rem"`, `"32px"`
-- Old structured format: `{ value: "2rem" }`, `{ value: "32px" }`
-- New structured format (DTCG spec): `{ value: 2, unit: "rem" }`, `{ value: 32, unit: "px" }`
-
-```js
-myStyleDictionary.extend({
-  platforms: {
-    json: {
-      transforms: ['dimension/pixelUnitless'],
-      files: [
-        {
-          // ...
-        },
-      ],
-      options: {
-        basePxFontSize: 16,
-      },
-    },
-  },
-})
-```
-
 ### clamp/css
 
 This `value` transformer replaces the value of a token with a `$type` or `type` of `clamp` that has a `$value` object with `min`, `ideal` and `max` property, with a css `clamp` function.
@@ -1214,9 +883,41 @@ myStyleDictionary.extend({
 
 Filters are used to filter out unwanted tokens when [configuring output files](https://amzn.github.io/style-dictionary/#/config?id=file)
 
+Each filter is available in two ways:
+
+1. **As a registered filter** - Use the filter name as a string (e.g., `"isSource"`) in your Style Dictionary configuration
+2. **As an importable function** - Import the filter function directly (e.g., `isSourceFilter`) for use in custom transformers or advanced filtering
+
+```js
+// Using registered filter by name
+myStyleDictionary.extend({
+  platforms: {
+    ts: {
+      files: [{
+        filter: "isSource", // ← registered filter name
+        // ...
+      }]
+    }
+  }
+});
+
+// Importing and using filter function directly
+import {isSourceFilter} from 'style-dictionary-utils/filter/isSource.js'
+
+// Use in custom transformer
+StyleDictionary.registerTransform({
+  name: 'my-custom-transform',
+  filter: isSourceFilter, // ← imported filter function
+  transform: (token) => // ...
+});
+```
+
 ### isSource
 
 Only allows tokens that come from a [`source`](https://amzn.github.io/style-dictionary/#/config?id=attributes) file to be included in the output. Tokens from an [`include`](https://amzn.github.io/style-dictionary/#/config?id=attributes) will be removed.
+
+**Filter name:** `"isSource"`  
+**Import function:** `isSourceFilter` from `'style-dictionary-utils/filter/isSource.js'`
 
 ```js
 myStyleDictionary.extend({
@@ -1236,6 +937,9 @@ myStyleDictionary.extend({
 
 Only allows tokens with a `type` or `$type` property of `color`.
 
+**Filter name:** `"isColor"`  
+**Import function:** `isColorFilter` from `'style-dictionary-utils/filter/isColor.js'`
+
 ```js
 myStyleDictionary.extend({
   "platforms": {
@@ -1253,6 +957,9 @@ myStyleDictionary.extend({
 ### isGradient
 
 Only allows tokens with a `type` or `$type` property of `gradient`.
+
+**Filter name:** `"isGradient"`  
+**Import function:** `isGradientFilter` from `'style-dictionary-utils/filter/isGradient.js'`
 
 ```js
 myStyleDictionary.extend({
@@ -1272,6 +979,9 @@ myStyleDictionary.extend({
 
 Only allows tokens with a `type` or `$type` property of `typography`.
 
+**Filter name:** `"isTypography"`  
+**Import function:** `isTypographyFilter` from `'style-dictionary-utils/filter/isTypography.js'`
+
 ```js
 myStyleDictionary.extend({
   "platforms": {
@@ -1289,6 +999,9 @@ myStyleDictionary.extend({
 ### isTransition
 
 Only allows tokens with a `type` or `$type` property of `transition`.
+
+**Filter name:** `"isTransition"`  
+**Import function:** `isTransitionFilter` from `'style-dictionary-utils/filter/isTransition.js'`
 
 ```js
 myStyleDictionary.extend({
@@ -1308,6 +1021,9 @@ myStyleDictionary.extend({
 
 Only allows tokens with a `type` or `$type` property of `strokeStyle`.
 
+**Filter name:** `"isStrokeStyle"`  
+**Import function:** `isStrokeStyleFilter` from `'style-dictionary-utils/filter/isStrokeStyle.js'`
+
 ```js
 myStyleDictionary.extend({
   "platforms": {
@@ -1325,6 +1041,9 @@ myStyleDictionary.extend({
 ### isShadow
 
 Only allows tokens with a `type` or `$type` property of `shadow`.
+
+**Filter name:** `"isShadow"`  
+**Import function:** `isShadowFilter` from `'style-dictionary-utils/filter/isShadow.js'`
 
 ```js
 myStyleDictionary.extend({
@@ -1344,6 +1063,9 @@ myStyleDictionary.extend({
 
 Only allows tokens with a `type` or `$type` property of `fontWeight`.
 
+**Filter name:** `"isFontWeight"`  
+**Import function:** `isFontWeightFilter` from `'style-dictionary-utils/filter/isFontWeight.js'`
+
 ```js
 myStyleDictionary.extend({
   "platforms": {
@@ -1361,6 +1083,9 @@ myStyleDictionary.extend({
 ### isFontFamily
 
 Only allows tokens with a `type` or `$type` property of `fontFamily`.
+
+**Filter name:** `"isFontFamily"`  
+**Import function:** `isFontFamilyFilter` from `'style-dictionary-utils/filter/isFontFamily.js'`
 
 ```js
 myStyleDictionary.extend({
@@ -1380,6 +1105,9 @@ myStyleDictionary.extend({
 
 Only allows tokens with a `type` or `$type` property of `duration`.
 
+**Filter name:** `"isDuration"`  
+**Import function:** `isDurationFilter` from `'style-dictionary-utils/filter/isDuration.js'`
+
 ```js
 myStyleDictionary.extend({
   "platforms": {
@@ -1397,6 +1125,9 @@ myStyleDictionary.extend({
 ### isDimension
 
 Only allows tokens with a `type` or `$type` property of `dimension`.
+
+**Filter name:** `"isDimension"`  
+**Import function:** `isDimensionFilter` from `'style-dictionary-utils/filter/isDimension.js'`
 
 ```js
 myStyleDictionary.extend({
@@ -1416,6 +1147,9 @@ myStyleDictionary.extend({
 
 Only allows tokens with a `type` or `$type` property of `cubicBezier`.
 
+**Filter name:** `"isCubicBezier"`  
+**Import function:** `isCubicBezierFilter` from `'style-dictionary-utils/filter/isCubicBezier.js'`
+
 ```js
 myStyleDictionary.extend({
   "platforms": {
@@ -1433,6 +1167,9 @@ myStyleDictionary.extend({
 ### isBorder
 
 Only allows tokens with a `type` or `$type` property of `border`.
+
+**Filter name:** `"isBorder"`  
+**Import function:** `isBorderFilter` from `'style-dictionary-utils/filter/isBorder.js'`
 
 ```js
 myStyleDictionary.extend({
@@ -1452,6 +1189,9 @@ myStyleDictionary.extend({
 
 Only allows tokens with a `type` or `$type` property of `clamp` and an object as the `$value` with a `min`, `ideal` and `max` property.
 
+**Filter name:** `"isClamp"`  
+**Import function:** `isClampFilter` from `'style-dictionary-utils/filter/isClamp.js'`
+
 ```js
 myStyleDictionary.extend({
   "platforms": {
@@ -1459,6 +1199,48 @@ myStyleDictionary.extend({
       "transforms": //...,
       "files": [{
         "filter": "isClamp",
+        // ...
+      }]
+    }
+  }
+});
+```
+
+### isNumber
+
+Only allows tokens with a `type` or `$type` property of `number`.
+
+**Filter name:** `"isNumber"`  
+**Import function:** `isNumberFilter` from `'style-dictionary-utils/filter/isNumber.js'`
+
+```js
+myStyleDictionary.extend({
+  "platforms": {
+    "ts": {
+      "transforms": //...,
+      "files": [{
+        "filter": "isNumber",
+        // ...
+      }]
+    }
+  }
+});
+```
+
+### isDeprecated
+
+Only allows tokens with a `$deprecated` property that is either `true` or a `string` (deprecation message).
+
+**Filter name:** `"isDeprecated"`  
+**Import function:** `isDeprecatedFilter` from `'style-dictionary-utils/filter/isDeprecated.js'`
+
+```js
+myStyleDictionary.extend({
+  "platforms": {
+    "ts": {
+      "transforms": //...,
+      "files": [{
+        "filter": "isDeprecated",
         // ...
       }]
     }

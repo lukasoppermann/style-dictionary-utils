@@ -13,7 +13,7 @@ describe('TransformGroup: css extended', () => {
 
   const extensionArray = [
     'border/css',
-    'color/rgbAlpha',
+    'color/css',
     'cubicBezier/css',
     'font/css',
     'fontFamily/css',
