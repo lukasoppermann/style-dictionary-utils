@@ -41,22 +41,21 @@ describe('index.ts', () => {
 
   it('all filters are attached', () => {
     expect(StyleDictionary.hooks.filters['isBorder']).toBeDefined()
+    expect(StyleDictionary.hooks.filters['isClamp']).toBeDefined()
     expect(StyleDictionary.hooks.filters['isColor']).toBeDefined()
     expect(StyleDictionary.hooks.filters['isCubicBezier']).toBeDefined()
-    expect(StyleDictionary.hooks.filters['isClamp']).toBeDefined()
     expect(StyleDictionary.hooks.filters['isDeprecated']).toBeDefined()
     expect(StyleDictionary.hooks.filters['isDimension']).toBeDefined()
     expect(StyleDictionary.hooks.filters['isDuration']).toBeDefined()
     expect(StyleDictionary.hooks.filters['isFontFamily']).toBeDefined()
     expect(StyleDictionary.hooks.filters['isFontWeight']).toBeDefined()
     expect(StyleDictionary.hooks.filters['isGradient']).toBeDefined()
+    expect(StyleDictionary.hooks.filters['isNumber']).toBeDefined()
     expect(StyleDictionary.hooks.filters['isShadow']).toBeDefined()
     expect(StyleDictionary.hooks.filters['isSource']).toBeDefined()
     expect(StyleDictionary.hooks.filters['isStrokeStyle']).toBeDefined()
     expect(StyleDictionary.hooks.filters['isTransition']).toBeDefined()
-    expect(StyleDictionary.hooks.filters['isTypographic']).toBeDefined()
     expect(StyleDictionary.hooks.filters['isTypography']).toBeDefined()
-    expect(StyleDictionary.hooks.filters['isNumber']).toBeDefined()
   })
 
   it('can be extended with a format', () => {

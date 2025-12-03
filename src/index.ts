@@ -33,7 +33,6 @@ import {isShadow} from './filter/isShadow.js'
 import {isSource} from './filter/isSource.js'
 import {isStrokeStyle} from './filter/isStrokeStyle.js'
 import {isTransition} from './filter/isTransition.js'
-import {isTypographic} from './filter/isTypographic.js'
 import {isTypography} from './filter/isTypography.js'
 import {javascriptCommonJs} from './format/javascript-commonJs.js'
 import {javascriptEsm} from './format/javascript-esm.js'
@@ -108,7 +107,6 @@ OrigialStyleDictionary.registerFilter(isShadow)
 OrigialStyleDictionary.registerFilter(isSource)
 OrigialStyleDictionary.registerFilter(isStrokeStyle)
 OrigialStyleDictionary.registerFilter(isTransition)
-OrigialStyleDictionary.registerFilter(isTypographic)
 OrigialStyleDictionary.registerFilter(isTypography)
 
 /**

@@ -98,9 +98,7 @@ StyleDictionary.registerTransform({
   - [isSource](#issource)
   - [isColor](#iscolor)
   - [isGradient](#isgradient)
-  - [isColorOrGradient](#iscolororgradient)
   - [isTypography](#istypography)
-  - [isTypographic](#istypographic)
   - [isTransition](#istransition)
   - [isStrokeStyle](#isstrokestyle)
   - [isShadow](#isshadow)
@@ -1270,24 +1268,6 @@ myStyleDictionary.extend({
 });
 ```
 
-### isColorOrGradient
-
-Only allows tokens with a `type` or `$type` property of `color` or `gradient`.
-
-```js
-myStyleDictionary.extend({
-  "platforms": {
-    "ts": {
-      "transforms": //...,
-      "files": [{
-        "filter": "isColorOrGradient",
-        // ...
-      }]
-    }
-  }
-});
-```
-
 ### isTypography
 
 Only allows tokens with a `type` or `$type` property of `typography`.
@@ -1299,24 +1279,6 @@ myStyleDictionary.extend({
       "transforms": //...,
       "files": [{
         "filter": "isTypography",
-        // ...
-      }]
-    }
-  }
-});
-```
-
-### isTypographic
-
-Only allows tokens with a `type` or `$type` property of `typography`, `fontWeight` or `fontFamily`.
-
-```js
-myStyleDictionary.extend({
-  "platforms": {
-    "ts": {
-      "transforms": //...,
-      "files": [{
-        "filter": "isTypographic",
         // ...
       }]
     }
