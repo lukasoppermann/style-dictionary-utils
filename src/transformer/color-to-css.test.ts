@@ -62,6 +62,42 @@ describe('transform: colorToCss', () => {
     ).toStrictEqual(['hsl(348deg 100% 50% / 1)', 'hsl(144deg 56% 45% / 0.8)'])
   })
 
+  it('transforms `color` tokens to rgbFloat value', () => {
+    const input = [
+      {
+        value: {
+          colorSpace: 'srgb',
+          components: [0.06666666666666667, 0.13333333333333333, 0.2],
+          alpha: 1,
+        },
+      },
+      {
+        value: {
+          colorSpace: 'hsl',
+          components: [330, 100, 50],
+          alpha: 0.5,
+        },
+      },
+    ]
+    const expectedOutput = [
+      {
+        r: 0.067,
+        g: 0.133,
+        b: 0.2,
+        a: 1,
+      },
+      {
+        r: 1,
+        g: 0,
+        b: 0.5,
+        a: 0.5,
+      },
+    ]
+    expect(
+      input.map(item => colorToCss.transform(item as TransformedToken, {colorOutputFormat: 'rgbFloat'}, {})),
+    ).toStrictEqual(expectedOutput)
+  })
+
   it('transforms srgb `color` tokens', () => {
     expect(
       [
