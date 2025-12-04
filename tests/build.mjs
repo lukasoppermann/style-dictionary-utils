@@ -1,40 +1,25 @@
 import { StyleDictionary as SD } from "../dist/index.js";
 
-const StyleDictionary = new SD();
+const StyleDictionary = new SD({
+  log: {
+    warnings: "warn", // 'warn' | 'error' | 'disabled'
+    verbosity: "verbose", // 'default' | 'silent' | 'verbose'
+    errors: {
+      brokenReferences: "throw", // 'throw' | 'console'
+    },
+  },
+});
 
 const addPlatforms = (outdir) => {
   return {
-    css: {
-      buildPath: `${outdir}/css/`,
-      transformGroup: "css",
-      files: [
-        {
-          format: "css/variables",
-          destination: "variables.css",
-          options: {
-            outputReferences: true,
-          }
-        },
-      ],
-    },
-    cssPrefixed: {
-      prefix: "PREFIX",
-      buildPath: `${outdir}/css/`,
-      transformGroup: "css",
-      files: [
-        {
-          format: "css/variables",
-          destination: "prefix-variables.css",
-          options: {
-            outputReferences: true,
-          }
-        },
-      ],
-    },
     cssAdvanced: {
       prefix: "PREFIX",
       buildPath: `${outdir}/css/`,
-      transformGroup: "css",
+      // transformGroup: "css/extended",
+      transforms: [
+        'name/kebab',
+        'color/css',
+      ],
       files: [
         {
           format: "css/advanced",
@@ -91,14 +76,10 @@ const addPlatforms = (outdir) => {
 }
 
 let extendSd = await StyleDictionary.extend({
-  source: ["./tests/tokens/w3c/*.json5"],
-  platforms: addPlatforms('./tests/dist/w3c'),
-})
-extendSd = await StyleDictionary.extend({
-  source: ["./tests/tokens/non-w3c/*.json5"],
-  platforms: addPlatforms('./tests/dist/non-w3c'),
+  source: ["./tests/tokens/*.json5"],
+  platforms: addPlatforms('./tests/dist/local'),
 })
 
-extendSd.cleanAllPlatforms();
+await extendSd.cleanAllPlatforms();
 
-extendSd.buildAllPlatforms();
+await extendSd.buildAllPlatforms();

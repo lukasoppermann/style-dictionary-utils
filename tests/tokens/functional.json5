@@ -1,7 +1,7 @@
 {
   fgColor: {
     link: {
-      $value: '{base.color.blue.500}',
+      $value: '{base.color.pink.500}',
       $type: 'color',
       $description: 'The link color',
     },
@@ -13,7 +13,7 @@
         unit: 'px',
       },
       $type: 'dimension',
-      description: 'Pixel dimension value',
+      $description: 'Pixel dimension value',
     },
     rem: {
       $value: {
@@ -31,7 +31,7 @@
         unit: 'ms',
       },
       $type: 'duration',
-      description: 'The default duration for animations in milliseconds',
+      $description: 'The default duration for animations in milliseconds',
     },
     s: {
       $value: {
@@ -39,30 +39,30 @@
         unit: 's',
       },
       $type: 'duration',
-      description: 'The default duration for animations in seconds',
+      $description: 'The default duration for animations in seconds',
     },
   },
   border: {
     default: {
-      value: {
+      $value: {
         color: '{base.color.blue.500}',
         style: 'solid',
         width: '1px',
       },
       $type: 'border',
-      description: 'The default border color',
+      $description: 'The default border color',
     },
   },
   number: {
     small: {
       $value: 1.25,
       $type: 'number',
-      description: 'A small float number value',
+      $description: 'A small float number value',
     },
     large: {
       $value: 1000,
       $type: 'number',
-      description: 'A large integer number value',
+      $description: 'A large integer number value',
     },
   },
 

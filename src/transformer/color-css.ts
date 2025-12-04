@@ -77,9 +77,13 @@ export const colorCss: Transform = {
   name: 'color/css',
   type: `value`,
   transitive: true,
-  filter: isColorFilter,
+  filter: token => {
+    console.log(token)
+    return isColorFilter(token)
+  },
   transform: (token: TransformedToken, platform: PlatformConfig | undefined) => {
     const color = transformColor(getValue<ColorTokenValue>(token), platform?.colorOutputFormat || 'hex')
+    console.log(color)
     // apply alpha from $extension if present
     const {$extensions: {alpha} = {}} = token
 

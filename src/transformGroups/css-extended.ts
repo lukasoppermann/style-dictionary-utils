@@ -1,9 +1,6 @@
-import styleDictionary from 'style-dictionary'
-
 export const cssExtended = {
   name: 'css/extended',
   transforms: [
-    ...styleDictionary.hooks.transformGroups['css'],
     'border/css',
     'color/css',
     'cubicBezier/css',
@@ -13,6 +10,9 @@ export const cssExtended = {
     'fontFamily/css',
     'fontWeight/css',
     'gradient/css',
+    'name/kebab',
     'shadow/css',
+    'strokeStyle/css',
+    'transition/css',
   ],
 }
