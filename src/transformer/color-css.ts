@@ -76,7 +76,7 @@ export const transformColor = (
 export const colorCss: Transform = {
   name: 'w3c-color/css',
   type: `value`,
-  transitive: true,
+  transitive: false,
   filter: token => isColorFilter(token),
   transform: (token: TransformedToken, platform: PlatformConfig | undefined) => {
     const color = transformColor(getValue<ColorTokenValue>(token), platform?.colorOutputFormat || 'hex')
