@@ -59,7 +59,7 @@ import { StyleDictionary } from 'style-dictionary-utils'
 
 StyleDictionary.registerTransform({
   name: 'transform/pxToRem',
-  type: `value`,
+  $type: `value`,
   transitive: true,
   transform: () => // ...
 })
@@ -586,7 +586,7 @@ myStyleDictionary.extend({
 
 ### font/css
 
-This `value` transformer replaces the value of a w3c typography token with a `$type` or `type` of `typography` with a `css` font string.
+This `value` transformer replaces the value of a w3c typography token with a `$type` of `typography` with a `css` font string.
 
 ```js
 myStyleDictionary.extend({
@@ -637,7 +637,7 @@ myStyleDictionary.extend({
 
 ### fontFamily/css
 
-This `value` transformer replaces the value of a w3c fontFamily token with a `$type` or `type` of `fontFamily` with a `css` fontFamily string.
+This `value` transformer replaces the value of a w3c fontFamily token with a `$type` of `fontFamily` with a `css` fontFamily string.
 
 ```js
 myStyleDictionary.extend({
@@ -682,7 +682,7 @@ myStyleDictionary.extend({
 
 ### fontWeight/number
 
-This `value` transformer replaces the value of a w3c fontWeight token with a `$type` or `type` of `fontWeight` with a `css` fontWeight number.
+This `value` transformer replaces the value of a w3c fontWeight token with a `$type` of `fontWeight` with a `css` fontWeight number.
 
 ```js
 myStyleDictionary.extend({
@@ -727,7 +727,7 @@ myStyleDictionary.extend({
 
 ### gradient/css
 
-This `value` transformer replaces the value of a w3c gradient token with a `$type` or `type` of `gradient` with a `css` gradient string.
+This `value` transformer replaces the value of a w3c gradient token with a `$type` of `gradient` with a `css` gradient string.
 
 ```js
 myStyleDictionary.extend({
@@ -782,7 +782,7 @@ myStyleDictionary.extend({
 
 ### cubicBezier/css
 
-This `value` transformer replaces the value of a w3c cubicBezier token with a `$type` or `type` of `cubicBezier` with a `css` cubicBezier string.
+This `value` transformer replaces the value of a w3c cubicBezier token with a `$type` of `cubicBezier` with a `css` cubicBezier string.
 
 ```js
 myStyleDictionary.extend({
@@ -832,7 +832,7 @@ myStyleDictionary.extend({
 
 ### clamp/css
 
-This `value` transformer replaces the value of a token with a `$type` or `type` of `clamp` that has a `$value` object with `min`, `ideal` and `max` property, with a css `clamp` function.
+This `value` transformer replaces the value of a token with a `$type` of `clamp` that has a `$value` object with `min`, `ideal` and `max` property, with a css `clamp` function.
 
 ```js
 myStyleDictionary.extend({
@@ -935,7 +935,7 @@ myStyleDictionary.extend({
 
 ### isColor
 
-Only allows tokens with a `type` or `$type` property of `color`.
+Only allows tokens with a `$type` property of `color`.
 
 **Filter name:** `"isColor"`  
 **Import function:** `isColorFilter` from `'style-dictionary-utils/filter/isColor.js'`
@@ -956,7 +956,7 @@ myStyleDictionary.extend({
 
 ### isGradient
 
-Only allows tokens with a `type` or `$type` property of `gradient`.
+Only allows tokens with a `$type` property of `gradient`.
 
 **Filter name:** `"isGradient"`  
 **Import function:** `isGradientFilter` from `'style-dictionary-utils/filter/isGradient.js'`
@@ -977,7 +977,7 @@ myStyleDictionary.extend({
 
 ### isTypography
 
-Only allows tokens with a `type` or `$type` property of `typography`.
+Only allows tokens with a `$type` property of `typography`.
 
 **Filter name:** `"isTypography"`  
 **Import function:** `isTypographyFilter` from `'style-dictionary-utils/filter/isTypography.js'`
@@ -998,7 +998,7 @@ myStyleDictionary.extend({
 
 ### isTransition
 
-Only allows tokens with a `type` or `$type` property of `transition`.
+Only allows tokens with a `$type` property of `transition`.
 
 **Filter name:** `"isTransition"`  
 **Import function:** `isTransitionFilter` from `'style-dictionary-utils/filter/isTransition.js'`
@@ -1019,7 +1019,7 @@ myStyleDictionary.extend({
 
 ### isStrokeStyle
 
-Only allows tokens with a `type` or `$type` property of `strokeStyle`.
+Only allows tokens with a `$type` property of `strokeStyle`.
 
 **Filter name:** `"isStrokeStyle"`  
 **Import function:** `isStrokeStyleFilter` from `'style-dictionary-utils/filter/isStrokeStyle.js'`
@@ -1040,7 +1040,7 @@ myStyleDictionary.extend({
 
 ### isShadow
 
-Only allows tokens with a `type` or `$type` property of `shadow`.
+Only allows tokens with a `$type` property of `shadow`.
 
 **Filter name:** `"isShadow"`  
 **Import function:** `isShadowFilter` from `'style-dictionary-utils/filter/isShadow.js'`
@@ -1061,7 +1061,7 @@ myStyleDictionary.extend({
 
 ### isFontWeight
 
-Only allows tokens with a `type` or `$type` property of `fontWeight`.
+Only allows tokens with a `$type` property of `fontWeight`.
 
 **Filter name:** `"isFontWeight"`  
 **Import function:** `isFontWeightFilter` from `'style-dictionary-utils/filter/isFontWeight.js'`
@@ -1082,7 +1082,7 @@ myStyleDictionary.extend({
 
 ### isFontFamily
 
-Only allows tokens with a `type` or `$type` property of `fontFamily`.
+Only allows tokens with a `$type` property of `fontFamily`.
 
 **Filter name:** `"isFontFamily"`  
 **Import function:** `isFontFamilyFilter` from `'style-dictionary-utils/filter/isFontFamily.js'`
@@ -1103,7 +1103,7 @@ myStyleDictionary.extend({
 
 ### isDuration
 
-Only allows tokens with a `type` or `$type` property of `duration`.
+Only allows tokens with a `$type` property of `duration`.
 
 **Filter name:** `"isDuration"`  
 **Import function:** `isDurationFilter` from `'style-dictionary-utils/filter/isDuration.js'`
@@ -1124,7 +1124,7 @@ myStyleDictionary.extend({
 
 ### isDimension
 
-Only allows tokens with a `type` or `$type` property of `dimension`.
+Only allows tokens with a `$type` property of `dimension`.
 
 **Filter name:** `"isDimension"`  
 **Import function:** `isDimensionFilter` from `'style-dictionary-utils/filter/isDimension.js'`
@@ -1145,7 +1145,7 @@ myStyleDictionary.extend({
 
 ### isCubicBezier
 
-Only allows tokens with a `type` or `$type` property of `cubicBezier`.
+Only allows tokens with a `$type` property of `cubicBezier`.
 
 **Filter name:** `"isCubicBezier"`  
 **Import function:** `isCubicBezierFilter` from `'style-dictionary-utils/filter/isCubicBezier.js'`
@@ -1166,7 +1166,7 @@ myStyleDictionary.extend({
 
 ### isBorder
 
-Only allows tokens with a `type` or `$type` property of `border`.
+Only allows tokens with a `$type` property of `border`.
 
 **Filter name:** `"isBorder"`  
 **Import function:** `isBorderFilter` from `'style-dictionary-utils/filter/isBorder.js'`
@@ -1187,7 +1187,7 @@ myStyleDictionary.extend({
 
 ### isClamp
 
-Only allows tokens with a `type` or `$type` property of `clamp` and an object as the `$value` with a `min`, `ideal` and `max` property.
+Only allows tokens with a `$type` property of `clamp` and an object as the `$value` with a `min`, `ideal` and `max` property.
 
 **Filter name:** `"isClamp"`  
 **Import function:** `isClampFilter` from `'style-dictionary-utils/filter/isClamp.js'`
@@ -1208,7 +1208,7 @@ myStyleDictionary.extend({
 
 ### isNumber
 
-Only allows tokens with a `type` or `$type` property of `number`.
+Only allows tokens with a `$type` property of `number`.
 
 **Filter name:** `"isNumber"`  
 **Import function:** `isNumberFilter` from `'style-dictionary-utils/filter/isNumber.js'`
@@ -1352,7 +1352,7 @@ myStyleDictionary.extend({
 ### getIsType
 
 The `getIsType` function returns a `filter` function that filters by one or multiple types.
-You can provide one or multiple arguments that are used as `types` to filter against the `type` or `$type` property.
+You can provide one or multiple arguments that are used as types to filter against the `$type` property.
 
 ##### Register as a new filter
 
@@ -1377,7 +1377,7 @@ myStyleDictionary.extend({
     "ts": {
       "transforms": //...,
       "files": [{
-        "filter": getIsType('size','dimension'), // allows only tokens with type `size` or `dimension`
+        "filter": getIsType('size','dimension'), // allows only tokens with $type `size` or `dimension`
         // ...
       }]
     }
