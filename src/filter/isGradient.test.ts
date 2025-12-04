@@ -4,7 +4,7 @@ import {isGradient} from './isGradient'
 describe('Filter: isGradient', () => {
   const items = [
     {
-      value: '#334455',
+      $value: '#334455',
       $type: 'gradient',
     },
     {
@@ -20,6 +20,6 @@ describe('Filter: isGradient', () => {
     },
   ] as TransformedToken[]
   it('filters gradient tokens', () => {
-    expect(items.filter(isGradient.filter)).toStrictEqual([items[0], items[2]])
+    expect(items.filter(isGradient.filter)).toStrictEqual([items[0]])
   })
 })

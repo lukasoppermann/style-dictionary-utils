@@ -4,11 +4,15 @@ import {isFontWeight} from './isFontWeight'
 describe('Filter: isFontWeight', () => {
   const items = [
     {
-      value: '300',
+      $value: '300',
       $type: 'fontWeight',
     },
     {
-      value: '2rem',
+      $value: 'bold',
+      $type: 'fontWeight',
+    },
+    {
+      $value: '500',
       $type: 'dimension',
     },
     {
@@ -20,6 +24,6 @@ describe('Filter: isFontWeight', () => {
     },
   ] as TransformedToken[]
   it('filters fontWeight tokens', () => {
-    expect(items.filter(isFontWeight.filter)).toStrictEqual([items[0], items[2]])
+    expect(items.filter(isFontWeight.filter)).toStrictEqual([items[0], items[1]])
   })
 })
