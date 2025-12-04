@@ -34,11 +34,11 @@ const fontWeights: {[key: string]: number} = {
   ultrablack: 950,
 }
 /**
- * fontWeightToNumber
+ * fontWeightCss
  * @description convert a fontWeight string like `black` to the corresponding number, like `900`
  */
-export const fontWeightToNumber: Transform = {
-  name: 'fontWeight/number',
+export const fontWeightCss: Transform = {
+  name: 'fontWeight/css',
   type: `value`,
   transitive: true,
   filter: (token: TransformedToken) => isFontWeightFilter(token),

@@ -1,5 +1,5 @@
 import {TransformedToken} from 'style-dictionary/types'
-import {fontFamilyCss} from './font-family-css'
+import {fontFamilyCss} from './fontFamily-css'
 
 describe('transform: fontFamily', () => {
   const items = [

@@ -1,5 +1,5 @@
 import {describe, it, expect} from 'vitest'
-import {strokeStyleCss} from './strokeStyle-to-css.js'
+import {strokeStyleCss} from './strokeStyle-css.js'
 import {TransformedToken} from 'style-dictionary'
 
 describe('strokeStyleCss', () => {

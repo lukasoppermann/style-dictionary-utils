@@ -1,5 +1,5 @@
 import {TransformedToken} from 'style-dictionary/types'
-import {fontWeightToNumber} from './font-weight-to-number'
+import {fontWeightCss} from './fontWeight-css'
 
 describe('transform: fontWeight', () => {
   const items = [
@@ -25,12 +25,12 @@ describe('transform: fontWeight', () => {
   ] as TransformedToken[]
 
   it('matches `fontWeight` tokens', () => {
-    expect(items.filter(fontWeightToNumber.filter)).toStrictEqual([items[0], items[1], items[2]])
+    expect(items.filter(fontWeightCss.filter)).toStrictEqual([items[0], items[1], items[2]])
   })
 
   it('transforms `fontWeight` string to number', () => {
     expect(
-      items.filter(fontWeightToNumber.filter).map(item => fontWeightToNumber.transform(item, {}, {})),
+      items.filter(fontWeightCss.filter).map(item => fontWeightCss.transform(item, {}, {})),
     ).toStrictEqual([300, 700, 400])
   })
 })

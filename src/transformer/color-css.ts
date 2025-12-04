@@ -73,7 +73,7 @@ export const transformColor = (
  * colorToCss
  * @description convert a token of type `color` to a css color value use platform.colorOutputFormat to determine the output format, if not provided defaults to `hex`, options are `hex`, `rgb`, `hsl`
  */
-export const colorToCss: Transform = {
+export const colorCss: Transform = {
   name: 'color/css',
   type: `value`,
   transitive: true,
