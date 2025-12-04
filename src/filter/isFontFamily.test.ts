@@ -4,7 +4,11 @@ import {isFontFamily} from './isFontFamily'
 describe('Filter: isFontFamily', () => {
   const items = [
     {
-      value: '300ms',
+      $value: ['Arial', 'sans-serif'],
+      $type: 'fontFamily',
+    },
+    {
+      $value: 'Arial',
       $type: 'fontFamily',
     },
     {
@@ -20,6 +24,6 @@ describe('Filter: isFontFamily', () => {
     },
   ] as TransformedToken[]
   it('filters fontFamily tokens', () => {
-    expect(items.filter(isFontFamily.filter)).toStrictEqual([items[0], items[2]])
+    expect(items.filter(isFontFamily.filter)).toStrictEqual([items[0], items[1]])
   })
 })

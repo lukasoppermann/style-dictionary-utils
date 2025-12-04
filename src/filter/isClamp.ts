@@ -8,7 +8,7 @@ import {getValue} from '../utilities/getValue.js'
 export const isClampFilter = (token: TransformedToken): boolean => {
   const tokenValue = getValue(token)
   return (
-    (token?.$type === 'clamp' || token?.type === 'clamp') &&
+    token?.$type === 'clamp' &&
     tokenValue !== null &&
     typeof tokenValue === 'object' &&
     'min' in tokenValue &&

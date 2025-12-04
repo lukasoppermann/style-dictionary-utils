@@ -20,6 +20,6 @@ describe('Filter: isStrokeStyle', () => {
     },
   ] as TransformedToken[]
   it('filters strokeStyle tokens', () => {
-    expect(items.filter(isStrokeStyle.filter)).toStrictEqual([items[0], items[2]])
+    expect(items.filter(isStrokeStyle.filter)).toStrictEqual([items[0]])
   })
 })

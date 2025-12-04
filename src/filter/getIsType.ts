@@ -9,4 +9,4 @@ import {TransformedToken} from 'style-dictionary/types'
 export const getIsType =
   (...args: string[]) =>
   (token: TransformedToken): boolean =>
-    args.includes(token?.$type ?? token?.type ?? '')
+    args.includes(token?.$type ?? '')

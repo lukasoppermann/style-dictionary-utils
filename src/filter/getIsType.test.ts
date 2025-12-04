@@ -20,6 +20,6 @@ describe('Filter: getIsType', () => {
     },
   ] as TransformedToken[]
   it('filters type tokens', () => {
-    expect(items.filter(getIsType('border', 'color'))).toStrictEqual([items[0], items[2]])
+    expect(items.filter(getIsType('border', 'dimension', 'color'))).toStrictEqual([items[0], items[1]])
   })
 })
