@@ -2,8 +2,8 @@ import {cssExtended} from './css-extended'
 
 describe('TransformGroup: css extended', () => {
   const extensionArray = [
-    'border/css',
-    'color/css',
+    'w3c-border/css',
+    'w3c-color/css',
     'cubicBezier/css',
     'dimension/css',
     'duration/css',

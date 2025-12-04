@@ -1,6 +1,6 @@
 import { StyleDictionary as SD } from "../dist/index.js";
 
-const StyleDictionary = new SD({
+const MySD = new SD({
   log: {
     warnings: "warn", // 'warn' | 'error' | 'disabled'
     verbosity: "verbose", // 'default' | 'silent' | 'verbose'
@@ -18,7 +18,10 @@ const addPlatforms = (outdir) => {
       // transformGroup: "css/extended",
       transforms: [
         'name/kebab',
-        'color/css',
+        'w3c-color/css',
+        'w3c-border/css',
+        'dimension/css',
+        'duration/css',
       ],
       files: [
         {
@@ -30,52 +33,52 @@ const addPlatforms = (outdir) => {
         },
       ],
     },
-    commonJs: {
-      prefix: "PREFIX",
-      buildPath: `${outdir}/js/`,
-      transformGroup: "js",
-      files: [
-        {
-          format: "javascript/commonJs",
-          destination: "commonJs.js",
-          options: {
-            outputReferences: true,
-          }
-        },
-      ],
-    },
-    esm: {
-      prefix: "PREFIX",
-      buildPath: `${outdir}/js/`,
-      transformGroup: "js",
-      files: [
-        {
-          format: "javascript/esm",
-          destination: "esm.mjs",
-          options: {
-            outputReferences: true,
-          }
-        },
-      ],
-    },
-    esmDeclaration: {
-      prefix: "PREFIX",
-      buildPath: `${outdir}/js/`,
-      transformGroup: "js",
-      files: [
-        {
-          format: "typescript/esm-declarations",
-          destination: "esm.d.ts",
-          options: {
-            outputReferences: true,
-          }
-        },
-      ],
-    }
+    // commonJs: {
+    //   prefix: "PREFIX",
+    //   buildPath: `${outdir}/js/`,
+    //   transformGroup: "js",
+    //   files: [
+    //     {
+    //       format: "javascript/commonJs",
+    //       destination: "commonJs.js",
+    //       options: {
+    //         outputReferences: true,
+    //       }
+    //     },
+    //   ],
+    // },
+    // esm: {
+    //   prefix: "PREFIX",
+    //   buildPath: `${outdir}/js/`,
+    //   transformGroup: "js",
+    //   files: [
+    //     {
+    //       format: "javascript/esm",
+    //       destination: "esm.mjs",
+    //       options: {
+    //         outputReferences: true,
+    //       }
+    //     },
+    //   ],
+    // },
+    // esmDeclaration: {
+    //   prefix: "PREFIX",
+    //   buildPath: `${outdir}/js/`,
+    //   transformGroup: "js",
+    //   files: [
+    //     {
+    //       format: "typescript/esm-declarations",
+    //       destination: "esm.d.ts",
+    //       options: {
+    //         outputReferences: true,
+    //       }
+    //     },
+    //   ],
+    // }
   }
 }
 
-let extendSd = await StyleDictionary.extend({
+let extendSd = await MySD.extend({
   source: ["./tests/tokens/*.json5"],
   platforms: addPlatforms('./tests/dist/local'),
 })

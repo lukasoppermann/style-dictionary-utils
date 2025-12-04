@@ -45,7 +45,7 @@
   border: {
     default: {
       $value: {
-        color: '{base.color.blue.500}',
+        color: '{base.color.pink.500}',
         style: 'solid',
         width: '1px',
       },

@@ -14,7 +14,7 @@ type TokenBorder = {
  * @description convert a w3c `border` token to a value that can be used with the css `border` property
  */
 export const borderCss: Transform = {
-  name: 'border/css',
+  name: 'w3c-border/css',
   type: `value`,
   transitive: true,
   filter: isBorderFilter,

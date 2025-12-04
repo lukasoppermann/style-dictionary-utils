@@ -1,8 +1,8 @@
 export const cssExtended = {
   name: 'css/extended',
   transforms: [
-    'border/css',
-    'color/css',
+    'w3c-border/css',
+    'w3c-color/css',
     'cubicBezier/css',
     'dimension/css',
     'duration/css',

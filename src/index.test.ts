@@ -11,13 +11,12 @@ describe('index.ts', () => {
 
   it('all transformers are attached', () => {
     expect(StyleDictionary.hooks.transforms['clamp/css']).toBeDefined()
-    expect(StyleDictionary.hooks.transforms['color/css']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['cubicBezier/css']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['dimension/css']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['duration/css']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['font/css']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['fontFamily/css']).toBeDefined()
-    expect(StyleDictionary.hooks.transforms['fontWeight/number']).toBeDefined()
+    expect(StyleDictionary.hooks.transforms['fontWeight/css']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['gradient/css']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['name/pathToCamelCase']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['name/pathToDotNotation']).toBeDefined()
@@ -25,6 +24,8 @@ describe('index.ts', () => {
     expect(StyleDictionary.hooks.transforms['shadow/css']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['strokeStyle/css']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['transition/css']).toBeDefined()
+    expect(StyleDictionary.hooks.transforms['w3c-border/css']).toBeDefined()
+    expect(StyleDictionary.hooks.transforms['w3c-color/css']).toBeDefined()
   })
 
   it('all transformGroups are attached', () => {

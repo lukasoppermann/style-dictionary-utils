@@ -74,16 +74,12 @@ export const transformColor = (
  * @description convert a token of type `color` to a css color value use platform.colorOutputFormat to determine the output format, if not provided defaults to `hex`, options are `hex`, `rgb`, `hsl`
  */
 export const colorCss: Transform = {
-  name: 'color/css',
+  name: 'w3c-color/css',
   type: `value`,
   transitive: true,
-  filter: token => {
-    console.log(token)
-    return isColorFilter(token)
-  },
+  filter: token => isColorFilter(token),
   transform: (token: TransformedToken, platform: PlatformConfig | undefined) => {
     const color = transformColor(getValue<ColorTokenValue>(token), platform?.colorOutputFormat || 'hex')
-    console.log(color)
     // apply alpha from $extension if present
     const {$extensions: {alpha} = {}} = token
 
