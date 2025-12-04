@@ -1,7 +1,6 @@
 import {borderCss} from './transformer/border-css.js'
 import {clampCss} from './transformer/clamp-css.js'
 import {colorToCss} from './transformer/color-to-css.js'
-import {commentDeprecated} from './transformer/comment-deprecated.js'
 import {cssAdvanced} from './format/css-advanced.js'
 import {cssExtended} from './transformGroups/css-extended.js'
 import {cubicBezierCss} from './transformer/cubic-bezier-css.js'
@@ -55,7 +54,6 @@ OrigialStyleDictionary.registerFormat(typescriptEsmDeclarations)
 OrigialStyleDictionary.registerTransform(borderCss)
 OrigialStyleDictionary.registerTransform(clampCss)
 OrigialStyleDictionary.registerTransform(colorToCss)
-OrigialStyleDictionary.registerTransform(commentDeprecated)
 OrigialStyleDictionary.registerTransform(cubicBezierCss)
 OrigialStyleDictionary.registerTransform(dimensionCss)
 OrigialStyleDictionary.registerTransform(durationCss)

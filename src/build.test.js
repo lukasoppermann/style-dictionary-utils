@@ -10,7 +10,6 @@ describe('index.js', () => {
   it('all transformers are attached', () => {
     expect(StyleDictionary.hooks.transforms['clamp/css']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['color/css']).toBeDefined()
-    expect(StyleDictionary.hooks.transforms['comment/deprecated']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['cubicBezier/css']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['dimension/css']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['font/css']).toBeDefined()
