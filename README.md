@@ -79,7 +79,7 @@ StyleDictionary.registerTransform({
   - [name/pathToCamelCase](#namepathtocamelcase)
   - [name/pathToPascalCase](#namepathtopascalcase)
   - [color/css](#colorcss)
-  - [font/css](#fontcss)
+  - [typography/css](#typographycss)
   - [fontFamily/css](#fontfamilycss)
   - [fontWeight/number](#fontweightnumber)
   - [gradient/css](#gradientcss)
@@ -259,14 +259,14 @@ If you want to use the same `transformers` multiple times you can create a [`tra
 ```js
 myStyleDictionary.registerTransformGroup({
   name: 'webHex',
-  transforms: ['color/css', 'dimension/css', 'font/css'],
+  transforms: ['color/css', 'dimension/css', 'typography/css'],
 })
 ```
 
 #### `css/extended` transform group
 
 This packages ships a predefined transform group, called `css/extended`.
-It includes all transforms from the original [`css` transform group](https://amzn.github.io/style-dictionary/#/transform_groups?id=css) as well as the following transforms: `color/css`, `shadow/css`, `font/css`, `fontFamily/css`, `fontWeight/number`, `name/pathToDotNotation`, `cubicBezier/css`, `border/css`.
+It includes all transforms from the original [`css` transform group](https://amzn.github.io/style-dictionary/#/transform_groups?id=css) as well as the following transforms: `color/css`, `shadow/css`, `typography/css`, `fontFamily/css`, `fontWeight/number`, `name/pathToDotNotation`, `cubicBezier/css`, `border/css`.
 
 You can use it like any other transform Group:
 
@@ -584,7 +584,7 @@ myStyleDictionary.extend({
 }
 ```
 
-### font/css
+### typography/css
 
 This `value` transformer replaces the value of a w3c typography token with a `$type` of `typography` with a `css` font string.
 
@@ -592,7 +592,7 @@ This `value` transformer replaces the value of a w3c typography token with a `$t
 myStyleDictionary.extend({
   platforms: {
     ts: {
-      transforms: ['font/css'],
+      transforms: ['typography/css'],
       files: [
         {
           // ...

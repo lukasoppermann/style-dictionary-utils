@@ -65,14 +65,14 @@ describe('transform: colorCss', () => {
   it('transforms `color` tokens to rgbFloat value', () => {
     const input = [
       {
-        value: {
+        $value: {
           colorSpace: 'srgb',
           components: [0.06666666666666667, 0.13333333333333333, 0.2],
           alpha: 1,
         },
       },
       {
-        value: {
+        $value: {
           colorSpace: 'hsl',
           components: [330, 100, 50],
           alpha: 0.5,

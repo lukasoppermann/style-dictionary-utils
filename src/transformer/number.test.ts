@@ -4,7 +4,7 @@ import {number} from './number'
 describe('transform: number', () => {
   const items = [
     {
-      value: '1px',
+      $value: '1px',
       $type: 'dimension',
     },
     {
@@ -12,15 +12,15 @@ describe('transform: number', () => {
       $type: 'number',
     },
     {
-      value: 20,
+      $value: 20,
       $type: 'number',
     },
     {
-      value: 20.5,
+      $value: 20.5,
       $type: 'number',
     },
     {
-      value: '3',
+      $value: '3',
     },
   ] as TransformedToken[]
 
@@ -61,7 +61,7 @@ describe('transform: number', () => {
       number.transform(
         {
           name: 'px-value-token',
-          value: '2px',
+          $value: '2px',
           $type: 'number',
         } as TransformedToken,
         {},

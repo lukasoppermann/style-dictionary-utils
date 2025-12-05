@@ -6,7 +6,7 @@ export const cssExtended = {
     'cubicBezier/css',
     'dimension/css',
     'duration/css',
-    'font/css',
+    'typography/css',
     'fontFamily/css',
     'fontWeight/css',
     'gradient/css',

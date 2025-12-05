@@ -1,15 +1,14 @@
 import {TransformedToken} from 'style-dictionary/types'
-import {fontCss} from './font-css'
+import {typographyCss} from './typograhy-css.js'
 
 describe('transform: fontFamily', () => {
   const items = [
     {
-      value: {
+      $value: {
         fontWeight: 500,
         fontSize: '16px',
         lineHeight: '22px',
-        fontFamily: 'Helvetica',
-        fontStyle: 'italic',
+        fontFamily: ['Helvetica', 'Arial', 'sans-serif'],
       },
       $type: 'typography',
     },
@@ -19,12 +18,11 @@ describe('transform: fontFamily', () => {
         fontSize: '12px',
         lineHeight: '26px',
         fontFamily: 'Helvetica',
-        fontStyle: 'italic',
       },
       $type: 'typography',
     },
     {
-      value: {
+      $value: {
         fontSize: '16px',
         fontFamily: 'Helvetica',
       },
@@ -39,14 +37,14 @@ describe('transform: fontFamily', () => {
     },
   ] as TransformedToken[]
 
-  it('matches `fontFamily` tokens with an array as a value', () => {
-    expect(items.filter(fontCss.filter)).toStrictEqual([items[0], items[1], items[2]])
+  it('matches `typography` tokens', () => {
+    expect(items.filter(typographyCss.filter)).toStrictEqual([items[0], items[1], items[2]])
   })
 
-  it('transforms `fontFamily` array tokens', () => {
-    expect(items.filter(fontCss.filter).map(item => fontCss.transform(item, {}, {}))).toStrictEqual([
+  it('transforms `typography` tokens', () => {
+    expect(items.filter(typographyCss.filter).map(item => typographyCss.transform(item, {}, {}))).toStrictEqual([
       'italic 500 16px/22px Helvetica',
-      'italic 600 12px/26px Helvetica',
+      'italic 600 12px/26px Helvetica, Arial, sans-serif',
       '16px Helvetica',
     ])
   })

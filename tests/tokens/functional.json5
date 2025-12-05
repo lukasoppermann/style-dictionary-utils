@@ -9,7 +9,7 @@
   dimension: {
     px: {
       $value: {
-        value: '8',
+        value: 8,
         unit: 'px',
       },
       $type: 'dimension',
@@ -46,8 +46,26 @@
     default: {
       $value: {
         color: '{base.color.pink.500}',
+        style: '{strokeStyle.dashed}',
+        width: {
+          value: 2,
+          unit: 'px',
+        },
+      },
+      $type: 'border',
+      $description: 'The default border color',
+    },
+    muted: {
+      $value: {
+        color: {
+          colorSpace: 'srgb',
+          components: [0.5, 0.5, 0.5],
+        },
         style: 'solid',
-        width: '1px',
+        width: {
+          value: 2,
+          unit: 'px',
+        },
       },
       $type: 'border',
       $description: 'The default border color',
@@ -65,5 +83,11 @@
       $description: 'A large integer number value',
     },
   },
-
+  strokeStyle: {
+    dashed: {
+      $value: 'dashed',
+      $type: 'strokeStyle',
+      $description: 'A dashed stroke style',
+    },
+  }
 }

@@ -4,7 +4,7 @@ import {fontWeightCss} from './fontWeight-css'
 describe('transform: fontWeight', () => {
   const items = [
     {
-      value: 300,
+      $value: 300,
       $type: 'fontWeight',
     },
     {
@@ -12,14 +12,14 @@ describe('transform: fontWeight', () => {
       $type: 'fontWeight',
     },
     {
-      value: '400',
+      $value: '400',
       $type: 'fontWeight',
     },
     {
-      value: '',
+      $value: '',
     },
     {
-      value: '',
+      $value: '',
       $type: 'color',
     },
   ] as TransformedToken[]

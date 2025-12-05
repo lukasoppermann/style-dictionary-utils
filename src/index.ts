@@ -6,7 +6,7 @@ import {cssExtended} from './transformGroups/css-extended.js'
 import {cubicBezierCss} from './transformer/cubic-bezier-css.js'
 import {dimensionCss} from './transformer/dimension-css.js'
 import {durationCss} from './transformer/duration-css.js'
-import {fontCss} from './transformer/font-css.js'
+import {typographyCss} from './transformer/typograhy-css.js'
 import {fontFamilyCss} from './transformer/fontFamily-css.js'
 import {fontWeightCss} from './transformer/fontWeight-css.js'
 import {gradientCss} from './transformer/gradient-css.js'
@@ -57,7 +57,7 @@ OrigialStyleDictionary.registerTransform(colorCss)
 OrigialStyleDictionary.registerTransform(cubicBezierCss)
 OrigialStyleDictionary.registerTransform(dimensionCss)
 OrigialStyleDictionary.registerTransform(durationCss)
-OrigialStyleDictionary.registerTransform(fontCss)
+OrigialStyleDictionary.registerTransform(typographyCss)
 OrigialStyleDictionary.registerTransform(fontFamilyCss)
 OrigialStyleDictionary.registerTransform(fontWeightCss)
 OrigialStyleDictionary.registerTransform(gradientCss)

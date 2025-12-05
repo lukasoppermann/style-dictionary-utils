@@ -7,7 +7,7 @@ describe('TransformGroup: css extended', () => {
     'cubicBezier/css',
     'dimension/css',
     'duration/css',
-    'font/css',
+    'typography/css',
     'fontFamily/css',
     'fontWeight/css',
     'gradient/css',

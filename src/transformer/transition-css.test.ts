@@ -4,11 +4,11 @@ import {transitionCss} from './transition-css'
 describe('transform: transitionCss', () => {
   const items = [
     {
-      value: '',
+      $value: '',
       $type: 'color',
     },
     {
-      value: {
+      $value: {
         duration: {
           value: 200,
           unit: 'ms',
@@ -35,7 +35,7 @@ describe('transform: transitionCss', () => {
 
   it('transforms `transition` tokens', () => {
     const item = {
-      value: {
+      $value: {
         duration: {
           value: 1,
           unit: 's',
@@ -54,7 +54,7 @@ describe('transform: transitionCss', () => {
   it('transforms invalid duration in `transition` tokens', () => {
     const item = {
       name: 'my.transition',
-      value: {
+      $value: {
         duration: {
           value: 1,
           unit: 'sec',
@@ -75,7 +75,7 @@ describe('transform: transitionCss', () => {
   it('transforms invalid delay in `transition` tokens', () => {
     const item = {
       name: 'my.transition',
-      value: {
+      $value: {
         duration: {
           value: 1,
           unit: 's',

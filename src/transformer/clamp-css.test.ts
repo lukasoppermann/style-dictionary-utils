@@ -4,11 +4,11 @@ import {clampCss} from './clamp-css'
 describe('transform: clampCss', () => {
   const items = [
     {
-      value: '',
+      $value: '',
       $type: 'clamp',
     },
     {
-      value: {
+      $value: {
         min: '1.5rem',
         ideal: '5vw',
         max: '2.5rem',
@@ -24,7 +24,7 @@ describe('transform: clampCss', () => {
       $type: 'clamp',
     },
     {
-      value: '',
+      $value: '',
     },
   ] as TransformedToken[]
 
@@ -42,7 +42,7 @@ describe('transform: clampCss', () => {
   it('transforms `clamp` tokens with modified ideal value', () => {
     const idealClamp = [
       {
-        value: {
+        $value: {
           min: '1.5rem',
           ideal: '0.5vw + 0.75rem',
           max: '2.5rem',
@@ -50,7 +50,7 @@ describe('transform: clampCss', () => {
         $type: 'clamp',
       },
       {
-        value: '',
+        $value: '',
       },
     ] as TransformedToken[]
     expect(idealClamp.filter(clampCss.filter).map(item => clampCss.transform(item, {}, {}))).toStrictEqual([

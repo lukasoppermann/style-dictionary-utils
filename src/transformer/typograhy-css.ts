@@ -1,18 +1,18 @@
 import {Transform, TransformedToken} from 'style-dictionary/types'
 import {isTypographyFilter} from '../filter/isTypography.js'
 import {getValue} from '../utilities/getValue.js'
+import { DimensionTokenValue } from './dimension-css.js'
 type TokenTypography = {
-  fontFamily: string
-  fontSize: number
-  fontWeight?: number
+  fontFamily: string | string[]
+  fontSize: DimensionTokenValue
+  fontWeight?: 
   lineHeight?: number
-  fontStyle?: string
 }
 /**
  * @description convert a w3c `typography` token to a value that can be used with the css `font` property
  */
-export const fontCss: Transform = {
-  name: 'font/css',
+export const typographyCss: Transform = {
+  name: 'typography/css',
   type: `value`,
   transitive: true,
   filter: isTypographyFilter,
@@ -21,7 +21,6 @@ export const fontCss: Transform = {
     if (!tokenValue) return
     // font: font-style font-variant font-weight font-size/line-height font-family;
     return [
-      tokenValue.fontStyle,
       tokenValue.fontWeight,
       `${tokenValue.fontSize}${tokenValue.lineHeight ? '/' + tokenValue.lineHeight : ''}`,
       tokenValue.fontFamily,

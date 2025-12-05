@@ -11,7 +11,7 @@ describe('index.js', () => {
     expect(StyleDictionary.hooks.transforms['clamp/css']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['cubicBezier/css']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['dimension/css']).toBeDefined()
-    expect(StyleDictionary.hooks.transforms['font/css']).toBeDefined()
+    expect(StyleDictionary.hooks.transforms['typography/css']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['fontFamily/css']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['fontWeight/css']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['gradient/css']).toBeDefined()

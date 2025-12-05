@@ -35,7 +35,7 @@ describe('transform: dimensionCss', () => {
 
   it('transforms `dimensionCss` tokens', () => {
     expect(items.filter(dimensionCss.filter).map(item => dimensionCss.transform(item, {}, {}))).toStrictEqual([
-      '0',
+      '0px',
       '20px',
       '3rem',
     ])
@@ -47,7 +47,7 @@ describe('transform: dimensionCss', () => {
       outputUnit: 'rem',
     }
     expect(items.filter(dimensionCss.filter).map(item => dimensionCss.transform(item, platform, {}))).toStrictEqual([
-      '0',
+      '0rem',
       '2rem',
       '3rem',
     ])
@@ -58,7 +58,7 @@ describe('transform: dimensionCss', () => {
       outputUnit: 'px',
     }
     expect(items.filter(dimensionCss.filter).map(item => dimensionCss.transform(item, platform, {}))).toStrictEqual([
-      '0',
+      '0px',
       '20px',
       '48px',
     ])
