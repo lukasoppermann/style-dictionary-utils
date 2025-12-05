@@ -33,7 +33,7 @@ describe('transform: transitionCss', () => {
     ])
   })
 
-  it('transforms `transition` tokens', () => {
+  it('transforms `transition` tokens with s duration', () => {
     const item = {
       $value: {
         duration: {

@@ -1,5 +1,5 @@
 import {TransformedToken} from 'style-dictionary/types'
-import {typographyCss} from './typograhy-css.js'
+import {typographyCss} from './typography-css.js'
 
 describe('transform: fontFamily', () => {
   const items = [
