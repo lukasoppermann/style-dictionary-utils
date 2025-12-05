@@ -2,10 +2,11 @@ import {Transform, TransformedToken} from 'style-dictionary/types'
 import {isTypographyFilter} from '../filter/isTypography.js'
 import {getValue} from '../utilities/getValue.js'
 import { DimensionTokenValue } from './dimension-css.js'
+import {FontWeightNumeric, FontWeightString} from './fontWeight-css.js'
 type TokenTypography = {
   fontFamily: string | string[]
   fontSize: DimensionTokenValue
-  fontWeight?: 
+  fontWeight?: FontWeightString | FontWeightNumeric
   lineHeight?: number
 }
 /**

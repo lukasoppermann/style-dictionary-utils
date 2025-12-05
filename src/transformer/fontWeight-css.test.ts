@@ -12,7 +12,7 @@ describe('transform: fontWeight', () => {
       $type: 'fontWeight',
     },
     {
-      $value: '400',
+      $value: 400,
       $type: 'fontWeight',
     },
     {

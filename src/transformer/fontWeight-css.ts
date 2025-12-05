@@ -31,10 +31,29 @@ const fontWeights: {[key: string]: number} = {
   'extra-black': 950,
   'ultra-black': 950,
   extrablack: 950,
-  ultrablack: 950,
+  ultrablak: 950,
 }
 
+export type FontWeightString = keyof typeof fontWeights
+export type FontWeightNumeric = (typeof fontWeights)[FontWeightString]
 
+const fontWeightValueTransformer = (tokenValue: FontWeightNumeric | FontWeightString): FontWeightNumeric => {
+  const numericFontWeights = Array.from(new Set(Object.values(fontWeights)))
+  const stringFontWeights = Object.keys(fontWeights)
+  // check if value is not a string
+  if (typeof tokenValue === 'number' && !numericFontWeights.includes(tokenValue)) {
+    throw `Invalid Font Weight: '${tokenValue}' is not a valid font weight number value. Valid values are: ${numericFontWeights.join(', ')} \n`
+  }
+  if (typeof tokenValue === 'string' && !stringFontWeights.includes(tokenValue)) {
+    throw `Invalid Font Weight: '${tokenValue}' is not a valid font weight string value. Valid values are: ${stringFontWeights.join(', ')} \n`
+  }
+
+  if (typeof tokenValue === 'string' && fontWeights[tokenValue]) {
+    return fontWeights[tokenValue] as FontWeightNumeric
+  }
+
+  return tokenValue as FontWeightNumeric
+}
 
 /**
  * fontWeightCss
@@ -46,16 +65,8 @@ export const fontWeightCss: Transform = {
   transitive: true,
   filter: (token: TransformedToken) => isFontWeightFilter(token),
   transform: (token: TransformedToken) => {
-    const tokenValue = getValue<string>(token)
-    // check if value is not a string
-    if (typeof tokenValue !== 'string') return tokenValue
-    // check if value exists in matrix
-    const fromMatrix = fontWeights[tokenValue.toLowerCase()]
-    if (fromMatrix !== undefined) return fromMatrix
-    // test if value is quoted int
-    const valueAsInt = parseInt(tokenValue.toLowerCase())
-    if (Number.isInteger(valueAsInt)) return valueAsInt
-    //
-    return tokenValue
+    const tokenValue = getValue<FontWeightNumeric | FontWeightString>(token)
+
+    return fontWeightValueTransformer(tokenValue)
   },
 }
