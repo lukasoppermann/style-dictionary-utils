@@ -15,15 +15,6 @@ export const getDimensionValue = (token: TransformedToken): string => {
     return `${structuredValue.value}${structuredValue.unit}`
   }
 
-  // Handle old structured format: { value: '20px' }
-  if (typeof tokenValue === 'object' && tokenValue !== null && 'value' in tokenValue) {
-    return (tokenValue as {value: string}).value
-  }
-
-  // Handle simple string format: '20px'
-  if (typeof tokenValue === 'string') {
-    return tokenValue
-  }
 
   // Fallback to string conversion
   return String(tokenValue)

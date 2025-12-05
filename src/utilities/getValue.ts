@@ -7,5 +7,15 @@ import {TransformedToken} from 'style-dictionary/types'
  * @returns token value
  */
 export const getValue = <T>(token: TransformedToken | Record<string, unknown>): T => {
-  return token.value ?? token.$value
+  const value = token.$value
+
+  if (token === undefined) {
+    throw new Error(`The token is undefined.`)
+  }
+
+  if (value === undefined || value === null) {
+    throw new Error(`The token ${token.name} has no valid $value property.`)
+  }
+
+  return value as T
 }

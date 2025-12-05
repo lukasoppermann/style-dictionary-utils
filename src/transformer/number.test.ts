@@ -4,7 +4,7 @@ import {number} from './number'
 describe('transform: number', () => {
   const items = [
     {
-      value: '1px',
+      $value: '1px',
       $type: 'dimension',
     },
     {
@@ -12,15 +12,15 @@ describe('transform: number', () => {
       $type: 'number',
     },
     {
-      value: 20,
+      $value: 20,
       $type: 'number',
     },
     {
-      value: 20.5,
+      $value: 20.5,
       $type: 'number',
     },
     {
-      value: '3',
+      $value: '3',
     },
   ] as TransformedToken[]
 
@@ -43,10 +43,12 @@ describe('transform: number', () => {
   ] as TransformedToken[]
 
   it('transforms `number` tokens', () => {
+    // @ts-expect-error: because of testing with invalid data
     expect(items.filter(number.filter).map(item => number.transform(item, {}, {}))).toEqual([0, 20, 20.5])
   })
 
   it('throws on invalid `number` tokens', () => {
+    // @ts-expect-error: because of testing with invalid data
     const filtered = invalidItems.filter(number.filter)
 
     filtered.map(item => {
@@ -59,7 +61,7 @@ describe('transform: number', () => {
       number.transform(
         {
           name: 'px-value-token',
-          value: '2px',
+          $value: '2px',
           $type: 'number',
         } as TransformedToken,
         {},

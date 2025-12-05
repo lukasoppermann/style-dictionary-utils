@@ -16,6 +16,6 @@ describe('Filter: isSource', () => {
     },
   ] as TransformedToken[]
   it('filters out non-source items', () => {
-    expect(items.filter(isSource)).toStrictEqual([items[0]])
+    expect(items.filter(isSource.filter)).toStrictEqual([items[0]])
   })
 })

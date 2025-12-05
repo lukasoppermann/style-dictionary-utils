@@ -4,7 +4,7 @@ import {cubicBezierCss} from './cubic-bezier-css'
 describe('transform: cubicBezierCss', () => {
   const items = [
     {
-      value: '',
+      $value: '',
       $type: 'color',
     },
     {
@@ -12,11 +12,11 @@ describe('transform: cubicBezierCss', () => {
       $type: 'cubicBezier',
     },
     {
-      value: [0.5, 0, 1, 1],
+      $value: [0.5, 0, 1, 1],
       $type: 'cubicBezier',
     },
     {
-      value: '',
+      $value: '',
     },
   ] as TransformedToken[]
 

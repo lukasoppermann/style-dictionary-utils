@@ -112,10 +112,10 @@ describe('durationUtils', () => {
     it('should use type property if $type is not available', () => {
       const token: TransformedToken = {
         name: 'animation.test',
-        value: '300ms',
-        type: 'duration',
+        $value: '300ms',
+        $type: 'duration',
         path: ['animation', 'test'],
-        original: {value: '300ms', type: 'duration'},
+        original: {$value: '300ms', $type: 'duration'},
       }
 
       logDurationDeprecationWarning(token)

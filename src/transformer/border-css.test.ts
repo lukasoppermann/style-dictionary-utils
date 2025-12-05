@@ -4,17 +4,30 @@ import {borderCss} from './border-css'
 describe('transform: border', () => {
   const items = [
     {
-      value: {
-        color: '#334455',
-        width: '1px',
+      $value: {
+        color: {
+          colorSpace: 'srgb',
+          components: [0.2, 0.3, 0.4],
+        },
+        width: {
+          value: 1,
+          unit: 'px',
+        },
         style: 'dashed',
       },
       $type: 'border',
     },
     {
       $value: {
-        color: '#33445566',
-        width: '5px',
+        color: {
+          colorSpace: 'srgb',
+          components: [0.2, 0.3, 0.4],
+          alpha: 0.5,
+        },
+        width: {
+          value: 0.25,
+          unit: 'rem',
+        },
         style: 'solid',
       },
       $type: 'border',
@@ -22,10 +35,9 @@ describe('transform: border', () => {
   ]
 
   it('transforms `border` tokens', () => {
-    // @ts-expect-error: because it is not a real token
-    expect(items.map(item => borderCss.transform(item as TransformedToken))).toStrictEqual([
-      '1px dashed #334455',
-      '5px solid #33445566',
+    expect(items.map(item => borderCss.transform(item as TransformedToken, {outputUnit: 'px'}, {}))).toStrictEqual([
+      '1px dashed #334d66',
+      '4px solid #334d6680',
     ])
   })
 })

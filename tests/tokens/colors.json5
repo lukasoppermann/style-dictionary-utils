@@ -1,0 +1,25 @@
+{
+  base: {
+    color: {
+      pink: {
+        '500': {
+          $value: {
+            colorSpace: 'srgb',
+            components: [1, 0, 0.2],
+          },
+          $type: 'color',
+          $description: 'A color',
+        },
+        '600': {
+          $value: {
+            colorSpace: 'hsl',
+            components: [0.06666666666666667, 0.13333333333333333, 0.2],
+            alpha: 1,
+          },
+          $type: 'color',
+          $description: 'A color',
+        },
+      },
+    },
+  },
+}
