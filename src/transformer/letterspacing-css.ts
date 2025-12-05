@@ -1,9 +1,9 @@
 import {Transform, TransformedToken} from 'style-dictionary/types'
 import {getValue} from '../utilities/getValue.js'
-import {isTypography} from '../filter/isTypography.js'
+import {isTypographyFilter} from '../filter/isTypography.js'
 import {PlatformConfig} from 'style-dictionary'
-import {TokenValueTypography} from './typography-to-css.js'
-import {transformDimensionValue} from './dimension.js'
+import {TypographyTokenValue} from './typography-css.js'
+import {dimensionValueTransformer} from './dimension-css.js'
 
 /**
  * letterspacingCss
@@ -13,10 +13,10 @@ export const letterspacingCss: Transform = {
   name: 'letterspacing/css',
   type: `value`,
   transitive: true,
-  filter: isTypography,
+  filter: isTypographyFilter,
   transform: (token: TransformedToken, platform: PlatformConfig) => {
-    const {letterSpacing} = getValue<TokenValueTypography>(token)
+    const {letterSpacing} = getValue<TypographyTokenValue>(token)
 
-    return transformDimensionValue(letterSpacing, platform).trim()
+    return dimensionValueTransformer(letterSpacing, platform).trim()
   },
 }

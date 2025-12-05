@@ -6,7 +6,6 @@ import {cssExtended} from './transformGroups/css-extended.js'
 import {cubicBezierCss} from './transformer/cubic-bezier-css.js'
 import {dimensionCss} from './transformer/dimension-css.js'
 import {durationCss} from './transformer/duration-css.js'
-import {typographyCss} from './transformer/typograhy-css.js'
 import {fontFamilyCss} from './transformer/fontFamily-css.js'
 import {fontWeightCss} from './transformer/fontWeight-css.js'
 import {gradientCss} from './transformer/gradient-css.js'
@@ -28,21 +27,16 @@ import {isTransition} from './filter/isTransition.js'
 import {isTypography} from './filter/isTypography.js'
 import {javascriptCommonJs} from './format/javascript-commonJs.js'
 import {javascriptEsm} from './format/javascript-esm.js'
+import {letterspacingCss} from './transformer/letterspacing-css.js'
 import {namePathToCamelCase} from './transformer/name-path-to-camel-case.js'
 import {namePathToDotNotation} from './transformer/name-path-to-dot-notation.js'
 import {number} from './transformer/number.js'
-<<<<<<< HEAD
 import {shadowCss} from './transformer/shadow-css.js'
 import {strokeStyleCss} from './transformer/strokeStyle-css.js'
 import {transitionCss} from './transformer/transition-css.js'
 import {typescriptEsmDeclarations} from './format/typescript-esm-declarations.js'
+import {typographyCss} from './transformer/typography-css.js'
 import OrigialStyleDictionary from 'style-dictionary'
-=======
-import {colorToCss} from './transformer/color-to-css.js'
-import {transitionCss} from './transformer/transition-to-css.js'
-import {letterspacingCss} from './transformer/letterspacing-to-css.js'
-import {typographyCss} from './transformer/typography-to-css.js'
->>>>>>> f57c773 (add typography and letterspacing transformer)
 
 /**
  * Formats
@@ -64,16 +58,17 @@ OrigialStyleDictionary.registerTransform(colorCss)
 OrigialStyleDictionary.registerTransform(cubicBezierCss)
 OrigialStyleDictionary.registerTransform(dimensionCss)
 OrigialStyleDictionary.registerTransform(durationCss)
-OrigialStyleDictionary.registerTransform(typographyCss)
 OrigialStyleDictionary.registerTransform(fontFamilyCss)
 OrigialStyleDictionary.registerTransform(fontWeightCss)
 OrigialStyleDictionary.registerTransform(gradientCss)
+OrigialStyleDictionary.registerTransform(letterspacingCss)
 OrigialStyleDictionary.registerTransform(namePathToCamelCase)
 OrigialStyleDictionary.registerTransform(namePathToDotNotation)
 OrigialStyleDictionary.registerTransform(number)
 OrigialStyleDictionary.registerTransform(shadowCss)
 OrigialStyleDictionary.registerTransform(strokeStyleCss)
 OrigialStyleDictionary.registerTransform(transitionCss)
+OrigialStyleDictionary.registerTransform(typographyCss)
 /**
  * Transform groups
  *

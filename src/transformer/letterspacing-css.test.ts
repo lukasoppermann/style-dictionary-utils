@@ -1,5 +1,5 @@
 import {TransformedToken} from 'style-dictionary'
-import {letterspacingCss} from './letterspacing-to-css'
+import {letterspacingCss} from './letterspacing-css'
 
 describe('transform: letterspacingCss', () => {
   const items = [
