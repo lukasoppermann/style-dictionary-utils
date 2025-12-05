@@ -37,7 +37,7 @@ const fontWeights: {[key: string]: number} = {
 export type FontWeightString = keyof typeof fontWeights
 export type FontWeightNumeric = (typeof fontWeights)[FontWeightString]
 
-const fontWeightValueTransformer = (tokenValue: FontWeightNumeric | FontWeightString): FontWeightNumeric => {
+export const fontWeightValueTransformer = (tokenValue: FontWeightNumeric | FontWeightString): FontWeightNumeric => {
   const numericFontWeights = Array.from(new Set(Object.values(fontWeights)))
   const stringFontWeights = Object.keys(fontWeights)
   // check if value is not a string

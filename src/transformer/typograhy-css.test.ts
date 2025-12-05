@@ -6,8 +6,11 @@ describe('transform: fontFamily', () => {
     {
       $value: {
         fontWeight: 500,
-        fontSize: '16px',
-        lineHeight: '22px',
+        fontSize: {
+          value: 16,
+          unit: 'px',
+        },
+        lineHeight: 1.4,
         fontFamily: ['Helvetica', 'Arial', 'sans-serif'],
       },
       $type: 'typography',
@@ -15,15 +18,21 @@ describe('transform: fontFamily', () => {
     {
       $value: {
         fontWeight: 600,
-        fontSize: '12px',
-        lineHeight: '26px',
+        fontSize: {
+          value: 12,
+          unit: 'px',
+        },
+        lineHeight: 1.2,
         fontFamily: 'Helvetica',
       },
       $type: 'typography',
     },
     {
       $value: {
-        fontSize: '16px',
+        fontSize: {
+          value: 16,
+          unit: 'px',
+        },
         fontFamily: 'Helvetica',
       },
       $type: 'typography',
