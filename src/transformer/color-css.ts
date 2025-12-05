@@ -47,15 +47,20 @@ const getColorSpace = (colorSpace: string) => {
   }
 }
 
-export const transformColor = (
-  colorValue: ColorTokenValue,
-  outputFormat: 'hex' | 'hsl' | 'hsla' | 'rgb' | 'rgba' | 'rgbFloat' = 'hex',
-) => {
+export const colorValueTransformer = (colorValue: ColorTokenValue, platform: PlatformConfig | undefined) => {
+  // check for invalid color value
+  if (typeof colorValue !== 'object' || !colorValue.colorSpace || !colorValue.components) {
+    throw new Error(
+      `Invalid color value ${JSON.stringify(colorValue)}, expected object with at least colorSpace and components properties.`,
+    )
+  }
+  // extract output format from platform config
+  const colorOutputFormat: 'hex' | 'hsl' | 'hsla' | 'rgb' | 'rgba' | 'rgbFloat' = platform?.colorOutputFormat || 'hex'
+  // create colorjs.io color instance
   const {colorSpace, components, alpha = 1} = colorValue
-
   const color = new Color({space: getColorSpace(colorSpace), coords: components, alpha})
-
-  switch (outputFormat) {
+  // convert color to desired output format
+  switch (colorOutputFormat) {
     case 'rgb':
     case 'rgba':
       return getRgb255(color)
@@ -73,20 +78,26 @@ export const transformColor = (
  * colorToCss
  * @description convert a token of type `color` to a css color value use platform.colorOutputFormat to determine the output format, if not provided defaults to `hex`, options are `hex`, `rgb`, `hsl`
  */
-export const colorToCss: Transform = {
-  name: 'color/css',
+export const colorCss: Transform = {
+  name: 'w3c-color/css',
   type: `value`,
-  transitive: true,
-  filter: isColorFilter,
+  transitive: false,
+  filter: token => isColorFilter(token),
   transform: (token: TransformedToken, platform: PlatformConfig | undefined) => {
-    const color = transformColor(getValue<ColorTokenValue>(token), platform?.colorOutputFormat || 'hex')
-    // apply alpha from $extension if present
-    const {$extensions: {alpha} = {}} = token
+    try {
+      const color = colorValueTransformer(getValue<ColorTokenValue>(token), platform)
 
-    if (alpha !== undefined) {
-      return `color-mix(color-mix(in srgb, ${color}, transparent ${100 * alpha}%)`
+      // apply alpha from $extension if present
+      const {$extensions: {alpha} = {}} = token
+
+      if (alpha !== undefined) {
+        return `color-mix(color-mix(in srgb, ${color}, transparent ${100 * alpha}%)`
+      }
+
+      return color
+      // catch errors and rethrow with token name
+    } catch (error) {
+      throw new Error(`Error transforming color token '${token.name}': ${error}`)
     }
-
-    return color
   },
 }

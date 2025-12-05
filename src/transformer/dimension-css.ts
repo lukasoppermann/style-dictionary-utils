@@ -7,7 +7,7 @@ export type DimensionTokenValue = {
   unit: string
 }
 
-export const transformDimensionValue = (
+export const dimensionValueTransformer = (
   dimensionTokenValue: DimensionTokenValue,
   platform: PlatformConfig | undefined,
 ): string => {
@@ -24,20 +24,14 @@ export const transformDimensionValue = (
     throw `Invalid Unit: '${unit}' is not a valid unit\n`
   }
 
-  if (value === 0) {
-    return '0'
+  if (unit !== outputUnit && unit === 'px' && outputUnit === 'rem') {
+    const baseFont = platform?.basePxFontSize || 16
+    return `${value / baseFont}${appendUnit ? outputUnit : ''}`
   }
 
-  if (unit !== outputUnit) {
-    if (unit === 'px' && outputUnit === 'rem') {
-      const baseFont = platform?.basePxFontSize || 16
-      return `${value / baseFont}${appendUnit ? outputUnit : ''}`
-    }
-
-    if (unit === 'rem' && outputUnit === 'px') {
-      const baseFont = platform?.basePxFontSize || 16
-      return `${baseFont * value}${appendUnit ? outputUnit : ''}`
-    }
+  if (unit !== outputUnit && unit === 'rem' && outputUnit === 'px') {
+    const baseFont = platform?.basePxFontSize || 16
+    return `${baseFont * value}${appendUnit ? outputUnit : ''}`
   }
 
   return `${value}${appendUnit ? outputUnit : ''}`
@@ -56,6 +50,6 @@ export const dimensionCss: Transform = {
   transform: (token: TransformedToken, platform: PlatformConfig | undefined) => {
     const dimensionTokenvalue = getValue<DimensionTokenValue>(token)
 
-    return transformDimensionValue(dimensionTokenvalue, platform)
+    return dimensionValueTransformer(dimensionTokenvalue, platform)
   },
 }

@@ -1,16 +1,18 @@
-import styleDictionary from 'style-dictionary'
-
 export const cssExtended = {
   name: 'css/extended',
   transforms: [
-    ...styleDictionary.hooks.transformGroups['css'],
-    'border/css',
-    'color/css',
+    'w3c-border/css',
+    'w3c-color/css',
     'cubicBezier/css',
-    'font/css',
+    'dimension/css',
+    'duration/css',
+    'typography/css',
     'fontFamily/css',
-    'fontWeight/number',
+    'fontWeight/css',
     'gradient/css',
+    'name/kebab',
     'shadow/css',
+    'strokeStyle/css',
+    'transition/css',
   ],
 }

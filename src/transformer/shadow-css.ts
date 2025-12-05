@@ -1,8 +1,8 @@
 import {PlatformConfig, Transform, TransformedToken} from 'style-dictionary/types'
 import {isShadowFilter} from '../filter/isShadow.js'
 import {getValue} from '../utilities/getValue.js'
-import {transformDimensionValue, DimensionTokenValue} from './dimension-css.js'
-import {ColorTokenValue, transformColor} from './color-to-css.js'
+import {dimensionValueTransformer, DimensionTokenValue} from './dimension-css.js'
+import {ColorTokenValue, colorValueTransformer} from './color-css.js'
 
 type TokenShadow = {
   color: ColorTokenValue
@@ -17,7 +17,7 @@ const formatShadow = (
   {offsetX, offsetY, blur, spread, color, inset = false}: TokenShadow,
   platform: PlatformConfig | undefined,
 ): string =>
-  `${inset ? 'inset' : ''} ${transformDimensionValue(offsetX, platform)} ${transformDimensionValue(offsetY, platform)} ${transformDimensionValue(blur, platform)} ${transformDimensionValue(spread, platform)} ${transformColor(color)}`.trim()
+  `${inset ? 'inset' : ''} ${dimensionValueTransformer(offsetX, platform)} ${dimensionValueTransformer(offsetY, platform)} ${dimensionValueTransformer(blur, platform)} ${dimensionValueTransformer(spread, platform)} ${colorValueTransformer(color, platform)}`.trim()
 
 export const shadowCss: Transform = {
   name: 'shadow/css',

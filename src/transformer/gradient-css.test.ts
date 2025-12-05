@@ -4,11 +4,11 @@ import {gradientCss} from './gradient-css'
 describe('transform: gradientCss', () => {
   const items = [
     {
-      value: '',
+      $value: '',
       $type: 'color',
     },
     {
-      value: [
+      $value: [
         {
           color: {
             colorSpace: 'srgb',
@@ -53,7 +53,7 @@ describe('transform: gradientCss', () => {
       $type: 'gradient',
     },
     {
-      value: '',
+      $value: '',
     },
   ] as TransformedToken[]
 

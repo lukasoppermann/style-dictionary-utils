@@ -73,7 +73,7 @@ describe('transform: shadowCss', () => {
   it('transforms `shadow` tokens', () => {
     expect(items.filter(shadowCss.filter).map(item => shadowCss.transform(item, {}, {}))).toStrictEqual([
       '2px 4px 2px 1px #00000080',
-      '0 4px 2px 1px #0006',
+      '0px 4px 2px 1px #0006',
     ])
   })
 
@@ -198,7 +198,7 @@ describe('transform: shadowCss', () => {
     ] as TransformedToken[]
 
     expect(shadows.filter(shadowCss.filter).map(item => shadowCss.transform(item, {}, {}))).toStrictEqual([
-      'inset 0 4px 2px 1px #0006, 0 4px 8px 4px #ffffff40',
+      'inset 0px 4px 2px 1px #0006, 0px 4px 8px 4px #ffffff40',
     ])
   })
 })

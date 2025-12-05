@@ -1,7 +1,7 @@
 import {TransformedToken} from 'style-dictionary/types'
-import {colorToCss} from './color-to-css'
+import {colorCss} from './color-css'
 
-describe('transform: colorToCss', () => {
+describe('transform: colorCss', () => {
   it('transforms `color` tokens to hex value', () => {
     expect(
       [
@@ -18,7 +18,7 @@ describe('transform: colorToCss', () => {
             alpha: 0.8,
           },
         },
-      ].map(item => colorToCss.transform(item as TransformedToken, {}, {})),
+      ].map(item => colorCss.transform(item as TransformedToken, {}, {})),
     ).toStrictEqual(['#f03', '#f03c'])
   })
 
@@ -38,7 +38,7 @@ describe('transform: colorToCss', () => {
             alpha: 0.8,
           },
         },
-      ].map(item => colorToCss.transform(item as TransformedToken, {colorOutputFormat: 'rgb'}, {})),
+      ].map(item => colorCss.transform(item as TransformedToken, {colorOutputFormat: 'rgb'}, {})),
     ).toStrictEqual(['rgba(255, 0, 51, 1)', 'rgba(51, 179, 102, 0.8)'])
   })
 
@@ -58,21 +58,21 @@ describe('transform: colorToCss', () => {
             alpha: 0.8,
           },
         },
-      ].map(item => colorToCss.transform(item as TransformedToken, {colorOutputFormat: 'hsl'}, {})),
+      ].map(item => colorCss.transform(item as TransformedToken, {colorOutputFormat: 'hsl'}, {})),
     ).toStrictEqual(['hsl(348deg 100% 50% / 1)', 'hsl(144deg 56% 45% / 0.8)'])
   })
 
   it('transforms `color` tokens to rgbFloat value', () => {
     const input = [
       {
-        value: {
+        $value: {
           colorSpace: 'srgb',
           components: [0.06666666666666667, 0.13333333333333333, 0.2],
           alpha: 1,
         },
       },
       {
-        value: {
+        $value: {
           colorSpace: 'hsl',
           components: [330, 100, 50],
           alpha: 0.5,
@@ -94,7 +94,7 @@ describe('transform: colorToCss', () => {
       },
     ]
     expect(
-      input.map(item => colorToCss.transform(item as TransformedToken, {colorOutputFormat: 'rgbFloat'}, {})),
+      input.map(item => colorCss.transform(item as TransformedToken, {colorOutputFormat: 'rgbFloat'}, {})),
     ).toStrictEqual(expectedOutput)
   })
 
@@ -114,7 +114,7 @@ describe('transform: colorToCss', () => {
             alpha: 0.8,
           },
         },
-      ].map(item => colorToCss.transform(item as TransformedToken, {})),
+      ].map(item => colorCss.transform(item as TransformedToken, {})),
     ).toStrictEqual(['#f03', '#33b366cc'])
   })
 
@@ -134,7 +134,7 @@ describe('transform: colorToCss', () => {
             alpha: 0.8,
           },
         },
-      ].map(item => colorToCss.transform(item as TransformedToken, {})),
+      ].map(item => colorCss.transform(item as TransformedToken, {})),
     ).toStrictEqual(['#ff007c', '#7cdaaacc'])
   })
 
@@ -154,7 +154,7 @@ describe('transform: colorToCss', () => {
             alpha: 0.8,
           },
         },
-      ].map(item => colorToCss.transform(item as TransformedToken, {})),
+      ].map(item => colorCss.transform(item as TransformedToken, {})),
     ).toStrictEqual(['#ff0080', '#eb47ebcc'])
   })
 
@@ -174,7 +174,7 @@ describe('transform: colorToCss', () => {
             alpha: 0.8,
           },
         },
-      ].map(item => colorToCss.transform(item as TransformedToken, {})),
+      ].map(item => colorCss.transform(item as TransformedToken, {})),
     ).toStrictEqual(['#f0f', '#f0fc'])
   })
 
@@ -194,7 +194,7 @@ describe('transform: colorToCss', () => {
             alpha: 0.8,
           },
         },
-      ].map(item => colorToCss.transform(item as TransformedToken, {})),
+      ].map(item => colorCss.transform(item as TransformedToken, {})),
     ).toStrictEqual(['#f0f', '#f0fc'])
   })
 
@@ -214,7 +214,7 @@ describe('transform: colorToCss', () => {
             alpha: 0.8,
           },
         },
-      ].map(item => colorToCss.transform(item as TransformedToken, {})),
+      ].map(item => colorCss.transform(item as TransformedToken, {})),
     ).toStrictEqual(['#f0f', '#f0fc'])
   })
 
@@ -234,7 +234,7 @@ describe('transform: colorToCss', () => {
             alpha: 0.8,
           },
         },
-      ].map(item => colorToCss.transform(item as TransformedToken, {})),
+      ].map(item => colorCss.transform(item as TransformedToken, {})),
     ).toStrictEqual(['#f0f', '#f0fc'])
   })
 
@@ -254,7 +254,7 @@ describe('transform: colorToCss', () => {
             alpha: 0.8,
           },
         },
-      ].map(item => colorToCss.transform(item as TransformedToken, {})),
+      ].map(item => colorCss.transform(item as TransformedToken, {})),
     ).toStrictEqual(['#f0f', '#f0fc'])
   })
 
@@ -274,7 +274,7 @@ describe('transform: colorToCss', () => {
             alpha: 0.8,
           },
         },
-      ].map(item => colorToCss.transform(item as TransformedToken, {})),
+      ].map(item => colorCss.transform(item as TransformedToken, {})),
     ).toStrictEqual(['#f0f', '#f0fc'])
   })
 
@@ -294,7 +294,7 @@ describe('transform: colorToCss', () => {
             alpha: 0.8,
           },
         },
-      ].map(item => colorToCss.transform(item as TransformedToken, {})),
+      ].map(item => colorCss.transform(item as TransformedToken, {})),
     ).toStrictEqual(['#ff2bfb', '#ff2bfbcc'])
   })
 
@@ -314,7 +314,7 @@ describe('transform: colorToCss', () => {
             alpha: 0.8,
           },
         },
-      ].map(item => colorToCss.transform(item as TransformedToken, {})),
+      ].map(item => colorCss.transform(item as TransformedToken, {})),
     ).toStrictEqual(['#ff69ed', '#ff69edcc'])
   })
 
@@ -334,7 +334,7 @@ describe('transform: colorToCss', () => {
             alpha: 0.8,
           },
         },
-      ].map(item => colorToCss.transform(item as TransformedToken, {})),
+      ].map(item => colorCss.transform(item as TransformedToken, {})),
     ).toStrictEqual(['#ff44e4', '#ff44e4cc'])
   })
 
@@ -354,7 +354,7 @@ describe('transform: colorToCss', () => {
             alpha: 0.8,
           },
         },
-      ].map(item => colorToCss.transform(item as TransformedToken, {})),
+      ].map(item => colorCss.transform(item as TransformedToken, {})),
     ).toStrictEqual(['#ff56e7', '#ff56e7cc'])
   })
 
@@ -374,7 +374,7 @@ describe('transform: colorToCss', () => {
             alpha: 0.8,
           },
         },
-      ].map(item => colorToCss.transform(item as TransformedToken, {})),
+      ].map(item => colorCss.transform(item as TransformedToken, {})),
     ).toStrictEqual(['#f0f', '#f0fc'])
   })
 
@@ -394,7 +394,7 @@ describe('transform: colorToCss', () => {
             alpha: 0.8,
           },
         },
-      ].map(item => colorToCss.transform(item as TransformedToken, {})),
+      ].map(item => colorCss.transform(item as TransformedToken, {})),
     ).toStrictEqual(['#f0f', '#f0fc'])
   })
 })

@@ -1,10 +1,10 @@
 import {TransformedToken} from 'style-dictionary/types'
-import {fontFamilyCss} from './font-family-css'
+import {fontFamilyCss} from './fontFamily-css'
 
 describe('transform: fontFamily', () => {
   const items = [
     {
-      value: 'Helvetica',
+      $value: 'Helvetica',
       $type: 'fontFamily',
     },
     {
@@ -12,10 +12,10 @@ describe('transform: fontFamily', () => {
       $type: 'fontFamily',
     },
     {
-      value: '',
+      $value: '',
     },
     {
-      value: '',
+      $value: '',
       $type: 'color',
     },
   ] as TransformedToken[]

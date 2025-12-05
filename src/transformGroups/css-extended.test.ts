@@ -1,32 +1,23 @@
 import {cssExtended} from './css-extended'
 
 describe('TransformGroup: css extended', () => {
-  const defaultArray = [
-    'attribute/cti',
-    'name/kebab',
-    'time/seconds',
-    'html/icon',
-    'size/rem',
-    'color/css',
-    'asset/url',
-  ]
-
   const extensionArray = [
-    'border/css',
-    'color/css',
+    'w3c-border/css',
+    'w3c-color/css',
     'cubicBezier/css',
-    'font/css',
+    'dimension/css',
+    'duration/css',
+    'typography/css',
     'fontFamily/css',
-    'fontWeight/number',
+    'fontWeight/css',
     'gradient/css',
+    'name/kebab',
     'shadow/css',
+    'strokeStyle/css',
+    'transition/css',
   ]
 
-  it('has all old transforms from `css` group', () => {
-    expect(defaultArray.every(v => cssExtended.transforms.includes(v))).toBe(true)
-  })
-
-  it('has all new transforms from `css/extended` group', () => {
-    expect(extensionArray.every(v => cssExtended.transforms.includes(v))).toBe(true)
+  it('has all transforms from `css` group', () => {
+    expect(extensionArray).toEqual(cssExtended.transforms)
   })
 })

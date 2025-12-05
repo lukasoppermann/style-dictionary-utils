@@ -15,7 +15,7 @@ type TokenValueTransition = {
  * transitionCss
  * @description convert a transition token to a CSS-compatible transition string
  */
-export const transitionToCss: Transform = {
+export const transitionCss: Transform = {
   name: 'transition/css',
   type: `value`,
   transitive: true,

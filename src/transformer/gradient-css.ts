@@ -1,7 +1,8 @@
 import {Transform, TransformedToken} from 'style-dictionary/types'
 import {isGradientFilter} from '../filter/isGradient.js'
 import {getValue} from '../utilities/getValue.js'
-import {ColorTokenValue, transformColor} from './color-to-css.js'
+import {ColorTokenValue, colorValueTransformer} from './color-css.js'
+import {PlatformConfig} from 'style-dictionary'
 
 type TokenGradient = {
   color: ColorTokenValue
@@ -13,13 +14,13 @@ export const gradientCss: Transform = {
   type: `value`,
   transitive: true,
   filter: isGradientFilter,
-  transform: (token: TransformedToken) => {
+  transform: (token: TransformedToken, platform: PlatformConfig | undefined) => {
     const tokenValue = getValue<TokenGradient[]>(token)
     // combine stops to string
     const stops = tokenValue
       .map(
         (stop: TokenGradient) =>
-          `${transformColor(stop.color)}${stop.position ? ` ${Math.floor(stop.position * 100)}%` : ''}`,
+          `${colorValueTransformer(stop.color, platform)}${stop.position ? ` ${Math.floor(stop.position * 100)}%` : ''}`,
       )
       .join(', ')
     // return gradient value
