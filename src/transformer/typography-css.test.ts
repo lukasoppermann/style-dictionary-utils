@@ -1,5 +1,5 @@
 import {TransformedToken} from 'style-dictionary/types'
-import {typographyCss} from './typograhy-css.js'
+import {typographyCss} from './typography-css.js'
 
 describe('transform: fontFamily', () => {
   const items = [
@@ -29,10 +29,12 @@ describe('transform: fontFamily', () => {
     },
     {
       $value: {
+        fontWeight: 500,
         fontSize: {
           value: 16,
           unit: 'px',
         },
+        lineHeight: 1.3,
         fontFamily: 'Helvetica',
       },
       $type: 'typography',
@@ -52,9 +54,9 @@ describe('transform: fontFamily', () => {
 
   it('transforms `typography` tokens', () => {
     expect(items.filter(typographyCss.filter).map(item => typographyCss.transform(item, {}, {}))).toStrictEqual([
-      'italic 500 16px/22px Helvetica',
-      'italic 600 12px/26px Helvetica, Arial, sans-serif',
-      '16px Helvetica',
+      '500 16px/1.4 Helvetica, Arial, sans-serif',
+      '600 12px/1.2 Helvetica',
+      '500 16px/1.3 Helvetica',
     ])
   })
 })
