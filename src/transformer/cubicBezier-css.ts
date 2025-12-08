@@ -24,8 +24,7 @@ export const cubicBezierCss: Transform = {
     try {
       const tokenValue = getValue<CubicBezierTokenValue>(token)
       return cubicBezierTransformer(tokenValue)
-    }
-    catch (error) {
+    } catch (error) {
       throw new Error(`Error transforming cubicBezier token '${token.name}': ${error}`)
     }
   },
