@@ -29,7 +29,7 @@ describe('transform: transitionCss', () => {
 
   it('transforms `transition` tokens', () => {
     expect(items.filter(transitionCss.filter).map(item => transitionCss.transform(item, {}, {}))).toStrictEqual([
-      '200ms 0s cubic-bezier(0.25,0.1,0.25,1)',
+      '200ms 0s cubic-bezier(0.25, 0.1, 0.25, 1)',
     ])
   })
 
@@ -48,7 +48,7 @@ describe('transform: transitionCss', () => {
       },
       $type: 'transition',
     } as TransformedToken
-    expect(transitionCss.transform(item, {}, {})).toStrictEqual('1s 0s cubic-bezier(0.25,0.1,0.25,1.2)')
+    expect(transitionCss.transform(item, {}, {})).toStrictEqual('1s 0s cubic-bezier(0.25, 0.1, 0.25, 1.2)')
   })
 
   it('transforms invalid duration in `transition` tokens', () => {

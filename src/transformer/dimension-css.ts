@@ -55,7 +55,6 @@ export const dimensionCss: Transform = {
   transform: (token: TransformedToken, platform: PlatformConfig | undefined) => {
     try {
       const dimensionTokenvalue = getValue<DimensionTokenValue>(token)
-
       return dimensionValueTransformer(dimensionTokenvalue, platform)
       // catch errors and rethrow with token name
     } catch (error) {

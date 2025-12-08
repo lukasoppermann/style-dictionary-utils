@@ -8,6 +8,10 @@ export interface DurationTokenValue {
 }
 
 export const durationValueTransformer = (tokenValue: DurationTokenValue): string => {
+  if (typeof tokenValue === 'string') {
+    return tokenValue
+  }
+  
   const {value, unit} = tokenValue
 
   // Validate that the unit is supported
