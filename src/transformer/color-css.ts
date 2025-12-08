@@ -47,9 +47,14 @@ const getColorSpace = (colorSpace: string) => {
   }
 }
 
-export const colorValueTransformer = (colorValue: ColorTokenValue, platform: PlatformConfig | undefined) => {
-  // check for invalid color value
+export const colorValueTransformer = (colorValue: ColorTokenValue | string, platform: PlatformConfig | undefined) => {
+  // if an already transformed color is provided, return it as-is
+  if (typeof colorValue === 'string') {
+    return colorValue
+  }
+  // deal with color object
   if (typeof colorValue !== 'object' || !colorValue.colorSpace || !colorValue.components) {
+    // check for invalid color value
     throw new Error(
       `Invalid color value ${JSON.stringify(colorValue)}, expected object with at least colorSpace and components properties.`,
     )
