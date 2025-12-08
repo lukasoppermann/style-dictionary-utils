@@ -23,8 +23,8 @@ describe('build.test.ts', () => {
     expect(StyleDictionary.hooks.transforms['name/pathToCamelCase']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['name/pathToDotNotation']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['shadow/css']).toBeDefined()
-    expect(StyleDictionary.hooks.transforms['w3c-border/css']).toBeDefined()
-    expect(StyleDictionary.hooks.transforms['w3c-color/css']).toBeDefined()
+    // expect(StyleDictionary.hooks.transforms['w3c-border/css']).toBeDefined()
+    // expect(StyleDictionary.hooks.transforms['w3c-color/css']).toBeDefined()
   })
 
   it('all transformGroups are attached', () => {

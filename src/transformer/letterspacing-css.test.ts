@@ -4,11 +4,11 @@ import {letterspacingCss} from './letterspacing-css'
 describe('transform: letterspacingCss', () => {
   const items = [
     {
-      value: '',
+      $value: '',
       $type: 'color',
     },
     {
-      value: {
+      $value: {
         fontFamily: ['Arial', 'sans-serif'],
         fontSize: {value: 16, unit: 'px'},
         fontWeight: 400,

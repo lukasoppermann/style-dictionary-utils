@@ -11,19 +11,6 @@ describe('index.ts', () => {
 
   it('all transformers are attached', () => {
     expect(StyleDictionary.hooks.transforms['clamp/css']).toBeDefined()
-<<<<<<< HEAD
-=======
-    expect(StyleDictionary.hooks.transforms['name/pathToDotNotation']).toBeDefined()
-    expect(StyleDictionary.hooks.transforms['name/pathToCamelCase']).toBeDefined()
-    expect(StyleDictionary.hooks.transforms['shadow/css']).toBeDefined()
-    expect(StyleDictionary.hooks.transforms['transition/css']).toBeDefined()
-    expect(StyleDictionary.hooks.transforms['font/css']).toBeDefined()
-    expect(StyleDictionary.hooks.transforms['fontFamily/css']).toBeDefined()
-    expect(StyleDictionary.hooks.transforms['fontWeight/number']).toBeDefined()
-    expect(StyleDictionary.hooks.transforms['letterspacing/css']).toBeDefined()
-    expect(StyleDictionary.hooks.transforms['typography/css']).toBeDefined()
-    expect(StyleDictionary.hooks.transforms['gradient/css']).toBeDefined()
->>>>>>> f57c773 (add typography and letterspacing transformer)
     expect(StyleDictionary.hooks.transforms['cubicBezier/css']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['dimension/css']).toBeDefined()
     expect(StyleDictionary.hooks.transforms['duration/css']).toBeDefined()
