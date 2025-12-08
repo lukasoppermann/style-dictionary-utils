@@ -30,5 +30,4 @@ describe('getValue', () => {
 
     expect(() => getValue<string>(token)).toThrow('The token color-primary has no valid $value property.')
   })
-
 })

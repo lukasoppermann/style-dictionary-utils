@@ -15,7 +15,6 @@ export const getDimensionValue = (token: TransformedToken): string => {
     return `${structuredValue.value}${structuredValue.unit}`
   }
 
-
   // Fallback to string conversion
   return String(tokenValue)
 }
