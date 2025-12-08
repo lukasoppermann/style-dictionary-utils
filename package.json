@@ -61,6 +61,6 @@
     "vitest": "^3.2.3"
   },
   "peerDependencies": {
-    "style-dictionary": "^5"
+    "style-dictionary": "^4 || ^5"
   }
 }
