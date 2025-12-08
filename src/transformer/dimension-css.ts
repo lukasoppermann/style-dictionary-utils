@@ -8,9 +8,14 @@ export type DimensionTokenValue = {
 }
 
 export const dimensionValueTransformer = (
-  dimensionTokenValue: DimensionTokenValue,
+  dimensionTokenValue: DimensionTokenValue | string,
   platform: PlatformConfig | undefined,
 ): string => {
+  // If already a string, return as-is
+  if (typeof dimensionTokenValue === 'string') {
+    return dimensionTokenValue
+  }
+  // handle object format
   const {value, unit} = dimensionTokenValue
   const appendUnit = platform?.appendUnit === false ? false : true
   const outputUnit = platform?.outputUnit || unit || 'px'
@@ -48,8 +53,13 @@ export const dimensionCss: Transform = {
   transitive: true,
   filter: (token: TransformedToken) => isDimensionFilter(token),
   transform: (token: TransformedToken, platform: PlatformConfig | undefined) => {
-    const dimensionTokenvalue = getValue<DimensionTokenValue>(token)
+    try {
+      const dimensionTokenvalue = getValue<DimensionTokenValue>(token)
 
-    return dimensionValueTransformer(dimensionTokenvalue, platform)
+      return dimensionValueTransformer(dimensionTokenvalue, platform)
+      // catch errors and rethrow with token name
+    } catch (error) {
+      throw new Error(`Error transforming dimension token '${token.name}': ${error}`)
+    }
   },
 }

@@ -68,7 +68,7 @@ describe('transform: transitionCss', () => {
       $type: 'transition',
     } as TransformedToken
     expect(() => transitionCss.transform(item, {}, {})).toThrowError(
-      `Invalid unit when transforming duration: 'my.transition duration' has unit 'sec', expected 'ms' or 's'`,
+      `Error transforming transition token 'my.transition': Error: Invalid unit: 'sec', expected 'ms' or 's'`,
     )
   })
 
@@ -89,7 +89,7 @@ describe('transform: transitionCss', () => {
       $type: 'transition',
     } as TransformedToken
     expect(() => transitionCss.transform(item, {}, {})).toThrowError(
-      `Invalid unit when transforming duration: 'my.transition delay' has unit 'min', expected 'ms' or 's'`,
+      `Error transforming transition token 'my.transition': Error: Invalid unit: 'min', expected 'ms' or 's'`,
     )
   })
 })

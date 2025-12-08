@@ -1,15 +1,18 @@
 import {Transform, TransformedToken} from 'style-dictionary/types'
 import {isDurationFilter} from '../filter/isDuration.js'
-import {getDurationValueAndUnit, TokenValueDuration} from '../utilities/durationUtils.js'
+import {getValue} from '../utilities/getValue.js'
 
-export const transformDuration = (tokenValue: TokenValueDuration, name?: string): string => {
+export interface DurationTokenValue {
+  value: number
+  unit: 'ms' | 's'
+}
+
+export const durationValueTransformer = (tokenValue: DurationTokenValue): string => {
   const {value, unit} = tokenValue
 
   // Validate that the unit is supported
   if (unit !== 'ms' && unit !== 's') {
-    throw new Error(
-      `Invalid unit when transforming duration: '${name || 'unknown'}' has unit '${unit}', expected 'ms' or 's'`,
-    )
+    throw new Error(`Invalid unit: '${unit}', expected 'ms' or 's'`)
   }
 
   // Handle zero values - always return "0s" for consistency with CSS
@@ -30,5 +33,13 @@ export const durationCss: Transform = {
   type: `value`,
   transitive: true,
   filter: isDurationFilter,
-  transform: (token: TransformedToken) => transformDuration(getDurationValueAndUnit(token), token.name),
+  transform: (token: TransformedToken) => {
+    try {
+      const durationTokenValue = getValue<DurationTokenValue>(token)
+      return durationValueTransformer(durationTokenValue)
+      // catch errors and rethrow with token name
+    } catch (error) {
+      throw new Error(`Error transforming duration token '${token.name}': ${error}`)
+    }
+  },
 }

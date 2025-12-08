@@ -93,34 +93,6 @@ describe('transformer: duration to CSS', () => {
         expect(mockConsoleError).not.toHaveBeenCalled()
       })
 
-      it('should preserve ms unit (old string format with deprecation warning)', () => {
-        const token: TransformedToken = {
-          name: 'animation.slow',
-          $value: '1000ms',
-          $type: 'duration',
-          path: ['animation', 'slow'],
-          original: {$value: '1000ms', $type: 'duration'},
-        }
-        expect(durationCss.transform(token, {})).toBe('1000ms')
-        expect(mockConsoleError).toHaveBeenCalledWith(
-          expect.stringContaining('DEPRECATED: Token "animation.slow" uses the old string format'),
-        )
-      })
-
-      it('should preserve s unit (old string format with deprecation warning)', () => {
-        const token: TransformedToken = {
-          name: 'animation.long',
-          $value: '3s',
-          $type: 'duration',
-          path: ['animation', 'long'],
-          original: {$value: '3s', $type: 'duration'},
-        }
-        expect(durationCss.transform(token, {})).toBe('3s')
-        expect(mockConsoleError).toHaveBeenCalledWith(
-          expect.stringContaining('DEPRECATED: Token "animation.long" uses the old string format'),
-        )
-      })
-
       it('should handle zero values consistently', () => {
         const tokenMs: TransformedToken = {
           name: 'animation.none',
@@ -161,7 +133,7 @@ describe('transformer: duration to CSS', () => {
           original: {$value: {value: 2, unit: 'px'}, $type: 'duration'},
         }
         expect(() => durationCss.transform(token, {})).toThrow(
-          "Invalid unit when transforming duration: 'animation.invalid' has unit 'px', expected 'ms' or 's'",
+          "Error transforming duration token 'animation.invalid': Error: Invalid unit: 'px', expected 'ms' or 's'",
         )
       })
     })
