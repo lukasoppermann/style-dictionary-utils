@@ -6,38 +6,54 @@ const StyleDictionary = new SD();
 const extendSd = await StyleDictionary.extend({
   source: ["./tests/tokens/**/*.json5"],
   platforms: {
-    css: {
-      buildPath: "./tests/dist/css/",
-      transformGroup: "css",
-      files: [
-        {
-          format: "css/variables",
-          destination: "variables.css",
-          filter: getIsType("color"),
-          options: {
-            outputReferences: true,
-          }
-        },
-      ],
-    },
-    cssPrefixed: {
-      prefix: "PREFIX",
-      buildPath: "./tests/dist/css/",
-      transformGroup: "css",
-      files: [
-        {
-          format: "css/variables",
-          destination: "prefix-variables.css",
-          options: {
-            outputReferences: true,
-          }
-        },
-      ],
-    },
+    // css: {
+    //   buildPath: "./tests/dist/package/css/",
+    //   transforms: [
+    //     'name/kebab',
+    //     'w3c-color/css',
+    //     'w3c-border/css',
+    //     'dimension/css',
+    //     'duration/css',
+    //     'cubicBezier/css',
+    //     'transition/css',
+    //   ],
+    //   files: [
+    //     {
+    //       format: "css/variables",
+    //       destination: "variables.css",
+    //       filter: getIsType("color"),
+    //       options: {
+    //         outputReferences: true,
+    //       }
+    //     },
+    //   ],
+    // },
+    // cssPrefixed: {
+    //   prefix: "PREFIX",
+    //   buildPath: "./tests/dist/css/",
+    //   transformGroup: "css",
+    //   files: [
+    //     {
+    //       format: "css/variables",
+    //       destination: "prefix-variables.css",
+    //       options: {
+    //         outputReferences: true,
+    //       }
+    //     },
+    //   ],
+    // },
     cssAdvanced: {
       prefix: "PREFIX",
-      buildPath: "./tests/dist/css/",
-      transformGroup: "css",
+      buildPath: "./tests/dist/package/css/",
+      transforms: [
+        'name/kebab',
+        'w3c-color/css',
+        'w3c-border/css',
+        'dimension/css',
+        'duration/css',
+        'cubicBezier/css',
+        'transition/css',
+      ],
       files: [
         {
           format: "css/advanced",

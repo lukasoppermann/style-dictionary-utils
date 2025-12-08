@@ -99,10 +99,25 @@
       $value: {
         duration: '{duration.ms}',
         delay: {
-          value: 1,
+          value: 50,
           unit: 'ms',
         },
         timingFunction: "{cubicBezier.easeInOut}",
+      },
+      $type: 'transition',
+      $description: 'A fast transition',
+    },
+    slow: {
+      $value: {
+        duration: {
+          value: 1,
+          unit: 's',
+        },
+        delay: {
+          value: 300,
+          unit: 'ms',
+        },
+        timingFunction: [0.2, 0, 0.7, 1],
       },
       $type: 'transition',
       $description: 'A fast transition',

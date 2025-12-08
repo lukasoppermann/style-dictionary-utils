@@ -22,10 +22,6 @@ export const transitionCss: Transform = {
   transform: (token: TransformedToken) => {
     try {
       const {duration, delay, timingFunction} = getValue<TokenValueTransition>(token)
-      console.log(duration, delay, timingFunction)
-      console.log('duration: ', durationValueTransformer(duration))
-      console.log('delay: ', durationValueTransformer(delay))
-      console.log('timingFunction: ', `cubic-bezier(${timingFunction})`)
       return `${durationValueTransformer(duration)} ${durationValueTransformer(delay)} ${cubicBezierTransformer(timingFunction)}`.trim()
       // catch errors and rethrow with token name
     } catch (error) {
