@@ -1,5 +1,5 @@
 import {TransformedToken} from 'style-dictionary/types'
-import {cubicBezierCss} from './cubic-bezier-css'
+import {cubicBezierCss} from './cubicBezier-css.js'
 
 describe('transform: cubicBezierCss', () => {
   const items = [

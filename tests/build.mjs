@@ -22,6 +22,8 @@ const addPlatforms = (outdir) => {
         'w3c-border/css',
         'dimension/css',
         'duration/css',
+        'cubicBezier/css',
+        'transition/css',
       ],
       files: [
         {

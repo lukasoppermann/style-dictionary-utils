@@ -62,10 +62,7 @@
           components: [0.5, 0.5, 0.5],
         },
         style: 'solid',
-        width: {
-          value: 2,
-          unit: 'px',
-        },
+        width: "{dimension.px}",
       },
       $type: 'border',
       $description: 'The default border color',
@@ -89,5 +86,41 @@
       $type: 'strokeStyle',
       $description: 'A dashed stroke style',
     },
-  }
+  },
+  cubicBezier: {
+    easeInOut: {
+      $value: [0.42, 0, 0.58, 1],
+      $type: 'cubicBezier',
+      $description: 'An ease-in-out cubic bezier curve',
+    },
+  },
+  transition: {
+    fast: {
+      $value: {
+        duration: '{duration.ms}',
+        delay: {
+          value: 50,
+          unit: 'ms',
+        },
+        timingFunction: "{cubicBezier.easeInOut}",
+      },
+      $type: 'transition',
+      $description: 'A fast transition',
+    },
+    slow: {
+      $value: {
+        duration: {
+          value: 1,
+          unit: 's',
+        },
+        delay: {
+          value: 300,
+          unit: 'ms',
+        },
+        timingFunction: [0.2, 0, 0.7, 1],
+      },
+      $type: 'transition',
+      $description: 'A fast transition',
+    },
+  },
 }
