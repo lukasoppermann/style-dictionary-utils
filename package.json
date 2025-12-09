@@ -46,12 +46,12 @@
   },
   "homepage": "https://github.com/lukasoppermann/style-dictionary-utils#readme",
   "dependencies": {
-    "color2k": "^2.0.3"
+    "color2k": "^2.0.3",
+    "colorjs.io": "^0.5.2"
   },
   "devDependencies": {
     "@github/prettier-config": "^0.0.6",
     "@types/node": "^22.2.0",
-    "colorjs.io": "^0.5.2",
     "eslint": "^8.57.0",
     "eslint-plugin-github": "^5.0.2",
     "prettier": "^3.3.3",
