@@ -8,8 +8,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "style-dictionary": "^5.1.1",
-    "style-dictionary-utils": "file:../style-dictionary-utils-4.1.1.tgz"
+    "style-dictionary": "^4.1.1",
+    "style-dictionary-utils": "file:../style-dictionary-utils-4.2.0.tgz"
   },
   "devDependencies": {
     "prettier": "^3.4.2"
