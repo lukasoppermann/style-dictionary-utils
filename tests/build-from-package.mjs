@@ -3,11 +3,13 @@ import {getIsType} from 'style-dictionary-utils/filter/getIsType.js';
 
 const StyleDictionary = new SD();
 
+const outdir = './tests/dist/package/';
+
 const extendSd = await StyleDictionary.extend({
   source: ["./tests/tokens/**/*.json5"],
   platforms: {
     css: {
-      buildPath: "./tests/dist/css/",
+      buildPath: `${outdir}/css/`,
       transformGroup: "css",
       files: [
         {
@@ -22,7 +24,7 @@ const extendSd = await StyleDictionary.extend({
     },
     cssPrefixed: {
       prefix: "PREFIX",
-      buildPath: "./tests/dist/css/",
+      buildPath: `${outdir}/css/`,
       transformGroup: "css",
       files: [
         {
@@ -36,8 +38,12 @@ const extendSd = await StyleDictionary.extend({
     },
     cssAdvanced: {
       prefix: "PREFIX",
-      buildPath: "./tests/dist/css/",
-      transformGroup: "css",
+      buildPath: `${outdir}/css/`,
+      transforms: [
+        "name/kebab",
+        "color/rgbAlpha",
+        "border/css"
+      ],
       files: [
         {
           format: "css/advanced",

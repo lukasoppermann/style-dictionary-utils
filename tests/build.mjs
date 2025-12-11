@@ -2,6 +2,8 @@ import { StyleDictionary as SD } from "../dist/index.js";
 
 const StyleDictionary = new SD();
 
+const outdir = './tests/dist/local/';
+
 const addPlatforms = (outdir) => {
   return {
     css: {
@@ -91,12 +93,12 @@ const addPlatforms = (outdir) => {
 }
 
 let extendSd = await StyleDictionary.extend({
-  source: ["./tests/tokens/w3c/*.json5"],
-  platforms: addPlatforms('./tests/dist/w3c'),
+  source: ["./tests/tokens/css/*.json5"],
+  platforms: addPlatforms(outdir),
 })
 extendSd = await StyleDictionary.extend({
   source: ["./tests/tokens/non-w3c/*.json5"],
-  platforms: addPlatforms('./tests/dist/non-w3c'),
+  platforms: addPlatforms(outdir),
 })
 
 extendSd.cleanAllPlatforms();
