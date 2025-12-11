@@ -1,4 +1,4 @@
-import {TransformedToken} from 'style-dictionary/types'
+import {Token} from 'style-dictionary'
 
 /**
  * getValue
@@ -6,8 +6,11 @@ import {TransformedToken} from 'style-dictionary/types'
  * @param token StyleDictionary.DesignToken
  * @returns token value
  */
-export const getValue = <T>(token: TransformedToken | Record<string, unknown>): T => {
-  const value = token.$value
+export const getValue = <T>(
+  token: Token | Record<string, unknown>,
+  original: 'original' | undefined = undefined,
+): T => {
+  const value = original === 'original' ? token.original.$value : token.$value
 
   if (token === undefined) {
     throw new Error(`The token is undefined.`)

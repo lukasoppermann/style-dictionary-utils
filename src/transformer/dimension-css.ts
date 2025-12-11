@@ -15,6 +15,9 @@ export const dimensionValueTransformer = (
   if (typeof dimensionTokenValue === 'string') {
     return dimensionTokenValue
   }
+  if (dimensionTokenValue === undefined || dimensionTokenValue === null) {
+    throw `Invalid dimension value: 'undefined'\n`
+  }
   // handle object format
   const {value, unit} = dimensionTokenValue
   const appendUnit = platform?.appendUnit === false ? false : true
@@ -54,8 +57,8 @@ export const dimensionCss: Transform = {
   filter: (token: TransformedToken) => isDimensionFilter(token),
   transform: (token: TransformedToken, platform: PlatformConfig | undefined) => {
     try {
-      const dimensionTokenvalue = getValue<DimensionTokenValue>(token)
-      return dimensionValueTransformer(dimensionTokenvalue, platform)
+      const tokenValue = getValue<DimensionTokenValue>(token)
+      return dimensionValueTransformer(tokenValue, platform)
       // catch errors and rethrow with token name
     } catch (error) {
       throw new Error(`Error transforming dimension token '${token.name}': ${error}`)

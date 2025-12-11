@@ -80,13 +80,6 @@
       $description: 'A large integer number value',
     },
   },
-  strokeStyle: {
-    dashed: {
-      $value: 'dashed',
-      $type: 'strokeStyle',
-      $description: 'A dashed stroke style',
-    },
-  },
   cubicBezier: {
     easeInOut: {
       $value: [0.42, 0, 0.58, 1],
@@ -121,6 +114,125 @@
       },
       $type: 'transition',
       $description: 'A fast transition',
+    },
+  },
+  fontWeight: {
+    regular: {
+      $value: 400,
+      $type: 'fontWeight',
+      $description: 'Regular font weight',
+    },
+    bold: {
+      $value: "bold",
+      $type: 'fontWeight',
+      $description: 'Bold font weight',
+    },
+  },
+  fontFamily: {
+    primary: {
+      $value: "Helvetica, Arial, sans-serif",
+      $type: 'fontFamily',
+      $description: 'Primary font family',
+    },
+  },
+  fontSize: {
+    base: {
+      $value: {
+        value: 16,
+        unit: 'px',
+      },
+      $type: 'dimension',
+      $description: 'Base font size',
+    },
+    tiny: {
+      $value: "{dimension.px}",
+      $type: 'dimension',
+      $description: 'Tiny font size',
+    },
+  },
+  typography: {
+    heading: {
+      $value: {
+        fontFamily: '{fontFamily.primary}',
+        fontSize: '{fontSize.base}',
+        fontWeight: '{fontWeight.bold}',
+        lineHeight: 1.5,
+        letterSpacing: {
+          value: 0.1,
+          unit: 'px',
+        },
+      },
+      $type: 'typography',
+      $description: 'Heading typography style',
+    },
+  },
+  strokeStyle: {
+    solid: {
+      $value: 'solid',
+      $type: 'strokeStyle',
+      $description: 'A solid stroke style',
+    },
+    dashed: {
+      $value: 'dashed',
+      $type: 'strokeStyle',
+      $description: 'A dashed stroke style',
+    },
+  },
+  gradient: {
+    primary: {
+      $value: [
+          { color: '{base.color.pink.500}', position: 0 },
+          { color: '{base.color.pink.500}', position: 0.42 },
+          { color: '{base.color.pink.600}', position: 1 },
+      ],
+      $type: 'gradient',
+      $description: 'Primary linear gradient',
+    },
+  },
+  shadow: {
+    light: {
+      $value: {
+        offsetX: "{dimension.px}",
+        offsetY: {
+          value: 2,
+          unit: 'px',
+        },
+        blur: {
+          value: 4,
+          unit: 'px',
+        },
+        spread: {
+          value: 0,
+          unit: 'px',
+        },
+        color: {
+          colorSpace: 'srgb',
+          components: [0, 0, 0],
+          alpha: 0.1,
+        },
+      },
+      $type: 'shadow',
+      $description: 'Light shadow effect',
+    },
+    pink: {
+      $value: {
+        offsetX: "{dimension.px}",
+        offsetY: {
+          value: 2,
+          unit: 'px',
+        },
+        blur: {
+          value: 4,
+          unit: 'px',
+        },
+        spread: {
+          value: 0,
+          unit: 'px',
+        },
+        color: '{base.color.pink.500}',
+      },
+      $type: 'shadow',
+      $description: 'Pink shadow effect',
     },
   },
 }

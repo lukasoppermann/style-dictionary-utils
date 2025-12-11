@@ -21,8 +21,7 @@ export const typographyCss: Transform = {
   transitive: true,
   filter: isTypographyFilter,
   transform: (token: TransformedToken, platform: PlatformConfig) => {
-    const {fontWeight, fontSize, lineHeight, fontFamily}: TypographyTokenValue = getValue<TypographyTokenValue>(token)
-
+    const {fontWeight, fontSize, lineHeight, fontFamily} = getValue<TypographyTokenValue>(token)
     return `${fontWeightValueTransformer(fontWeight)} ${dimensionValueTransformer(fontSize, platform)}/${lineHeight} ${fontFamilyValueTransformer(fontFamily)}`
   },
 }

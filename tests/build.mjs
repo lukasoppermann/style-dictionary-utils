@@ -24,6 +24,13 @@ const addPlatforms = (outdir) => {
         'duration/css',
         'cubicBezier/css',
         'transition/css',
+        'fontWeight/css',
+        'fontFamily/css',
+        'typography/css',
+        'letterspacing/css',
+        'gradient/css',
+        'shadow/css',
+        'strokeStyle/css',
       ],
       files: [
         {

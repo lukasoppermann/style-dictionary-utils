@@ -15,8 +15,7 @@ export const letterspacingCss: Transform = {
   transitive: true,
   filter: isTypographyFilter,
   transform: (token: TransformedToken, platform: PlatformConfig) => {
-    const {letterSpacing} = getValue<TypographyTokenValue>(token)
-
-    return dimensionValueTransformer(letterSpacing, platform).trim()
+    const {letterSpacing} = getValue<TypographyTokenValue>(token, 'original')
+    return dimensionValueTransformer(letterSpacing, platform)
   },
 }
