@@ -27,7 +27,6 @@ import {isTransition} from './filter/isTransition.js'
 import {isTypography} from './filter/isTypography.js'
 import {javascriptCommonJs} from './format/javascript-commonJs.js'
 import {javascriptEsm} from './format/javascript-esm.js'
-import {letterspacingCss} from './transformer/letterspacing-css.js'
 import {namePathToCamelCase} from './transformer/name-path-to-camel-case.js'
 import {namePathToDotNotation} from './transformer/name-path-to-dot-notation.js'
 import {number} from './transformer/number.js'
@@ -37,7 +36,14 @@ import {transitionCss} from './transformer/transition-css.js'
 import {typescriptEsmDeclarations} from './format/typescript-esm-declarations.js'
 import {typographyCss} from './transformer/typography-css.js'
 import OrigialStyleDictionary from 'style-dictionary'
+import {extractLetterSpacingPreprocessor} from './preprocessor/extractLetterSpacingPreprocessor.js'
 
+/**
+ * Preprocessors
+ *
+ */
+
+OrigialStyleDictionary.registerPreprocessor(extractLetterSpacingPreprocessor)
 /**
  * Formats
  *
@@ -61,7 +67,6 @@ OrigialStyleDictionary.registerTransform(durationCss)
 OrigialStyleDictionary.registerTransform(fontFamilyCss)
 OrigialStyleDictionary.registerTransform(fontWeightCss)
 OrigialStyleDictionary.registerTransform(gradientCss)
-OrigialStyleDictionary.registerTransform(letterspacingCss)
 OrigialStyleDictionary.registerTransform(namePathToCamelCase)
 OrigialStyleDictionary.registerTransform(namePathToDotNotation)
 OrigialStyleDictionary.registerTransform(number)

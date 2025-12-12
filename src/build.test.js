@@ -2,6 +2,10 @@
 import {StyleDictionary} from '../dist/index.js'
 
 describe('index.js', () => {
+  it('all preprocessors are attached', () => {
+    expect(StyleDictionary.hooks.preprocessors['extract-letterSpacing-preprocessor']).toBeDefined()
+  })
+
   it('all formats are attached', () => {
     expect(StyleDictionary.hooks.formats['javascript/esm']).toBeDefined()
     expect(StyleDictionary.hooks.formats['javascript/commonJs']).toBeDefined()

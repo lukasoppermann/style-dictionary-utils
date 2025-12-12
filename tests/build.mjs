@@ -15,6 +15,7 @@ const addPlatforms = (outdir) => {
     cssAdvanced: {
       prefix: "PREFIX",
       buildPath: `${outdir}/css/`,
+      preprocessors: ["extract-letterSpacing-preprocessor"],
       // transformGroup: "css/extended",
       transforms: [
         'name/kebab',
@@ -27,7 +28,6 @@ const addPlatforms = (outdir) => {
         'fontWeight/css',
         'fontFamily/css',
         'typography/css',
-        'letterspacing/css',
         'gradient/css',
         'shadow/css',
         'strokeStyle/css',

@@ -3,6 +3,10 @@ import {StyleDictionary as SD} from '../src/index'
 describe('index.ts', () => {
   const StyleDictionary = new SD()
 
+  it('all preprocessors are attached', () => {
+    expect(StyleDictionary.hooks.preprocessors['extract-letterSpacing-preprocessor']).toBeDefined()
+  })
+
   it('all formats are attached', () => {
     expect(StyleDictionary.hooks.formats['javascript/esm']).toBeDefined()
     expect(StyleDictionary.hooks.formats['javascript/commonJs']).toBeDefined()
