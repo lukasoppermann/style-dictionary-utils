@@ -20,6 +20,6 @@ describe('Filter: isBorder', () => {
     },
   ] as TransformedToken[]
   it('filters border tokens', () => {
-    expect(items.filter(isBorder)).toStrictEqual([items[0], items[2]])
+    expect(items.filter(isBorder.filter)).toStrictEqual([items[0]])
   })
 })

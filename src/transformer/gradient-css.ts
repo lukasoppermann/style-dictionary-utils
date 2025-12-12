@@ -1,9 +1,11 @@
 import {Transform, TransformedToken} from 'style-dictionary/types'
-import {isGradient} from '../filter/isGradient.js'
+import {isGradientFilter} from '../filter/isGradient.js'
 import {getValue} from '../utilities/getValue.js'
+import {ColorTokenValue, colorValueTransformer} from './color-css.js'
+import {PlatformConfig} from 'style-dictionary'
 
 type TokenGradient = {
-  color: number
+  color: ColorTokenValue
   position: number
 }
 
@@ -11,12 +13,15 @@ export const gradientCss: Transform = {
   name: 'gradient/css',
   type: `value`,
   transitive: true,
-  filter: isGradient,
-  transform: (token: TransformedToken) => {
+  filter: isGradientFilter,
+  transform: (token: TransformedToken, platform: PlatformConfig | undefined) => {
     const tokenValue = getValue<TokenGradient[]>(token)
     // combine stops to string
     const stops = tokenValue
-      .map((stop: TokenGradient) => `${stop.color}${stop.position ? ` ${Math.floor(stop.position * 100)}%` : ''}`)
+      .map(
+        (stop: TokenGradient) =>
+          `${colorValueTransformer(stop.color, platform)}${stop.position ? ` ${Math.floor(stop.position * 100)}%` : ''}`,
+      )
       .join(', ')
     // return gradient value
     return `${token.angle ? `${token.angle}, ` : ''}${stops}`

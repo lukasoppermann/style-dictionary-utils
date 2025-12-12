@@ -34,7 +34,7 @@ describe('Format: ESM', () => {
 `
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore: fake values to test formatter
-    expect(await javascriptEsm({dictionary, file, options: undefined, platform})).toStrictEqual(output)
+    expect(await javascriptEsm.format({dictionary, file, options: undefined, platform})).toStrictEqual(output)
   })
 
   it('Formats tokens without prefix', async () => {
@@ -46,7 +46,7 @@ describe('Format: ESM', () => {
 `
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore: fake values to test formatter
-    expect(await javascriptEsm({dictionary, file, options: undefined, undefined})).toStrictEqual(output)
+    expect(await javascriptEsm.format({dictionary, file, options: undefined, undefined})).toStrictEqual(output)
   })
 
   it('Formats tokens accepting a custom prettier configuration', async () => {
@@ -62,6 +62,6 @@ describe('Format: ESM', () => {
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore: fake values to test formatter
-    expect(await javascriptEsm({dictionary, file, options: {prettier}, undefined})).toStrictEqual(output)
+    expect(await javascriptEsm.format({dictionary, file, options: {prettier}, undefined})).toStrictEqual(output)
   })
 })
