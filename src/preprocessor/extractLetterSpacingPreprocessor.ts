@@ -1,6 +1,5 @@
 import {PreprocessedTokens} from 'style-dictionary'
 import {Config, PlatformConfig, Preprocessor} from 'style-dictionary/types'
-import { isSource } from '../filter/isSource';
 
 /**
  * Recursively traverses an object and changes any child object

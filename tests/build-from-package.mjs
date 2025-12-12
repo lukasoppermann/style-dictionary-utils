@@ -45,6 +45,7 @@ const extendSd = await StyleDictionary.extend({
     cssAdvanced: {
       prefix: "PREFIX",
       buildPath: "./tests/dist/package/css/",
+      preprocessors: ["extract-letterSpacing-preprocessor"],
       transforms: [
         'name/kebab',
         'w3c-color/css',
@@ -53,6 +54,12 @@ const extendSd = await StyleDictionary.extend({
         'duration/css',
         'cubicBezier/css',
         'transition/css',
+        'fontWeight/css',
+        'fontFamily/css',
+        'typography/css',
+        'gradient/css',
+        'shadow/css',
+        'strokeStyle/css',
       ],
       files: [
         {
