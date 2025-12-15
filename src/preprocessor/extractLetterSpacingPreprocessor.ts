@@ -1,5 +1,5 @@
 import {PreprocessedTokens} from 'style-dictionary'
-import {Config, PlatformConfig, Preprocessor} from 'style-dictionary/types'
+import {Config, DesignToken, PlatformConfig, Preprocessor} from 'style-dictionary/types'
 
 /**
  * Recursively traverses an object and changes any child object
@@ -35,48 +35,47 @@ import {Config, PlatformConfig, Preprocessor} from 'style-dictionary/types'
  *                      and returns the new parent object, or undefined to skip replacement.
  * @returns A new object with replacements applied
  */
-export function changeTypeInObject<T extends object>(
-  obj: T,
+export function changeTypeInObject(
+  obj: Record<string, unknown>,
   targetType: string,
-  replacement: (child: any, parent: any, childKey: string | number) => any | undefined
-): T {
-  function recursive(current: any, parent: any, parentKey: string | number): any {
-    if (typeof current !== "object" || current === null) return current;
-
-    if (Array.isArray(current)) {
-      const result = current.map((item, idx) => recursive(item, current, idx));
-      // No replacement for arrays as parent (array indexes change on replacement)
-      return result;
-    }
+  replacement: (
+    child: PreprocessedTokens,
+    parent: PreprocessedTokens,
+    childKey: string | number,
+  ) => Record<string, unknown>,
+): Record<string, unknown> {
+  function recursive(current: Record<string, unknown>): Record<string, unknown> {
+    if (Array.isArray(current) || typeof current !== 'object' || current === null) return current
 
     // Track if any substitution happens
-    let changed = false;
-    const result: any = { ...current };
+    let changed = false
+    const result: Record<string, unknown> = {...current}
     for (const key in current) {
       if (Object.prototype.hasOwnProperty.call(current, key)) {
-        const child = current[key];
+        const child = current[key] as Record<string, unknown>
         // Only direct children match
         if (
-          typeof child === "object" &&
+          typeof child === 'object' &&
           child !== null &&
-          Object.prototype.hasOwnProperty.call(child, "$type") &&
-          child.$type === targetType
+          Object.prototype.hasOwnProperty.call(child, '$type') &&
+          (child as DesignToken).$type === targetType
         ) {
           // Replacement function returns new parent object if wants to change the parent
-          const replacedParent = replacement(child, current, key);
-          if (typeof replacedParent !== "undefined") {
+          const replacedParent = replacement(child as PreprocessedTokens, current as PreprocessedTokens, key)
+          if (typeof replacedParent !== 'undefined') {
             // If replacement returns a new parent, stop traversing children, and return it
-            return replacedParent;
+            return replacedParent
           }
         }
         // Otherwise recursively process child
-        result[key] = recursive(child, current, key);
-        if (result[key] !== current[key]) changed = true;
+        result[key] = recursive(child)
+        if (result[key] !== current[key]) changed = true
       }
     }
-    return changed ? result : current;
+    return changed ? result : current
   }
-  return recursive(obj, null, "");
+
+  return recursive(obj)
 }
 
 export const extractLetterSpacingPreprocessor: Preprocessor = {
@@ -85,11 +84,20 @@ export const extractLetterSpacingPreprocessor: Preprocessor = {
     const newTokens = changeTypeInObject(
       tokens,
       'typography',
-      (child: any, parent: any, childKey: string | number) => {
+      (child: PreprocessedTokens, parent: PreprocessedTokens, childKey: string | number) => {
         const {letterSpacing, ...rest} = child.$value
-        return {...parent, [`${childKey}`]: {...child, $value: rest}, [`${childKey}-letterSpacing`]: {$value: letterSpacing, $type: 'dimension', isSource: child.isSource, filePath: child.filePath}}
-      }
+        return {
+          ...parent,
+          [`${childKey}`]: {...child, $value: rest},
+          [`${childKey}-letterSpacing`]: {
+            $value: letterSpacing,
+            $type: 'dimension',
+            isSource: child.isSource,
+            filePath: child.filePath,
+          },
+        }
+      },
     )
-    return newTokens
+    return newTokens as PreprocessedTokens
   },
 }
