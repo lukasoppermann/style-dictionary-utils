@@ -81,7 +81,7 @@ StyleDictionary.registerTransform({
   - [color/css](#colorcss)
   - [typography/css](#typographycss)
   - [fontFamily/css](#fontfamilycss)
-  - [fontWeight/number](#fontweightnumber)
+  - [fontWeight/css](#fontweightcss)
   - [gradient/css](#gradientcss)
   - [cubicBezier/css](#cubicbeziercss)
   - [dimension/css](#dimension)
@@ -680,7 +680,7 @@ myStyleDictionary.extend({
 }
 ```
 
-### fontWeight/number
+### fontWeight/css
 
 This `value` transformer replaces the value of a w3c fontWeight token with a `$type` of `fontWeight` with a `css` fontWeight number.
 
@@ -688,7 +688,7 @@ This `value` transformer replaces the value of a w3c fontWeight token with a `$t
 myStyleDictionary.extend({
   platforms: {
     ts: {
-      transforms: ['fontWeight/number'],
+      transforms: ['fontWeight/css'],
       files: [
         {
           // ...
