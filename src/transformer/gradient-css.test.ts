@@ -4,17 +4,23 @@ import {gradientCss} from './gradient-css'
 describe('transform: gradientCss', () => {
   const items = [
     {
-      value: '',
+      $value: '',
       $type: 'color',
     },
     {
-      value: [
+      $value: [
         {
-          color: '#ffff00',
+          color: {
+            colorSpace: 'srgb',
+            components: [1, 0, 0.2],
+          },
           position: 0.666,
         },
         {
-          color: '#ff0000',
+          color: {
+            colorSpace: 'srgb',
+            components: [1, 0, 0.8],
+          },
           position: 1,
         },
       ],
@@ -23,22 +29,31 @@ describe('transform: gradientCss', () => {
     {
       $value: [
         {
-          color: '#ff2200',
+          color: {
+            colorSpace: 'srgb',
+            components: [1, 0, 0.2],
+          },
           position: 0,
         },
         {
-          color: '#ffff44',
+          color: {
+            colorSpace: 'srgb',
+            components: [1, 1, 0.27],
+          },
           position: 0.666,
         },
         {
-          color: '#ff0066',
+          color: {
+            colorSpace: 'srgb',
+            components: [1, 0, 0.4],
+          },
           position: 1,
         },
       ],
       $type: 'gradient',
     },
     {
-      value: '',
+      $value: '',
     },
   ] as TransformedToken[]
 
@@ -48,8 +63,8 @@ describe('transform: gradientCss', () => {
 
   it('transforms `gradient` tokens', () => {
     expect(items.filter(gradientCss.filter).map(item => gradientCss.transform(item, {}, {}))).toStrictEqual([
-      '#ffff00 66%, #ff0000 100%',
-      '#ff2200, #ffff44 66%, #ff0066 100%',
+      '#f03 66%, #f0c 100%',
+      '#f03, #ffff45 66%, #f06 100%',
     ])
   })
 
@@ -61,36 +76,7 @@ describe('transform: gradientCss', () => {
       },
     ]
     expect(gradient.filter(gradientCss.filter).map(item => gradientCss.transform(item, {}, {}))).toStrictEqual([
-      '45deg, #ffff00 66%, #ff0000 100%',
-    ])
-  })
-
-  it('transforms `gradient` tokens with added colors', () => {
-    const gradient = [
-      {
-        value: [
-          {
-            color: '#020024',
-            position: 0,
-          },
-          {
-            color: '#090979',
-            position: 0.35,
-          },
-          {
-            color: '#00d4ff',
-            position: 1,
-          },
-        ],
-        $type: 'gradient',
-      },
-      {
-        value: '',
-      },
-    ] as TransformedToken[]
-
-    expect(gradient.filter(gradientCss.filter).map(item => gradientCss.transform(item, {}, {}))).toStrictEqual([
-      '#020024, #090979 35%, #00d4ff 100%',
+      '45deg, #f03 66%, #f0c 100%',
     ])
   })
 })

@@ -20,6 +20,6 @@ describe('Filter: isTransition', () => {
     },
   ] as TransformedToken[]
   it('filters transition tokens', () => {
-    expect(items.filter(isTransition)).toStrictEqual([items[0], items[2]])
+    expect(items.filter(isTransition.filter)).toStrictEqual([items[0]])
   })
 })

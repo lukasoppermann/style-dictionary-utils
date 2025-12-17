@@ -1,38 +1,37 @@
-import {Transform, TransformedToken} from 'style-dictionary/types'
-import {isShadow} from '../filter/isShadow.js'
+import {PlatformConfig, Transform, TransformedToken} from 'style-dictionary/types'
+import {isShadowFilter} from '../filter/isShadow.js'
 import {getValue} from '../utilities/getValue.js'
+import {dimensionValueTransformer, DimensionTokenValue} from './dimension-css.js'
+import {ColorTokenValue, colorValueTransformer} from './color-css.js'
 
 type TokenShadow = {
-  color: string
-  offsetX: string
-  offsetY: string
-  blur: string
-  spread: string
+  color: ColorTokenValue
+  offsetX: DimensionTokenValue
+  offsetY: DimensionTokenValue
+  blur: DimensionTokenValue
+  spread: DimensionTokenValue
   inset?: boolean
 }
 
-const formatShadow = ({
-  offsetX = '0',
-  offsetY = '0',
-  blur = '0',
-  spread = '0',
-  color,
-  inset = false,
-}: TokenShadow): string => `${offsetX} ${offsetY} ${blur} ${spread} ${color} ${inset ? 'inset' : ''}`.trim()
+const formatShadow = (
+  {offsetX, offsetY, blur, spread, color, inset = false}: TokenShadow,
+  platform: PlatformConfig | undefined,
+): string =>
+  `${inset ? 'inset' : ''} ${dimensionValueTransformer(offsetX, platform)} ${dimensionValueTransformer(offsetY, platform)} ${dimensionValueTransformer(blur, platform)} ${dimensionValueTransformer(spread, platform)} ${colorValueTransformer(color, platform)}`.trim()
 
 export const shadowCss: Transform = {
   name: 'shadow/css',
   type: `value`,
   transitive: true,
-  filter: isShadow,
-  transform: (token: TransformedToken) => {
+  filter: isShadowFilter,
+  transform: (token: TransformedToken, platform: PlatformConfig | undefined) => {
     const tokenValue = getValue<TokenShadow>(token)
     if (Array.isArray(tokenValue)) {
-      return tokenValue.map(formatShadow).join(', ')
+      return tokenValue.map(shadow => formatShadow(shadow, platform)).join(', ')
     }
 
     if (typeof tokenValue === 'object') {
-      return formatShadow(tokenValue)
+      return formatShadow(tokenValue, platform)
     }
 
     return tokenValue

@@ -20,6 +20,6 @@ describe('Filter: isCubicBezier', () => {
     },
   ] as TransformedToken[]
   it('filters cubicBezier tokens', () => {
-    expect(items.filter(isCubicBezier)).toStrictEqual([items[0], items[2]])
+    expect(items.filter(isCubicBezier.filter)).toStrictEqual([items[0]])
   })
 })

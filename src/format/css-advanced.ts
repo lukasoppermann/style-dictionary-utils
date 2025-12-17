@@ -1,8 +1,8 @@
-import type {FormatFn, FormatFnArguments, FormattingOptions, TransformedToken} from 'style-dictionary/types'
+import type {Format, FormatFn, FormatFnArguments, FormattingOptions, TransformedToken} from 'style-dictionary/types'
 import {fileHeader, formattedVariables} from 'style-dictionary/utils'
 import {format} from 'prettier'
 
-export const cssAdvanced: FormatFn = async ({
+const cssAdvancedFormat: FormatFn = async ({
   dictionary: originalDictionary,
   options = {
     rules: [],
@@ -90,4 +90,9 @@ export const cssAdvanced: FormatFn = async ({
   }
   // return prettified
   return format(output.join('\n'), {parser: 'css', printWidth: 500})
+}
+
+export const cssAdvanced: Format = {
+  name: 'css/advanced',
+  format: cssAdvancedFormat,
 }
