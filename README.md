@@ -5,6 +5,9 @@
 
 `style-dictionary-utils` is a collection of `filters`, `transformers` and `formats` for [Style Dictionary](https://styledictionary.com/) that make working with [w3c design tokens](https://github.com/design-tokens/community-group) a lot easier.
 
+## W3C Token support
+**Now fully supports w3c tokens.** Support for other formats has been removed.
+
 ## Installation
 
 Install the `style-dictionary-utils` as well as `style-dictionary`.
@@ -12,10 +15,6 @@ Install the `style-dictionary-utils` as well as `style-dictionary`.
 ```bash
 npm i -D style-dictionary-utils style-dictionary
 ```
-
-## How to use style dictionary version 3?
-
-If you are not ready to upgrade to style dictinary version 3 you can continue using `style-dictionary-utils` by locking to `v2` currently [`v2.4.1`](https://github.com/lukasoppermann/style-dictionary-utils/tree/v2.4.1) version.
 
 ## Getting started
 
