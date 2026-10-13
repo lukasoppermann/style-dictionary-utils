@@ -118,11 +118,12 @@ You can change the selector by defining it in `file.options.selector`.
 
 You can define rules on a file level using `file.options.rules`. If one or more rules are defined, only tokens within any of the rules will be output. You can define as many rule objects within `file.options.rules` as you want. Tokens can be part of one or multiple rules.
 
-A rule object may have any or all of the three properties `atRule`, `selector` and `matcher`.
+A rule object may have any or all of the four properties `atRule`, `selector`, `matcher` and `transformer`.
 
 - `selector` is a string that is wrapped around your css. If the `selector` is undefined, the default selector or one define at `file.options.selector` will be used. If you don't want a selector, set it to `false`.
 - `atRule` can be a string or array of strings, that are wrapped around the css and `selector` with the first being the outer layer.
 - `matcher` is a filter function that returns true for tokens that should be included in the query. If you want to match all tokens, just return true from the matcher.
+- `transformer` is a map function that returns either the original or modified token object. This is useful when [storing multiple values in a single token](https://backlight.dev/docs/style-dictionary#single-token-format-wrapper).
 
 ```css
 body[theme='dark'] {
@@ -154,6 +155,7 @@ myStyleDictionary.extend({
             atRule: '@media (min-width: 768px)',
             selector: `body[size="medium"]` // this will be used instead of body[theme="dark"]`
             matcher: (token: StyleDictionary.TransformedToken) => token.filePath.includes('tablet'), // tokens that match this filter will be added inside the media query
+            transformer: (token: StyleDictionary.TransformedToken) => ({ ...token, value: token.darkValue }) // replace the token value with another property on the token object
           }]
         }
       }]

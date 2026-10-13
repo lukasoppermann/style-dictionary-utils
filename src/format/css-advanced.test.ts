@@ -470,4 +470,36 @@ describe('Format: CSS Advanced', () => {
       await cssAdvanced.format({dictionary, file: fileOptions, options: {usesDtcg: true}, platform}),
     ).toStrictEqual(output)
   })
+
+  it('Transforms tokens with transformer rule option', async () => {
+    const fileOptions = {
+      ...file,
+      options: {
+        ...file.options,
+        rules: [
+          {
+            matcher: (_token: TransformedToken) => true,
+            transformer: (token: TransformedToken) => {
+              return {
+                ...token,
+                $value: '#000000',
+              }
+            },
+          },
+        ],
+      },
+    }
+
+    const output = `:root {
+  --color-background-primary: #000000;
+  --color-background-secondary: #000000;
+  --color-background-green: #000000;
+}
+`
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore: fake values to test formatter
+    expect(
+      await cssAdvanced.format({dictionary, file: fileOptions, options: {usesDtcg: true}, platform}),
+    ).toStrictEqual(output)
+  })
 })

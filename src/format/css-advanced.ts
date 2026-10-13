@@ -2,6 +2,8 @@ import type {Format, FormatFn, FormatFnArguments, FormattingOptions, Transformed
 import {fileHeader, formattedVariables} from 'style-dictionary/utils'
 import {format} from 'prettier'
 
+const defaultTransformer = (token: TransformedToken) => token
+
 const cssAdvancedFormat: FormatFn = async ({
   dictionary: originalDictionary,
   options = {
@@ -21,6 +23,7 @@ const cssAdvancedFormat: FormatFn = async ({
       atRule: undefined,
       selector: undefined,
       matcher: () => true,
+      transformer: defaultTransformer,
     },
   ]
   // set formatting
@@ -58,7 +61,7 @@ const cssAdvancedFormat: FormatFn = async ({
   // add file header
   const output = [await fileHeader({file})]
   // add single theme css
-  for (const {atRule, selector, matcher} of rules) {
+  for (const {atRule, selector, matcher, transformer} of rules) {
     let preludes: string[] = !Array.isArray(atRule) ? [atRule] : atRule
     // add selectors to preludes
     preludes.push(typeof selector === 'string' || selector === false ? selector : defaultSelector)
@@ -67,7 +70,9 @@ const cssAdvancedFormat: FormatFn = async ({
     // filter tokens to only include the ones that pass the matcher
     const filteredDictionary = {
       ...dictionary,
-      allTokens: dictionary.allTokens.filter(matcher || (() => true)),
+      allTokens: dictionary.allTokens
+        .filter(matcher || (() => true))
+        .map<TransformedToken>(transformer || defaultTransformer),
     }
     // early abort if no matches
     if (!filteredDictionary.allTokens.length) continue
