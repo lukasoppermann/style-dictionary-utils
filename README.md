@@ -6,6 +6,7 @@
 `style-dictionary-utils` is a collection of `filters`, `transformers` and `formats` for [Style Dictionary](https://styledictionary.com/) that make working with [w3c design tokens](https://github.com/design-tokens/community-group) a lot easier.
 
 ## W3C Token support
+
 **Now fully supports w3c tokens.** Support for other formats has been removed.
 
 ## Installation
